@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Rajesh Kumar",
+    "designation": "Director",
+    "company": "Tech Solutions Ltd",
+    "text": "DeopersIndia provided excellent service for our website development. Their team was professional, responsive, and delivered exactly what we needed on time.",
+    "rating": 5
+  },
+  {
+    "name": "Priya Sharma",
+    "designation": "Marketing Manager",
+    "company": "E-Commerce Hub",
+    "text": "Outstanding digital marketing solutions! Our online visibility increased significantly after working with their expert team. Highly recommended!",
+    "rating": 5
+  },
+  {
+    "name": "Neha Gupta",
+    "designation": "Business Owner",
+    "company": "Fashion Boutique",
+    "text": "SEO services helped us rank on the first page of Google. The transparency and regular reports kept us informed throughout the process.",
+    "rating": 5
+  },
+  {
+    "name": "Amit Patel",
+    "designation": "CEO",
+    "company": "StartUp Innovations",
+    "text": "The mobile app development service was top-notch. The team understood our requirements perfectly and delivered a user-friendly application.",
+    "rating": 5
+  },
+  {
+    "name": "Vikram Singh",
+    "designation": "Product Manager",
+    "company": "FinTech Solutions",
+    "text": "Professional team with deep technical knowledge. They provided valuable suggestions that improved our product significantly.",
+    "rating": 5
+  },
+  {
+    "name": "Sana Iqbal",
+    "designation": "Founder",
+    "company": "BrightCare Health",
+    "text": "Their design and development approach was smooth, fast, and very thoughtful. The final product exceeded our expectations.",
+    "rating": 5
+  }
+]

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.deopersindia.com/sitemap.xml
+Host: https://www.deopersindia.com

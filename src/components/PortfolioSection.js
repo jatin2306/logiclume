@@ -6,27 +6,23 @@ import { portfolioData } from "@/data/portfolioData";
 
 export default function PortfolioSection() {
   return (
-    <section className="py-16 lg:py-5 bg-[var(--color-surface)]">
-      <div className="container mx-auto px-4 lg:px-8">
-
+    <section className="py-20 lg:py-28 section-light bg-grid-light">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          title="Our Recent Digital Projects"
-          description="Explore our portfolio of websites, mobile applications, UI/UX designs, e-commerce solutions, and custom software developed for businesses across multiple industries."
+          label="Portfolio"
+          title="Showcasing Products & Digital Transformations"
+          description="Explore impactful digital experiences, scalable applications, and solutions engineered for modern businesses."
           centered
           twoColor
           coloredWords={2}
-          className="mb-12"
+          className="max-w-3xl mx-auto mb-16"
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {portfolioData.map((project) => (
-            <PortfolioCard
-              key={project.id}
-              {...project}
-            />
+            <PortfolioCard key={project.id} {...project} />
           ))}
         </div>
-
       </div>
     </section>
   );

@@ -1,199 +1,169 @@
 "use client";
 
 import { useState } from "react";
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowRight, Send } from "lucide-react";
 
-const initialFormState = {
-  name: "",
-  email: "",
-  phone: "",
-  message: "",
-};
+const initialFormState = { name: "", email: "", phone: "", budget: "", message: "" };
 
-export default function HomeContact() {
+const budgetOptions = [
+  { value: "", label: "Select Budget Range" },
+  { value: "5k-25k", label: "$5K - $25K" },
+  { value: "25k-50k", label: "$25K - $50K" },
+  { value: "50k-100k", label: "$50K - $100K" },
+  { value: "100k+", label: "$100K+" },
+];
+
+const helpOptions = [
+  "Web Development", "Mobile App", "UI/UX Design",
+  "E-Commerce", "AI Solutions", "Digital Marketing",
+];
+
+export default function ContactForm() {
   const [formData, setFormData] = useState(initialFormState);
+  const [selectedHelp, setSelectedHelp] = useState([]);
   const [status, setStatus] = useState({ type: "idle", message: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (status.message) {
-      setStatus({ type: "idle", message: "" });
-    }
+    if (status.message) setStatus({ type: "idle", message: "" });
+  };
+
+  const toggleHelp = (item) => {
+    setSelectedHelp((prev) =>
+      prev.includes(item) ? prev.filter((h) => h !== item) : [...prev, item]
+    );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const { name, email, phone, message } = formData;
 
     if (!name.trim() || !email.trim() || !phone.trim() || !message.trim()) {
-      setStatus({ type: "error", message: "Please fill in all the fields before submitting." });
+      setStatus({ type: "error", message: "Please fill in all required fields." });
       return;
     }
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setStatus({ type: "error", message: "Please enter a valid email address." });
       return;
     }
 
-    setStatus({
-      type: "success",
-      message: "Thank you! Your inquiry has been received. We’ll contact you soon.",
-    });
+    setStatus({ type: "success", message: "Thank you! Your inquiry has been received. We'll contact you within 24 hours." });
     setFormData(initialFormState);
+    setSelectedHelp([]);
   };
 
   return (
-    <section className="py-5 bg-slate-50">
-      <div className="container-fluid mx-auto px-4 lg:px-8">
+    <section className="py-20 lg:py-28 section-light">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <span className="section-label-orange mb-4">Contact Us</span>
+          <h2 className="font-display text-3xl lg:text-5xl font-bold text-[var(--color-text)]">
+            Let&apos;s chat about your{" "}
+            <span className="text-[var(--color-primary)]">next big idea</span>
+          </h2>
+          <p className="mt-4 text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">
+            Tell us about your project and our team will get back to you with a tailored plan.
+          </p>
+        </div>
 
-        <div className="overflow-hidden rounded-[32px] bg-white shadow-xl border border-slate-200">
+        <div className="overflow-hidden rounded-3xl card-elevated shadow-xl">
+          <div className="grid lg:grid-cols-5">
+            {/* Light blue info panel */}
+            <div className="lg:col-span-2 relative overflow-hidden card-accent-blue p-10 lg:p-12">
+              <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-[rgba(245,130,32,0.1)] rounded-full blur-[80px]" />
 
-          <div className="grid lg:grid-cols-2">
+              <div className="relative">
+                <h3 className="font-display text-2xl font-bold text-[var(--color-text)]">
+                  Ready to transform your business?
+                </h3>
+                <p className="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+                  Whether you need a website, mobile app, or complete digital transformation —
+                  we&apos;re here to help.
+                </p>
 
-            {/* Left Side */}
-
-            <div className="relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 p-10 lg:p-14 text-white">
-
-              <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-orange-500/20 blur-[120px]" />
-
-              <span className="inline-flex rounded-full bg-white/15 px-4 py-2 text-sm font-semibold">
-                Contact Us
-              </span>
-
-              <h2 className="mt-6 text-4xl font-bold leading-tight">
-                Let's Build Your
-                <span className="block text-orange-400">
-                  Next Digital Project
-                </span>
-              </h2>
-
-              <p className="mt-6 text-blue-100 leading-8">
-                Need a website, mobile application, custom software, or
-                digital marketing? Our experts are ready to help your
-                business grow.
-              </p>
-
-              <div className="mt-10 space-y-5">
-
-                <div className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 backdrop-blur-md">
-                  <Phone size={22} />
-                  <div>
-                    <h4 className="font-semibold">Call Us</h4>
-                    <p className="text-sm text-blue-100">
-                      +91 9758403169
-                    </p>
-                  </div>
+                <div className="mt-10 space-y-4">
+                  {[
+                    { icon: Phone, label: "Call Us", value: "+91 9758403169", href: "tel:+919758403169" },
+                    { icon: Mail, label: "Email", value: "info@deopersindia.com", href: "mailto:info@deopersindia.com" },
+                    { icon: MapPin, label: "Location", value: "4/126 Palm Olympia, Greater Noida 201306" },
+                  ].map(({ icon: Icon, label, value, href }) => (
+                    <div key={label} className="flex items-start gap-4 rounded-2xl bg-white border border-[rgba(21,101,192,0.1)] p-4 shadow-sm">
+                      <Icon size={20} className="text-[var(--color-accent)] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">{label}</p>
+                        {href ? (
+                          <a href={href} className="text-sm text-[var(--color-text)] hover:text-[var(--color-primary)] transition mt-1 block font-medium">
+                            {value}
+                          </a>
+                        ) : (
+                          <p className="text-sm text-[var(--color-text)] mt-1 font-medium">{value}</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-
-                <div className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 backdrop-blur-md">
-                  <Mail size={22} />
-                  <div>
-                    <h4 className="font-semibold">Email</h4>
-                    <p className="text-sm text-blue-100">
-                      info@deopersindia.com
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 backdrop-blur-md">
-                  <MapPin size={22} />
-                  <div>
-                    <h4 className="font-semibold">Location</h4>
-                    <p className="text-sm text-blue-100">
-                      4/126 Palm Olympia Greater Noida (201306)
-                    </p>
-                  </div>
-                </div>
-
               </div>
-
             </div>
 
-            {/* Right Side */}
+            {/* Form */}
+            <div className="lg:col-span-3 p-8 lg:p-12 bg-white">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name *" className="w-full rounded-xl input-brand px-5 py-4 text-sm" />
+                  <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email Address *" className="w-full rounded-xl input-brand px-5 py-4 text-sm" />
+                </div>
 
-            <div className="p-8 lg:p-12">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone Number *" className="w-full rounded-xl input-brand px-5 py-4 text-sm" />
+                  <select name="budget" value={formData.budget} onChange={handleChange} className="w-full rounded-xl input-brand px-5 py-4 text-sm text-[var(--color-text-muted)]">
+                    {budgetOptions.map((opt) => (
+                      <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
+                  </select>
+                </div>
 
-              <h3 className="text-3xl font-bold text-slate-900">
-                Request a Free Consultation
-              </h3>
+                <div>
+                  <p className="text-sm font-medium text-[var(--color-text)] mb-3">Where do you need help?</p>
+                  <div className="flex flex-wrap gap-2">
+                    {helpOptions.map((item) => (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => toggleHelp(item)}
+                        className={`rounded-full px-4 py-2 text-xs font-medium transition ${
+                          selectedHelp.includes(item)
+                            ? "bg-[var(--color-primary)] text-white shadow-sm"
+                            : "bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:bg-[var(--color-surface-blue)] border border-[var(--color-border)]"
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-              <p className="mt-3 text-slate-600">
-                Fill out the form and our team will contact you within 24 hours.
-              </p>
+                <textarea rows={4} name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your project... *" className="w-full rounded-xl input-brand px-5 py-4 text-sm resize-none" />
 
-              <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your Name"
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 outline-none transition focus:border-blue-600 focus:bg-white"
-                />
-
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Email Address"
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 outline-none transition focus:border-blue-600 focus:bg-white"
-                />
-
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Phone Number"
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 outline-none transition focus:border-blue-600 focus:bg-white"
-                />
-
-                <textarea
-                  rows={4}
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell us about your project..."
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 outline-none transition focus:border-blue-600 focus:bg-white resize-none"
-                />
-
-                {status.message ? (
-                  <div
-                    className={`rounded-xl border px-4 py-3 text-sm ${
-                      status.type === "success"
-                        ? "border-green-200 bg-green-50 text-green-700"
-                        : "border-red-200 bg-red-50 text-red-700"
-                    }`}
-                  >
+                {status.message && (
+                  <div className={`rounded-xl border px-4 py-3 text-sm ${status.type === "success" ? "border-green-200 bg-green-50 text-green-700" : "border-red-200 bg-red-50 text-red-700"}`}>
                     {status.message}
                   </div>
-                ) : null}
+                )}
 
                 <button
                   type="submit"
-                  className="group flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 py-4 font-semibold text-white transition hover:scale-[1.02]"
+                  className="group flex w-full items-center justify-center gap-3 rounded-xl bg-[var(--color-accent)] hover:bg-[var(--color-accent-dark)] py-4 font-semibold text-white transition hover:shadow-lg hover:shadow-[rgba(245,130,32,0.25)]"
                 >
-                  Send Inquiry
-
-                  <ArrowRight
-                    size={18}
-                    className="transition group-hover:translate-x-1"
-                  />
+                  <Send size={18} />
+                  Submit Inquiry
+                  <ArrowRight size={18} className="transition group-hover:translate-x-1" />
                 </button>
-
               </form>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

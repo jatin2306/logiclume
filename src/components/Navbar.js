@@ -2,227 +2,247 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaPhone } from "react-icons/fa";
-import NavbarDropdown from "./NavbarDropdown";
-import Button from "./Button";
-import { usePathname } from "next/navigation";
+import { useState, useEffect, useCallback } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { X, ChevronDown, ArrowUpRight } from "lucide-react";
+import AiNavButton from "./AiNavButton";
+import NavMegaPanel from "./NavMegaPanel";
+
+const primaryLinks = [
+  { href: "#about", label: "About" },
+  { href: "#services", label: "Services", hasDropdown: true },
+  { href: "#portfolio", label: "Portfolio" },
+];
+
+const secondaryLinks = [
+  { href: "#team", label: "Team" },
+  { href: "#testimonials", label: "Testimonials" },
+];
+
+const allSectionIds = ["home", "contact", ...primaryLinks, ...secondaryLinks].map((l) =>
+  typeof l === "string" ? l : l.href.replace("#", "")
+);
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const path = usePathname();
+  const [activeSection, setActiveSection] = useState("home");
+  const [megaMenu, setMegaMenu] = useState(null);
+  const [promoVisible, setPromoVisible] = useState(true);
 
-  const servicesItems = [
-    { href: "/services/web-development", label: "Web Development" },
-    { href: "/services/mobile-app-development", label: "Mobile App Development" },
-    { href: "/services/ui-ux-design", label: "UI/UX Design" },
-    { href: "/services/ecommerce-development", label: "E-Commerce Development" },
-    { href: "/services/digital-marketing", label: "Digital Marketing" },
-    { href: "/services/seo-services", label: "SEO Services" },
-  ];
-
-  const technologiesItems = [
-    { href: "/technologies/react", label: "React.js" },
-    { href: "/technologies/nextjs", label: "Next.js" },
-    { href: "/technologies/nodejs", label: "Node.js" },
-    { href: "/technologies/dotnet", label: ".NET" },
-    { href: "/technologies/laravel", label: "Laravel" },
-    { href: "/technologies/aws", label: "AWS Cloud" },
-  ];
+  const updateActiveSection = useCallback(() => {
+    const offset = 120;
+    let current = "home";
+    for (const id of allSectionIds) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= offset) current = id;
+    }
+    setActiveSection(current);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 30);
+      updateActiveSection();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    updateActiveSection();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [updateActiveSection]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${scrolled ? "bg-white shadow-md" : "bg-white"
-        }`}
-    >
-      {/* Gradient top bar */}
-      <div
-        className="w-full h-[3px]"
-        style={{
-          background: "var(--color-gradient)",
-        }}
-      />
+  const renderNavLink = (link) => {
+    const isActive = activeSection === link.href.replace("#", "");
 
-      {/* === Desktop Navbar Single Row === */}
-      <div className="hidden lg:flex items-center justify-between mx-auto px-4 sm:px-6 lg:px-8 h-20">
-
-        {/* Logo */}
-        <Link href="/" className="flex-none">
-          <div className="relative w-56 xl:w-xs h-18">
-            <Image
-              src="/images/logo.jpeg"
-              alt="Logo"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-        </Link>
-
-        {/* Center Menu */}
-        <nav className="flex items-center justify-end xl:justify-center gap-6 font-semibold text-lg xl:text-base w-full ">
-          <a
-            href="#home"
-            className="hover:text-[var(--color-secondary)] transition"
-          >
-            Home
-          </a>
-
-          <a href="#about" className="hover:text-[var(--color-secondary)] transition">About</a>
-          <a href="#services" className="hover:text-[var(--color-secondary)] transition">Services</a>
-          <a href="#testimonials" className="hover:text-[var(--color-secondary)] transition">Testimonials</a>
-          <a href="#team" className="hover:text-[var(--color-secondary)] transition">Team</a>
-          {/* <a href="#portfolio" className="hover:text-[var(--color-secondary)] transition">Portfolio</a> */}
-          <a href="#contact" className="hover:text-[var(--color-secondary)] transition">Contact</a>
-        </nav>
-
-        {/* Right Buttons */}
-        <div className="hidden xl:flex items-center gap-3 flex-none">
-          <a
-            href="tel:+919758403169"
-            className="flex items-center gap-2 text-[var(--color-black)] font-semibold hover:text-[var(--color-secondary)] transition"
-          >
-            <FaPhone className="text-[var(--color-accent)]" /> +91-9758403169
-          </a>
-        </div>
-
-      </div>
-
-      {/* === Mobile Hamburger === */}
-      <div className="lg:hidden">
-        <div className="flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16">
-          <Link href="/" className="flex items-center flex-none">
-            <div className="relative w-48 h-16">
-              <Image src="/images/logo.jpeg" alt="Logo" fill className="object-contain" priority />
-            </div>
-          </Link>
-
-          <button
-            onClick={() => setOpen(!open)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="p-2 rounded-md bg-slate-900 text-white shadow-lg hover:bg-slate-800 transition"
-          >
-            {open ? <FaTimes size={22} /> : <FaBars size={22} />}
-          </button>
-        </div>
-        {/* Mobile Overlay */}
-        <div
-          className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-            }`}
-          onClick={() => setOpen(false)}
-        />
-
-        {/* Mobile Drawer */}
-        <aside
-          className={`fixed top-0 left-0 h-full w-80 max-w-[85%] z-50 bg-white transform transition-transform duration-300
-          border-r border-[var(--color-border)] shadow-[4px_0_15px_rgba(0,0,0,0.1)]
-          ${open ? "translate-x-0" : "-translate-x-full"}`}
+    if (link.hasDropdown) {
+      return (
+        <a
+          key={link.href}
+          href={link.href}
+          onMouseEnter={() => setMegaMenu("services")}
+          className={`nav-link ${isActive ? "nav-link-active" : ""} ${megaMenu === "services" ? "nav-link-mega-open" : ""}`}
         >
+          {link.label}
+          <ChevronDown
+            size={14}
+            strokeWidth={2.5}
+            className={`nav-chevron transition-transform duration-300 ${megaMenu === "services" ? "rotate-180" : ""}`}
+          />
+        </a>
+      );
+    }
 
-          {/* Header */}
-          <div className="flex items-center justify-between px-4 py-4">
-            <div className="relative w-48 h-16">
-              <Image src="/images/logo.jpeg" alt="Logo" fill className="object-contain" />
-            </div>
+    return (
+      <a
+        key={link.href}
+        href={link.href}
+        className={`nav-link ${isActive ? "nav-link-active" : ""}`}
+      >
+        {link.label}
+      </a>
+    );
+  };
 
+  return (
+    <>
+      {promoVisible && (
+        <div className="fixed top-0 left-0 right-0 z-[60] nav-promo-bar">
+          <div className="max-w-7xl mx-auto px-6 py-2.5 flex items-center justify-center text-sm relative">
+            <p className="text-white/90 text-center pr-8">
+              Free strategy consultation —{" "}
+              <a href="#contact" className="text-white font-semibold underline underline-offset-2 hover:no-underline">
+                book a call
+              </a>
+            </p>
             <button
-              onClick={() => setOpen(false)}
-              className="p-2 rounded-md text-gray-700 hover:bg-gray-100 transition"
+              onClick={() => setPromoVisible(false)}
+              aria-label="Dismiss"
+              className="absolute right-4 p-1 text-white/50 hover:text-white transition"
             >
-              <FaTimes size={22} />
+              <X size={15} />
             </button>
           </div>
-          <div className="w-full h-[3px]" style={{ background: "var(--color-gradient)" }} />
+        </div>
+      )}
 
-          {/* Scrollable Nav */}
-          <nav className="px-4 py-4 overflow-y-auto max-h-[calc(100vh-180px)] flex flex-col gap-3">
-            <ul className="flex flex-col gap-2 font-medium text-gray-900 text-[15px]">
+      <header
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
+          promoVisible ? "top-9" : "top-0"
+        }`}
+        onMouseLeave={() => setMegaMenu(null)}
+      >
+        <div className="relative">
+          <div className="px-5 sm:px-8 lg:px-10 pt-4">
+            {/* Desktop */}
+            <div className="hidden lg:block max-w-6xl mx-auto relative">
+              <div
+                className={`nav-marquee-wrap transition-all duration-500 ${
+                  scrolled ? "nav-marquee-wrap-scrolled" : ""
+                } ${megaMenu ? "nav-marquee-wrap-dropdown-open" : ""}`}
+              >
+                <div className="nav-shell-inner">
+                  <div className="flex items-center justify-between h-[4.5rem] px-8 xl:px-10">
+                    <Link href="/" className="flex-none shrink-0">
+                      <div className="relative w-40 xl:w-44 h-11">
+                        <Image src="/images/logo.jpeg" alt="DeopersIndia" fill className="object-contain object-left" priority />
+                      </div>
+                    </Link>
 
-              {/* Home */}
-              <li>
-                <a
-                  href="#home"
-                  onClick={() => setOpen(false)}
-                  className="block px-3 py-2 rounded-md transition hover:bg-[var(--color-secondary)]/10"
+                    <nav className="flex items-center gap-1 xl:gap-2">
+                      {primaryLinks.map(renderNavLink)}
+                      <span className="nav-divider hidden xl:block" aria-hidden="true" />
+                      {secondaryLinks.map(renderNavLink)}
+                    </nav>
+
+                    <div className="flex items-center gap-3 flex-none">
+                      <AiNavButton
+                        variant="desktop"
+                        isOpen={megaMenu === "ai"}
+                        onMouseEnter={() => setMegaMenu("ai")}
+                      />
+
+                      <a href="#contact" className="nav-contact-btn group">
+                        <span>Contact Us</span>
+                        <ArrowUpRight size={16} strokeWidth={2.25} className="nav-contact-btn-arrow" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <NavMegaPanel type={megaMenu} />
+            </div>
+
+            {/* Mobile */}
+            <div
+              className={`lg:hidden max-w-6xl mx-auto nav-marquee-wrap transition-all duration-300 ${
+                scrolled ? "nav-marquee-wrap-scrolled" : ""
+              }`}
+            >
+              <div className="nav-shell-inner flex items-center justify-between px-5 h-[3.75rem]">
+              <Link href="/" className="relative w-36 h-10">
+                <Image src="/images/logo.jpeg" alt="DeopersIndia" fill className="object-contain object-left" priority />
+              </Link>
+
+              <div className="flex items-center gap-2">
+                <AiNavButton variant="compact" />
+                <button
+                  onClick={() => setOpen(!open)}
+                  aria-label={open ? "Close menu" : "Open menu"}
+                  className="nav-menu-toggle"
                 >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#about"
-                  onClick={() => setOpen(false)}
-                  className="block px-3 py-2 rounded-md transition hover:bg-[var(--color-secondary)]/10"
-                >
-                  About
-                </a>
-              </li>
+                  {open ? <FaTimes size={18} /> : <FaBars size={18} />}
+                </button>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-              <li>
-                <a
-                  href="#services"
-                  onClick={() => setOpen(false)}
-                  className="block px-3 py-2 rounded-md transition hover:bg-[var(--color-secondary)]/10"
-                >
-                  Services
-                </a>
-              </li>
+        <div className="h-4" aria-hidden="true" />
 
-              <li>
-                <a
-                  href="#gallery"
-                  onClick={() => setOpen(false)}
-                  className="block px-3 py-2 rounded-md transition hover:bg-[var(--color-secondary)]/10"
-                >
-                  Gallery
-                </a>
-              </li>
+        {/* Mobile drawer */}
+        <div
+          className={`lg:hidden fixed inset-0 z-40 transition-opacity duration-300 ${
+            open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
+          style={{ top: promoVisible ? "2.25rem" : "0" }}
+        >
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setOpen(false)} />
 
-              <li>
-                <a
-                  href="#testimonials"
-                  onClick={() => setOpen(false)}
-                  className="block px-3 py-2 rounded-md transition hover:bg-[var(--color-secondary)]/10"
-                >
-                  Testimonials
-                </a>
-              </li>
+          <aside
+            className={`absolute top-0 right-0 h-full w-full max-w-[320px] bg-white shadow-2xl transform transition-transform duration-300 ease-out ${
+              open ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-border)]">
+              <span className="font-display text-lg font-bold text-[var(--color-text)]">Menu</span>
+              <button onClick={() => setOpen(false)} className="nav-menu-toggle">
+                <FaTimes size={18} />
+              </button>
+            </div>
 
-              <li>
-                <a
-                  href="#team"
-                  onClick={() => setOpen(false)}
-                  className="block px-3 py-2 rounded-md transition hover:bg-[var(--color-secondary)]/10"
-                >
-                  Team
-                </a>
-              </li>
+            <nav className="px-4 py-4 flex flex-col gap-1">
+              <AiNavButton variant="mobile" onNavigate={() => setOpen(false)} />
 
-              <li>
-                <a
-                  href="#contact"
-                  onClick={() => setOpen(false)}
-                  className="block px-3 py-2 rounded-md transition hover:bg-[var(--color-secondary)]/10"
-                >
-                  Contact
-                </a>
-              </li>
+              {[...primaryLinks, ...secondaryLinks].map((link) => {
+                const isActive = activeSection === link.href.replace("#", "");
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={`nav-mobile-link ${isActive ? "nav-mobile-link-active" : ""}`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+            </nav>
 
-            </ul>
-          </nav>
-        </aside>
-      </div>
-    </header>
+            <div className="px-6 pb-8 mt-auto border-t border-[var(--color-border)] pt-6">
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="nav-contact-btn w-full justify-center py-3.5 group"
+              >
+                <span>Contact Us</span>
+                <ArrowUpRight size={16} strokeWidth={2.25} className="nav-contact-btn-arrow" />
+              </a>
+            </div>
+          </aside>
+        </div>
+      </header>
+
+      <div
+        className={`shrink-0 transition-all duration-500 ${
+          promoVisible ? "h-[5.75rem] lg:h-[6.75rem]" : "h-[4.5rem] lg:h-[5.75rem]"
+        }`}
+        aria-hidden="true"
+      />
+    </>
   );
 }

@@ -1,16 +1,17 @@
 export default function SectionHeading({
   title,
   description,
+  label,
   centered = true,
   className = "",
   twoColor = false,
   coloredWords = 1,
+  dark = false,
 }) {
   const alignmentClass = centered
     ? "text-center items-center"
     : "text-left items-start";
 
-  // Split title into two parts for multi-color effect
   const getTitleParts = () => {
     if (!twoColor || !title) return { main: title, accent: "" };
 
@@ -24,38 +25,47 @@ export default function SectionHeading({
 
   const { main, accent } = getTitleParts();
 
+  const titleColor = dark ? "text-white" : "text-[var(--color-text)]";
+  const descColor = dark ? "text-[var(--color-text-muted-dark)]" : "text-[var(--color-text-muted)]";
+  const labelClass = dark ? "section-label-dark" : "section-label-light";
+
   return (
     <div
       className={`flex flex-col ${alignmentClass} mb-2 md:mb-6 w-full ${className}`}
     >
-      {/* Title */}
+      {label && (
+        <span className={`${labelClass} mb-4`}>{label}</span>
+      )}
+
       {title && (
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-snug mb-2 w-full">
-          <span className="text-[var(--color-black)]">{main}</span>
-          {accent && <span className="text-[var(--color-primary)]"> {accent}</span>}
+        <h2 className={`font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 w-full ${titleColor}`}>
+          <span>{main}</span>
+          {accent && (
+            <span className={dark ? " text-gradient" : " text-[var(--color-accent)]"}>
+              {" "}{accent}
+            </span>
+          )}
         </h2>
       )}
 
-      {/* Description */}
       {description && (
         <div className="flex flex-col gap-4 w-full">
           {Array.isArray(description) ? (
             description.map((paragraph, index) => (
               <p
                 key={index}
-                className="text-sm md:text-base text-gray-600 leading-6 md:leading-7"
+                className={`text-base md:text-lg ${descColor} leading-relaxed max-w-2xl ${centered ? "mx-auto" : ""}`}
               >
                 {paragraph}
               </p>
             ))
           ) : (
-            <p className="text-sm md:text-base text-gray-600 leading-6 md:leading-7">
+            <p className={`text-base md:text-lg ${descColor} leading-relaxed max-w-2xl ${centered ? "mx-auto" : ""}`}>
               {description}
             </p>
           )}
         </div>
       )}
-
     </div>
   );
 }

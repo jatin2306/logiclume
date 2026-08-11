@@ -21,7 +21,7 @@ export const services = [
     description:
       "We build fast, responsive, and SEO-optimized websites that deliver excellent user experience, improve search engine rankings, and help businesses establish a strong online presence.",
     features: ["React", "Next.js", "Laravel"],
-    color: "from-blue-600 to-cyan-500",
+    badge: "blue",
   },
   {
     number: "02",
@@ -30,7 +30,7 @@ export const services = [
     description:
       "We develop high-performance Android and iOS applications with modern UI, smooth performance, and scalable architecture tailored to your business goals.",
     features: ["Flutter", "Android", "iOS"],
-    color: "from-orange-500 to-red-500",
+    badge: "orange",
   },
   {
     number: "03",
@@ -39,7 +39,7 @@ export const services = [
     description:
       "Our creative UI/UX designs focus on usability, accessibility, and engaging user experiences that increase customer satisfaction and conversions.",
     features: ["Figma", "Prototype", "Wireframe"],
-    color: "from-pink-500 to-rose-500",
+    badge: "orange",
   },
   {
     number: "04",
@@ -48,7 +48,7 @@ export const services = [
     description:
       "Build secure, scalable, and feature-rich eCommerce platforms with seamless payment gateways, inventory management, and customer-friendly shopping experiences.",
     features: ["Shopify", "WooCommerce", "Laravel"],
-    color: "from-violet-600 to-purple-500",
+    badge: "blue",
   },
   {
     number: "05",
@@ -57,7 +57,7 @@ export const services = [
     description:
       "We create custom software solutions including CRM, ERP, and business automation systems that streamline operations and improve productivity.",
     features: ["CRM", "ERP", "Automation"],
-    color: "from-emerald-500 to-green-500",
+    badge: "blue",
   },
   {
     number: "06",
@@ -66,7 +66,7 @@ export const services = [
     description:
       "Boost your online visibility with effective SEO strategies, keyword optimization, technical SEO, and content improvements that drive long-term organic traffic.",
     features: ["SEO", "Analytics", "Keywords"],
-    color: "from-yellow-500 to-orange-500",
+    badge: "orange",
   },
   {
     number: "07",
@@ -75,7 +75,7 @@ export const services = [
     description:
       "Integrate third-party APIs, payment gateways, CRM systems, and cloud services to improve workflow automation and application functionality.",
     features: ["REST API", "Payment", "Automation"],
-    color: "from-sky-500 to-indigo-500",
+    badge: "blue",
   },
   {
     number: "08",
@@ -84,7 +84,7 @@ export const services = [
     description:
       "Deploy secure and scalable cloud infrastructure with reliable hosting, automated backups, performance optimization, and cloud migration services.",
     features: ["AWS", "Azure", "Hosting"],
-    color: "from-cyan-500 to-blue-500",
+    badge: "blue",
   },
   {
     number: "09",
@@ -93,7 +93,7 @@ export const services = [
     description:
       "Protect your business with advanced cybersecurity solutions including SSL implementation, firewall protection, vulnerability assessment, and continuous monitoring.",
     features: ["SSL", "Firewall", "Monitoring"],
-    color: "from-red-500 to-pink-500",
+    badge: "orange",
   },
   {
     number: "10",
@@ -102,7 +102,7 @@ export const services = [
     description:
       "Keep your website secure, updated, and running smoothly with regular maintenance, bug fixes, security patches, backups, and technical support.",
     features: ["Bug Fix", "Backup", "Monitoring"],
-    color: "from-indigo-500 to-violet-500",
+    badge: "blue",
   },
   {
     number: "11",
@@ -111,7 +111,7 @@ export const services = [
     description:
       "Leverage AI-powered chatbots, intelligent automation, and machine learning solutions to improve customer engagement and business efficiency.",
     features: ["OpenAI", "Chatbot", "Automation"],
-    color: "from-fuchsia-500 to-purple-500",
+    badge: "orange",
   },
   {
     number: "12",
@@ -120,6 +120,6 @@ export const services = [
     description:
       "Grow your brand with result-driven digital marketing strategies including Google Ads, Meta Ads, social media marketing, and lead generation campaigns.",
     features: ["Google Ads", "Meta Ads", "SMM"],
-    color: "from-orange-500 to-yellow-500",
+    badge: "orange",
   },
 ];

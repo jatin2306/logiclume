@@ -1,53 +1,45 @@
 "use client";
 
-import { useState } from 'react';
-import TestimonialCard from './TestimonialCard';
-import SectionHeading from './SectionHeading';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import testimonialsData from '../data/testimonials.json';
+import { useState } from "react";
+import TestimonialCard from "./TestimonialCard";
+import SectionHeading from "./SectionHeading";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import testimonialsData from "../data/testimonials.json";
 
 export default function TestimonialsSection() {
   const [currentPage, setCurrentPage] = useState(0);
-
   const testimonials = testimonialsData;
-
   const itemsPerPage = 3;
   const totalPages = Math.ceil(testimonials.length / itemsPerPage);
   const startIdx = currentPage * itemsPerPage;
   const currentTestimonials = testimonials.slice(startIdx, startIdx + itemsPerPage);
 
-  const handleNext = () => {
-    setCurrentPage((prev) => (prev + 1) % totalPages);
-  };
-
-  const handlePrev = () => {
-    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
-  };
-
   return (
-    <section id="testimonials" className="py-16 md:py-5 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section className="py-20 lg:py-28 section-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
         <SectionHeading
-          title="What Our Clients Say"
-          description="Real feedback from our satisfied clients who have experienced our services"
+          label="Testimonials"
+          title="Real Partnerships, Measurable Outcomes"
+          description="Trusted by startups and businesses who've experienced our commitment to quality and results."
+          centered
+          twoColor
+          coloredWords={2}
+          className="max-w-3xl mx-auto mb-16"
         />
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {currentTestimonials.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} />
           ))}
         </div>
 
-        {/* Pagination Controls */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center gap-6">
             <button
-              onClick={handlePrev}
-              className="flex items-center gap-2 px-6 py-3 text-orange-500 transition font-semibold hover:bg-slate-800"
+              onClick={() => setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--color-border)] text-[var(--color-text-muted)] font-medium hover:bg-white hover:shadow-md transition"
             >
-              <FaChevronLeft size={18} />
+              <FaChevronLeft size={14} />
               Previous
             </button>
 
@@ -56,10 +48,10 @@ export default function TestimonialsSection() {
                 <button
                   key={i}
                   onClick={() => setCurrentPage(i)}
-                  className={`w-3 h-3 rounded-full transition ${
+                  className={`h-2.5 rounded-full transition ${
                     i === currentPage
-                      ? 'bg-orange-500'
-                      : 'bg-orange-300 hover:bg-orange-400'
+                      ? "bg-[var(--color-accent)] w-8"
+                      : "bg-[var(--color-border)] w-2.5 hover:bg-[var(--color-primary)]"
                   }`}
                   aria-label={`Go to page ${i + 1}`}
                 />
@@ -67,11 +59,11 @@ export default function TestimonialsSection() {
             </div>
 
             <button
-              onClick={handleNext}
-              className="flex items-center gap-2 px-6 py-3 text-orange-500 transition font-semibold"
+              onClick={() => setCurrentPage((prev) => (prev + 1) % totalPages)}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--color-border)] text-[var(--color-text-muted)] font-medium hover:bg-white hover:shadow-md transition"
             >
               Next
-              <FaChevronRight size={18} />
+              <FaChevronRight size={14} />
             </button>
           </div>
         )}

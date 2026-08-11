@@ -1,50 +1,57 @@
 "use client";
 
-import { useEffect } from "react";
 import Hero from "@/components/Hero";
+import LogoMarquee from "@/components/LogoMarquee";
 import HeroSection from "@/components/HeroSection";
+import FeaturedServices from "@/components/FeaturedServices";
 import HomeServices from "@/components/Services";
+import IndustriesSection from "@/components/IndustriesSection";
+import ProcessSection from "@/components/ProcessSection";
+import CTABanner from "@/components/CTABanner";
+import PortfolioSection from "@/components/PortfolioSection";
 import TeamMembers from "@/components/TeamMember";
+import AwardsSection from "@/components/AwardsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactForm from "@/components/ContactForm";
-import PortfolioSection from "@/components/PortfolioSection";
 
 export default function Home() {
-  useEffect(() => {}, []);
-
   return (
     <>
-      {/* Hero */}
       <section id="home">
         <Hero />
       </section>
 
-      {/* About */}
+      <LogoMarquee />
+
       <section id="about">
         <HeroSection />
       </section>
 
-      {/* Services */}
       <section id="services">
+        <FeaturedServices />
         <HomeServices />
       </section>
 
-      {/* Portfolio */}
-      {/* <section id="portfolio">
-        <PortfolioSection />
-      </section> */}
+      <IndustriesSection />
 
-      {/* Team */}
+      <ProcessSection />
+
+      <CTABanner />
+
+      <section id="portfolio">
+        <PortfolioSection />
+      </section>
+
       <section id="team">
         <TeamMembers />
       </section>
 
-      {/* Testimonials */}
+      <AwardsSection />
+
       <section id="testimonials">
         <TestimonialsSection />
       </section>
 
-      {/* Contact */}
       <section id="contact">
         <ContactForm />
       </section>

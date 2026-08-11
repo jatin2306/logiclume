@@ -2,6 +2,7 @@
 
 import { Trophy, Star, Shield, BadgeCheck, Medal, Crown } from "lucide-react";
 import SectionHeading from "./SectionHeading";
+import SiteContainer from "./SiteContainer";
 
 const awards = [
   {
@@ -55,8 +56,8 @@ const badgeClass = {
 
 export default function AwardsSection() {
   return (
-    <section className="py-20 lg:py-28 section-surface">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="home-section section-surface">
+      <SiteContainer>
         <SectionHeading
           label="Why Choose Us"
           title="Recognized for Quality That Scales"
@@ -87,7 +88,7 @@ export default function AwardsSection() {
             </div>
           ))}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

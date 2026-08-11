@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "./Button";
+import SiteContainer from "./SiteContainer";
 import {
   FaFacebookF,
   FaInstagram,
@@ -22,7 +23,7 @@ export default function Footer() {
       />
 
       <div className="relative border-b border-[var(--color-border-dark)]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <SiteContainer className="py-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="font-display text-2xl font-bold text-white">
               Engineered to Scale
@@ -36,10 +37,10 @@ export default function Footer() {
               Get in Touch <FaArrowRight size={14} />
             </Button>
           </a>
-        </div>
+        </SiteContainer>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-16">
+      <SiteContainer className="relative py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div className="lg:col-span-1">
             <h3 className="font-display text-xl font-bold text-white mb-4">
@@ -128,7 +129,7 @@ export default function Footer() {
             <Link href="/terms-of-service" className="hover:text-white transition">Terms of Service</Link>
           </div>
         </div>
-      </div>
+      </SiteContainer>
     </footer>
   );
 }

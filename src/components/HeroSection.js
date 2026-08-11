@@ -1,5 +1,6 @@
 import SectionHeading from "./SectionHeading";
-import { CheckCircle2, Rocket, Users, Award } from "lucide-react";
+import SiteContainer from "./SiteContainer";
+import { CheckCircle2, Rocket, Users, Award, ArrowUpRight } from "lucide-react";
 
 const highlights = [
   { icon: Rocket, title: "End-to-End Delivery", text: "From discovery and design to development, launch, and ongoing support." },
@@ -8,21 +9,21 @@ const highlights = [
 ];
 
 const capabilities = [
-  "Website Development",
-  "Mobile App Development",
+  "Web Development",
+  "Mobile Apps",
   "UI/UX Design",
-  "E-Commerce Solutions",
+  "E-Commerce",
   "Custom Software",
-  "SEO & Digital Marketing",
+  "SEO & Marketing",
   "Cloud & DevOps",
   "AI Integration",
 ];
 
 export default function HeroSection() {
   return (
-    <section className="py-20 lg:py-28 section-surface">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <section className="home-section section-surface">
+      <SiteContainer>
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <div>
             <span className="section-label-light mb-6">About DeopersIndia</span>
 
@@ -37,76 +38,87 @@ export default function HeroSection() {
               ]}
             />
 
-            <div className="mt-8 space-y-4">
+            <div className="mt-8 space-y-5">
               {highlights.map(({ icon: Icon, title, text }) => (
-                <div key={title} className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-xl icon-badge-blue flex items-center justify-center">
+                <div key={title} className="flex gap-4 group">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl icon-badge-blue flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
                     <Icon size={18} />
                   </div>
                   <div>
                     <h4 className="font-semibold text-[var(--color-text)]">{title}</h4>
-                    <p className="text-sm text-[var(--color-text-muted)] mt-0.5">{text}</p>
+                    <p className="text-sm text-[var(--color-text-muted)] mt-0.5 leading-relaxed">{text}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="flex gap-4 mt-10">
+            <div className="flex flex-wrap gap-3 mt-10">
               <a
                 href="#services"
-                className="px-6 py-3 rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white font-semibold transition shadow-md shadow-[rgba(21,101,192,0.2)]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white font-semibold transition shadow-md shadow-[rgba(21,101,192,0.2)]"
               >
                 Our Services
+                <ArrowUpRight size={16} />
               </a>
               <a
                 href="#contact"
-                className="px-6 py-3 rounded-xl border-2 border-[var(--color-accent)] text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white font-semibold transition"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[var(--color-accent)] text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white font-semibold transition"
               >
                 Get Free Quote
               </a>
             </div>
           </div>
 
-          {/* Light accent card */}
           <div className="relative">
-            <div className="absolute -inset-3 rounded-3xl opacity-30 blur-2xl" style={{ background: "var(--color-gradient)" }} />
-            <div className="relative rounded-3xl overflow-hidden card-elevated card-accent-blue p-8 lg:p-10">
-              <p className="text-[var(--color-primary)] text-sm font-semibold uppercase tracking-wider mb-6">
-                What We Build
-              </p>
+            <div
+              className="absolute -inset-4 rounded-3xl opacity-20 blur-2xl pointer-events-none"
+              style={{ background: "var(--color-gradient)" }}
+            />
 
-              <div className="grid grid-cols-2 gap-3">
+            <div className="relative home-card card-accent-blue p-8 lg:p-10">
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider">
+                  What We Build
+                </p>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white border border-[rgba(21,101,192,0.12)] text-[var(--color-primary)]">
+                  8+ services
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2.5">
                 {capabilities.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 rounded-xl bg-white border border-[rgba(21,101,192,0.1)] px-4 py-3 text-sm text-[var(--color-text)]"
+                    className="flex items-center gap-2.5 rounded-xl bg-white border border-[rgba(21,101,192,0.08)] px-3.5 py-3 text-sm text-[var(--color-text)] hover:border-[rgba(21,101,192,0.2)] hover:shadow-sm transition"
                   >
-                    <CheckCircle2 size={16} className="text-[var(--color-accent)] flex-shrink-0" />
+                    <CheckCircle2 size={15} className="text-[var(--color-accent)] flex-shrink-0" />
                     {item}
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 grid grid-cols-3 gap-4 pt-8 border-t border-[rgba(21,101,192,0.12)]">
+              <div className="mt-8 grid grid-cols-3 gap-3 pt-8 border-t border-[rgba(21,101,192,0.1)]">
                 {[
-                  { val: "99%", label: "Client Satisfaction", color: "primary" },
-                  { val: "24/7", label: "Support Available", color: "accent" },
-                  { val: "100%", label: "On-Time Delivery", color: "primary" },
+                  { val: "99%", label: "Satisfaction", color: "primary" },
+                  { val: "24/7", label: "Support", color: "accent" },
+                  { val: "100%", label: "On-Time", color: "primary" },
                 ].map((s) => (
-                  <div key={s.label} className="text-center">
-                    <p className={`font-display text-2xl font-bold ${
+                  <div key={s.label} className="text-center p-3 rounded-xl bg-white/80">
+                    <p className={`font-display text-xl font-bold ${
                       s.color === "primary" ? "text-[var(--color-primary)]" : "text-[var(--color-accent)]"
                     }`}>
                       {s.val}
                     </p>
-                    <p className="text-xs text-[var(--color-text-muted)] mt-1">{s.label}</p>
+                    <p className="text-[10px] font-medium text-[var(--color-text-muted)] mt-1 uppercase tracking-wide">
+                      {s.label}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

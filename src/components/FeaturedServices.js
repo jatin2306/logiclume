@@ -2,6 +2,7 @@
 
 import { ArrowRight, Brain, Globe, Smartphone, Cloud, Palette, Code2 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
+import SiteContainer from "./SiteContainer";
 
 const featured = [
   {
@@ -9,7 +10,7 @@ const featured = [
     tag: "Web Solutions",
     title: "Scalable Web Platforms",
     description:
-      "High-performance websites and web applications built with React, Next.js, and modern cloud infrastructure for speed, SEO, and growth.",
+      "High-performance websites and web apps built with React, Next.js, and modern cloud infrastructure for speed, SEO, and growth.",
     tags: ["React", "Next.js", "Laravel", "Node.js"],
     badge: "blue",
     featured: true,
@@ -29,8 +30,8 @@ const featured = [
     tag: "AI & Automation",
     title: "AI-Powered Solutions",
     description:
-      "Intelligent chatbots, automation workflows, and AI integrations that streamline operations and enhance customer experiences.",
-    tags: ["OpenAI", "Chatbots", "Automation", "ML"],
+      "Intelligent chatbots, automation workflows, and AI integrations that streamline operations.",
+    tags: ["OpenAI", "Chatbots", "Automation"],
     badge: "blue",
     featured: false,
   },
@@ -39,18 +40,18 @@ const featured = [
     tag: "Design",
     title: "UI/UX Design",
     description:
-      "User-centered design that combines aesthetics with usability — wireframes, prototypes, and pixel-perfect interfaces.",
-    tags: ["Figma", "Prototyping", "Design Systems"],
+      "User-centered design — wireframes, prototypes, and pixel-perfect interfaces.",
+    tags: ["Figma", "Prototyping"],
     badge: "orange",
     featured: false,
   },
   {
     icon: Cloud,
-    tag: "Cloud & DevOps",
+    tag: "Cloud",
     title: "Cloud Infrastructure",
     description:
-      "Secure, scalable cloud deployments with AWS, automated CI/CD pipelines, and performance optimization.",
-    tags: ["AWS", "Azure", "Docker", "CI/CD"],
+      "Secure, scalable cloud deployments with AWS and automated CI/CD pipelines.",
+    tags: ["AWS", "Azure", "Docker"],
     badge: "blue",
     featured: false,
   },
@@ -59,8 +60,8 @@ const featured = [
     tag: "Enterprise",
     title: "Custom Software",
     description:
-      "Tailored CRM, ERP, and business automation systems designed to fit your unique workflows and scale with your growth.",
-    tags: ["CRM", "ERP", "API Integration"],
+      "Tailored CRM, ERP, and business automation systems built for your workflows.",
+    tags: ["CRM", "ERP", "API"],
     badge: "orange",
     featured: false,
   },
@@ -72,9 +73,12 @@ const badgeClass = {
 };
 
 export default function FeaturedServices() {
+  const [mainA, mainB] = featured.filter((s) => s.featured);
+  const small = featured.filter((s) => !s.featured);
+
   return (
-    <section className="py-20 lg:py-28 section-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="home-section section-light">
+      <SiteContainer>
         <SectionHeading
           label="Our Services"
           title="Building Digital Products, Platforms & Experiences"
@@ -82,17 +86,17 @@ export default function FeaturedServices() {
           centered
           twoColor
           coloredWords={3}
-          className="max-w-3xl mx-auto mb-16"
+          className="max-w-3xl mx-auto mb-14"
         />
 
-        <div className="grid lg:grid-cols-2 gap-6 mb-6">
-          {featured.filter((s) => s.featured).map((service) => (
+        <div className="home-bento mb-5">
+          {[mainA, mainB].map((service, idx) => (
             <div
               key={service.title}
-              className="group relative overflow-hidden rounded-3xl card-light p-8 lg:p-10 hover:shadow-xl hover:shadow-[rgba(21,101,192,0.08)] transition-all duration-500 hover:-translate-y-1"
+              className={`home-card home-card-featured p-8 lg:p-10 group relative overflow-hidden ${idx === 0 ? "home-bento-span-7" : "home-bento-span-5"}`}
             >
               <div
-                className={`absolute top-0 right-0 w-64 h-64 rounded-full -translate-y-1/2 translate-x-1/2 opacity-[0.06] group-hover:opacity-[0.1] transition-opacity ${
+                className={`absolute top-0 right-0 w-48 h-48 rounded-full -translate-y-1/2 translate-x-1/3 opacity-[0.07] group-hover:opacity-[0.12] transition ${
                   service.badge === "blue" ? "bg-[var(--color-primary)]" : "bg-[var(--color-accent)]"
                 }`}
               />
@@ -102,19 +106,19 @@ export default function FeaturedServices() {
                   {service.tag}
                 </span>
 
-                <div className={`mt-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl ${badgeClass[service.badge]} shadow-lg`}>
-                  <service.icon size={26} />
+                <div className={`mt-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${badgeClass[service.badge]}`}>
+                  <service.icon size={24} />
                 </div>
 
-                <h3 className="mt-6 font-display text-2xl lg:text-3xl font-bold text-[var(--color-text)]">
+                <h3 className="mt-5 font-display text-2xl lg:text-3xl font-bold text-[var(--color-text)]">
                   {service.title}
                 </h3>
 
-                <p className="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+                <p className="mt-3 text-[var(--color-text-muted)] leading-relaxed max-w-lg">
                   {service.description}
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-5 flex flex-wrap gap-2">
                   {service.tags.map((tag) => (
                     <span
                       key={tag}
@@ -127,32 +131,31 @@ export default function FeaturedServices() {
 
                 <a
                   href="#contact"
-                  className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-primary)] group-hover:text-[var(--color-accent)] transition"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-primary)] hover:text-[var(--color-accent)] transition"
                 >
                   Explore Capabilities
-                  <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featured.filter((s) => !s.featured).map((service) => (
-            <div
-              key={service.title}
-              className="group rounded-2xl card-light p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${badgeClass[service.badge]}`}>
-                <service.icon size={20} />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {small.map((service) => (
+            <div key={service.title} className="home-card p-6 group relative overflow-hidden">
+              <div className={`inline-flex h-10 w-10 items-center justify-center rounded-lg ${badgeClass[service.badge]}`}>
+                <service.icon size={18} />
               </div>
 
-              <h3 className="mt-4 font-bold text-[var(--color-text)]">{service.title}</h3>
-              <p className="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed line-clamp-3">
+              <h3 className="mt-4 font-bold text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition">
+                {service.title}
+              </h3>
+              <p className="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed line-clamp-2">
                 {service.description}
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-1.5">
+              <div className="mt-3 flex flex-wrap gap-1.5">
                 {service.tags.slice(0, 2).map((tag) => (
                   <span key={tag} className="rounded-full bg-[var(--color-surface)] px-2 py-0.5 text-[10px] font-medium text-[var(--color-text-muted)]">
                     {tag}
@@ -162,7 +165,7 @@ export default function FeaturedServices() {
             </div>
           ))}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import SectionHeading from "./SectionHeading";
+import SiteContainer from "./SiteContainer";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -22,8 +23,8 @@ const teamMembers = [
 
 export default function TeamMembers() {
   return (
-    <section className="py-20 lg:py-28 section-surface-blue">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="home-section section-surface-blue">
+      <SiteContainer>
         <SectionHeading
           label="Our Team"
           title="Meet the Experts Behind Your Success"
@@ -46,7 +47,7 @@ export default function TeamMembers() {
             1024: { slidesPerView: 3 },
             1280: { slidesPerView: 4 },
           }}
-          className="pb-14 !overflow-visible"
+          className="pb-14"
         >
           {teamMembers.map((member) => (
             <SwiperSlide key={member.id}>
@@ -72,7 +73,7 @@ export default function TeamMembers() {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

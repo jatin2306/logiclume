@@ -1,6 +1,7 @@
 "use client";
 
 import SectionHeading from "./SectionHeading";
+import SiteContainer from "./SiteContainer";
 import { Search, PenTool, Code, Rocket, HeadphonesIcon } from "lucide-react";
 
 const steps = [
@@ -15,8 +16,8 @@ const badgeClass = { blue: "icon-badge-blue", orange: "icon-badge-orange" };
 
 export default function ProcessSection() {
   return (
-    <section className="py-20 lg:py-28 section-surface-blue bg-grid-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="home-section section-surface-blue bg-grid-light">
+      <SiteContainer>
         <SectionHeading
           label="Our Process"
           title="From Idea to Launch in Five Steps"
@@ -56,7 +57,7 @@ export default function ProcessSection() {
             </div>
           ))}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

@@ -11,6 +11,7 @@ import {
   Megaphone,
 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
+import SiteContainer from "./SiteContainer";
 
 const industries = [
   { icon: HeartPulse, title: "Healthcare & Wellness", description: "Patient portals, telemedicine platforms, and health tracking apps with secure, compliant infrastructure.", badge: "blue" },
@@ -27,8 +28,8 @@ const badgeClass = { blue: "icon-badge-blue", orange: "icon-badge-orange" };
 
 export default function IndustriesSection() {
   return (
-    <section className="py-20 lg:py-28 section-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="home-section section-light">
+      <SiteContainer>
         <SectionHeading
           label="Industries"
           title="Driving Innovation Across Diverse Sectors"
@@ -43,7 +44,7 @@ export default function IndustriesSection() {
           {industries.map((industry) => (
             <div
               key={industry.title}
-              className="group rounded-2xl card-light p-6 hover:shadow-lg hover:border-[rgba(21,101,192,0.25)] transition-all duration-300 hover:-translate-y-1"
+              className="group home-card p-6"
             >
               <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${badgeClass[industry.badge]} shadow-sm`}>
                 <industry.icon size={22} />
@@ -59,7 +60,7 @@ export default function IndustriesSection() {
             </div>
           ))}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

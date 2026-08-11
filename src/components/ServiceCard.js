@@ -14,7 +14,7 @@ export default function ServiceCard({
   badge = "blue",
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl card-light p-5 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[rgba(21,101,192,0.08)]">
+    <div className="group home-card p-5 relative overflow-hidden">
       <span className="absolute right-5 top-5 text-5xl font-black text-[var(--color-surface-blue)] group-hover:text-[rgba(245,130,32,0.12)] transition">
         {number}
       </span>

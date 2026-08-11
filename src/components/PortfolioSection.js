@@ -2,12 +2,13 @@
 
 import PortfolioCard from "./PortfolioCard";
 import SectionHeading from "./SectionHeading";
+import SiteContainer from "./SiteContainer";
 import { portfolioData } from "@/data/portfolioData";
 
 export default function PortfolioSection() {
   return (
-    <section className="py-20 lg:py-28 section-light bg-grid-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="home-section section-light bg-grid-light">
+      <SiteContainer>
         <SectionHeading
           label="Portfolio"
           title="Showcasing Products & Digital Transformations"
@@ -23,7 +24,7 @@ export default function PortfolioSection() {
             <PortfolioCard key={project.id} {...project} />
           ))}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

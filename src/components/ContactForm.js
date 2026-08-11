@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Phone, Mail, MapPin, ArrowRight, Send } from "lucide-react";
+import SiteContainer from "./SiteContainer";
 
 const initialFormState = { name: "", email: "", phone: "", budget: "", message: "" };
 
@@ -55,8 +56,8 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="py-20 lg:py-28 section-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="home-section section-light">
+      <SiteContainer>
         <div className="text-center mb-12">
           <span className="section-label-orange mb-4">Contact Us</span>
           <h2 className="font-display text-3xl lg:text-5xl font-bold text-[var(--color-text)]">
@@ -164,7 +165,7 @@ export default function ContactForm() {
             </div>
           </div>
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

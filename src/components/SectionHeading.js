@@ -38,7 +38,7 @@ export default function SectionHeading({
       )}
 
       {title && (
-        <h2 className={`font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 w-full ${titleColor}`}>
+        <h2 className={`font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.15] mb-4 w-full ${titleColor}`}>
           <span>{main}</span>
           {accent && (
             <span className={dark ? " text-gradient" : " text-[var(--color-accent)]"}>

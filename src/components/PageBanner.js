@@ -1,13 +1,15 @@
+import SiteContainer from "./SiteContainer";
+
 export default function PageBanner({ badge, title, description, backgroundImage = "/images/banner-bg.jpg" }) {
   return (
-    <section 
-      className="py-16 md:py-28 px-6 md:px-12 mt-17 sm:mt-16 lg:mt-20 bg-cover bg-center bg-fixed relative"
+    <section
+      className="py-16 md:py-28 mt-17 sm:mt-16 lg:mt-20 bg-cover bg-center bg-fixed relative"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${backgroundImage}')`,
-        backgroundAttachment: 'fixed'
+        backgroundAttachment: "fixed",
       }}
     >
-      <div className="max-w-6xl mx-auto relative z-10">
+      <SiteContainer className="relative z-10">
         <div className="text-center">
           {badge && (
             <span className="inline-block px-4 py-1 rounded-full bg-white/20 text-white text-sm font-semibold mb-4 backdrop-blur-sm">
@@ -27,7 +29,7 @@ export default function PageBanner({ badge, title, description, backgroundImage 
             </p>
           )}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

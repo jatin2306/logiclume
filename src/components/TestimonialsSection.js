@@ -3,6 +3,7 @@
 import { useState } from "react";
 import TestimonialCard from "./TestimonialCard";
 import SectionHeading from "./SectionHeading";
+import SiteContainer from "./SiteContainer";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import testimonialsData from "../data/testimonials.json";
 
@@ -15,8 +16,8 @@ export default function TestimonialsSection() {
   const currentTestimonials = testimonials.slice(startIdx, startIdx + itemsPerPage);
 
   return (
-    <section className="py-20 lg:py-28 section-surface">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="home-section section-surface">
+      <SiteContainer>
         <SectionHeading
           label="Testimonials"
           title="Real Partnerships, Measurable Outcomes"
@@ -67,7 +68,7 @@ export default function TestimonialsSection() {
             </button>
           </div>
         )}
-      </div>
+      </SiteContainer>
     </section>
   );
 }

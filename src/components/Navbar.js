@@ -90,7 +90,8 @@ export default function Navbar() {
     <>
       {promoVisible && (
         <div className="fixed top-0 left-0 right-0 z-[60] nav-promo-bar">
-          <div className="max-w-7xl mx-auto px-6 py-2.5 flex items-center justify-center text-sm relative">
+          <div className="site-wrap">
+            <div className="site-container site-container-inner py-2.5 flex items-center justify-center text-sm relative">
             <p className="text-white/90 text-center pr-8">
               Free strategy consultation —{" "}
               <a href="#contact" className="text-white font-semibold underline underline-offset-2 hover:no-underline">
@@ -104,6 +105,7 @@ export default function Navbar() {
             >
               <X size={15} />
             </button>
+            </div>
           </div>
         </div>
       )}
@@ -115,16 +117,16 @@ export default function Navbar() {
         onMouseLeave={() => setMegaMenu(null)}
       >
         <div className="relative">
-          <div className="px-5 sm:px-8 lg:px-10 pt-4">
+          <div className="site-wrap pt-4">
             {/* Desktop */}
-            <div className="hidden lg:block max-w-6xl mx-auto relative">
+            <div className="hidden lg:block site-container relative">
               <div
                 className={`nav-marquee-wrap transition-all duration-500 ${
                   scrolled ? "nav-marquee-wrap-scrolled" : ""
                 } ${megaMenu ? "nav-marquee-wrap-dropdown-open" : ""}`}
               >
                 <div className="nav-shell-inner">
-                  <div className="flex items-center justify-between h-[4.5rem] px-8 xl:px-10">
+                  <div className="flex items-center justify-between h-[4.5rem] site-container-inner">
               <Link href="/" className="flex-none shrink-0" aria-label="DeopersIndia home">
                 <div className="relative w-40 xl:w-44 h-11">
                   <Image
@@ -165,11 +167,11 @@ export default function Navbar() {
 
             {/* Mobile */}
             <div
-              className={`lg:hidden max-w-6xl mx-auto nav-marquee-wrap transition-all duration-300 ${
+              className={`lg:hidden site-container nav-marquee-wrap transition-all duration-300 ${
                 scrolled ? "nav-marquee-wrap-scrolled" : ""
               }`}
             >
-              <div className="nav-shell-inner flex items-center justify-between px-5 h-[3.75rem]">
+              <div className="nav-shell-inner flex items-center justify-between site-container-inner h-[3.75rem]">
             <Link href="/" className="relative w-36 h-10" aria-label="DeopersIndia home">
               <Image
                 src="/images/logo.jpeg"

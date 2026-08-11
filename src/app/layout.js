@@ -91,7 +91,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" className={`${dmSans.variable} ${syne.variable}`}>
-      <body className="bg-[var(--color-light)] text-[var(--color-text)] antialiased">
+        <body className="bg-[var(--color-light)] text-[var(--color-text)] antialiased overflow-x-clip">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
@@ -101,7 +101,7 @@ export default function RootLayout({ children }) {
           <Navbar />
         </header>
 
-        <main id="content" className="min-h-screen">
+        <main id="content" className="min-h-screen w-full overflow-x-clip">
           {children}
         </main>
 

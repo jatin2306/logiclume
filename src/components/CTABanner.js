@@ -1,39 +1,37 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Button from "./Button";
+import SiteContainer from "./SiteContainer";
 
 export default function CTABanner() {
   return (
     <section className="py-16 lg:py-20 section-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className="relative overflow-hidden rounded-3xl p-10 lg:p-16 border border-[rgba(21,101,192,0.15)]"
-          style={{ background: "var(--color-cta-gradient)" }}
-        >
-          <div className="absolute -top-20 -right-20 w-80 h-80 bg-[rgba(245,130,32,0.15)] rounded-full blur-[100px]" />
-          <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[rgba(255,255,255,0.1)] rounded-full blur-[100px]" />
-
+      <SiteContainer>
+        <div className="home-cta-banner p-10 lg:p-14">
           <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="text-center lg:text-left">
-              <h2 className="font-display text-3xl lg:text-4xl font-bold text-white">
+            <div className="text-center lg:text-left max-w-xl">
+              <p className="text-xs font-bold uppercase tracking-[0.15em] text-[var(--color-accent-light)] mb-3">
+                Start your project
+              </p>
+              <h2 className="font-display text-3xl lg:text-4xl font-bold text-white leading-tight">
                 Let&apos;s build what&apos;s next.
               </h2>
-              <p className="mt-4 text-lg text-white/80 max-w-xl">
+              <p className="mt-4 text-base lg:text-lg text-blue-100/80 leading-relaxed">
                 Partner with us to transform your ideas into scalable digital products
                 that drive measurable business growth.
               </p>
             </div>
 
             <a href="#contact" className="flex-shrink-0">
-              <Button variant="accent" size="lg" className="gap-2 hover:scale-105 transition-transform">
+              <Button variant="accent" size="lg" className="gap-2 rounded-xl hover:scale-[1.02] transition-transform shadow-lg shadow-[rgba(245,130,32,0.3)]">
                 Schedule a Consultation
-                <ArrowRight size={18} />
+                <ArrowUpRight size={18} />
               </Button>
             </a>
           </div>
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

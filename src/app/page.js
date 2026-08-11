@@ -23,6 +23,10 @@ export default function Home() {
 
       <LogoMarquee />
 
+      <div className="site-wrap">
+        <div className="home-section-divider" aria-hidden="true" />
+      </div>
+
       <section id="about">
         <HeroSection />
       </section>

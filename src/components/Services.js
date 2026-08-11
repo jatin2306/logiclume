@@ -1,11 +1,12 @@
 import SectionHeading from "./SectionHeading";
+import SiteContainer from "./SiteContainer";
 import ServiceCard from "./ServiceCard";
 import { services } from "@/data/services";
 
 export default function HomeServices() {
   return (
-    <section className="pb-20 lg:pb-28 section-surface-blue">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="home-section section-surface-blue">
+      <SiteContainer>
         <SectionHeading
           label="Full Stack"
           title="Complete Suite of IT Services"
@@ -21,7 +22,7 @@ export default function HomeServices() {
             <ServiceCard key={service.number} {...service} />
           ))}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

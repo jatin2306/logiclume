@@ -125,11 +125,18 @@ export default function Navbar() {
               >
                 <div className="nav-shell-inner">
                   <div className="flex items-center justify-between h-[4.5rem] px-8 xl:px-10">
-                    <Link href="/" className="flex-none shrink-0">
-                      <div className="relative w-40 xl:w-44 h-11">
-                        <Image src="/images/logo.jpeg" alt="DeopersIndia" fill className="object-contain object-left" priority />
-                      </div>
-                    </Link>
+              <Link href="/" className="flex-none shrink-0" aria-label="DeopersIndia home">
+                <div className="relative w-40 xl:w-44 h-11">
+                  <Image
+                    src="/images/logo.jpeg"
+                    alt="DeopersIndia logo"
+                    title="DeopersIndia"
+                    fill
+                    className="object-contain object-left"
+                    priority
+                  />
+                </div>
+              </Link>
 
                     <nav className="flex items-center gap-1 xl:gap-2">
                       {primaryLinks.map(renderNavLink)}
@@ -163,9 +170,16 @@ export default function Navbar() {
               }`}
             >
               <div className="nav-shell-inner flex items-center justify-between px-5 h-[3.75rem]">
-              <Link href="/" className="relative w-36 h-10">
-                <Image src="/images/logo.jpeg" alt="DeopersIndia" fill className="object-contain object-left" priority />
-              </Link>
+            <Link href="/" className="relative w-36 h-10" aria-label="DeopersIndia home">
+              <Image
+                src="/images/logo.jpeg"
+                alt="DeopersIndia logo"
+                title="DeopersIndia"
+                fill
+                className="object-contain object-left"
+                priority
+              />
+            </Link>
 
               <div className="flex items-center gap-2">
                 <AiNavButton variant="compact" />

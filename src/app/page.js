@@ -1,7 +1,8 @@
 "use client";
 
 import Hero from "@/components/Hero";
-import LogoMarquee from "@/components/LogoMarquee";
+import SiteContainer from "@/components/SiteContainer";
+import FeaturedClients from "@/components/FeaturedClients";
 import HeroSection from "@/components/HeroSection";
 import FeaturedServices from "@/components/FeaturedServices";
 import HomeServices from "@/components/Services";
@@ -21,11 +22,11 @@ export default function Home() {
         <Hero />
       </section>
 
-      <LogoMarquee />
+      <FeaturedClients />
 
-      <div className="site-wrap">
+      <SiteContainer>
         <div className="home-section-divider" aria-hidden="true" />
-      </div>
+      </SiteContainer>
 
       <section id="about">
         <HeroSection />

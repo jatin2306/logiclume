@@ -12,7 +12,7 @@ export default function PortfolioSection() {
         <SectionHeading
           label="Portfolio"
           title="Showcasing Products & Digital Transformations"
-          description="Explore impactful digital experiences, scalable applications, and solutions engineered for modern businesses."
+          description="Explore more of our work — from enterprise platforms above to apps, dashboards, and websites across industries."
           centered
           twoColor
           coloredWords={2}
@@ -20,9 +20,11 @@ export default function PortfolioSection() {
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {portfolioData.map((project) => (
-            <PortfolioCard key={project.id} {...project} />
-          ))}
+          {portfolioData
+            .filter((p) => !p.featured)
+            .map((project) => (
+              <PortfolioCard key={project.id} {...project} />
+            ))}
         </div>
       </SiteContainer>
     </section>

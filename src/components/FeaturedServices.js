@@ -93,7 +93,7 @@ export default function FeaturedServices() {
           {[mainA, mainB].map((service, idx) => (
             <div
               key={service.title}
-              className={`home-card home-card-featured p-8 lg:p-10 group relative overflow-hidden ${idx === 0 ? "home-bento-span-7" : "home-bento-span-5"}`}
+              className={`home-card home-card-featured p-5 sm:p-8 lg:p-10 group relative overflow-hidden ${idx === 0 ? "home-bento-span-7" : "home-bento-span-5"}`}
             >
               <div
                 className={`absolute top-0 right-0 w-48 h-48 rounded-full -translate-y-1/2 translate-x-1/3 opacity-[0.07] group-hover:opacity-[0.12] transition ${

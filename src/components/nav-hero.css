@@ -1,0 +1,188 @@
+/* ═══════════════════════════════════════════════════════════
+   Header — hero integration (imported by Navbar only)
+   ═══════════════════════════════════════════════════════════ */
+
+@media (min-width: 1024px) {
+  :root {
+    --dp-nav-bar-h: 4.25rem;
+  }
+}
+
+html.dp-promo-hidden {
+  --dp-nav-total-h: var(--dp-nav-bar-h);
+}
+
+.dp-nav {
+  background: transparent;
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.dp-nav-spacer {
+  height: var(--dp-nav-bar-h);
+  flex-shrink: 0;
+}
+
+.dp-nav-spacer-promo {
+  height: var(--dp-nav-total-h);
+}
+
+/* Aligned shell — matches hero SiteContainer grid */
+.dp-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: var(--dp-nav-bar-h);
+  min-width: 0;
+}
+
+.dp-nav-inner nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+@media (min-width: 1280px) {
+  .dp-nav-inner nav {
+    gap: 0.5rem;
+  }
+}
+
+/* Over dark hero — fully transparent, no boxed border */
+.dp-nav-over-hero .nav-marquee-wrap {
+  padding: 0;
+  background: none !important;
+  animation: none !important;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+.dp-nav-over-hero .nav-shell-inner,
+.dp-nav-over-hero .nav-marquee-wrap-scrolled .nav-shell-inner {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-radius: 0;
+}
+
+/* Logo — sharper & more prominent on dark hero */
+.dp-nav-over-hero .dp-nav-logo {
+  filter: brightness(1.12) contrast(1.1) drop-shadow(0 2px 14px rgba(255, 255, 255, 0.18));
+  transform: translateZ(0);
+}
+
+.dp-nav-over-hero .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+.dp-nav-over-hero .nav-link:hover,
+.dp-nav-over-hero .nav-link-active,
+.dp-nav-over-hero .nav-link-mega-open {
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.dp-nav-over-hero .nav-link-active,
+.dp-nav-over-hero .nav-link-mega-open {
+  font-weight: 600;
+}
+
+.dp-nav-over-hero .nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dp-nav-over-hero .nav-chevron {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.dp-nav-over-hero .nav-link:hover .nav-chevron,
+.dp-nav-over-hero .nav-link-active .nav-chevron {
+  color: #ffffff;
+}
+
+.dp-nav-over-hero .nav-divider {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.dp-nav-over-hero .nav-ai-btn {
+  color: #ffffff;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dp-nav-over-hero .nav-ai-btn:hover,
+.dp-nav-over-hero .nav-ai-btn-open {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(245, 130, 32, 0.45);
+  color: #fff;
+}
+
+.dp-nav-over-hero .nav-menu-toggle {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dp-nav-over-hero .nav-menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(245, 130, 32, 0.35);
+}
+
+/* Scrolled on hero — frosted dark bar (full width on .dp-nav) */
+.dp-nav-scrolled.dp-nav-over-hero {
+  background: rgba(6, 12, 24, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dp-nav-scrolled.dp-nav-over-hero .nav-shell-inner,
+.dp-nav-scrolled.dp-nav-over-hero .nav-marquee-wrap-scrolled .nav-shell-inner {
+  background: transparent !important;
+}
+
+.dp-nav-scrolled.dp-nav-over-hero .dp-nav-logo {
+  filter: brightness(1.15) contrast(1.12) drop-shadow(0 2px 16px rgba(255, 255, 255, 0.22));
+}
+
+/* Past hero — light frosted bar (full width on .dp-nav) */
+.dp-nav-solid .nav-marquee-wrap {
+  padding: 0;
+  background: none !important;
+  animation: none !important;
+}
+
+.dp-nav-solid {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(21, 101, 192, 0.1);
+  box-shadow: 0 4px 24px rgba(10, 22, 40, 0.06);
+}
+
+.dp-nav-solid .nav-shell-inner,
+.dp-nav-solid .nav-marquee-wrap-scrolled .nav-shell-inner {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-radius: 0;
+}
+
+.dp-nav-scrolled.dp-nav-solid {
+  box-shadow: 0 8px 32px rgba(10, 22, 40, 0.08);
+}
+
+.dp-nav-dropdown-open.dp-nav-over-hero,
+.dp-nav-dropdown-open.dp-nav-solid {
+  border-bottom-color: transparent;
+}

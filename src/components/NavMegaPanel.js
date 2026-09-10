@@ -73,7 +73,7 @@ const aiItems = [
   },
 ];
 
-export default function NavMegaPanel({ type }) {
+export default function NavMegaPanel({ type, onClose }) {
   const isOpen = type === "services" || type === "ai";
 
   return (
@@ -92,7 +92,7 @@ export default function NavMegaPanel({ type }) {
               <p className="nav-mega-desc">
                 From concept to launch — we design, build, and scale digital products that drive real business growth.
               </p>
-              <a href="#contact" className="nav-mega-intro-cta group">
+              <a href="#contact" className="nav-mega-intro-cta group" onClick={onClose}>
                 <span>Get a free quote</span>
                 <FaArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
               </a>
@@ -105,6 +105,7 @@ export default function NavMegaPanel({ type }) {
                   href={item.href}
                   className="nav-mega-card group"
                   style={{ animationDelay: `${i * 40}ms` }}
+                  onClick={onClose}
                 >
                   <span className="nav-mega-card-icon">
                     <item.icon size={20} />
@@ -131,7 +132,7 @@ export default function NavMegaPanel({ type }) {
                   Build smarter products with chatbots, automation & generative AI
                 </p>
               </div>
-              <a href="#contact" className="nav-mega-ai-banner-cta group relative z-10 shrink-0">
+              <a href="#contact" className="nav-mega-ai-banner-cta group relative z-10 shrink-0" onClick={onClose}>
                 <span>Start your AI project</span>
                 <FaArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
               </a>
@@ -144,6 +145,7 @@ export default function NavMegaPanel({ type }) {
                   href={item.href}
                   className="nav-mega-ai-card group"
                   style={{ animationDelay: `${i * 50}ms` }}
+                  onClick={onClose}
                 >
                   <span className="nav-ai-item-icon">
                     <item.icon size={18} />

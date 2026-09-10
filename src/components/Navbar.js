@@ -7,6 +7,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { X, ChevronDown, ArrowUpRight } from "lucide-react";
 import AiNavButton from "./AiNavButton";
 import NavMegaPanel from "./NavMegaPanel";
+import "./nav-hero.css";
 
 const primaryLinks = [
   { href: "#about", label: "About" },
@@ -26,6 +27,7 @@ const allSectionIds = ["home", "contact", ...primaryLinks, ...secondaryLinks].ma
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [onHero, setOnHero] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
   const [megaMenu, setMegaMenu] = useState(null);
   const [promoVisible, setPromoVisible] = useState(true);
@@ -40,19 +42,46 @@ export default function Navbar() {
     setActiveSection(current);
   }, []);
 
+  const updateHeroState = useCallback(() => {
+    const hero = document.getElementById("home") || document.getElementById("home-hero");
+    if (!hero) {
+      setOnHero(false);
+      return;
+    }
+    const spacer = document.querySelector(".dp-nav-spacer");
+    const navOffset = spacer?.getBoundingClientRect().height ?? 104;
+    setOnHero(hero.getBoundingClientRect().bottom > navOffset + 8);
+  }, []);
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 30);
       updateActiveSection();
+      updateHeroState();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    updateActiveSection();
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, [updateActiveSection]);
+  }, [updateActiveSection, updateHeroState]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dp-promo-hidden", !promoVisible);
+  }, [promoVisible]);
+
+  const closeMegaMenu = useCallback(() => setMegaMenu(null), []);
+
+  const navModeClass = onHero ? "dp-nav-over-hero" : "dp-nav-solid";
+  const navStateClass = [
+    navModeClass,
+    scrolled ? "dp-nav-scrolled" : "",
+    megaMenu ? "dp-nav-dropdown-open" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const renderNavLink = (link) => {
     const isActive = activeSection === link.href.replace("#", "");
@@ -63,6 +92,7 @@ export default function Navbar() {
           key={link.href}
           href={link.href}
           onMouseEnter={() => setMegaMenu("services")}
+          onClick={closeMegaMenu}
           className={`nav-link ${isActive ? "nav-link-active" : ""} ${megaMenu === "services" ? "nav-link-mega-open" : ""}`}
         >
           {link.label}
@@ -79,6 +109,8 @@ export default function Navbar() {
       <a
         key={link.href}
         href={link.href}
+        onMouseEnter={closeMegaMenu}
+        onClick={closeMegaMenu}
         className={`nav-link ${isActive ? "nav-link-active" : ""}`}
       >
         {link.label}
@@ -91,114 +123,142 @@ export default function Navbar() {
       {promoVisible && (
         <div className="fixed top-0 left-0 right-0 z-[60] nav-promo-bar">
           <div className="site-wrap">
-            <div className="site-container site-container-inner py-2.5 flex items-center justify-center text-sm relative">
-            <p className="text-white/90 text-center pr-8">
-              Free strategy consultation —{" "}
-              <a href="#contact" className="text-white font-semibold underline underline-offset-2 hover:no-underline">
-                book a call
-              </a>
-            </p>
-            <button
-              onClick={() => setPromoVisible(false)}
-              aria-label="Dismiss"
-              className="absolute right-4 p-1 text-white/50 hover:text-white transition"
-            >
-              <X size={15} />
-            </button>
+            <div className="site-container">
+              <div className="site-container-inner py-2.5 flex items-center justify-center text-xs sm:text-sm relative">
+                <p className="text-white/90 text-center px-8 sm:px-10 leading-snug">
+                  Free strategy consultation —{" "}
+                  <a
+                    href="#contact"
+                    className="text-white font-semibold underline underline-offset-2 hover:no-underline"
+                  >
+                    book a call
+                  </a>
+                </p>
+                <button
+                  onClick={() => setPromoVisible(false)}
+                  aria-label="Dismiss"
+                  className="absolute right-4 p-1 text-white/50 hover:text-white transition"
+                >
+                  <X size={15} />
+                </button>
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      <header
-        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
+      <div
+        className={`dp-nav fixed left-0 right-0 z-50 transition-all duration-500 ${navStateClass} ${
           promoVisible ? "top-9" : "top-0"
         }`}
-        onMouseLeave={() => setMegaMenu(null)}
+        onMouseLeave={closeMegaMenu}
       >
-        <div className="relative">
-          <div className="site-wrap pt-4">
-            {/* Desktop */}
-            <div className="hidden lg:block site-container relative">
-              <div
-                className={`nav-marquee-wrap transition-all duration-500 ${
-                  scrolled ? "nav-marquee-wrap-scrolled" : ""
-                } ${megaMenu ? "nav-marquee-wrap-dropdown-open" : ""}`}
-              >
-                <div className="nav-shell-inner">
-                  <div className="flex items-center justify-between h-[4.5rem] site-container-inner">
-              <Link href="/" className="flex-none shrink-0" aria-label="DeopersIndia home">
-                <div className="relative w-40 xl:w-44 h-11">
-                  <Image
-                    src="/images/logo.jpeg"
-                    alt="DeopersIndia logo"
-                    title="DeopersIndia"
-                    fill
-                    className="object-contain object-left"
-                    priority
-                  />
-                </div>
-              </Link>
-
-                    <nav className="flex items-center gap-1 xl:gap-2">
-                      {primaryLinks.map(renderNavLink)}
-                      <span className="nav-divider hidden xl:block" aria-hidden="true" />
-                      {secondaryLinks.map(renderNavLink)}
-                    </nav>
-
-                    <div className="flex items-center gap-3 flex-none">
-                      <AiNavButton
-                        variant="desktop"
-                        isOpen={megaMenu === "ai"}
-                        onMouseEnter={() => setMegaMenu("ai")}
+        {/* Desktop */}
+        <div className="hidden lg:block site-wrap">
+          <div className="site-container relative">
+            <div
+              className={`nav-marquee-wrap transition-all duration-500 ${
+                scrolled ? "nav-marquee-wrap-scrolled" : ""
+              } ${megaMenu ? "nav-marquee-wrap-dropdown-open" : ""}`}
+            >
+              <div className="nav-shell-inner">
+                <div className="dp-nav-inner site-container-inner">
+                  <Link
+                    href="/"
+                    className="flex-none shrink-0"
+                    aria-label="DeopersIndia home"
+                    onMouseEnter={closeMegaMenu}
+                    onClick={closeMegaMenu}
+                  >
+                    <div className="relative w-[9.875rem] xl:w-[10.875rem] h-11 bg-transparent">
+                      <Image
+                        src="/images/logo.png"
+                        alt="DeopersIndia logo"
+                        title="DeopersIndia"
+                        fill
+                        sizes="(max-width: 1280px) 158px, 174px"
+                        className="dp-nav-logo object-contain object-left bg-transparent"
+                        priority
                       />
-
-                      <a href="#contact" className="nav-contact-btn group">
-                        <span>Contact Us</span>
-                        <ArrowUpRight size={16} strokeWidth={2.25} className="nav-contact-btn-arrow" />
-                      </a>
                     </div>
+                  </Link>
+
+                  <nav>
+                    {primaryLinks.map(renderNavLink)}
+                    <span className="nav-divider hidden xl:block" aria-hidden="true" />
+                    {secondaryLinks.map(renderNavLink)}
+                  </nav>
+
+                  <div className="flex items-center gap-3 flex-none">
+                    <AiNavButton
+                      variant="desktop"
+                      isOpen={megaMenu === "ai"}
+                      onMouseEnter={() => setMegaMenu("ai")}
+                    />
+
+                    <a
+                      href="#contact"
+                      className="nav-contact-btn group"
+                      onMouseEnter={closeMegaMenu}
+                      onClick={closeMegaMenu}
+                    >
+                      <span>Contact Us</span>
+                      <ArrowUpRight
+                        size={16}
+                        strokeWidth={2.25}
+                        className="nav-contact-btn-arrow"
+                      />
+                    </a>
                   </div>
                 </div>
               </div>
-
-              <NavMegaPanel type={megaMenu} />
             </div>
 
-            {/* Mobile */}
-            <div
-              className={`lg:hidden site-container nav-marquee-wrap transition-all duration-300 ${
-                scrolled ? "nav-marquee-wrap-scrolled" : ""
-              }`}
-            >
-              <div className="nav-shell-inner flex items-center justify-between site-container-inner h-[3.75rem]">
-            <Link href="/" className="relative w-36 h-10" aria-label="DeopersIndia home">
-              <Image
-                src="/images/logo.jpeg"
-                alt="DeopersIndia logo"
-                title="DeopersIndia"
-                fill
-                className="object-contain object-left"
-                priority
-              />
+            <NavMegaPanel type={megaMenu} onClose={closeMegaMenu} />
+          </div>
+        </div>
+
+        {/* Mobile */}
+        <div className="lg:hidden site-wrap">
+          <div
+            className={`site-container nav-marquee-wrap transition-all duration-300 ${
+              scrolled ? "nav-marquee-wrap-scrolled" : ""
+            }`}
+          >
+            <div className="nav-shell-inner">
+              <div className="dp-nav-inner site-container-inner">
+                <Link
+                  href="/"
+                  className="relative flex shrink-0 items-center bg-transparent"
+                  aria-label="DeopersIndia home"
+                >
+                  <span className="relative block w-[8.75rem] h-10 bg-transparent">
+                    <Image
+                      src="/images/logo.png"
+                      alt="DeopersIndia logo"
+                      title="DeopersIndia"
+                      fill
+                      sizes="140px"
+                  className="dp-nav-logo object-contain object-left bg-transparent"
+                  priority
+                />
+              </span>
             </Link>
 
-              <div className="flex items-center gap-2">
-                <AiNavButton variant="compact" />
-                <button
-                  onClick={() => setOpen(!open)}
-                  aria-label={open ? "Close menu" : "Open menu"}
-                  className="nav-menu-toggle"
-                >
-                  {open ? <FaTimes size={18} /> : <FaBars size={18} />}
-                </button>
-              </div>
+              <div className="flex items-center gap-2 ml-auto">
+                  <AiNavButton variant="compact" />
+                  <button
+                    onClick={() => setOpen(!open)}
+                    aria-label={open ? "Close menu" : "Open menu"}
+                    className="nav-menu-toggle"
+                  >
+                    {open ? <FaTimes size={18} /> : <FaBars size={18} />}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div className="h-4" aria-hidden="true" />
 
         {/* Mobile drawer */}
         <div
@@ -207,7 +267,10 @@ export default function Navbar() {
           }`}
           style={{ top: promoVisible ? "2.25rem" : "0" }}
         >
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setOpen(false)} />
+          <div
+            className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+            onClick={() => setOpen(false)}
+          />
 
           <aside
             className={`absolute top-0 right-0 h-full w-full max-w-[320px] bg-white shadow-2xl transform transition-transform duration-300 ease-out ${
@@ -215,7 +278,9 @@ export default function Navbar() {
             }`}
           >
             <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-border)]">
-              <span className="font-display text-lg font-bold text-[var(--color-text)]">Menu</span>
+              <span className="font-display text-lg font-bold text-[var(--color-text)]">
+                Menu
+              </span>
               <button onClick={() => setOpen(false)} className="nav-menu-toggle">
                 <FaTimes size={18} />
               </button>
@@ -246,17 +311,19 @@ export default function Navbar() {
                 className="nav-contact-btn w-full justify-center py-3.5 group"
               >
                 <span>Contact Us</span>
-                <ArrowUpRight size={16} strokeWidth={2.25} className="nav-contact-btn-arrow" />
+                <ArrowUpRight
+                  size={16}
+                  strokeWidth={2.25}
+                  className="nav-contact-btn-arrow"
+                />
               </a>
             </div>
           </aside>
         </div>
-      </header>
+      </div>
 
       <div
-        className={`shrink-0 transition-all duration-500 ${
-          promoVisible ? "h-[5.75rem] lg:h-[6.75rem]" : "h-[4.5rem] lg:h-[5.75rem]"
-        }`}
+        className={`dp-nav-spacer ${promoVisible ? "dp-nav-spacer-promo" : ""}`}
         aria-hidden="true"
       />
     </>

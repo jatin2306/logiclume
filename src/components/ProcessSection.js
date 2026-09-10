@@ -28,12 +28,12 @@ export default function ProcessSection() {
           className="max-w-3xl mx-auto mb-16"
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 lg:gap-6">
           {steps.map((item, index) => (
             <div key={item.step} className="relative group">
               {index < steps.length - 1 && (
                 <div
-                  className="hidden lg:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-px"
+                  className="process-connector absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-px"
                   style={{ background: "linear-gradient(90deg, rgba(21,101,192,0.3), transparent)" }}
                 />
               )}

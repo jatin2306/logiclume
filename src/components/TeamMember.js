@@ -35,6 +35,7 @@ export default function TeamMembers() {
           className="max-w-3xl mx-auto mb-16"
         />
 
+        <div className="team-swiper-wrap">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={24}
@@ -47,12 +48,12 @@ export default function TeamMembers() {
             1024: { slidesPerView: 3 },
             1280: { slidesPerView: 4 },
           }}
-          className="pb-14"
+          className="team-swiper"
         >
           {teamMembers.map((member) => (
             <SwiperSlide key={member.id}>
               <div className="group overflow-hidden rounded-2xl card-light transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:border-[rgba(21,101,192,0.2)]">
-                <div className="relative h-64 overflow-hidden bg-[var(--color-surface-blue)]">
+                <div className="relative aspect-[4/3] sm:aspect-[5/4] overflow-hidden bg-[var(--color-surface-blue)]">
                   <Image
                     src={member.image}
                     alt={member.name}
@@ -73,6 +74,7 @@ export default function TeamMembers() {
             </SwiperSlide>
           ))}
         </Swiper>
+        </div>
       </SiteContainer>
     </section>
   );

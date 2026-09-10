@@ -1,4 +1,17 @@
+import { featuredClients } from "./featuredClients";
+
+const featuredPortfolio = featuredClients.map((client) => ({
+  id: client.portfolioId,
+  title: client.name,
+  category: client.category,
+  client: client.partner,
+  url: client.url,
+  imageSrc: client.imageSrc,
+  featured: true,
+}));
+
 export const portfolioData = [
+  ...featuredPortfolio,
   {
     id: 1,
     title: "Corporate Website",

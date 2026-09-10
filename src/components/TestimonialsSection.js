@@ -35,13 +35,14 @@ export default function TestimonialsSection() {
         </div>
 
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-6">
+          <div className="testimonial-pagination">
             <button
               onClick={() => setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--color-border)] text-[var(--color-text-muted)] font-medium hover:bg-white hover:shadow-md transition"
+              className="testimonial-pagination-btn"
+              aria-label="Previous testimonials"
             >
               <FaChevronLeft size={14} />
-              Previous
+              <span>Previous</span>
             </button>
 
             <div className="flex gap-2">
@@ -61,9 +62,10 @@ export default function TestimonialsSection() {
 
             <button
               onClick={() => setCurrentPage((prev) => (prev + 1) % totalPages)}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--color-border)] text-[var(--color-text-muted)] font-medium hover:bg-white hover:shadow-md transition"
+              className="testimonial-pagination-btn"
+              aria-label="Next testimonials"
             >
-              Next
+              <span>Next</span>
               <FaChevronRight size={14} />
             </button>
           </div>

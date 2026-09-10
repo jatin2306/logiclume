@@ -1,0 +1,168 @@
+/* ═══════════════════════════════════════════════════════════
+   Site-wide responsive adjustments
+   ═══════════════════════════════════════════════════════════ */
+
+/* Prevent media and preformatted content from forcing horizontal scroll */
+video,
+svg,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ── Navbar — tighter on laptop widths ── */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .nav-link {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.875rem;
+  }
+
+  .nav-contact-btn {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8125rem;
+  }
+
+  .nav-ai-btn {
+    padding: 0.4375rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav-promo-bar p {
+    font-size: 0.75rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ── Team swiper — keep arrows inside container ── */
+.team-swiper-wrap {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.team-swiper {
+  overflow: hidden !important;
+  padding-bottom: 3.5rem !important;
+}
+
+.team-swiper .swiper-button-prev,
+.team-swiper .swiper-button-next {
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-top: 0;
+  top: auto;
+  bottom: 0.25rem;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.625rem;
+  box-shadow: 0 2px 8px rgba(10, 22, 40, 0.08);
+  color: var(--color-primary);
+}
+
+.team-swiper .swiper-button-prev::after,
+.team-swiper .swiper-button-next::after {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.team-swiper .swiper-button-prev {
+  left: calc(50% - 3.25rem);
+}
+
+.team-swiper .swiper-button-next {
+  right: calc(50% - 3.25rem);
+}
+
+.team-swiper .swiper-pagination {
+  bottom: 0.625rem !important;
+}
+
+.team-swiper .swiper-pagination-bullet {
+  background: var(--color-border);
+  opacity: 1;
+}
+
+.team-swiper .swiper-pagination-bullet-active {
+  background: var(--color-accent);
+}
+
+/* ── Testimonial pagination ── */
+.testimonial-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .testimonial-pagination {
+    gap: 1.5rem;
+  }
+}
+
+.testimonial-pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.testimonial-pagination-btn:hover {
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(10, 22, 40, 0.08);
+}
+
+@media (max-width: 479px) {
+  .testimonial-pagination-btn span {
+    display: none;
+  }
+
+  .testimonial-pagination-btn {
+    padding: 0.625rem 0.875rem;
+  }
+}
+
+/* ── Process section connector — only on wide screens ── */
+.process-connector {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .process-connector {
+    display: block;
+  }
+}
+
+/* ── Contact form panel padding ── */
+.contact-info-panel {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+@media (min-width: 1024px) {
+  .contact-info-panel {
+    padding: clamp(2rem, 3vw, 3rem);
+  }
+}
+
+.contact-form-panel {
+  padding: clamp(1.5rem, 4vw, 2rem);
+}
+
+@media (min-width: 1024px) {
+  .contact-form-panel {
+    padding: clamp(2rem, 3vw, 3rem);
+  }
+}

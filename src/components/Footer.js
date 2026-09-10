@@ -18,7 +18,7 @@ export default function Footer() {
     <footer className="section-dark relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-10" />
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[min(600px,90%)] h-px"
         style={{ background: "var(--color-gradient)" }}
       />
 

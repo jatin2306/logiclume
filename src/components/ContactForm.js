@@ -60,7 +60,7 @@ export default function ContactForm() {
       <SiteContainer>
         <div className="text-center mb-12">
           <span className="section-label-orange mb-4">Contact Us</span>
-          <h2 className="font-display text-3xl lg:text-5xl font-bold text-[var(--color-text)]">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-[clamp(2rem,4vw,3rem)] font-bold text-[var(--color-text)]">
             Let&apos;s chat about your{" "}
             <span className="text-[var(--color-primary)]">next big idea</span>
           </h2>
@@ -72,7 +72,7 @@ export default function ContactForm() {
         <div className="overflow-hidden rounded-3xl card-elevated shadow-xl">
           <div className="grid lg:grid-cols-5">
             {/* Light blue info panel */}
-            <div className="lg:col-span-2 relative overflow-hidden card-accent-blue p-10 lg:p-12">
+            <div className="lg:col-span-2 relative overflow-hidden card-accent-blue contact-info-panel">
               <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-[rgba(245,130,32,0.1)] rounded-full blur-[80px]" />
 
               <div className="relative">
@@ -109,7 +109,7 @@ export default function ContactForm() {
             </div>
 
             {/* Form */}
-            <div className="lg:col-span-3 p-8 lg:p-12 bg-white">
+            <div className="lg:col-span-3 contact-form-panel bg-white">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name *" className="w-full rounded-xl input-brand px-5 py-4 text-sm" />

@@ -23,7 +23,7 @@ export default function HeroSection() {
   return (
     <section className="home-section section-surface">
       <SiteContainer>
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center">
           <div>
             <span className="section-label-light mb-6">About DeopersIndia</span>
 
@@ -75,7 +75,7 @@ export default function HeroSection() {
               style={{ background: "var(--color-gradient)" }}
             />
 
-            <div className="relative home-card card-accent-blue p-8 lg:p-10">
+            <div className="relative home-card card-accent-blue p-5 sm:p-8 lg:p-10">
               <div className="flex items-center justify-between mb-6">
                 <p className="text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider">
                   What We Build
@@ -85,7 +85,7 @@ export default function HeroSection() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-2.5">
+              <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-2.5">
                 {capabilities.map((item) => (
                   <div
                     key={item}
@@ -97,14 +97,14 @@ export default function HeroSection() {
                 ))}
               </div>
 
-              <div className="mt-8 grid grid-cols-3 gap-3 pt-8 border-t border-[rgba(21,101,192,0.1)]">
+              <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-3 pt-8 border-t border-[rgba(21,101,192,0.1)]">
                 {[
                   { val: "99%", label: "Satisfaction", color: "primary" },
                   { val: "24/7", label: "Support", color: "accent" },
                   { val: "100%", label: "On-Time", color: "primary" },
                 ].map((s) => (
-                  <div key={s.label} className="text-center p-3 rounded-xl bg-white/80">
-                    <p className={`font-display text-xl font-bold ${
+                  <div key={s.label} className="text-center p-2 sm:p-3 rounded-xl bg-white/80 min-w-0">
+                    <p className={`font-display text-base sm:text-xl font-bold ${
                       s.color === "primary" ? "text-[var(--color-primary)]" : "text-[var(--color-accent)]"
                     }`}>
                       {s.val}

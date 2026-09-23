@@ -4,6 +4,7 @@ import SiteContainer from "./SiteContainer";
 import {
   FaFacebookF,
   FaInstagram,
+  FaLinkedinIn,
   FaWhatsapp,
   FaPhoneAlt,
   FaEnvelope,
@@ -23,16 +24,16 @@ export default function Footer() {
       />
 
       <div className="relative border-b border-[var(--color-border-dark)]">
-        <SiteContainer className="py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <SiteContainer className="py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
-            <h3 className="font-display text-2xl font-bold text-white">
+            <h3 className="font-display text-xl font-bold text-white">
               Engineered to Scale
             </h3>
-            <p className="text-[var(--color-text-muted-dark)] mt-2 text-sm">
+            <p className="text-[var(--color-text-muted-dark)] mt-1.5 text-sm">
               Ready to start your next digital project?
             </p>
           </div>
-          <a href="#contact">
+          <a href="/#contact">
             <Button variant="accent" size="lg" className="gap-2">
               Get in Touch <FaArrowRight size={14} />
             </Button>
@@ -40,26 +41,34 @@ export default function Footer() {
         </SiteContainer>
       </div>
 
-      <SiteContainer className="relative py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <SiteContainer className="relative py-10 lg:py-11">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div className="lg:col-span-1">
-            <h3 className="font-display text-xl font-bold text-white mb-4">
+            <h3 className="font-display text-lg font-bold text-white mb-3">
               Deopers<span className="text-[var(--color-accent)]">India</span>
             </h3>
-            <p className="text-[var(--color-text-muted-dark)] text-sm leading-relaxed mb-6">
+            <p className="text-[var(--color-text-muted-dark)] text-sm leading-relaxed mb-4">
               A modern IT solutions company delivering web development, mobile apps,
               UI/UX design, and digital marketing services worldwide.
             </p>
             <div className="flex gap-3">
               {[
-                { href: "https://facebook.com", icon: FaFacebookF, hover: "hover:bg-[var(--color-primary)]" },
-                { href: "https://www.instagram.com/deopersindia/", icon: FaInstagram, hover: "hover:bg-[var(--color-accent)]" },
-                { href: "https://wa.me/919758403169", icon: FaWhatsapp, hover: "hover:bg-green-600" },
-              ].map(({ href, icon: Icon, hover }) => (
+                {
+                  href: "https://www.linkedin.com/company/deopers-india",
+                  icon: FaLinkedinIn,
+                  label: "DeopersIndia on LinkedIn",
+                  hover: "hover:bg-[#0A66C2]",
+                },
+                { href: "https://facebook.com", icon: FaFacebookF, label: "Facebook", hover: "hover:bg-[var(--color-primary)]" },
+                { href: "https://www.instagram.com/deopersindia/", icon: FaInstagram, label: "Instagram", hover: "hover:bg-[var(--color-accent)]" },
+                { href: "https://wa.me/919758403169", icon: FaWhatsapp, label: "WhatsApp", hover: "hover:bg-green-600" },
+              ].map(({ href, icon: Icon, label, hover }) => (
                 <a
                   key={href}
                   href={href}
-                  aria-label="Social link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
                   className={`w-10 h-10 rounded-xl card-dark flex items-center justify-center text-[var(--color-text-muted-dark)] hover:text-white ${hover} transition`}
                 >
                   <Icon size={16} />
@@ -69,7 +78,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-5">Services</h4>
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">Services</h4>
             <ul className="space-y-3 text-sm text-[var(--color-text-muted-dark)]">
               {["Web Development", "Mobile Apps", "UI/UX Design", "E-Commerce", "Custom Software", "Digital Marketing"].map((item) => (
                 <li key={item}>
@@ -80,12 +89,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-5">Company</h4>
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">Company</h4>
             <ul className="space-y-3 text-sm text-[var(--color-text-muted-dark)]">
               {[
                 { label: "Home", href: "#home" },
                 { label: "About Us", href: "#about" },
-                { label: "Portfolio", href: "#portfolio" },
+                { label: "Portfolio", href: "/portfolio" },
                 { label: "Our Team", href: "#team" },
                 { label: "Testimonials", href: "#testimonials" },
                 { label: "Contact", href: "#contact" },
@@ -98,11 +107,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-5">Contact</h4>
-            <div className="space-y-4 text-sm text-[var(--color-text-muted-dark)]">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">Contact</h4>
+            <div className="space-y-3 text-sm text-[var(--color-text-muted-dark)]">
               <p className="flex items-start gap-3">
                 <FaMapMarkerAlt className="text-[var(--color-accent)] mt-1 flex-shrink-0" />
-                4/126 Palm Olympia, Greater Noida (201306)
+                7th Floor, Noida, Uttar Pradesh (201301)
               </p>
               <p className="flex items-center gap-3">
                 <FaPhoneAlt className="text-[var(--color-accent)] flex-shrink-0" />
@@ -116,7 +125,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[var(--color-border-dark)] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-[var(--color-border-dark)] pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-sm text-[var(--color-text-muted-dark)]">
             © {currentYear}{" "}
             <span className="text-white font-medium">

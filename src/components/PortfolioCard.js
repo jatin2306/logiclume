@@ -15,7 +15,7 @@ const categoryStyles = {
   "Dashboard UI": { gradient: "from-[#0a1628] to-[#1565c0]", badge: "blue" },
 };
 
-function CardInner({ title, category, client, url, imageSrc, previewAccent, featured }) {
+function CardInner({ title, category, client, url, imageSrc, previewAccent, featured, imageFit }) {
   const style = categoryStyles[category] || { gradient: "from-[#1565c0] to-[#0d47a1]", badge: "blue" };
   const accent = previewAccent || style.badge;
 
@@ -30,6 +30,9 @@ function CardInner({ title, category, client, url, imageSrc, previewAccent, feat
           gradientClass={style.gradient}
           featured={featured}
           client={client}
+          imageFit={imageFit}
+          aspectClass={imageFit === "contain" ? "aspect-[16/10]" : "aspect-[4/3]"}
+          showOverlay={imageFit !== "contain"}
         />
         <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 pointer-events-none z-[2]">
           <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-white">
@@ -61,6 +64,7 @@ export default function PortfolioCard({
   imageSrc,
   previewAccent,
   featured,
+  imageFit,
 }) {
   const className = "group home-card overflow-hidden h-full";
 
@@ -75,6 +79,7 @@ export default function PortfolioCard({
           imageSrc={imageSrc}
           previewAccent={previewAccent}
           featured={featured}
+          imageFit={imageFit}
         />
       </a>
     );
@@ -90,6 +95,7 @@ export default function PortfolioCard({
         imageSrc={imageSrc}
         previewAccent={previewAccent}
         featured={featured}
+        imageFit={imageFit}
       />
     </div>
   );

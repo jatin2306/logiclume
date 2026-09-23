@@ -1,8 +1,11 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import PortfolioCard from "./PortfolioCard";
 import SectionHeading from "./SectionHeading";
 import SiteContainer from "./SiteContainer";
+import Button from "./Button";
 import { portfolioData } from "@/data/portfolioData";
 
 export default function PortfolioSection() {
@@ -25,6 +28,14 @@ export default function PortfolioSection() {
             .map((project) => (
               <PortfolioCard key={project.id} {...project} />
             ))}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link href="/portfolio">
+            <Button variant="outline" size="lg" className="gap-2">
+              View full portfolio <ArrowUpRight size={16} />
+            </Button>
+          </Link>
         </div>
       </SiteContainer>
     </section>

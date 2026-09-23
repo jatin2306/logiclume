@@ -105,11 +105,12 @@ export default function FeaturedClients() {
                   <PortfolioThumb
                     title={client.name}
                     previewUrl={client.url}
-                    previewAccent={client.previewAccent}
+                    useIframe={client.useIframe}
                     imageSrc={client.imageSrc}
                     aspectClass="aspect-[16/10] w-full"
                     gradientClass="from-[var(--color-surface-blue)] to-[#eef4fb]"
                     showOverlay={false}
+                    imageFit={client.imageFit}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,22,40,0.75)] via-[rgba(10,22,40,0.15)] to-transparent pointer-events-none" />
                     <div className="absolute top-3 left-3 right-3 flex flex-wrap items-start justify-between gap-2 z-[2]">

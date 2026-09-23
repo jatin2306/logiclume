@@ -76,11 +76,16 @@ export default function RootLayout({ children }) {
       "DeopersIndia is a modern IT solutions company delivering web development, mobile apps, UI/UX design, and digital marketing services.",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "4/126 Palm Olympia",
-      addressLocality: "Greater Noida",
-      postalCode: "201306",
+      streetAddress: "7th Floor",
+      addressLocality: "Noida",
+      addressRegion: "Uttar Pradesh",
+      postalCode: "201301",
       addressCountry: "IN",
     },
+    sameAs: [
+      "https://www.linkedin.com/company/deopers-india",
+      "https://www.instagram.com/deopersindia/",
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-9758403169",
@@ -105,7 +110,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
 
-        <footer>
+        <footer className="relative z-20 isolate">
           <Footer />
         </footer>
 

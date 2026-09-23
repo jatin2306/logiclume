@@ -88,7 +88,7 @@ export default function ContactForm() {
                   {[
                     { icon: Phone, label: "Call Us", value: "+91 9758403169", href: "tel:+919758403169" },
                     { icon: Mail, label: "Email", value: "info@deopersindia.com", href: "mailto:info@deopersindia.com" },
-                    { icon: MapPin, label: "Location", value: "4/126 Palm Olympia, Greater Noida 201306" },
+                    { icon: MapPin, label: "Location", value: "7th Floor, Noida, Uttar Pradesh 201301" },
                   ].map(({ icon: Icon, label, value, href }) => (
                     <div key={label} className="flex items-start gap-4 rounded-2xl bg-white border border-[rgba(21,101,192,0.1)] p-4 shadow-sm">
                       <Icon size={20} className="text-[var(--color-accent)] mt-0.5 flex-shrink-0" />

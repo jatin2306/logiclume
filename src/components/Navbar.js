@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { X, ChevronDown, ArrowUpRight } from "lucide-react";
 import AiNavButton from "./AiNavButton";
@@ -10,21 +11,24 @@ import NavMegaPanel from "./NavMegaPanel";
 import "./nav-hero.css";
 
 const primaryLinks = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services", hasDropdown: true },
-  { href: "#portfolio", label: "Portfolio" },
+  { href: "/#about", label: "About" },
+  { href: "/#services", label: "Services", hasDropdown: true },
+  { href: "/portfolio", label: "Portfolio", isRoute: true },
 ];
 
 const secondaryLinks = [
-  { href: "#team", label: "Team" },
-  { href: "#testimonials", label: "Testimonials" },
+  { href: "/#team", label: "Team" },
+  { href: "/#testimonials", label: "Testimonials" },
 ];
 
 const allSectionIds = ["home", "contact", ...primaryLinks, ...secondaryLinks].map((l) =>
-  typeof l === "string" ? l : l.href.replace("#", "")
+  typeof l === "string"
+    ? l
+    : l.href.replace("/#", "").replace("#", "").replace(/^\//, "")
 );
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [onHero, setOnHero] = useState(true);
@@ -43,7 +47,10 @@ export default function Navbar() {
   }, []);
 
   const updateHeroState = useCallback(() => {
-    const hero = document.getElementById("home") || document.getElementById("home-hero");
+    const hero =
+      document.getElementById("home") ||
+      document.getElementById("home-hero") ||
+      (pathname === "/portfolio" ? document.getElementById("portfolio-hero") : null);
     if (!hero) {
       setOnHero(false);
       return;
@@ -51,7 +58,7 @@ export default function Navbar() {
     const spacer = document.querySelector(".dp-nav-spacer");
     const navOffset = spacer?.getBoundingClientRect().height ?? 104;
     setOnHero(hero.getBoundingClientRect().bottom > navOffset + 8);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -63,6 +70,10 @@ export default function Navbar() {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, [updateActiveSection, updateHeroState]);
+
+  useEffect(() => {
+    updateHeroState();
+  }, [pathname, updateHeroState]);
 
   useEffect(() => {
     document.body.style.overflow = open || megaMenu ? "hidden" : "";
@@ -85,7 +96,9 @@ export default function Navbar() {
     .join(" ");
 
   const renderNavLink = (link) => {
-    const isActive = activeSection === link.href.replace("#", "");
+    const isActive = link.isRoute
+      ? pathname === link.href
+      : activeSection === link.href.replace("/#", "").replace("#", "");
 
     if (link.hasDropdown) {
       return (
@@ -119,6 +132,20 @@ export default function Navbar() {
       );
     }
 
+    if (link.isRoute) {
+      return (
+        <Link
+          key={link.href}
+          href={link.href}
+          onMouseEnter={closeMegaMenu}
+          onClick={closeMegaMenu}
+          className={`nav-link ${isActive ? "nav-link-active" : ""}`}
+        >
+          {link.label}
+        </Link>
+      );
+    }
+
     return (
       <a
         key={link.href}
@@ -142,7 +169,7 @@ export default function Navbar() {
                 <p className="text-white/90 text-center px-8 sm:px-10 leading-snug">
                   Free strategy consultation —{" "}
                   <a
-                    href="#contact"
+                    href="/#contact"
                     className="text-white font-semibold underline underline-offset-2 hover:no-underline"
                   >
                     book a call
@@ -215,7 +242,7 @@ export default function Navbar() {
                     onMouseEnter={() => setMegaMenu("contact")}
                   >
                     <a
-                      href="#contact"
+                      href="/#contact"
                       className={`nav-contact-btn group ${
                         megaMenu === "contact" ? "nav-contact-btn-mega-open" : ""
                       } ${activeSection === "contact" ? "nav-contact-btn-active" : ""}`}
@@ -328,13 +355,28 @@ export default function Navbar() {
               <AiNavButton variant="mobile" onNavigate={() => setOpen(false)} />
 
               {[...primaryLinks, ...secondaryLinks].map((link) => {
-                const isActive = activeSection === link.href.replace("#", "");
+                const isActive = link.isRoute
+                  ? pathname === link.href
+                  : activeSection === link.href.replace("/#", "").replace("#", "");
+                const className = `nav-mobile-link ${isActive ? "nav-mobile-link-active" : ""}`;
+                if (link.isRoute) {
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={className}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                }
                 return (
                   <a
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className={`nav-mobile-link ${isActive ? "nav-mobile-link-active" : ""}`}
+                    className={className}
                   >
                     {link.label}
                   </a>
@@ -344,7 +386,7 @@ export default function Navbar() {
 
             <div className="px-6 pb-8 mt-auto border-t border-[var(--color-border)] pt-6">
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={() => setOpen(false)}
                 className="nav-contact-btn w-full justify-center py-3.5 group"
               >

@@ -48,26 +48,44 @@ export default function PortfolioThumb({
   showOverlay = true,
   featured,
   client,
+  imageFit = "cover",
 }) {
   const hostname = hostnameFromUrl(previewUrl);
+  const isContain = imageFit === "contain";
 
   return (
     <div
-      className={`home-portfolio-thumb relative overflow-hidden bg-gradient-to-br ${gradientClass} ${aspectClass}`}
+      className={`home-portfolio-thumb relative overflow-hidden ${aspectClass} ${
+        isContain
+          ? "home-portfolio-thumb--contain bg-[#eef1f5]"
+          : `bg-gradient-to-br ${gradientClass}`
+      }`}
     >
       {imageSrc ? (
-        <Image
-          src={imageSrc}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-        />
+        isContain ? (
+          <div className="home-portfolio-thumb__frame">
+            <Image
+              src={imageSrc}
+              alt={title}
+              fill
+              className="portfolio-thumb-img object-contain object-top transition-transform duration-500 group-hover:scale-[1.02]"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          </div>
+        ) : (
+          <Image
+            src={imageSrc}
+            alt={title}
+            fill
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          />
+        )
       ) : (
         <PortfolioBrandPreview title={title} hostname={hostname} accent={previewAccent} />
       )}
 
-      {showOverlay && imageSrc && (
+      {showOverlay && imageSrc && !isContain && (
         <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,22,40,0.6)] via-transparent to-transparent pointer-events-none" />
       )}
 

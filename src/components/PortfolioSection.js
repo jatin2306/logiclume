@@ -16,7 +16,7 @@ export default function PortfolioSection() {
           centered
           twoColor
           coloredWords={2}
-          className="max-w-3xl mx-auto mb-16"
+          className="home-section-head max-w-3xl mx-auto"
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { ArrowUpRight, Building2, CheckCircle2, Code2, Layers, Palette, Sparkles } from "lucide-react";
 import SiteContainer from "./SiteContainer";
+import PortfolioThumb from "./PortfolioThumb";
 import { companyPillars, featuredClients } from "@/data/featuredClients";
 
 const pillarIcons = [Code2, Layers, Palette];
@@ -26,11 +26,11 @@ export default function FeaturedClients() {
   return (
     <section
       id="featured-work"
-      className="py-14 lg:py-20 section-surface border-y border-[var(--color-border)] overflow-hidden"
+      className="home-section section-surface border-y border-[var(--color-border)] overflow-hidden"
     >
       <SiteContainer>
         {/* What we do — quick context */}
-        <div className="text-center max-w-3xl mx-auto mb-10 lg:mb-12">
+        <div className="featured-clients-intro home-section-head text-center max-w-3xl mx-auto">
           <span className="section-label-light mb-4 inline-flex">
             <Sparkles size={14} className="text-[var(--color-accent)]" />
             What We Do
@@ -47,7 +47,7 @@ export default function FeaturedClients() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-4 lg:gap-5 mb-12 lg:mb-16 max-w-4xl mx-auto">
+        <div className="featured-clients-pillars home-section-head grid sm:grid-cols-3 gap-4 lg:gap-5 max-w-4xl mx-auto">
           {companyPillars.map((pillar, i) => {
             const Icon = pillarIcons[i];
             return (
@@ -100,18 +100,19 @@ export default function FeaturedClients() {
                   href={client.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="home-project-preview block relative shrink-0"
+                  className="home-project-preview block relative shrink-0 group/preview"
                 >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--color-surface-blue)]">
-                    <Image
-                      src={client.imageSrc}
-                      alt={`${client.name} — ${client.partner} project preview`}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,22,40,0.75)] via-[rgba(10,22,40,0.15)] to-transparent" />
-                    <div className="absolute top-3 left-3 right-3 flex flex-wrap items-start justify-between gap-2">
+                  <PortfolioThumb
+                    title={client.name}
+                    previewUrl={client.url}
+                    previewAccent={client.previewAccent}
+                    imageSrc={client.imageSrc}
+                    aspectClass="aspect-[16/10] w-full"
+                    gradientClass="from-[var(--color-surface-blue)] to-[#eef4fb]"
+                    showOverlay={false}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,22,40,0.75)] via-[rgba(10,22,40,0.15)] to-transparent pointer-events-none" />
+                    <div className="absolute top-3 left-3 right-3 flex flex-wrap items-start justify-between gap-2 z-[2]">
                       <span
                         className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white bg-gradient-to-r ${style.partnerBg} shadow-md`}
                       >
@@ -123,15 +124,13 @@ export default function FeaturedClients() {
                         <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
                       </span>
                     </div>
-                    <div className="absolute bottom-3 left-3 right-3">
+                    <div className="absolute bottom-3 left-3 right-3 z-[2]">
                       <p className="text-white/70 text-[10px] font-medium truncate">{hostname}</p>
                       <p className="font-display text-lg sm:text-xl font-bold text-white mt-0.5 truncate">
                         {client.name}
                       </p>
                     </div>
-                  </div>
                 </a>
-
                 {/* Card body */}
                 <div className="flex flex-col flex-1 p-5 lg:p-6 min-w-0">
                   <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">

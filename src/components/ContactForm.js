@@ -58,7 +58,7 @@ export default function ContactForm() {
   return (
     <section className="home-section section-light">
       <SiteContainer>
-        <div className="text-center mb-12">
+        <div className="text-center home-section-head max-w-3xl mx-auto">
           <span className="section-label-orange mb-4">Contact Us</span>
           <h2 className="font-display text-2xl sm:text-3xl lg:text-[clamp(2rem,4vw,3rem)] font-bold text-[var(--color-text)]">
             Let&apos;s chat about your{" "}

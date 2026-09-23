@@ -60,6 +60,10 @@ html.dp-promo-hidden {
   box-shadow: none !important;
 }
 
+.dp-nav-over-hero .nav-marquee-wrap.nav-marquee-wrap-dropdown-open {
+  padding: 0;
+}
+
 .dp-nav-over-hero .nav-shell-inner,
 .dp-nav-over-hero .nav-marquee-wrap-scrolled .nav-shell-inner {
   background: transparent !important;
@@ -185,4 +189,58 @@ html.dp-promo-hidden {
 .dp-nav-dropdown-open.dp-nav-over-hero,
 .dp-nav-dropdown-open.dp-nav-solid {
   border-bottom-color: transparent;
+}
+
+/* Services / AI mega menu open — unified panel on hero (overrides transparent bar) */
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-marquee-wrap.nav-marquee-wrap-dropdown-open {
+  border-radius: 1.0625rem 1.0625rem 0 0;
+  background: #ffffff !important;
+  box-shadow: 0 14px 40px rgba(10, 22, 40, 0.14);
+  padding: 0;
+  border: 1px solid rgba(21, 101, 192, 0.12);
+  border-bottom: none;
+}
+
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-marquee-wrap-dropdown-open .nav-shell-inner {
+  border-radius: calc(1.0625rem - 2px) calc(1.0625rem - 2px) 0 0;
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-link,
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-link-mega-open,
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-link-active {
+  color: #1a2b42;
+  text-shadow: none;
+}
+
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-link:hover {
+  background: rgba(21, 101, 192, 0.06);
+  color: var(--color-primary);
+}
+
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-chevron,
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-link:hover .nav-chevron {
+  color: var(--color-primary);
+}
+
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-divider {
+  background: var(--color-border);
+}
+
+.dp-nav-dropdown-open.dp-nav-over-hero .dp-nav-logo {
+  filter: none;
+}
+
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-ai-btn {
+  color: #1a2b42;
+  text-shadow: none;
+  background: #fffaf6;
+  border-color: rgba(245, 130, 32, 0.22);
+}
+
+.dp-nav-dropdown-open.dp-nav-over-hero .nav-contact-btn {
+  color: white;
+  text-shadow: none;
 }

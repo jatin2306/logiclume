@@ -86,7 +86,7 @@ export default function FeaturedServices() {
           centered
           twoColor
           coloredWords={3}
-          className="max-w-3xl mx-auto mb-14"
+          className="home-section-head max-w-3xl mx-auto"
         />
 
         <div className="home-bento mb-5">

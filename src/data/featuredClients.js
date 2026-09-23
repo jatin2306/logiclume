@@ -19,8 +19,7 @@ export const featuredClients = [
     ],
     tags: ["FinTech", "Web Platform", "Enterprise"],
     accent: "blue",
-    imageSrc:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    previewAccent: "blue",
   },
   {
     id: "shopwise",
@@ -42,8 +41,7 @@ export const featuredClients = [
     ],
     tags: ["E-Commerce", "Rewards", "Enterprise"],
     accent: "orange",
-    imageSrc:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80",
+    previewAccent: "orange",
   },
 ];
 

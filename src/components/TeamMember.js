@@ -5,13 +5,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import SectionHeading from "./SectionHeading";
 import SiteContainer from "./SiteContainer";
+import LeadershipSpotlight from "./LeadershipSpotlight";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const teamMembers = [
-  { id: 1, name: "Sumit Kumar", role: "Founder & CEO", image: "/images/team/1.jpg" },
   { id: 2, name: "Ankita Singh", role: "Frontend Developer", image: "/images/team/2.jpg" },
   { id: 3, name: "Nisha Tiwari", role: "Full Stack Developer", image: "/images/team/5.jpg" },
   { id: 4, name: "Jatin Gupta", role: "Backend Developer", image: "/images/team/4.jpg" },
@@ -32,8 +32,10 @@ export default function TeamMembers() {
           centered
           twoColor
           coloredWords={2}
-          className="max-w-3xl mx-auto mb-16"
+          className="home-section-head max-w-3xl mx-auto"
         />
+
+        <LeadershipSpotlight />
 
         <div className="team-swiper-wrap">
         <Swiper

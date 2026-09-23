@@ -19,7 +19,7 @@ export default function LogoMarquee() {
   const items = [...brands, ...brands];
 
   return (
-    <section className="py-14 section-surface border-y border-[var(--color-border)]">
+    <section className="home-section section-surface border-y border-[var(--color-border)]">
       <SiteContainer className="mb-8">
         <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
           Trusted by growing businesses worldwide

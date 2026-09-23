@@ -37,7 +37,7 @@ export default function IndustriesSection() {
           centered
           twoColor
           coloredWords={2}
-          className="max-w-3xl mx-auto mb-16"
+          className="home-section-head max-w-3xl mx-auto"
         />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">

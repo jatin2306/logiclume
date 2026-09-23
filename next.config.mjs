@@ -15,6 +15,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'api.qrserver.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'd1r57b107sq2kf.cloudfront.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'image.thum.io',
+      },
     ],
   },
 };

@@ -28,7 +28,7 @@ export default function Home() {
         <div className="home-section-divider" aria-hidden="true" />
       </SiteContainer>
 
-      <section id="about">
+      <section id="about" className="about-anchor">
         <HeroSection />
       </section>
 

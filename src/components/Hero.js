@@ -1,40 +1,25 @@
 "use client";
 
-import Image from "next/image";
-import { ArrowUpRight, Globe, Smartphone, Cloud, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import SiteContainer from "./SiteContainer";
+import BrandLogoMark from "./BrandLogoMark";
 import "./hero-section.css";
 
 const stats = [
-  { value: "50+", label: "Projects", tone: "blue" },
-  { value: "30+", label: "Clients", tone: "orange" },
-  { value: "8+", label: "Experts", tone: "blue" },
-  { value: "5+", label: "Years", tone: "orange" },
+  { value: "140+", label: "Projects", tone: "blue" },
+  { value: "80+", label: "Clients", tone: "orange" },
+  { value: "100+", label: "Inhouse team", tone: "blue" },
+  { value: "10+", label: "Years", tone: "orange" },
 ];
 
-const productPills = [
-  { icon: Globe, label: "Web Apps", tone: "blue" },
-  { icon: Smartphone, label: "Mobile", tone: "orange" },
-  { icon: Cloud, label: "Cloud", tone: "blue" },
-  { icon: Sparkles, label: "AI", tone: "orange" },
-];
-
-const HERO_BG =
-  "https://images.unsplash.com/photo-1639762681485-074b7f938ee0?auto=format&fit=crop&w=1920&q=85";
+const ORBIT_SPARKS = 8;
 
 export default function Hero() {
   return (
     <section className="dp-hero" id="home-hero" aria-label="DeopersIndia homepage hero">
       <div className="dp-hero-bg" aria-hidden="true">
-        <Image
-          src={HERO_BG}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="dp-hero-bg-img"
-        />
-        <div className="dp-hero-overlay" />
+        <div className="dp-hero-aurora" />
+        <div className="dp-hero-noise" />
         <div className="dp-hero-grid-lines" />
         <div className="dp-hero-orb dp-hero-orb-a" />
         <div className="dp-hero-orb dp-hero-orb-b" />
@@ -43,13 +28,19 @@ export default function Hero() {
       <SiteContainer className="dp-hero-shell">
         <div className="dp-hero-layout">
           <div className="dp-hero-copy">
-            <span className="dp-hero-eyebrow dp-hero-reveal dp-hero-reveal-d1">
-              Product Engineering Studio
-            </span>
+            <div className="dp-hero-eyebrow-wrap dp-hero-reveal dp-hero-reveal-d1">
+              <span className="dp-hero-eyebrow-beam" aria-hidden="true" />
+              <span className="dp-hero-eyebrow">
+                <span className="dp-hero-eyebrow-dot" aria-hidden="true" />
+                Product Engineering Studio
+              </span>
+            </div>
 
             <h1 className="dp-hero-title dp-hero-reveal dp-hero-reveal-d2">
-              Build software products
-              <span className="dp-hero-title-accent">that scale with confidence</span>
+              <span className="dp-hero-title-line">Build software products</span>
+              <span className="dp-hero-title-line dp-hero-title-line--accent">
+                that scale with confidence
+              </span>
             </h1>
 
             <p className="dp-hero-lead dp-hero-reveal dp-hero-reveal-d3">
@@ -60,7 +51,9 @@ export default function Hero() {
             <div className="dp-hero-actions dp-hero-reveal dp-hero-reveal-d3">
               <a href="#contact" className="dp-hero-btn-primary">
                 Let&apos;s Work Together
-                <ArrowUpRight size={17} aria-hidden="true" />
+                <span className="dp-hero-btn-icon" aria-hidden="true">
+                  <ArrowUpRight size={17} />
+                </span>
               </a>
               <a href="#featured-work" className="dp-hero-btn-secondary">
                 Explore Our Work
@@ -68,93 +61,54 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="dp-hero-metrics dp-hero-reveal dp-hero-reveal-d4">
-              {stats.map((stat) => (
-                <div key={stat.label} className="dp-hero-metric">
-                  <p
-                    className={`dp-hero-metric-val ${
-                      stat.tone === "blue"
-                        ? "dp-hero-metric-val--blue"
-                        : "dp-hero-metric-val--orange"
-                    }`}
-                  >
-                    {stat.value}
-                  </p>
-                  <p className="dp-hero-metric-lbl">{stat.label}</p>
+            <div className="dp-hero-trust dp-hero-reveal dp-hero-reveal-d4">
+              {stats.map((stat, i) => (
+                <div key={stat.label} className="dp-hero-trust-item">
+                  {i > 0 && <span className="dp-hero-trust-divider" aria-hidden="true" />}
+                  <div className="dp-hero-trust-stat">
+                    <span
+                      className={`dp-hero-trust-val ${
+                        stat.tone === "blue"
+                          ? "dp-hero-trust-val--blue"
+                          : "dp-hero-trust-val--orange"
+                      }`}
+                    >
+                      {stat.value}
+                    </span>
+                    <span className="dp-hero-trust-lbl">{stat.label}</span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="dp-hero-visual dp-hero-reveal dp-hero-reveal-d4" aria-hidden="true">
-            <div className="dp-hero-showcase">
-              <div className="dp-hero-showcase-glow" />
+            <div className="dp-hero-brand">
+              <div className="dp-hero-brand-aura" />
 
-              {productPills.map(({ icon: Icon, label, tone }, i) => (
-                <div
-                  key={label}
-                  className={`dp-hero-pill dp-hero-pill--${tone} dp-hero-pill--pos-${i + 1}`}
-                >
-                  <span className="dp-hero-pill-icon">
-                    <Icon size={12} strokeWidth={2.25} />
-                  </span>
-                  {label}
+              <div className="dp-hero-brand-stage">
+                <div className="dp-hero-brand-ring dp-hero-brand-ring--outer" />
+                <div className="dp-hero-brand-ring dp-hero-brand-ring--spin-a" />
+                <div className="dp-hero-brand-ring dp-hero-brand-ring--spin-b" />
+                <div className="dp-hero-brand-sweep" />
+
+                <div className="dp-hero-brand-orbit">
+                  {Array.from({ length: ORBIT_SPARKS }, (_, i) => (
+                    <span
+                      key={i}
+                      className="dp-hero-brand-spark-arm"
+                      style={{ "--spark-i": i }}
+                    >
+                      <span
+                        className={`dp-hero-brand-spark ${i % 2 === 0 ? "dp-hero-brand-spark--blue" : "dp-hero-brand-spark--orange"}`}
+                      />
+                    </span>
+                  ))}
                 </div>
-              ))}
 
-              <div className="dp-hero-laptop">
-                <div className="dp-hero-laptop-screen">
-                  <div className="dp-hero-laptop-bar">
-                    <span className="dp-hero-laptop-dot bg-red-400/90" />
-                    <span className="dp-hero-laptop-dot bg-amber-400/90" />
-                    <span className="dp-hero-laptop-dot bg-emerald-400/90" />
-                    <span className="dp-hero-laptop-url">app.deopersindia.com</span>
-                  </div>
-                  <div className="dp-hero-laptop-ui">
-                    <div className="dp-hero-laptop-nav">
-                      <span className="dp-hero-laptop-nav-item dp-hero-laptop-nav-item--active" />
-                      <span className="dp-hero-laptop-nav-item" />
-                      <span className="dp-hero-laptop-nav-item" />
-                      <span className="dp-hero-laptop-nav-item" />
-                    </div>
-                    <div className="dp-hero-laptop-content">
-                      <div className="dp-hero-laptop-header">
-                        <span className="dp-hero-laptop-title">Product Dashboard</span>
-                        <span className="dp-hero-laptop-badge">Live</span>
-                      </div>
-                      <div className="dp-hero-laptop-cards">
-                        <div className="dp-hero-laptop-card dp-hero-laptop-card--blue">
-                          <span className="dp-hero-laptop-card-val">Web</span>
-                          <span className="dp-hero-laptop-card-lbl">Platform</span>
-                        </div>
-                        <div className="dp-hero-laptop-card dp-hero-laptop-card--orange">
-                          <span className="dp-hero-laptop-card-val">API</span>
-                          <span className="dp-hero-laptop-card-lbl">Services</span>
-                        </div>
-                      </div>
-                      <div className="dp-hero-laptop-rows">
-                        <span className="dp-hero-laptop-row dp-hero-laptop-row--long" />
-                        <span className="dp-hero-laptop-row" />
-                        <span className="dp-hero-laptop-row dp-hero-laptop-row--medium" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="dp-hero-laptop-base" />
-                <div className="dp-hero-laptop-shadow" />
-              </div>
-
-              <div className="dp-hero-phone">
-                <div className="dp-hero-phone-frame">
-                  <div className="dp-hero-phone-notch" />
-                  <div className="dp-hero-phone-ui">
-                    <div className="dp-hero-phone-hero-block" />
-                    <div className="dp-hero-phone-line" />
-                    <div className="dp-hero-phone-line dp-hero-phone-line--short" />
-                    <div className="dp-hero-phone-actions">
-                      <span className="dp-hero-phone-btn dp-hero-phone-btn--primary" />
-                      <span className="dp-hero-phone-btn" />
-                    </div>
+                <div className="dp-hero-brand-core">
+                  <div className="dp-hero-brand-core-ring">
+                    <BrandLogoMark size="hero" />
                   </div>
                 </div>
               </div>

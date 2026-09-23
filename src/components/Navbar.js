@@ -65,8 +65,9 @@ export default function Navbar() {
   }, [updateActiveSection, updateHeroState]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-  }, [open]);
+    document.body.style.overflow = open || megaMenu ? "hidden" : "";
+    document.documentElement.classList.toggle("dp-nav-mega-open", Boolean(megaMenu));
+  }, [open, megaMenu]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dp-promo-hidden", !promoVisible);
@@ -92,8 +93,21 @@ export default function Navbar() {
           key={link.href}
           href={link.href}
           onMouseEnter={() => setMegaMenu("services")}
-          onClick={closeMegaMenu}
+          onClick={(e) => {
+            if (typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches) {
+              if (megaMenu !== "services") {
+                e.preventDefault();
+                setMegaMenu("services");
+                return;
+              }
+              closeMegaMenu();
+            } else {
+              closeMegaMenu();
+            }
+          }}
           className={`nav-link ${isActive ? "nav-link-active" : ""} ${megaMenu === "services" ? "nav-link-mega-open" : ""}`}
+          aria-expanded={megaMenu === "services"}
+          aria-haspopup="true"
         >
           {link.label}
           <ChevronDown
@@ -196,25 +210,49 @@ export default function Navbar() {
                       onMouseEnter={() => setMegaMenu("ai")}
                     />
 
+                  <div
+                    className="nav-contact-wrap"
+                    onMouseEnter={() => setMegaMenu("contact")}
+                  >
                     <a
                       href="#contact"
-                      className="nav-contact-btn group"
-                      onMouseEnter={closeMegaMenu}
-                      onClick={closeMegaMenu}
+                      className={`nav-contact-btn group ${
+                        megaMenu === "contact" ? "nav-contact-btn-mega-open" : ""
+                      } ${activeSection === "contact" ? "nav-contact-btn-active" : ""}`}
+                      aria-expanded={megaMenu === "contact"}
+                      aria-haspopup="true"
+                      onClick={(e) => {
+                        if (
+                          typeof window !== "undefined" &&
+                          window.matchMedia("(min-width: 1024px)").matches
+                        ) {
+                          if (megaMenu !== "contact") {
+                            e.preventDefault();
+                            setMegaMenu("contact");
+                            return;
+                          }
+                          closeMegaMenu();
+                        } else {
+                          closeMegaMenu();
+                        }
+                      }}
                     >
                       <span>Contact Us</span>
-                      <ArrowUpRight
-                        size={16}
-                        strokeWidth={2.25}
-                        className="nav-contact-btn-arrow"
+                      <ChevronDown
+                        size={14}
+                        strokeWidth={2.5}
+                        className={`nav-contact-chevron transition-transform duration-300 ${
+                          megaMenu === "contact" ? "rotate-180" : ""
+                        }`}
                       />
                     </a>
                   </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <NavMegaPanel type={megaMenu} onClose={closeMegaMenu} />
+              <NavMegaPanel type={megaMenu} onClose={closeMegaMenu} />
+            </div>
           </div>
         </div>
 

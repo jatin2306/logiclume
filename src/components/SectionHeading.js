@@ -7,6 +7,7 @@ export default function SectionHeading({
   twoColor = false,
   coloredWords = 1,
   dark = false,
+  compact = false,
 }) {
   const alignmentClass = centered
     ? "text-center items-center"
@@ -38,7 +39,13 @@ export default function SectionHeading({
       )}
 
       {title && (
-        <h2 className={`font-display text-2xl sm:text-3xl md:text-4xl lg:text-[clamp(2rem,3.5vw,2.75rem)] font-bold leading-[1.15] mb-4 w-full ${titleColor}`}>
+        <h2
+          className={`font-display font-bold leading-[1.15] w-full ${titleColor} ${
+            compact
+              ? "text-xl sm:text-2xl lg:text-[clamp(1.5rem,2.4vw,2rem)] mb-2 sm:mb-3"
+              : "text-2xl sm:text-3xl md:text-4xl lg:text-[clamp(2rem,3.5vw,2.75rem)] mb-4"
+          }`}
+        >
           <span>{main}</span>
           {accent && (
             <span className={dark ? " text-gradient" : " text-[var(--color-accent)]"}>
@@ -49,18 +56,18 @@ export default function SectionHeading({
       )}
 
       {description && (
-        <div className="flex flex-col gap-4 w-full">
+        <div className={`flex flex-col w-full ${compact ? "gap-2 sm:gap-2.5" : "gap-4"}`}>
           {Array.isArray(description) ? (
             description.map((paragraph, index) => (
               <p
                 key={index}
-                className={`text-base md:text-lg ${descColor} leading-relaxed max-w-2xl ${centered ? "mx-auto" : ""}`}
+                className={`${compact ? "text-sm sm:text-[0.9375rem]" : "text-base md:text-lg"} ${descColor} leading-relaxed max-w-2xl ${centered ? "mx-auto" : ""}`}
               >
                 {paragraph}
               </p>
             ))
           ) : (
-            <p className={`text-base md:text-lg ${descColor} leading-relaxed max-w-2xl ${centered ? "mx-auto" : ""}`}>
+            <p className={`${compact ? "text-sm sm:text-[0.9375rem]" : "text-base md:text-lg"} ${descColor} leading-relaxed max-w-2xl ${centered ? "mx-auto" : ""}`}>
               {description}
             </p>
           )}

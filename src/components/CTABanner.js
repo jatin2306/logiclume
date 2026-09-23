@@ -6,7 +6,7 @@ import SiteContainer from "./SiteContainer";
 
 export default function CTABanner() {
   return (
-    <section className="py-16 lg:py-20 section-light">
+    <section className="home-section section-light">
       <SiteContainer>
         <div className="home-cta-banner p-6 sm:p-10 lg:p-14">
           <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">

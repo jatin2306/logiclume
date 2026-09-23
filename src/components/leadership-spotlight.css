@@ -1,0 +1,233 @@
+/* Leadership spotlight — Team section */
+
+.leadership-spotlight {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-radius: 1.5rem;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 55%, #eef4fb 100%);
+  border: 1px solid rgba(21, 101, 192, 0.12);
+  box-shadow:
+    0 24px 64px rgba(10, 22, 40, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .leadership-spotlight {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: clamp(2rem, 4vw, 3rem);
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+  }
+}
+
+.leadership-spotlight-glow {
+  position: absolute;
+  top: -30%;
+  right: -15%;
+  width: 55%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(245, 130, 32, 0.12), transparent 65%);
+  pointer-events: none;
+}
+
+.leadership-spotlight-visual {
+  position: relative;
+  min-width: 0;
+}
+
+.leadership-spotlight-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-height: min(520px, 70vh);
+  margin: 0 auto;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: #0a1628;
+  box-shadow: 0 20px 50px rgba(10, 22, 40, 0.25);
+}
+
+@media (min-width: 1024px) {
+  .leadership-spotlight-frame {
+    margin: 0;
+    max-height: 480px;
+  }
+}
+
+.leadership-spotlight-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #f58220, #1565c0, #f58220);
+  background-size: 200% 200%;
+  animation: leadership-border-shift 6s ease infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes leadership-border-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.leadership-spotlight-photo {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.leadership-spotlight-photo-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 22, 40, 0.55) 0%, transparent 45%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.leadership-spotlight-badge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 3;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(10, 22, 40, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.leadership-spotlight-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f58220;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(245, 130, 32, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.leadership-spotlight-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding: 0.25rem 0;
+}
+
+@media (min-width: 1024px) {
+  .leadership-spotlight-copy {
+    padding: 0.5rem 0.5rem 0.5rem 0;
+  }
+}
+
+.leadership-spotlight-eyebrow {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.leadership-spotlight-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2.125rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  margin: 0 0 1rem;
+}
+
+.leadership-spotlight-title-accent {
+  color: var(--color-accent);
+}
+
+.leadership-spotlight-quote {
+  font-size: clamp(0.9375rem, 1.05vw, 1.0625rem);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0 0 1.25rem;
+  max-width: 36rem;
+}
+
+.leadership-spotlight-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.leadership-spotlight-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.45;
+}
+
+.leadership-spotlight-list-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  background: var(--color-surface-blue);
+  color: var(--color-primary);
+}
+
+.leadership-spotlight-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.75rem 1.375rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  box-shadow: 0 8px 24px rgba(21, 101, 192, 0.28);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.leadership-spotlight-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(21, 101, 192, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leadership-spotlight-frame::before {
+    animation: none;
+  }
+}

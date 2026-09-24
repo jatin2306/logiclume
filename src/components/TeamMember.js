@@ -14,7 +14,6 @@ import "swiper/css/pagination";
 const teamMembers = [
   { id: 2, name: "Ankita Singh", role: "Frontend Developer", image: "/images/team/2.jpg" },
   { id: 3, name: "Nisha Tiwari", role: "Full Stack Developer", image: "/images/team/5.jpg" },
-  { id: 4, name: "Jatin Gupta", role: "Backend Developer", image: "/images/team/4.jpg" },
   { id: 5, name: "Chirag Gupta", role: "React Developer", image: "/images/team/6.jpg" },
   { id: 6, name: "Ankit Pal", role: "Frontend Developer", image: "/images/team/3.jpg" },
   { id: 7, name: "Aakash Singh", role: "MERN Stack Developer", image: "/images/team/7.png" },

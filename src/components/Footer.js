@@ -1,6 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
+import { ArrowUpRight, Globe2, MapPin } from "lucide-react";
 import Button from "./Button";
 import SiteContainer from "./SiteContainer";
+import { allOffices, primaryOffice } from "@/data/offices";
 import {
   FaFacebookF,
   FaInstagram,
@@ -8,68 +11,111 @@ import {
   FaWhatsapp,
   FaPhoneAlt,
   FaEnvelope,
-  FaMapMarkerAlt,
-  FaArrowRight,
 } from "react-icons/fa";
+import "./footer.css";
+
+const serviceLinks = [
+  "Web Development",
+  "Mobile Apps",
+  "UI/UX Design",
+  "E-Commerce",
+  "Custom Software",
+  "Digital Marketing",
+];
+
+const companyLinks = [
+  { label: "Home", href: "/#home" },
+  { label: "About Us", href: "/#about" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Our Team", href: "/#team" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Contact", href: "/#contact" },
+];
+
+const socialLinks = [
+  {
+    href: "https://www.linkedin.com/company/deopers-india",
+    icon: FaLinkedinIn,
+    label: "DeopersIndia on LinkedIn",
+    className: "site-footer-social-link--linkedin",
+  },
+  {
+    href: "https://facebook.com",
+    icon: FaFacebookF,
+    label: "Facebook",
+    className: "site-footer-social-link--facebook",
+  },
+  {
+    href: "https://www.instagram.com/deopersindia/",
+    icon: FaInstagram,
+    label: "Instagram",
+    className: "site-footer-social-link--instagram",
+  },
+  {
+    href: "https://wa.me/919758403169",
+    icon: FaWhatsapp,
+    label: "WhatsApp",
+    className: "site-footer-social-link--whatsapp",
+  },
+];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const globalPills = allOffices.map((o) =>
+    o.id === primaryOffice.id ? `${o.countryCode} · HQ` : o.countryCode
+  );
 
   return (
-    <footer className="section-dark relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-10" />
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[min(600px,90%)] h-px"
-        style={{ background: "var(--color-gradient)" }}
-      />
+    <footer className="site-footer">
+      <div className="site-footer-glow site-footer-glow--blue" aria-hidden="true" />
+      <div className="site-footer-glow site-footer-glow--orange" aria-hidden="true" />
+      <div className="site-footer-bg bg-grid" aria-hidden="true" />
 
-      <div className="relative border-b border-[var(--color-border-dark)]">
-        <SiteContainer className="py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div>
-            <h3 className="font-display text-xl font-bold text-white">
-              Engineered to Scale
-            </h3>
-            <p className="text-[var(--color-text-muted-dark)] mt-1.5 text-sm">
-              Ready to start your next digital project?
+      <SiteContainer className="site-footer-cta-wrap">
+        <div className="site-footer-cta">
+          <div className="site-footer-cta-shine" aria-hidden="true" />
+          <div className="site-footer-cta-copy">
+            <span className="site-footer-cta-label">Let&apos;s build together</span>
+            <h2 className="site-footer-cta-title">
+              Engineered to scale your{" "}
+              <span className="site-footer-cta-title-accent">next product</span>
+            </h2>
+            <p className="site-footer-cta-desc">
+              Web, mobile, and enterprise platforms — from discovery to launch.
             </p>
           </div>
-          <a href="/#contact">
-            <Button variant="accent" size="lg" className="gap-2">
-              Get in Touch <FaArrowRight size={14} />
-            </Button>
-          </a>
-        </SiteContainer>
-      </div>
+          <Button href="/#contact" variant="accent" size="lg" className="site-footer-cta-action gap-2 rounded-xl shadow-lg">
+            Get in Touch
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </Button>
+        </div>
+      </SiteContainer>
 
-      <SiteContainer className="relative py-10 lg:py-11">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          <div className="lg:col-span-1">
-            <h3 className="font-display text-lg font-bold text-white mb-3">
-              Deopers<span className="text-[var(--color-accent)]">India</span>
-            </h3>
-            <p className="text-[var(--color-text-muted-dark)] text-sm leading-relaxed mb-4">
-              A modern IT solutions company delivering web development, mobile apps,
-              UI/UX design, and digital marketing services worldwide.
+      <SiteContainer className="site-footer-inner">
+        <div className="site-footer-main">
+          <div className="site-footer-brand-panel">
+            <Link href="/" className="site-footer-logo-link" aria-label="DeopersIndia home">
+              <Image
+                src="/images/logo.png"
+                alt="DeopersIndia"
+                width={172}
+                height={48}
+                className="site-footer-logo h-10 w-auto"
+              />
+            </Link>
+            <p className="site-footer-brand-tagline">
+              A product engineering studio delivering web, mobile, UI/UX, and digital platforms for
+              startups and enterprises worldwide.
             </p>
-            <div className="flex gap-3">
-              {[
-                {
-                  href: "https://www.linkedin.com/company/deopers-india",
-                  icon: FaLinkedinIn,
-                  label: "DeopersIndia on LinkedIn",
-                  hover: "hover:bg-[#0A66C2]",
-                },
-                { href: "https://facebook.com", icon: FaFacebookF, label: "Facebook", hover: "hover:bg-[var(--color-primary)]" },
-                { href: "https://www.instagram.com/deopersindia/", icon: FaInstagram, label: "Instagram", hover: "hover:bg-[var(--color-accent)]" },
-                { href: "https://wa.me/919758403169", icon: FaWhatsapp, label: "WhatsApp", hover: "hover:bg-green-600" },
-              ].map(({ href, icon: Icon, label, hover }) => (
+            <div className="site-footer-social" aria-label="Social media">
+              {socialLinks.map(({ href, icon: Icon, label, className }) => (
                 <a
                   key={href}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className={`w-10 h-10 rounded-xl card-dark flex items-center justify-center text-[var(--color-text-muted-dark)] hover:text-white ${hover} transition`}
+                  className={`site-footer-social-link ${className}`}
                 >
                   <Icon size={16} />
                 </a>
@@ -77,66 +123,132 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">Services</h4>
-            <ul className="space-y-3 text-sm text-[var(--color-text-muted-dark)]">
-              {["Web Development", "Mobile Apps", "UI/UX Design", "E-Commerce", "Custom Software", "Digital Marketing"].map((item) => (
+          <nav className="site-footer-col" aria-label="Services">
+            <h3 className="site-footer-col-title">
+              <span className="site-footer-col-marker" aria-hidden="true" />
+              Services
+            </h3>
+            <ul className="site-footer-link-list">
+              {serviceLinks.map((item) => (
                 <li key={item}>
-                  <a href="#services" className="hover:text-[var(--color-accent-light)] transition">{item}</a>
+                  <a href="/#services">{item}</a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">Company</h4>
-            <ul className="space-y-3 text-sm text-[var(--color-text-muted-dark)]">
-              {[
-                { label: "Home", href: "#home" },
-                { label: "About Us", href: "#about" },
-                { label: "Portfolio", href: "/portfolio" },
-                { label: "Our Team", href: "#team" },
-                { label: "Testimonials", href: "#testimonials" },
-                { label: "Contact", href: "#contact" },
-              ].map((link) => (
+          <nav className="site-footer-col" aria-label="Company">
+            <h3 className="site-footer-col-title">
+              <span className="site-footer-col-marker" aria-hidden="true" />
+              Company
+            </h3>
+            <ul className="site-footer-link-list">
+              {companyLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="hover:text-[var(--color-accent-light)] transition">{link.label}</a>
+                  <Link href={link.href}>{link.label}</Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">Contact</h4>
-            <div className="space-y-3 text-sm text-[var(--color-text-muted-dark)]">
-              <p className="flex items-start gap-3">
-                <FaMapMarkerAlt className="text-[var(--color-accent)] mt-1 flex-shrink-0" />
-                7th Floor, Noida, Uttar Pradesh (201301)
-              </p>
-              <p className="flex items-center gap-3">
-                <FaPhoneAlt className="text-[var(--color-accent)] flex-shrink-0" />
-                <a href="tel:+919758403169" className="hover:text-white transition">+91-9758403169</a>
-              </p>
-              <p className="flex items-center gap-3">
-                <FaEnvelope className="text-[var(--color-accent)] flex-shrink-0" />
-                <a href="mailto:info@deopersindia.com" className="hover:text-white transition">info@deopersindia.com</a>
-              </p>
-            </div>
+          <div className="site-footer-col site-footer-contact-col">
+            <h3 className="site-footer-col-title">
+              <span className="site-footer-col-marker" aria-hidden="true" />
+              Get in touch
+            </h3>
+            <a href="tel:+919758403169" className="site-footer-contact-card">
+              <span className="site-footer-contact-icon" aria-hidden="true">
+                <FaPhoneAlt size={14} />
+              </span>
+              <span>
+                <span className="site-footer-contact-label">Phone</span>
+                <span className="site-footer-contact-value">+91 9758403169</span>
+              </span>
+            </a>
+            <a href="mailto:info@deopersindia.com" className="site-footer-contact-card">
+              <span className="site-footer-contact-icon" aria-hidden="true">
+                <FaEnvelope size={14} />
+              </span>
+              <span>
+                <span className="site-footer-contact-label">Email</span>
+                <span className="site-footer-contact-value">info@deopersindia.com</span>
+              </span>
+            </a>
           </div>
         </div>
 
-        <div className="border-t border-[var(--color-border-dark)] pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-          <p className="text-sm text-[var(--color-text-muted-dark)]">
+        <section className="site-footer-locations" aria-labelledby="footer-locations-title">
+          <header className="site-footer-locations-head">
+            <span className="site-footer-section-icon" aria-hidden="true">
+              <MapPin size={18} strokeWidth={2.25} />
+            </span>
+            <div>
+              <p className="site-footer-section-kicker">Where we work</p>
+              <h3 id="footer-locations-title" className="site-footer-section-title">
+                Global delivery hubs
+              </h3>
+            </div>
+          </header>
+          <ul className="site-footer-location-grid">
+            {allOffices.map((office) => {
+              const isHq = office.id === primaryOffice.id;
+              return (
+                <li
+                  key={office.id}
+                  className={`site-footer-location-card ${isHq ? "site-footer-location-card--hq" : ""}`}
+                >
+                  <div className="site-footer-location-top">
+                    <span
+                      className={`site-footer-office-badge ${isHq ? "site-footer-office-badge--hq" : ""}`}
+                    >
+                      {office.countryCode}
+                      {isHq ? " · HQ" : ""}
+                    </span>
+                    <span className="site-footer-office-name">
+                      {office.label.replace(" — Head office", "")}
+                    </span>
+                  </div>
+                  <p className="site-footer-office-lines">
+                    {office.line1}
+                    <br />
+                    {office.line2}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
+        <div className="site-footer-trust">
+          <div className="site-footer-trust-left">
+            <Globe2 size={18} className="site-footer-trust-icon" aria-hidden="true" />
+            <span className="site-footer-trust-label">Global presence</span>
+          </div>
+          <div className="site-footer-global-pills">
+            {globalPills.map((pill) => (
+              <span key={pill} className="site-footer-global-pill">
+                {pill}
+              </span>
+            ))}
+            <span className="site-footer-global-note">50+ countries served</span>
+          </div>
+        </div>
+
+        <div className="site-footer-bottom">
+          <p className="site-footer-copy">
             © {currentYear}{" "}
-            <span className="text-white font-medium">
-              Deopers<span className="text-[var(--color-accent)]">India</span>
+            <span className="site-footer-copy-brand">
+              Deopers<span className="site-footer-copy-accent">India</span>
             </span>
             . All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-[var(--color-text-muted-dark)]">
-            <Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link>
-            <Link href="/terms-of-service" className="hover:text-white transition">Terms of Service</Link>
-          </div>
+          <nav className="site-footer-legal" aria-label="Legal">
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <span className="site-footer-legal-dot" aria-hidden="true">
+              ·
+            </span>
+            <Link href="/terms-of-service">Terms of Service</Link>
+          </nav>
         </div>
       </SiteContainer>
     </footer>

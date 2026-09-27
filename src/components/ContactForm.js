@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin, ArrowRight, Send } from "lucide-react";
 import SiteContainer from "./SiteContainer";
+import { allOffices } from "@/data/offices";
 
 const initialFormState = { name: "", email: "", phone: "", budget: "", message: "" };
 
@@ -69,7 +70,7 @@ export default function ContactForm() {
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-3xl card-elevated shadow-xl">
+        <div className="overflow-hidden rounded-3xl card-elevated shadow-xl contact-form-shell">
           <div className="grid lg:grid-cols-5">
             {/* Light blue info panel */}
             <div className="lg:col-span-2 relative overflow-hidden card-accent-blue contact-info-panel">
@@ -88,7 +89,6 @@ export default function ContactForm() {
                   {[
                     { icon: Phone, label: "Call Us", value: "+91 9758403169", href: "tel:+919758403169" },
                     { icon: Mail, label: "Email", value: "info@deopersindia.com", href: "mailto:info@deopersindia.com" },
-                    { icon: MapPin, label: "Location", value: "7th Floor, Noida, Uttar Pradesh 201301" },
                   ].map(({ icon: Icon, label, value, href }) => (
                     <div key={label} className="flex items-start gap-4 rounded-2xl bg-white border border-[rgba(21,101,192,0.1)] p-4 shadow-sm">
                       <Icon size={20} className="text-[var(--color-accent)] mt-0.5 flex-shrink-0" />
@@ -104,13 +104,48 @@ export default function ContactForm() {
                       </div>
                     </div>
                   ))}
+
+                  <div className="rounded-2xl bg-white border border-[rgba(21,101,192,0.1)] p-4 shadow-sm">
+                    <div className="flex items-start gap-4">
+                      <MapPin size={20} className="text-[var(--color-accent)] mt-0.5 flex-shrink-0" />
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+                          Global offices
+                        </p>
+                        <ul className="mt-3 space-y-3">
+                          {allOffices.map((office) => (
+                            <li key={office.id}>
+                              <p className="text-xs font-bold text-[var(--color-primary)]">{office.label}</p>
+                              <p className="text-sm text-[var(--color-text)] font-medium leading-snug mt-0.5">
+                                {office.line1}
+                                <br />
+                                {office.line2}
+                              </p>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Form */}
             <div className="lg:col-span-3 contact-form-panel bg-white">
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <header className="contact-form-panel-head">
+                <span className="contact-form-panel-icon" aria-hidden="true">
+                  <Send size={20} />
+                </span>
+                <div>
+                  <p className="contact-form-panel-kicker">Primary contact</p>
+                  <h3 className="contact-form-panel-title">Send your inquiry</h3>
+                  <p className="contact-form-panel-sub">
+                    All fields marked * are required. We respond within one business day.
+                  </p>
+                </div>
+              </header>
+              <form onSubmit={handleSubmit} className="space-y-5 contact-form-panel-form">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name *" className="w-full rounded-xl input-brand px-5 py-4 text-sm" />
                   <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email Address *" className="w-full rounded-xl input-brand px-5 py-4 text-sm" />

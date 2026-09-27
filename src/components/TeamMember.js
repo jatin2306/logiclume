@@ -6,19 +6,12 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import SectionHeading from "./SectionHeading";
 import SiteContainer from "./SiteContainer";
 import LeadershipSpotlight from "./LeadershipSpotlight";
+import { teamMembers, officePhotos } from "@/data/teamMembers";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-const teamMembers = [
-  { id: 2, name: "Ankita Singh", role: "Frontend Developer", image: "/images/team/2.jpg" },
-  { id: 3, name: "Nisha Tiwari", role: "Full Stack Developer", image: "/images/team/5.jpg" },
-  { id: 5, name: "Chirag Gupta", role: "React Developer", image: "/images/team/6.jpg" },
-  { id: 6, name: "Ankit Pal", role: "Frontend Developer", image: "/images/team/3.jpg" },
-  { id: 7, name: "Aakash Singh", role: "MERN Stack Developer", image: "/images/team/7.png" },
-  { id: 8, name: "Rishabh", role: "Backend Developer", image: "/images/team/8.jpg" },
-];
+import "./team-section.css";
 
 export default function TeamMembers() {
   return (
@@ -36,45 +29,69 @@ export default function TeamMembers() {
 
         <LeadershipSpotlight />
 
-        <div className="team-swiper-wrap">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={24}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3500, disableOnInteraction: false }}
-          breakpoints={{
-            0: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-            1280: { slidesPerView: 4 },
-          }}
-          className="team-swiper"
-        >
-          {teamMembers.map((member) => (
-            <SwiperSlide key={member.id}>
-              <div className="group overflow-hidden rounded-2xl card-light transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:border-[rgba(21,101,192,0.2)]">
-                <div className="relative aspect-[4/3] sm:aspect-[5/4] overflow-hidden bg-[var(--color-surface-blue)]">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover transition duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition duration-500">
-                    <p className="text-white text-sm font-medium">{member.role}</p>
-                  </div>
-                </div>
-
-                <div className="p-5">
-                  <h3 className="font-display text-lg font-bold text-[var(--color-text)]">{member.name}</h3>
-                  <p className="mt-1 text-sm font-medium text-[var(--color-accent)]">{member.role}</p>
-                </div>
+        <div className="team-office-gallery">
+          <div className="team-office-gallery-head">
+            <span className="team-office-gallery-label">Life at DeopersIndia</span>
+            <h3 className="team-office-gallery-title">
+              Where we build — Noida & global delivery hubs
+            </h3>
+          </div>
+          <div className="team-office-grid">
+            {officePhotos.map((photo, index) => (
+              <div
+                key={photo.id}
+                className={`team-office-card ${index === 0 ? "team-office-card--featured" : ""}`}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={index === 0}
+                />
+                <p className="team-office-card-caption">{photo.caption}</p>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            ))}
+          </div>
+        </div>
+
+        <div className="team-swiper-wrap">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={28}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            breakpoints={{
+              0: { slidesPerView: 1.05 },
+              640: { slidesPerView: 1.5 },
+              1024: { slidesPerView: 2.25 },
+              1280: { slidesPerView: 3 },
+            }}
+            className="team-swiper"
+          >
+            {teamMembers.map((member) => (
+              <SwiperSlide key={member.id}>
+                <article className="team-member-card group h-full">
+                  <div className="team-member-photo">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover transition duration-700 group-hover:scale-[1.04]"
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 320px"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark)]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none" />
+                  </div>
+                  <div className="team-member-body">
+                    <h3 className="team-member-name">{member.name}</h3>
+                    <p className="team-member-role">{member.role}</p>
+                  </div>
+                </article>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </SiteContainer>
     </section>

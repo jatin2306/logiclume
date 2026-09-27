@@ -5,6 +5,15 @@ import { ArrowRight, Send } from "lucide-react";
 
 const initialFormState = { name: "", email: "", phone: "", message: "" };
 
+function Field({ id, label, children }) {
+  return (
+    <div className="nav-mega-contact-field">
+      <label htmlFor={id}>{label}</label>
+      {children}
+    </div>
+  );
+}
+
 export default function NavContactMegaForm({ onNavigate, compactLinkHref = "#contact", fieldsOnly = false }) {
   const [formData, setFormData] = useState(initialFormState);
   const [status, setStatus] = useState({ type: "idle", message: "" });
@@ -39,43 +48,55 @@ export default function NavContactMegaForm({ onNavigate, compactLinkHref = "#con
   const form = (
     <form onSubmit={handleSubmit} className="nav-mega-contact-fields">
       <div className="nav-mega-contact-row nav-mega-contact-row-tight">
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Full name *"
-          className="nav-mega-contact-input"
-          autoComplete="name"
-        />
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Work email *"
-          className="nav-mega-contact-input"
-          autoComplete="email"
-        />
+        <Field id="nav-contact-name" label="Full name *">
+          <input
+            type="text"
+            id="nav-contact-name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Your name"
+            className="nav-mega-contact-input"
+            autoComplete="name"
+          />
+        </Field>
+        <Field id="nav-contact-email" label="Work email *">
+          <input
+            type="email"
+            id="nav-contact-email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="you@company.com"
+            className="nav-mega-contact-input"
+            autoComplete="email"
+          />
+        </Field>
       </div>
       <div className="nav-mega-contact-row nav-mega-contact-row-tight">
-        <input
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="Phone / WhatsApp *"
-          className="nav-mega-contact-input"
-          autoComplete="tel"
-        />
-        <input
-          type="text"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="Brief summary *"
-          className="nav-mega-contact-input"
-        />
+        <Field id="nav-contact-phone" label="Phone / WhatsApp *">
+          <input
+            type="tel"
+            id="nav-contact-phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="+91 …"
+            className="nav-mega-contact-input"
+            autoComplete="tel"
+          />
+        </Field>
+        <Field id="nav-contact-message" label="Project summary *">
+          <input
+            type="text"
+            id="nav-contact-message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Web app, MVP, redesign…"
+            className="nav-mega-contact-input"
+          />
+        </Field>
       </div>
 
       {status.message && (
@@ -92,15 +113,28 @@ export default function NavContactMegaForm({ onNavigate, compactLinkHref = "#con
       )}
 
       <button type="submit" className="nav-mega-contact-submit group">
-        <Send size={14} aria-hidden="true" />
+        <Send size={16} aria-hidden="true" />
         Submit inquiry
-        <ArrowRight size={14} className="transition group-hover:translate-x-0.5" aria-hidden="true" />
+        <ArrowRight size={16} className="transition group-hover:translate-x-0.5" aria-hidden="true" />
       </button>
     </form>
   );
 
   if (fieldsOnly) {
-    return <div className="nav-mega-contact-form-card nav-mega-contact-form-card--flat">{form}</div>;
+    return (
+      <div className="nav-mega-contact-form-card nav-mega-contact-form-card--hero">
+        <header className="nav-mega-contact-form-head">
+          <span className="nav-mega-contact-form-head-icon" aria-hidden="true">
+            <Send size={18} />
+          </span>
+          <div>
+            <p className="nav-mega-contact-form-kicker">Primary contact</p>
+            <h4 className="nav-mega-contact-form-title">Send your inquiry</h4>
+          </div>
+        </header>
+        {form}
+      </div>
+    );
   }
 
   return (

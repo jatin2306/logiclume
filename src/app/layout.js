@@ -76,10 +76,10 @@ export default function RootLayout({ children }) {
       "DeopersIndia is a modern IT solutions company delivering web development, mobile apps, UI/UX design, and digital marketing services.",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "7th Floor",
+      streetAddress: "8, B-Block, Sector 62",
       addressLocality: "Noida",
       addressRegion: "Uttar Pradesh",
-      postalCode: "201301",
+      postalCode: "201309",
       addressCountry: "IN",
     },
     sameAs: [
@@ -106,7 +106,7 @@ export default function RootLayout({ children }) {
           <Navbar />
         </header>
 
-        <main id="content" className="min-h-screen w-full overflow-x-clip">
+        <main id="content" className="relative z-0 w-full overflow-x-clip">
           {children}
         </main>
 

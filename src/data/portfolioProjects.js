@@ -94,6 +94,96 @@ export const portfolioProjects = [
     mosaicSize: "wide",
   },
   {
+    id: "risk-and-roses",
+    numericId: 105,
+    title: "Risk & Roses",
+    featuredTier: "spotlight",
+    category: "FinTech Platform",
+    filterTags: ["fintech"],
+    tags: ["FinTech", "AI", "Copy Trading", "Next.js", "Python"],
+    client: "Risk & Roses",
+    url: "https://riskandroses.com/",
+    imageSrc: "/images/portfolio/risk-and-roses.png",
+    imageFit: "contain",
+    previewAccent: "orange",
+    accent: "orange",
+    description:
+      "Live copy-trading platform connecting investors to AI-guided strategies — with automated execution, broker integration, and trade-only access for security.",
+    whatWeDid:
+      "We built the product end-to-end: AI decision engine and validation checks, automated trade execution, broker integration, investor dashboard, and admin console on Python, Next.js, and PostgreSQL.",
+    deliverables: [
+      "AI decision engine & validation layer",
+      "Automated trade execution & broker integration",
+      "Investor dashboard & admin console",
+    ],
+    summary:
+      "Live copy-trading platform with AI decision engine, broker integration, automated execution, and investor/admin consoles — Python, Next.js, PostgreSQL.",
+    spotlightLabel: "FinTech · AI · Trading",
+    deckChapter: "fintech-ai",
+    deckOrder: 1,
+    mosaicSize: "large",
+  },
+  {
+    id: "tr-capital",
+    numericId: 106,
+    title: "TR Capital",
+    featuredTier: "spotlight",
+    category: "Wealth & Broking",
+    filterTags: ["fintech", "mobile"],
+    tags: ["FinTech", "Wealth", "Web Platform", "Mobile App"],
+    client: "TR Capital",
+    url: "https://trcapital.in/",
+    imageSrc: "/images/portfolio/tr-capital.png",
+    imageFit: "contain",
+    previewAccent: "blue",
+    accent: "blue",
+    description:
+      "Full-service investment and stock-broking brand site for a Motilal Oswal business associate — serving 18K+ investors with equity, mutual funds, PMS, F&O, and digital trading platforms since 1995.",
+    whatWeDid:
+      "We designed and built the marketing and conversion experience — service catalogues, lead capture, investor education, platform highlights for RIISE mobile app and strategy builder, and trust content aligned with regulated broking workflows.",
+    deliverables: [
+      "Multi-product services & investor journeys",
+      "Demat lead forms & contact funnels",
+      "Platform showcase (RIISE app & strategy builder)",
+    ],
+    summary:
+      "Wealth and broking web platform for TR Capital — multi-product investor services, Motilal Oswal-aligned digital platforms, and lead-to-advisor conversion flows.",
+    spotlightLabel: "FinTech · Wealth · Broking",
+    deckChapter: "fintech-ai",
+    deckOrder: 2,
+    mosaicSize: "wide",
+  },
+  {
+    id: "plutheia",
+    numericId: 107,
+    title: "Plutheia",
+    featuredTier: "spotlight",
+    category: "Trading SaaS",
+    filterTags: ["fintech"],
+    tags: ["FinTech", "AI", "SaaS", "Trading Automation"],
+    client: "Plutheia",
+    url: "https://plutheia.com/",
+    imageSrc: "/images/portfolio/plutheia-pricing.png",
+    imageFit: "contain",
+    previewAccent: "blue",
+    accent: "blue",
+    description:
+      "AI-powered trading automation platform with Investment Pies, paper and live execution via Alpaca, swing signals, and Free vs Pro subscription tiers — built for transparent, self-directed investors.",
+    whatWeDid:
+      "We engineered the product experience end-to-end: pricing and onboarding flows, portfolio pies and watchlists, AI stock analysis and daily briefings, broker-connected paper/live trading, drift detection, community features, and Telegram alert integrations.",
+    deliverables: [
+      "Free & Pro SaaS pricing + account tiers",
+      "AI analysis, signals & automated pie rebalancing",
+      "Alpaca paper/live trading integration",
+    ],
+    summary:
+      "Trading automation SaaS with AI intelligence, Investment Pies, Alpaca broker integration, paper trading on every plan, and Pro tier for unlimited watchlists and daily AI picks.",
+    spotlightLabel: "FinTech · AI · SaaS",
+    deckChapter: "fintech-ai",
+    deckOrder: 3,
+    mosaicSize: "medium",
+  },
+  {
     id: "kayzen",
     numericId: 201,
     title: "Kayzen",
@@ -216,6 +306,13 @@ export const portfolioDeckChapters = [
     title: "Health platforms & connected care",
     blurb:
       "Patient-facing portals, clinician tools, and sensor-led mobile experiences engineered for trust, clarity, and compliance-ready architecture.",
+  },
+  {
+    id: "fintech-ai",
+    label: "FinTech & AI",
+    title: "Intelligent trading & automation",
+    blurb:
+      "Copy-trading, wealth and broking platforms, AI automation, and investor-facing web and mobile experiences built for regulated financial markets.",
   },
   {
     id: "enterprise",

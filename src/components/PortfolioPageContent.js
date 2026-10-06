@@ -31,7 +31,7 @@ export default function PortfolioPageContent() {
               Scroll the industry tabs — each section showcases real projects we engineered
               end-to-end.
             </p>
-            <a href="#chapter-healthcare" className="inline-block mt-6">
+            <a href="#healthcare" className="inline-block mt-6">
               <Button variant="accent" size="lg" className="gap-2">
                 Explore work <ArrowUpRight size={16} />
               </Button>

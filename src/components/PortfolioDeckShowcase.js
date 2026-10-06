@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import SiteContainer from "./SiteContainer";
 import PortfolioCard from "./PortfolioCard";
@@ -74,20 +75,92 @@ function DeckProjectSlide({ project, index, chapterLabel }) {
 
 const PROJECTS_TAB = "projects";
 
+const CHAPTER_TAB_IDS = new Set([
+  ...portfolioDeckChapters.map((c) => c.id),
+  PROJECTS_TAB,
+]);
+
+/** Shareable hash: /portfolio#fintech-ai (also accepts legacy #chapter-fintech-ai). */
+function parsePortfolioHash(rawHash) {
+  const hash = rawHash.replace(/^#/, "").trim();
+  if (!hash) return null;
+  if (CHAPTER_TAB_IDS.has(hash)) return hash;
+  if (hash.startsWith("chapter-")) {
+    const tabId = hash.slice("chapter-".length);
+    if (CHAPTER_TAB_IDS.has(tabId)) return tabId;
+  }
+  return null;
+}
+
+function tabIdToDomSectionId(tabId) {
+  return tabId === PROJECTS_TAB ? "deck-projects-wall" : `chapter-${tabId}`;
+}
+
+function tabIdToShareHash(tabId) {
+  return `#${tabId}`;
+}
+
 export default function PortfolioDeckShowcase() {
+  const pathname = usePathname();
   const [activeChapter, setActiveChapter] = useState(portfolioDeckChapters[0]?.id);
   const allDeckProjects = portfolioProjects.filter((p) => p.deckChapter);
+  const skipUrlSyncRef = useRef(false);
+  const hasAppliedInitialHashRef = useRef(false);
+  const activeChapterRef = useRef(portfolioDeckChapters[0]?.id);
+
+  const syncUrlToChapter = useCallback(
+    (tabId, { replace = true } = {}) => {
+      if (!CHAPTER_TAB_IDS.has(tabId)) return;
+      const hash = tabIdToShareHash(tabId);
+      if (typeof window === "undefined" || window.location.hash === hash) return;
+      const url = `${pathname}${window.location.search}${hash}`;
+      if (replace) {
+        window.history.replaceState(null, "", url);
+      } else {
+        window.history.pushState(null, "", url);
+      }
+    },
+    [pathname]
+  );
+
+  const scrollToSection = useCallback((domSectionId, { behavior = "smooth" } = {}) => {
+    const el = document.getElementById(domSectionId);
+    if (!el) return;
+    const spacer = document.querySelector(".dp-nav-spacer");
+    const navOffset = spacer?.getBoundingClientRect().height ?? 88;
+    const top = el.getBoundingClientRect().top + window.scrollY - navOffset - 12;
+    window.scrollTo({ top, behavior });
+  }, []);
+
+  const goToChapter = useCallback(
+    (tabId, { updateHistory = true, scrollBehavior = "smooth" } = {}) => {
+      if (!CHAPTER_TAB_IDS.has(tabId)) return;
+      skipUrlSyncRef.current = true;
+      activeChapterRef.current = tabId;
+      setActiveChapter(tabId);
+      if (updateHistory) {
+        syncUrlToChapter(tabId, { replace: false });
+      }
+      scrollToSection(tabIdToDomSectionId(tabId), { behavior: scrollBehavior });
+      window.setTimeout(() => {
+        skipUrlSyncRef.current = false;
+      }, 800);
+    },
+    [scrollToSection, syncUrlToChapter]
+  );
 
   useEffect(() => {
     const sectionOrder = [
       ...portfolioDeckChapters.map((chapter) => ({
-        id: `chapter-${chapter.id}`,
+        id: tabIdToDomSectionId(chapter.id),
         tabId: chapter.id,
       })),
-      { id: "deck-projects-wall", tabId: PROJECTS_TAB },
+      { id: tabIdToDomSectionId(PROJECTS_TAB), tabId: PROJECTS_TAB },
     ];
 
     const updateActiveFromScroll = () => {
+      if (skipUrlSyncRef.current) return;
+
       const spacer = document.querySelector(".dp-nav-spacer");
       const scrollLine = (spacer?.getBoundingClientRect().height ?? 88) + 32;
 
@@ -99,7 +172,12 @@ export default function PortfolioDeckShowcase() {
           nextActive = tabId;
         }
       }
-      setActiveChapter((prev) => (prev === nextActive ? prev : nextActive));
+
+      if (nextActive !== activeChapterRef.current) {
+        activeChapterRef.current = nextActive;
+        setActiveChapter(nextActive);
+        syncUrlToChapter(nextActive, { replace: true });
+      }
     };
 
     updateActiveFromScroll();
@@ -109,16 +187,31 @@ export default function PortfolioDeckShowcase() {
       window.removeEventListener("scroll", updateActiveFromScroll);
       window.removeEventListener("resize", updateActiveFromScroll);
     };
-  }, []);
+  }, [syncUrlToChapter]);
 
-  const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const spacer = document.querySelector(".dp-nav-spacer");
-    const navOffset = spacer?.getBoundingClientRect().height ?? 88;
-    const top = el.getBoundingClientRect().top + window.scrollY - navOffset - 12;
-    window.scrollTo({ top, behavior: "smooth" });
-  };
+  useEffect(() => {
+    const applyHashFromUrl = () => {
+      const tabId = parsePortfolioHash(window.location.hash);
+      if (!tabId) return;
+      skipUrlSyncRef.current = true;
+      activeChapterRef.current = tabId;
+      setActiveChapter(tabId);
+      syncUrlToChapter(tabId, { replace: true });
+      requestAnimationFrame(() => {
+        scrollToSection(tabIdToDomSectionId(tabId), {
+          behavior: hasAppliedInitialHashRef.current ? "smooth" : "auto",
+        });
+        hasAppliedInitialHashRef.current = true;
+        window.setTimeout(() => {
+          skipUrlSyncRef.current = false;
+        }, 100);
+      });
+    };
+
+    applyHashFromUrl();
+    window.addEventListener("hashchange", applyHashFromUrl);
+    return () => window.removeEventListener("hashchange", applyHashFromUrl);
+  }, [scrollToSection, syncUrlToChapter]);
 
   return (
     <div className="portfolio-deck" id="portfolio-presentation">
@@ -131,7 +224,7 @@ export default function PortfolioDeckShowcase() {
               className={`portfolio-deck-chapter-tab ${
                 activeChapter === chapter.id ? "portfolio-deck-chapter-tab--active" : ""
               }`}
-              onClick={() => scrollTo(`chapter-${chapter.id}`)}
+              onClick={() => goToChapter(chapter.id)}
             >
               {chapter.label}
             </button>
@@ -141,7 +234,7 @@ export default function PortfolioDeckShowcase() {
             className={`portfolio-deck-chapter-tab ${
               activeChapter === PROJECTS_TAB ? "portfolio-deck-chapter-tab--active" : ""
             }`}
-            onClick={() => scrollTo("deck-projects-wall")}
+            onClick={() => goToChapter(PROJECTS_TAB)}
           >
             Projects
           </button>
@@ -158,7 +251,7 @@ export default function PortfolioDeckShowcase() {
                 className={`portfolio-deck-rail-link ${
                   activeChapter === chapter.id ? "portfolio-deck-rail-link--active" : ""
                 }`}
-                onClick={() => scrollTo(`chapter-${chapter.id}`)}
+                onClick={() => goToChapter(chapter.id)}
               >
                 <span className="portfolio-deck-rail-vertical">{chapter.label}</span>
               </button>
@@ -168,7 +261,7 @@ export default function PortfolioDeckShowcase() {
               className={`portfolio-deck-rail-link ${
                 activeChapter === PROJECTS_TAB ? "portfolio-deck-rail-link--active" : ""
               }`}
-              onClick={() => scrollTo("deck-projects-wall")}
+              onClick={() => goToChapter(PROJECTS_TAB)}
             >
               <span className="portfolio-deck-rail-vertical">Projects</span>
             </button>

@@ -22,6 +22,7 @@ export const portfolioFilters = [
   { id: "realestate", label: "Real Estate" },
   { id: "edtech", label: "EdTech" },
   { id: "mobile", label: "Mobile" },
+  { id: "ai", label: "AI & Automation" },
 ];
 
 /**
@@ -184,6 +185,36 @@ export const portfolioProjects = [
     mosaicSize: "medium",
   },
   {
+    id: "goldsky",
+    numericId: 108,
+    title: "Goldsky",
+    featuredTier: "spotlight",
+    category: "AI Marketplace",
+    filterTags: ["ai"],
+    tags: ["AI", "Workflow Automation", "Marketplace", "Web Platform"],
+    client: "Goldsky Equestrian Recruiting",
+    url: "https://goldskyer.com/home-957344",
+    imageSrc: "/images/portfolio/goldsky.png",
+    imageFit: "contain",
+    previewAccent: "orange",
+    accent: "orange",
+    description:
+      "Equestrian industry recruiting platform that matches stables with skilled professionals — using AI-driven personality and skills matching to reduce turnover and speed up hiring.",
+    whatWeDid:
+      "We built the end-to-end product: employer and employee onboarding, job posting workflows, top-3 smart matching, real-time notifications, Gold and Concierge hiring plans, founding-member growth flows, and referral automation.",
+    deliverables: [
+      "AI match-making & top-3 candidate ranking",
+      "Employer job posts + employee profile workflows",
+      "Tiered plans, guarantees & referral program (Refer & Ride)",
+    ],
+    summary:
+      "AI-powered equestrian recruiting marketplace — profile-to-hire workflows, smart matching for employers and riders, and automated notifications from post to hire.",
+    spotlightLabel: "AI · Workflow Automation",
+    deckChapter: "ai-automation",
+    deckOrder: 1,
+    mosaicSize: "large",
+  },
+  {
     id: "kayzen",
     numericId: 201,
     title: "Kayzen",
@@ -313,6 +344,13 @@ export const portfolioDeckChapters = [
     title: "Intelligent trading & automation",
     blurb:
       "Copy-trading, wealth and broking platforms, AI automation, and investor-facing web and mobile experiences built for regulated financial markets.",
+  },
+  {
+    id: "ai-automation",
+    label: "AI & Automation",
+    title: "Smart matching & workflow products",
+    blurb:
+      "AI-led marketplaces and operational workflows — from intelligent candidate matching and notifications to tiered SaaS plans that automate hire-to-match journeys.",
   },
   {
     id: "enterprise",

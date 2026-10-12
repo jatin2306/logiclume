@@ -1,0 +1,202 @@
+/* Site header — MindInventory-inspired (DeopersIndia brand) */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  transition: box-shadow 0.25s ease;
+}
+
+.site-header--scrolled {
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+}
+
+.site-header-bar {
+  position: relative;
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--dp-nav-bar-h);
+  padding: 0.5rem 0;
+}
+
+.site-header-logo {
+  flex-shrink: 0;
+  display: block;
+}
+
+.site-header-logo img,
+.site-header-logo span {
+  display: block;
+}
+
+.site-header-nav {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .site-header-nav {
+    display: flex;
+  }
+}
+
+.site-header-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #1e293b;
+  border-radius: 0.5rem;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.site-header-link:hover,
+.site-header-link--active {
+  color: #0f172a;
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.site-header-link--ai {
+  font-weight: 600;
+  color: #1565c0;
+}
+
+.site-header-link--ai .site-header-ai-icon {
+  color: #1565c0;
+}
+
+.site-header-link--open {
+  background: rgba(21, 101, 192, 0.08);
+  color: #1565c0;
+}
+
+.site-header-chevron {
+  opacity: 0.55;
+  transition: transform 0.25s;
+}
+
+.site-header-link--open .site-header-chevron {
+  transform: rotate(180deg);
+}
+
+.site-header-actions {
+  display: none;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .site-header-actions {
+    display: flex;
+  }
+}
+
+.site-header-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+  border: 1.5px solid #0f172a;
+  border-radius: 9999px;
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.site-header-btn-outline:hover {
+  background: #0f172a;
+  color: #fff;
+}
+
+.site-header-btn-gradient {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  background: var(--color-gradient);
+  box-shadow: 0 4px 16px rgba(21, 101, 192, 0.22);
+  transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.site-header-btn-gradient:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(21, 101, 192, 0.28);
+}
+
+.site-header-btn-gradient--open {
+  box-shadow: 0 6px 22px rgba(245, 130, 32, 0.25);
+}
+
+.site-header-mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: auto;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+  background: #fff;
+}
+
+@media (min-width: 1024px) {
+  .site-header-mobile-toggle {
+    display: none;
+  }
+}
+
+.site-header-mobile-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.site-header-mega-anchor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+}
+
+.dp-nav-spacer {
+  height: var(--dp-nav-bar-h);
+}
+
+/* Mega menu on white header */
+.site-header--mega-open {
+  border-bottom-color: transparent;
+}
+
+.site-header--mega-open.site-header--scrolled {
+  box-shadow: none;
+}

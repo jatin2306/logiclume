@@ -5,276 +5,197 @@ import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { X, ChevronDown, ArrowUpRight } from "lucide-react";
-import AiNavButton from "./AiNavButton";
+import { Sparkles, ChevronDown } from "lucide-react";
 import NavMegaPanel from "./NavMegaPanel";
-import "./nav-hero.css";
+import "./site-header.css";
 
-const primaryLinks = [
-  { href: "/#about", label: "About" },
-  { href: "/#services", label: "Services", hasDropdown: true },
-  { href: "/portfolio", label: "Portfolio", isRoute: true },
+const navLinks = [
+  { id: "ai", label: "AI", href: "/#services", isAi: true, mega: "ai" },
+  { id: "services", label: "Services", href: "/#services", mega: "services" },
+  { id: "industries", label: "Industries", href: "/#industries" },
+  { id: "about", label: "About", href: "/#about" },
+  { id: "portfolio", label: "Work", href: "/portfolio", isRoute: true },
 ];
 
-const secondaryLinks = [
-  { href: "/#team", label: "Team" },
-  { href: "/#testimonials", label: "Testimonials" },
-];
-
-const allSectionIds = ["home", "contact", ...primaryLinks, ...secondaryLinks].map((l) =>
-  typeof l === "string"
-    ? l
-    : l.href.replace("/#", "").replace("#", "").replace(/^\//, "")
-);
+const sectionIds = ["home", "contact", "services", "industries", "about", "team", "testimonials"];
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [onHero, setOnHero] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
   const [megaMenu, setMegaMenu] = useState(null);
-  const [promoVisible, setPromoVisible] = useState(true);
 
   const updateActiveSection = useCallback(() => {
-    const offset = 120;
-    let current = "home";
-    for (const id of allSectionIds) {
+    const offset = 100;
+    let current = pathname === "/portfolio" ? "" : "home";
+    for (const id of sectionIds) {
       const el = document.getElementById(id);
       if (el && el.getBoundingClientRect().top <= offset) current = id;
     }
-    setActiveSection(current);
-  }, []);
-
-  const updateHeroState = useCallback(() => {
-    const hero =
-      document.getElementById("home") ||
-      document.getElementById("home-hero") ||
-      (pathname === "/portfolio" ? document.getElementById("portfolio-hero") : null);
-    if (!hero) {
-      setOnHero(false);
-      return;
-    }
-    const spacer = document.querySelector(".dp-nav-spacer");
-    const navOffset = spacer?.getBoundingClientRect().height ?? 104;
-    setOnHero(hero.getBoundingClientRect().bottom > navOffset + 8);
+    if (current) setActiveSection(current);
   }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 8);
       updateActiveSection();
-      updateHeroState();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, [updateActiveSection, updateHeroState]);
+  }, [updateActiveSection]);
 
   useEffect(() => {
-    updateHeroState();
-  }, [pathname, updateHeroState]);
-
-  useEffect(() => {
-    document.body.style.overflow = open || megaMenu ? "hidden" : "";
+    document.body.style.overflow = mobileOpen || megaMenu ? "hidden" : "";
     document.documentElement.classList.toggle("dp-nav-mega-open", Boolean(megaMenu));
-  }, [open, megaMenu]);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dp-promo-hidden", !promoVisible);
-  }, [promoVisible]);
+  }, [mobileOpen, megaMenu]);
 
   const closeMegaMenu = useCallback(() => setMegaMenu(null), []);
 
-  const navModeClass = onHero ? "dp-nav-over-hero" : "dp-nav-solid";
-  const navStateClass = [
-    navModeClass,
-    scrolled ? "dp-nav-scrolled" : "",
-    megaMenu ? "dp-nav-dropdown-open" : "",
+  const headerClass = [
+    "site-header",
+    scrolled ? "site-header--scrolled" : "",
+    megaMenu ? "site-header--mega-open" : "",
   ]
     .filter(Boolean)
     .join(" ");
 
-  const renderNavLink = (link) => {
-    const isActive = link.isRoute
-      ? pathname === link.href
-      : activeSection === link.href.replace("/#", "").replace("#", "");
+  const linkActive = (link) => {
+    if (link.isRoute) return pathname === link.href;
+    const section = link.href.replace("/#", "").replace("#", "");
+    return activeSection === section;
+  };
 
-    if (link.hasDropdown) {
-      return (
-        <a
-          key={link.href}
-          href={link.href}
-          onMouseEnter={() => setMegaMenu("services")}
-          onClick={(e) => {
-            if (typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches) {
-              if (megaMenu !== "services") {
-                e.preventDefault();
-                setMegaMenu("services");
-                return;
-              }
-              closeMegaMenu();
-            } else {
-              closeMegaMenu();
-            }
-          }}
-          className={`nav-link ${isActive ? "nav-link-active" : ""} ${megaMenu === "services" ? "nav-link-mega-open" : ""}`}
-          aria-expanded={megaMenu === "services"}
-          aria-haspopup="true"
-        >
-          {link.label}
-          <ChevronDown
-            size={14}
-            strokeWidth={2.5}
-            className={`nav-chevron transition-transform duration-300 ${megaMenu === "services" ? "rotate-180" : ""}`}
-          />
-        </a>
-      );
+  const handleMegaLink = (e, megaKey) => {
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) {
+      closeMegaMenu();
+      return;
     }
+    if (megaMenu !== megaKey) {
+      e.preventDefault();
+      setMegaMenu(megaKey);
+      return;
+    }
+    closeMegaMenu();
+  };
+
+  const renderDesktopLink = (link) => {
+    const active = linkActive(link);
+    const open = megaMenu === link.mega;
+    const className = [
+      "site-header-link",
+      link.isAi ? "site-header-link--ai" : "",
+      active ? "site-header-link--active" : "",
+      open ? "site-header-link--open" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+    const onEnter = () => {
+      if (link.mega) setMegaMenu(link.mega);
+      else closeMegaMenu();
+    };
+
+    const content = (
+      <>
+        {link.isAi && (
+          <Sparkles size={15} strokeWidth={2.25} className="site-header-ai-icon" aria-hidden />
+        )}
+        {link.label}
+        {link.mega && (
+          <ChevronDown size={14} strokeWidth={2.5} className="site-header-chevron" aria-hidden />
+        )}
+      </>
+    );
 
     if (link.isRoute) {
       return (
         <Link
-          key={link.href}
+          key={link.id}
           href={link.href}
+          className={className}
           onMouseEnter={closeMegaMenu}
           onClick={closeMegaMenu}
-          className={`nav-link ${isActive ? "nav-link-active" : ""}`}
         >
-          {link.label}
+          {content}
         </Link>
       );
     }
 
     return (
       <a
-        key={link.href}
+        key={link.id}
         href={link.href}
-        onMouseEnter={closeMegaMenu}
-        onClick={closeMegaMenu}
-        className={`nav-link ${isActive ? "nav-link-active" : ""}`}
+        className={className}
+        onMouseEnter={onEnter}
+        onClick={(e) => link.mega && handleMegaLink(e, link.mega)}
+        aria-expanded={link.mega ? open : undefined}
+        aria-haspopup={link.mega ? "true" : undefined}
       >
-        {link.label}
+        {content}
       </a>
     );
   };
 
   return (
     <>
-      {promoVisible && (
-        <div className="fixed top-0 left-0 right-0 z-[60] nav-promo-bar">
+      <header className={headerClass} onMouseLeave={closeMegaMenu}>
+        <div className="site-header-bar">
           <div className="site-wrap">
-            <div className="site-container">
-              <div className="site-container-inner py-2.5 flex items-center justify-center text-xs sm:text-sm relative">
-                <p className="text-white/90 text-center px-8 sm:px-10 leading-snug">
-                  Free strategy consultation —{" "}
-                  <a
-                    href="/#contact"
-                    className="text-white font-semibold underline underline-offset-2 hover:no-underline"
-                  >
-                    book a call
-                  </a>
-                </p>
-                <button
-                  onClick={() => setPromoVisible(false)}
-                  aria-label="Dismiss"
-                  className="absolute right-4 p-1 text-white/50 hover:text-white transition"
+            <div className="site-container relative">
+              <div className="site-container-inner site-header-inner">
+                <Link
+                  href="/"
+                  className="site-header-logo"
+                  aria-label="DeopersIndia home"
+                  onMouseEnter={closeMegaMenu}
+                  onClick={closeMegaMenu}
                 >
-                  <X size={15} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div
-        className={`dp-nav fixed left-0 right-0 z-50 transition-all duration-500 ${navStateClass} ${
-          promoVisible ? "top-9" : "top-0"
-        }`}
-        onMouseLeave={closeMegaMenu}
-      >
-        {/* Desktop */}
-        <div className="hidden lg:block site-wrap">
-          <div className="site-container relative">
-            <div
-              className={`nav-marquee-wrap transition-all duration-500 ${
-                scrolled ? "nav-marquee-wrap-scrolled" : ""
-              } ${megaMenu ? "nav-marquee-wrap-dropdown-open" : ""}`}
-            >
-              <div className="nav-shell-inner">
-                <div className="dp-nav-inner site-container-inner">
-                  <Link
-                    href="/"
-                    className="flex-none shrink-0"
-                    aria-label="DeopersIndia home"
-                    onMouseEnter={closeMegaMenu}
-                    onClick={closeMegaMenu}
-                  >
-                    <div className="relative w-[9.875rem] xl:w-[10.875rem] h-11 bg-transparent">
-                      <Image
-                        src="/images/logo.png"
-                        alt="DeopersIndia logo"
-                        title="DeopersIndia"
-                        fill
-                        sizes="(max-width: 1280px) 158px, 174px"
-                        className="dp-nav-logo object-contain object-left bg-transparent"
-                        priority
-                      />
-                    </div>
-                  </Link>
-
-                  <nav>
-                    {primaryLinks.map(renderNavLink)}
-                    <span className="nav-divider hidden xl:block" aria-hidden="true" />
-                    {secondaryLinks.map(renderNavLink)}
-                  </nav>
-
-                  <div className="flex items-center gap-3 flex-none">
-                    <AiNavButton
-                      variant="desktop"
-                      isOpen={megaMenu === "ai"}
-                      onMouseEnter={() => setMegaMenu("ai")}
+                  <span className="relative block w-[9.5rem] sm:w-[10.25rem] h-10">
+                    <Image
+                      src="/images/logo.png"
+                      alt="DeopersIndia"
+                      title="DeopersIndia"
+                      fill
+                      sizes="(max-width: 640px) 152px, 164px"
+                      className="object-contain object-left"
+                      priority
                     />
+                  </span>
+                </Link>
 
-                  <div
-                    className="nav-contact-wrap"
-                    onMouseEnter={() => setMegaMenu("contact")}
-                  >
-                    <a
-                      href="/#contact"
-                      className={`nav-contact-btn group ${
-                        megaMenu === "contact" ? "nav-contact-btn-mega-open" : ""
-                      } ${activeSection === "contact" ? "nav-contact-btn-active" : ""}`}
+                <nav className="site-header-nav" aria-label="Primary">
+                  {navLinks.map(renderDesktopLink)}
+                </nav>
+
+                <div className="site-header-mobile-row lg:contents">
+                  <div className="site-header-actions">
+                    <a href="/#contact" className="site-header-btn-outline" onClick={closeMegaMenu}>
+                      Book A Call
+                    </a>
+                    <button
+                      type="button"
+                      className={`site-header-btn-gradient ${megaMenu === "contact" ? "site-header-btn-gradient--open" : ""}`}
+                      onMouseEnter={() => setMegaMenu("contact")}
+                      onClick={(e) => handleMegaLink(e, "contact")}
                       aria-expanded={megaMenu === "contact"}
                       aria-haspopup="true"
-                      onClick={(e) => {
-                        if (
-                          typeof window !== "undefined" &&
-                          window.matchMedia("(min-width: 1024px)").matches
-                        ) {
-                          if (megaMenu !== "contact") {
-                            e.preventDefault();
-                            setMegaMenu("contact");
-                            return;
-                          }
-                          closeMegaMenu();
-                        } else {
-                          closeMegaMenu();
-                        }
-                      }}
                     >
-                      <span>Contact Us</span>
-                      <ChevronDown
-                        size={14}
-                        strokeWidth={2.5}
-                        className={`nav-contact-chevron transition-transform duration-300 ${
-                          megaMenu === "contact" ? "rotate-180" : ""
-                        }`}
-                      />
-                    </a>
+                      Contact Us
+                      <ChevronDown size={14} strokeWidth={2.5} className="site-header-chevron" />
+                    </button>
                   </div>
-                  </div>
+
+                  <button
+                    type="button"
+                    className="site-header-mobile-toggle"
+                    aria-label={mobileOpen ? "Close menu" : "Open menu"}
+                    onClick={() => setMobileOpen(!mobileOpen)}
+                  >
+                    {mobileOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+                  </button>
                 </div>
               </div>
 
@@ -282,130 +203,73 @@ export default function Navbar() {
             </div>
           </div>
         </div>
+      </header>
 
-        {/* Mobile */}
-        <div className="lg:hidden site-wrap">
-          <div
-            className={`site-container nav-marquee-wrap transition-all duration-300 ${
-              scrolled ? "nav-marquee-wrap-scrolled" : ""
-            }`}
-          >
-            <div className="nav-shell-inner">
-              <div className="dp-nav-inner site-container-inner">
-                <Link
-                  href="/"
-                  className="relative flex shrink-0 items-center bg-transparent"
-                  aria-label="DeopersIndia home"
-                >
-                  <span className="relative block w-[8.75rem] h-10 bg-transparent">
-                    <Image
-                      src="/images/logo.png"
-                      alt="DeopersIndia logo"
-                      title="DeopersIndia"
-                      fill
-                      sizes="140px"
-                  className="dp-nav-logo object-contain object-left bg-transparent"
-                  priority
-                />
-              </span>
-            </Link>
-
-              <div className="flex items-center gap-2 ml-auto">
-                  <AiNavButton variant="compact" />
-                  <button
-                    onClick={() => setOpen(!open)}
-                    aria-label={open ? "Close menu" : "Open menu"}
-                    className="nav-menu-toggle"
-                  >
-                    {open ? <FaTimes size={18} /> : <FaBars size={18} />}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile drawer */}
-        <div
-          className={`lg:hidden fixed inset-0 z-40 transition-opacity duration-300 ${
-            open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-          }`}
-          style={{ top: promoVisible ? "2.25rem" : "0" }}
-        >
-          <div
-            className="absolute inset-0 bg-black/30 backdrop-blur-sm"
-            onClick={() => setOpen(false)}
-          />
-
-          <aside
-            className={`absolute top-0 right-0 h-full w-full max-w-[320px] bg-white shadow-2xl transform transition-transform duration-300 ease-out ${
-              open ? "translate-x-0" : "translate-x-full"
-            }`}
-          >
-            <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-border)]">
-              <span className="font-display text-lg font-bold text-[var(--color-text)]">
-                Menu
-              </span>
-              <button onClick={() => setOpen(false)} className="nav-menu-toggle">
-                <FaTimes size={18} />
-              </button>
-            </div>
-
-            <nav className="px-4 py-4 flex flex-col gap-1">
-              <AiNavButton variant="mobile" onNavigate={() => setOpen(false)} />
-
-              {[...primaryLinks, ...secondaryLinks].map((link) => {
-                const isActive = link.isRoute
-                  ? pathname === link.href
-                  : activeSection === link.href.replace("/#", "").replace("#", "");
-                const className = `nav-mobile-link ${isActive ? "nav-mobile-link-active" : ""}`;
-                if (link.isRoute) {
-                  return (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className={className}
-                    >
-                      {link.label}
-                    </Link>
-                  );
-                }
-                return (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className={className}
-                  >
-                    {link.label}
-                  </a>
-                );
-              })}
-            </nav>
-
-            <div className="px-6 pb-8 mt-auto border-t border-[var(--color-border)] pt-6">
-              <a
-                href="/#contact"
-                onClick={() => setOpen(false)}
-                className="nav-contact-btn w-full justify-center py-3.5 group"
-              >
-                <span>Contact Us</span>
-                <ArrowUpRight
-                  size={16}
-                  strokeWidth={2.25}
-                  className="nav-contact-btn-arrow"
-                />
-              </a>
-            </div>
-          </aside>
-        </div>
-      </div>
+      <div className="dp-nav-spacer" aria-hidden="true" />
 
       <div
-        className={`dp-nav-spacer ${promoVisible ? "dp-nav-spacer-promo" : ""}`}
-        aria-hidden="true"
-      />
+        className={`lg:hidden fixed inset-0 z-40 transition-opacity duration-300 ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        style={{ top: "var(--dp-nav-bar-h)" }}
+      >
+        <div
+          className="absolute inset-0 bg-black/25 backdrop-blur-sm"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden
+        />
+        <aside
+          className={`absolute top-0 right-0 h-full w-full max-w-[320px] bg-white shadow-2xl transform transition-transform duration-300 ease-out ${
+            mobileOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--color-border)]">
+            <span className="font-display text-lg font-bold text-[var(--color-text)]">Menu</span>
+            <button type="button" className="site-header-mobile-toggle" onClick={() => setMobileOpen(false)}>
+              <FaTimes size={18} />
+            </button>
+          </div>
+
+          <nav className="px-4 py-4 flex flex-col gap-1">
+            {navLinks.map((link) => {
+              const active = linkActive(link);
+              const className = `block rounded-lg px-4 py-3 text-[0.9375rem] font-medium ${
+                active ? "bg-slate-100 text-[var(--color-primary)]" : "text-slate-800 hover:bg-slate-50"
+              }`;
+              if (link.isRoute) {
+                return (
+                  <Link key={link.id} href={link.href} className={className} onClick={() => setMobileOpen(false)}>
+                    {link.label}
+                  </Link>
+                );
+              }
+              return (
+                <a key={link.id} href={link.href} className={className} onClick={() => setMobileOpen(false)}>
+                  {link.isAi && "✦ "}
+                  {link.label}
+                </a>
+              );
+            })}
+          </nav>
+
+          <div className="px-6 pb-8 pt-4 flex flex-col gap-3 border-t border-[var(--color-border)]">
+            <a
+              href="/#contact"
+              className="site-header-btn-outline w-full text-center"
+              onClick={() => setMobileOpen(false)}
+            >
+              Book A Call
+            </a>
+            <a
+              href="/#contact"
+              className="site-header-btn-gradient w-full justify-center"
+              onClick={() => setMobileOpen(false)}
+            >
+              Contact Us
+            </a>
+          </div>
+        </aside>
+      </div>
     </>
   );
 }

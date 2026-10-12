@@ -1,7 +1,8 @@
 "use client";
 
 import Hero from "@/components/Hero";
-import SiteContainer from "@/components/SiteContainer";
+import HomeTrustStrip from "@/components/HomeTrustStrip";
+import HomeScrollReveal from "@/components/HomeScrollReveal";
 import FeaturedClients from "@/components/FeaturedClients";
 import HeroSection from "@/components/HeroSection";
 import FeaturedServices from "@/components/FeaturedServices";
@@ -18,48 +19,68 @@ import ContactForm from "@/components/ContactForm";
 export default function Home() {
   return (
     <>
-      <section id="home">
-        <Hero />
-      </section>
+      <Hero />
 
-      <FeaturedClients />
+      <HomeTrustStrip />
 
-      <SiteContainer>
-        <div className="home-section-divider" aria-hidden="true" />
-      </SiteContainer>
+      <HomeScrollReveal>
+        <FeaturedClients />
+      </HomeScrollReveal>
 
-      <section id="about" className="about-anchor">
-        <HeroSection />
-      </section>
+      <HomeScrollReveal>
+        <section id="services">
+          <FeaturedServices />
+          <HomeServices />
+        </section>
+      </HomeScrollReveal>
 
-      <section id="services">
-        <FeaturedServices />
-        <HomeServices />
-      </section>
+      <HomeScrollReveal>
+        <section id="industries">
+          <IndustriesSection />
+        </section>
+      </HomeScrollReveal>
 
-      <IndustriesSection />
+      <HomeScrollReveal>
+        <section id="portfolio">
+          <PortfolioSection />
+        </section>
+      </HomeScrollReveal>
 
-      <ProcessSection />
+      <HomeScrollReveal>
+        <section id="about" className="about-anchor">
+          <HeroSection />
+        </section>
+      </HomeScrollReveal>
 
-      <CTABanner />
+      <HomeScrollReveal>
+        <ProcessSection />
+      </HomeScrollReveal>
 
-      <section id="portfolio">
-        <PortfolioSection />
-      </section>
+      <HomeScrollReveal>
+        <CTABanner />
+      </HomeScrollReveal>
 
-      <section id="team">
-        <TeamMembers />
-      </section>
+      <HomeScrollReveal>
+        <section id="team">
+          <TeamMembers />
+        </section>
+      </HomeScrollReveal>
 
-      <AwardsSection />
+      <HomeScrollReveal>
+        <AwardsSection />
+      </HomeScrollReveal>
 
-      <section id="testimonials">
-        <TestimonialsSection />
-      </section>
+      <HomeScrollReveal>
+        <section id="testimonials">
+          <TestimonialsSection />
+        </section>
+      </HomeScrollReveal>
 
-      <section id="contact">
-        <ContactForm />
-      </section>
+      <HomeScrollReveal>
+        <section id="contact">
+          <ContactForm />
+        </section>
+      </HomeScrollReveal>
     </>
   );
 }

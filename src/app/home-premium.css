@@ -1,0 +1,209 @@
+/* Homepage — scroll reveals & trust strip (Appinventiv-inspired flow) */
+
+.home-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s ease-out,
+    transform 0.65s ease-out;
+}
+
+.home-reveal--visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Client logo marquee — compact strip below hero */
+
+.home-trust-marquee {
+  position: relative;
+  z-index: 4;
+  background: #f8fafc;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.5rem 0;
+  overflow: hidden;
+}
+
+.home-trust-marquee-shell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .home-trust-marquee-shell {
+    gap: 1rem;
+    min-height: 3rem;
+  }
+}
+
+.home-trust-marquee-label {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin: 0;
+  padding-right: 0.75rem;
+  max-width: 7.25rem;
+  border-right: 1px solid var(--color-border);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+@media (min-width: 640px) {
+  .home-trust-marquee-label {
+    max-width: 8.5rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-trust-marquee-label {
+    max-width: 9.5rem;
+  }
+}
+
+.home-trust-marquee-label-strong {
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+}
+
+.home-trust-marquee-label-sub {
+  font-size: 0.5625rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  .home-trust-marquee-label-strong {
+    font-size: 0.6875rem;
+  }
+
+  .home-trust-marquee-label-sub {
+    font-size: 0.625rem;
+  }
+}
+
+.home-trust-marquee-viewport {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.home-trust-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  width: max-content;
+  animation: home-trust-marquee-scroll 50s linear infinite;
+  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .home-trust-marquee-track {
+    gap: 2.25rem;
+  }
+}
+
+.home-trust-marquee-brand {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  user-select: none;
+}
+
+.home-trust-marquee-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.home-trust-marquee-logo-img {
+  width: auto;
+  height: 1.125rem;
+  max-width: 1.75rem;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.72;
+}
+
+.home-trust-marquee-icon {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.home-trust-marquee-brand-name {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #9aa8b8;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .home-trust-marquee-brand-name {
+    font-size: 0.6875rem;
+  }
+}
+
+.home-trust-marquee-brand:hover .home-trust-marquee-brand-name {
+  color: var(--color-primary);
+}
+
+.home-trust-marquee-brand:hover .home-trust-marquee-logo-img {
+  opacity: 1;
+  filter: grayscale(0.2);
+}
+
+.home-trust-marquee-brand:hover .home-trust-marquee-icon {
+  color: var(--color-primary);
+}
+
+@keyframes home-trust-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-trust-marquee-track {
+    animation: none;
+  }
+
+  .home-trust-marquee-viewport {
+    overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+.home-section-premium {
+  padding-top: clamp(3.5rem, 8vw, 5.5rem);
+  padding-bottom: clamp(3.5rem, 8vw, 5.5rem);
+}

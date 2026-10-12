@@ -1,18 +1,19 @@
-import { DM_Sans, Syne } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const syne = Syne({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-syne",
+  variable: "--font-jakarta",
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -95,16 +96,14 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" className={`${dmSans.variable} ${syne.variable}`}>
+    <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`}>
         <body className="bg-[var(--color-light)] text-[var(--color-text)] antialiased overflow-x-clip">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
 
-        <header>
-          <Navbar />
-        </header>
+        <Navbar />
 
         <main id="content" className="relative z-0 w-full overflow-x-clip">
           {children}

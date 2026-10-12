@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./responsive.css";
 @import "./home-sections.css";
+@import "./home-premium.css";
 
 html,
 body {
@@ -19,15 +20,15 @@ html.dp-nav-mega-open body {
 }
 
 @theme {
-  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Brand: Orange #F58220 · Blue #1565C0 · Light-first layout */
 :root {
-  --dp-nav-bar-h: 3.75rem;
-  --dp-nav-promo-h: 2.25rem;
-  --dp-nav-total-h: calc(var(--dp-nav-bar-h) + var(--dp-nav-promo-h));
+  --dp-nav-bar-h: 4.25rem;
+  --dp-nav-promo-h: 0px;
+  --dp-nav-total-h: var(--dp-nav-bar-h);
 
   --color-brand-blue: #1565c0;
   --color-brand-orange: #f58220;

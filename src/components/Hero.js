@@ -79,7 +79,9 @@ export default function Hero() {
           </div>
 
           <div className="mi-hero-copy" key={slide.key}>
-            <p className="mi-hero-eyebrow section-label-light">{slide.eyebrow}</p>
+            <span className="site-header-ai-border mi-hero-eyebrow-border">
+              <span className="mi-hero-eyebrow section-label-light">{slide.eyebrow}</span>
+            </span>
             <h1 className="mi-hero-title">
               <span className="mi-hero-title-main">{slide.titleMain}</span>{" "}
               <span className="mi-hero-title-accent">{slide.titleAccent}</span>

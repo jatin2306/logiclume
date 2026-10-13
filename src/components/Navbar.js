@@ -112,6 +112,7 @@ export default function Navbar() {
 
     const linkEl = link.isRoute ? (
       <Link
+        key={link.id}
         href={link.href}
         className={className}
         onMouseEnter={closeMegaMenu}
@@ -121,6 +122,7 @@ export default function Navbar() {
       </Link>
     ) : (
       <a
+        key={link.id}
         href={link.href}
         className={className}
         onMouseEnter={onEnter}
@@ -140,7 +142,7 @@ export default function Navbar() {
       );
     }
 
-    return <span key={link.id}>{linkEl}</span>;
+    return linkEl;
   };
 
   return (

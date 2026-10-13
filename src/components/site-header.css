@@ -129,6 +129,21 @@
   background: rgba(238, 244, 251, 0.95);
 }
 
+.site-header-ai-border .section-label-light,
+.site-header-ai-border .mi-hero-eyebrow {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  background: #ffffff;
+  border-radius: 9999px;
+}
+
+.mi-hero-eyebrow-border {
+  display: inline-flex;
+  margin-bottom: 0.65rem;
+  width: fit-content;
+}
+
 .site-header-ai-border--mobile {
   display: flex;
   width: 100%;

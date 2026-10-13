@@ -145,30 +145,82 @@ export default function ContactForm() {
                   </p>
                 </div>
               </header>
-              <form onSubmit={handleSubmit} className="space-y-5 contact-form-panel-form">
+              <form onSubmit={handleSubmit} className="space-y-5 contact-form-panel-form" noValidate>
                 <div className="grid sm:grid-cols-2 gap-5">
-                  <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name *" className="w-full rounded-xl input-brand px-5 py-4 text-sm" />
-                  <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email Address *" className="w-full rounded-xl input-brand px-5 py-4 text-sm" />
+                  <label className="block">
+                    <span className="sr-only">Full name (required)</span>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Full Name *"
+                      autoComplete="name"
+                      required
+                      aria-required="true"
+                      className="w-full rounded-xl input-brand px-5 py-4 text-sm"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="sr-only">Email address (required)</span>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Email Address *"
+                      autoComplete="email"
+                      required
+                      aria-required="true"
+                      className="w-full rounded-xl input-brand px-5 py-4 text-sm"
+                    />
+                  </label>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-5">
-                  <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone Number *" className="w-full rounded-xl input-brand px-5 py-4 text-sm" />
-                  <select name="budget" value={formData.budget} onChange={handleChange} className="w-full rounded-xl input-brand px-5 py-4 text-sm text-[var(--color-text-muted)]">
-                    {budgetOptions.map((opt) => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                  </select>
+                  <label className="block">
+                    <span className="sr-only">Phone number (required)</span>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="Phone Number *"
+                      autoComplete="tel"
+                      required
+                      aria-required="true"
+                      className="w-full rounded-xl input-brand px-5 py-4 text-sm"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="sr-only">Budget range (optional)</span>
+                    <select
+                      name="budget"
+                      value={formData.budget}
+                      onChange={handleChange}
+                      className="w-full rounded-xl input-brand px-5 py-4 text-sm text-[var(--color-text-muted)]"
+                    >
+                      {budgetOptions.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
                 </div>
 
-                <div>
-                  <p className="text-sm font-medium text-[var(--color-text)] mb-3">Where do you need help?</p>
+                <fieldset className="border-0 p-0 m-0">
+                  <legend className="text-sm font-medium text-[var(--color-text)] mb-3">
+                    Where do you need help? (optional)
+                  </legend>
                   <div className="flex flex-wrap gap-2">
                     {helpOptions.map((item) => (
                       <button
                         key={item}
                         type="button"
                         onClick={() => toggleHelp(item)}
-                        className={`rounded-full px-4 py-2 text-xs font-medium transition ${
+                        aria-pressed={selectedHelp.includes(item)}
+                        className={`rounded-full px-4 py-2 text-xs font-medium transition min-h-[2.5rem] ${
                           selectedHelp.includes(item)
                             ? "bg-[var(--color-primary)] text-white shadow-sm"
                             : "bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:bg-[var(--color-surface-blue)] border border-[var(--color-border)]"
@@ -178,15 +230,35 @@ export default function ContactForm() {
                       </button>
                     ))}
                   </div>
-                </div>
+                </fieldset>
 
-                <textarea rows={4} name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your project... *" className="w-full rounded-xl input-brand px-5 py-4 text-sm resize-none" />
+                <label className="block">
+                  <span className="sr-only">Project details (required)</span>
+                  <textarea
+                    rows={4}
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell us about your project... *"
+                    required
+                    aria-required="true"
+                    className="w-full rounded-xl input-brand px-5 py-4 text-sm resize-none"
+                  />
+                </label>
 
-                {status.message && (
-                  <div className={`rounded-xl border px-4 py-3 text-sm ${status.type === "success" ? "border-green-200 bg-green-50 text-green-700" : "border-red-200 bg-red-50 text-red-700"}`}>
+                {status.message ? (
+                  <div
+                    role={status.type === "error" ? "alert" : "status"}
+                    aria-live="polite"
+                    className={`rounded-xl border px-4 py-3 text-sm ${
+                      status.type === "success"
+                        ? "border-green-200 bg-green-50 text-green-700"
+                        : "border-red-200 bg-red-50 text-red-700"
+                    }`}
+                  >
                     {status.message}
                   </div>
-                )}
+                ) : null}
 
                 <button
                   type="submit"

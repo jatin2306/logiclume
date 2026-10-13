@@ -103,9 +103,13 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
 
+        <a href="#content" className="skip-to-content">
+          Skip to main content
+        </a>
+
         <Navbar />
 
-        <main id="content" className="relative z-0 w-full overflow-x-clip">
+        <main id="content" tabIndex={-1} className="relative z-0 w-full overflow-x-clip">
           {children}
         </main>
 

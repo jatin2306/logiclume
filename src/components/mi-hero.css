@@ -185,24 +185,16 @@
   width: 2.1rem;
   height: 2.1rem;
   border-radius: 0.45rem;
-  font-size: 0.5625rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
 }
 
-.mi-hero-partner-mark--gcp {
-  background: #e8f0fe;
-  color: #1a73e8;
-}
-
-.mi-hero-partner-mark--aws {
-  background: #fff7ed;
-  color: #c2410c;
-}
-
-.mi-hero-partner-mark--openai {
+.mi-hero-partner-mark--blue {
   background: var(--color-surface-blue);
   color: var(--color-primary);
+}
+
+.mi-hero-partner-mark--orange {
+  background: var(--color-surface-orange);
+  color: var(--color-accent-dark);
 }
 
 .mi-hero-partner-text {
@@ -212,16 +204,23 @@
 }
 
 .mi-hero-partner-title {
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
   color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mi-hero-partner-sub {
   font-size: 0.5625rem;
-  font-weight: 600;
+  font-weight: 500;
+  line-height: 1.25;
   color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mi-hero-action {
@@ -229,8 +228,33 @@
   z-index: 7;
 }
 
+.mi-hero-card--ai .mi-hero-visual-img {
+  object-position: 42% center;
+}
+
+.mi-hero-card--ai .mi-hero-visual-fade {
+  background:
+    linear-gradient(
+      248deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.88) 16%,
+      rgba(255, 255, 255, 0.45) 32%,
+      rgba(255, 255, 255, 0.12) 48%,
+      transparent 58%
+    ),
+    linear-gradient(
+      315deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.72) 28%,
+      rgba(255, 255, 255, 0.2) 52%,
+      transparent 68%
+    ),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.4) 24%, transparent 46%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, transparent 26%);
+}
+
 .mi-hero-cta {
-  margin-top: 0.65rem;
+  margin-top: 0;
   width: fit-content;
   max-width: 100%;
 }
@@ -275,10 +299,10 @@
   position: relative;
   z-index: 4;
   margin: 0;
-  color: var(--color-text-muted);
+  color: #475569;
   font-weight: 400;
   line-height: 1.55;
-  text-shadow: 0 0 16px rgba(255, 255, 255, 0.9);
+  text-shadow: none;
 }
 
 .mi-hero-carousel {
@@ -293,15 +317,15 @@
 .mi-hero-carousel-nav {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 
 .mi-hero-carousel-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 1.65rem;
+  height: 1.65rem;
   border-radius: 50%;
   border: 1px solid rgba(15, 23, 42, 0.14);
   background: rgba(255, 255, 255, 0.95);
@@ -319,17 +343,17 @@
 .mi-hero-slide-cards {
   display: flex;
   align-items: flex-start;
-  gap: 0.45rem;
+  gap: 0.35rem;
 }
 
 .mi-hero-slide-card {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: clamp(5.5rem, 8vw, 6.75rem);
-  padding: 0.25rem;
-  border: 2px solid transparent;
-  border-radius: 0.55rem;
+  width: clamp(4.1rem, 5.5vw, 5rem);
+  padding: 0.18rem;
+  border: 1.5px solid transparent;
+  border-radius: 0.45rem;
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
   cursor: pointer;
@@ -349,15 +373,15 @@
   position: relative;
   display: block;
   width: 100%;
-  height: 3.25rem;
-  border-radius: 0.4rem;
+  height: 2.25rem;
+  border-radius: 0.32rem;
   overflow: hidden;
 }
 
 .mi-hero-slide-card-label {
   display: block;
-  padding: 0.35rem 0.2rem 0.15rem;
-  font-size: 0.5625rem;
+  padding: 0.22rem 0.12rem 0.08rem;
+  font-size: 0.5rem;
   font-weight: 700;
   line-height: 1.25;
   color: #0f172a;
@@ -391,12 +415,7 @@
     position: absolute;
     right: clamp(0.85rem, 1.5vw, 1.25rem);
     bottom: clamp(0.85rem, 1.6vw, 1.15rem);
-    max-width: min(22rem, 30vw);
-  }
-
-  .mi-hero-support {
-    font-size: clamp(0.72rem, 0.82vw, 0.8125rem);
-    line-height: 1.55;
+    max-width: none;
   }
 
   .mi-hero-carousel {
@@ -465,11 +484,6 @@
   .mi-hero-action {
     grid-area: action;
     position: relative;
-  }
-
-  .mi-hero-support {
-    font-size: 0.75rem;
-    line-height: 1.5;
   }
 
   .mi-hero-carousel {
@@ -597,15 +611,6 @@
     position: relative;
   }
 
-  .mi-hero-support {
-    text-shadow: none;
-    font-size: 0.8125rem;
-    line-height: 1.55;
-    display: block;
-    -webkit-line-clamp: unset;
-    overflow: visible;
-  }
-
   .mi-hero-cta {
     width: 100%;
     margin-top: 0.5rem;
@@ -679,8 +684,4 @@
     font-size: 1.1rem;
   }
 
-  .mi-hero-support {
-    font-size: 0.6875rem;
-    max-width: min(18rem, 26vw);
-  }
 }

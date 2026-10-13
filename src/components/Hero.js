@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { Building2, ChevronLeft, ChevronRight, ArrowUpRight, Rocket, Sparkles } from "lucide-react";
 import SiteContainer from "./SiteContainer";
 import Button from "./Button";
 import "./mi-hero.css";
@@ -13,10 +13,29 @@ const stats = [
   { value: "100+", label: "In-house Tech Specialists" },
 ];
 
-const partners = [
-  { id: "gcp", title: "Google Cloud", subtitle: "Partner", tone: "gcp" },
-  { id: "aws", title: "AWS Partner", subtitle: "Network", tone: "aws" },
-  { id: "openai", title: "OpenAI", subtitle: "Select Partner", tone: "openai" },
+/** Hero aside — what DeopersIndia actually delivers (no third-party partner claims). */
+const deliveryHighlights = [
+  {
+    id: "enterprise",
+    icon: Building2,
+    title: "Enterprise",
+    subtitle: "Banking & fintech",
+    tone: "blue",
+  },
+  {
+    id: "squads",
+    icon: Rocket,
+    title: "Dedicated teams",
+    subtitle: "Ramp in days",
+    tone: "orange",
+  },
+  {
+    id: "ai",
+    icon: Sparkles,
+    title: "AI in prod",
+    subtitle: "Live automation",
+    tone: "blue",
+  },
 ];
 
 const slides = [
@@ -33,7 +52,7 @@ const slides = [
       "Get vetted engineers, AI specialists, Full-Stack Developers, DevOps experts, and UI/UX designers with 6+ years of average experience. They join your stand-ups, work in your tools, and scale up or down as your roadmap changes.",
     ctaLabel: "Build Your Dedicated Team",
     ctaHref: "/#contact",
-    panel: "partners",
+    panel: "highlights",
   },
   {
     key: "digital-transformation",
@@ -52,19 +71,55 @@ const slides = [
   },
 ];
 
+const HERO_AUTO_INTERVAL_MS = 6000;
+
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  const pauseAutoRef = useRef(false);
 
   const go = useCallback((dir) => {
     setIndex((i) => (i + dir + slides.length) % slides.length);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = window.setInterval(() => {
+      if (pauseAutoRef.current) return;
+      setIndex((i) => (i + 1) % slides.length);
+    }, HERO_AUTO_INTERVAL_MS);
+
+    return () => window.clearInterval(timer);
+  }, [index]);
+
   const slide = slides[index];
 
   return (
-    <section className="mi-hero" id="home" aria-label="DeopersIndia homepage hero">
+    <section
+      className="mi-hero"
+      id="home"
+      aria-label="DeopersIndia homepage hero"
+      aria-live="polite"
+      onMouseEnter={() => {
+        pauseAutoRef.current = true;
+      }}
+      onMouseLeave={() => {
+        pauseAutoRef.current = false;
+      }}
+      onFocusCapture={() => {
+        pauseAutoRef.current = true;
+      }}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          pauseAutoRef.current = false;
+        }
+      }}
+    >
       <SiteContainer className="mi-hero-inner">
-        <div className="mi-hero-card">
+        <div
+          className={`mi-hero-card${slide.key === "digital-transformation" ? " mi-hero-card--ai" : ""}`}
+        >
           <div className="mi-hero-visual">
             <Image
               key={slide.src}
@@ -88,22 +143,23 @@ export default function Hero() {
             </h1>
           </div>
 
-          <aside className="mi-hero-aside" aria-label="Highlights">
-            {slide.panel === "partners" && (
+          <aside className="mi-hero-aside" aria-label="Why DeopersIndia">
+            {slide.panel === "highlights" && (
               <div className="mi-hero-partners">
-                {partners.map((partner) => (
-                  <div key={partner.id} className="mi-hero-partner">
-                    <span className={`mi-hero-partner-mark mi-hero-partner-mark--${partner.tone}`}>
-                      {partner.tone === "gcp" && "GCP"}
-                      {partner.tone === "aws" && "AWS"}
-                      {partner.tone === "openai" && "AI"}
-                    </span>
-                    <span className="mi-hero-partner-text">
-                      <span className="mi-hero-partner-title">{partner.title}</span>
-                      <span className="mi-hero-partner-sub">{partner.subtitle}</span>
-                    </span>
-                  </div>
-                ))}
+                {deliveryHighlights.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.id} className="mi-hero-partner">
+                      <span className={`mi-hero-partner-mark mi-hero-partner-mark--${item.tone}`}>
+                        <Icon size={15} strokeWidth={2.25} aria-hidden />
+                      </span>
+                      <span className="mi-hero-partner-text">
+                        <span className="mi-hero-partner-title">{item.title}</span>
+                        <span className="mi-hero-partner-sub">{item.subtitle}</span>
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             )}
             {slide.panel === "stats" && (
@@ -119,7 +175,6 @@ export default function Hero() {
           </aside>
 
           <div className="mi-hero-action">
-            <p className="mi-hero-support">{slide.support}</p>
             <Button
               href={slide.ctaHref}
               variant="accent"
@@ -139,7 +194,7 @@ export default function Hero() {
                 aria-label="Previous slide"
                 onClick={() => go(-1)}
               >
-                <ChevronLeft size={16} />
+                <ChevronLeft size={14} />
               </button>
               <button
                 type="button"
@@ -147,7 +202,7 @@ export default function Hero() {
                 aria-label="Next slide"
                 onClick={() => go(1)}
               >
-                <ChevronRight size={16} />
+                <ChevronRight size={14} />
               </button>
             </div>
             <div className="mi-hero-slide-cards">
@@ -161,7 +216,7 @@ export default function Hero() {
                   onClick={() => setIndex(i)}
                 >
                   <span className="mi-hero-slide-card-img">
-                    <Image src={s.thumb} alt="" fill sizes="120px" className="object-cover" />
+                    <Image src={s.thumb} alt="" fill sizes="80px" className="object-cover" />
                   </span>
                   <span className="mi-hero-slide-card-label">{s.cardLabel}</span>
                 </button>

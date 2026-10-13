@@ -13,7 +13,7 @@ const navLinks = [
   { id: "ai", label: "AI", href: "/#services", isAi: true, mega: "ai" },
   { id: "services", label: "Services", href: "/#services", mega: "services" },
   { id: "industries", label: "Industries", href: "/#industries" },
-  { id: "about", label: "About", href: "/#about" },
+  { id: "about", label: "About", href: "/about-us", isRoute: true },
   { id: "portfolio", label: "Work", href: "/portfolio", isRoute: true },
 ];
 
@@ -50,6 +50,11 @@ export default function Navbar() {
     document.body.style.overflow = mobileOpen || megaMenu ? "hidden" : "";
     document.documentElement.classList.toggle("dp-nav-mega-open", Boolean(megaMenu));
   }, [mobileOpen, megaMenu]);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setMegaMenu(null);
+  }, [pathname]);
 
   const closeMegaMenu = useCallback(() => setMegaMenu(null), []);
 
@@ -178,9 +183,9 @@ export default function Navbar() {
 
                 <div className="site-header-mobile-row lg:contents">
                   <div className="site-header-actions">
-                    <a href="/#contact" className="site-header-btn-outline" onClick={closeMegaMenu}>
+                    <Link href="/book-a-call" className="site-header-btn-outline" onClick={closeMegaMenu}>
                       Book A Call
-                    </a>
+                    </Link>
                     <button
                       type="button"
                       className={`site-header-btn-gradient ${megaMenu === "contact" ? "site-header-btn-gradient--open" : ""}`}
@@ -228,6 +233,10 @@ export default function Navbar() {
           className={`absolute top-0 right-0 h-full w-full max-w-[320px] bg-white shadow-2xl transform transition-transform duration-300 ease-out ${
             mobileOpen ? "translate-x-0" : "translate-x-full"
           }`}
+          role="dialog"
+          aria-modal="true"
+          aria-hidden={!mobileOpen}
+          aria-label="Mobile navigation"
         >
           <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--color-border)]">
             <span className="font-display text-lg font-bold text-[var(--color-text)]">Menu</span>
@@ -256,6 +265,7 @@ export default function Navbar() {
 
               const mobileLink = (
                 <a
+                  key={link.id}
                   href={link.href}
                   className={link.isAi ? aiClass : baseClass}
                   onClick={() => setMobileOpen(false)}
@@ -280,13 +290,13 @@ export default function Navbar() {
           </nav>
 
           <div className="px-6 pb-8 pt-4 flex flex-col gap-3 border-t border-[var(--color-border)]">
-            <a
-              href="/#contact"
+            <Link
+              href="/book-a-call"
               className="site-header-btn-outline w-full text-center"
               onClick={() => setMobileOpen(false)}
             >
               Book A Call
-            </a>
+            </Link>
             <a
               href="/#contact"
               className="site-header-btn-gradient w-full justify-center"

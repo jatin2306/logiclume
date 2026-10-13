@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import Image from "next/image";
 
 function PortfolioBrandPreview({ title, hostname, accent = "blue" }) {
@@ -52,6 +53,13 @@ export default function PortfolioThumb({
 }) {
   const hostname = hostnameFromUrl(previewUrl);
   const isContain = imageFit === "contain";
+  const [imageFailed, setImageFailed] = useState(false);
+
+  const onImageError = useCallback(() => {
+    setImageFailed(true);
+  }, []);
+
+  const showImage = Boolean(imageSrc) && !imageFailed;
 
   return (
     <div
@@ -61,31 +69,33 @@ export default function PortfolioThumb({
           : `bg-gradient-to-br ${gradientClass}`
       }`}
     >
-      {imageSrc ? (
+      {showImage ? (
         isContain ? (
           <div className="home-portfolio-thumb__frame">
             <Image
               src={imageSrc}
-              alt={title}
+              alt=""
               fill
               className="portfolio-thumb-img object-contain object-top transition-transform duration-500 group-hover:scale-[1.02]"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              onError={onImageError}
             />
           </div>
         ) : (
           <Image
             src={imageSrc}
-            alt={title}
+            alt=""
             fill
             className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            onError={onImageError}
           />
         )
       ) : (
         <PortfolioBrandPreview title={title} hostname={hostname} accent={previewAccent} />
       )}
 
-      {showOverlay && imageSrc && !isContain && (
+      {showOverlay && showImage && !isContain && (
         <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,22,40,0.6)] via-transparent to-transparent pointer-events-none" />
       )}
 

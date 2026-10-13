@@ -10,7 +10,7 @@ export default function Button({
   ...props
 }) {
   const baseStyles =
-    "font-semibold rounded-xl transition-all duration-200 inline-flex items-center justify-center";
+    "font-semibold rounded-xl transition-all duration-200 inline-flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]";
 
   const variants = {
     primary:
@@ -34,6 +34,14 @@ export default function Button({
   const buttonStyles = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
 
   if (href) {
+    const isExternal = /^https?:\/\//i.test(href);
+    if (isExternal) {
+      return (
+        <a href={href} className={buttonStyles} {...props}>
+          {children}
+        </a>
+      );
+    }
     return (
       <Link href={href} className={buttonStyles} {...props}>
         {children}

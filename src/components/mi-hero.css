@@ -409,10 +409,24 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .mi-hero {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    background: var(--color-hero-gradient);
+  }
+
+  .mi-hero .site-wrap,
+  .mi-hero .site-container,
+  .mi-hero-inner {
+    height: auto;
+    min-height: 0;
+  }
+
   .mi-hero-card {
     display: grid;
     grid-template-columns: 1fr minmax(130px, 150px);
-    grid-template-rows: auto 1fr auto auto;
+    grid-template-rows: auto auto auto auto;
     grid-template-areas:
       "title aside"
       "spacer aside"
@@ -420,11 +434,18 @@
       "carousel action";
     gap: 0.5rem 0.65rem;
     padding: 0.75rem;
+    height: auto;
+    min-height: min(520px, calc(100dvh - var(--dp-nav-bar-h) - 1rem));
+    background: linear-gradient(160deg, #ffffff 0%, #f8fafc 35%, #fdf4ff 70%, #eef2ff 100%);
   }
 
   .mi-hero-visual {
     position: absolute;
     inset: 0;
+  }
+
+  .mi-hero-card::before {
+    opacity: 0.65;
   }
 
   .mi-hero-copy {
@@ -460,59 +481,100 @@
 
 @media (max-width: 767px) {
   .mi-hero {
-    padding: 0.25rem 0 0.35rem;
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    overflow: visible;
+    padding: 0.5rem 0 0.75rem;
+    background: var(--color-hero-gradient);
+  }
+
+  .mi-hero#home {
+    background: var(--color-hero-gradient);
+  }
+
+  .mi-hero .site-wrap,
+  .mi-hero .site-container,
+  .mi-hero-inner {
+    height: auto;
+    min-height: 0;
   }
 
   .mi-hero-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto minmax(0, 1fr) auto auto auto;
-    grid-template-areas:
-      "title title"
-      "visual visual"
-      "aside aside"
-      "action action"
-      "carousel carousel";
-    gap: 0.4rem;
-    padding: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    height: auto;
+    min-height: 0;
+    padding: 0.75rem;
+    background: linear-gradient(160deg, #ffffff 0%, #f8fafc 35%, #fdf4ff 70%, #eef2ff 100%);
+    border-color: var(--color-border);
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+  }
+
+  .mi-hero-card::before,
+  .mi-hero-card::after {
+    opacity: 0.5;
   }
 
   .mi-hero-visual {
-    grid-area: visual;
     position: relative;
-    min-height: 0;
-    height: 100%;
-    border-radius: 0.55rem;
+    order: 2;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    min-height: 11rem;
+    border-radius: 0.65rem;
     overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
   }
 
   .mi-hero-visual-img {
     transform: none;
+    object-position: center 25%;
   }
 
   .mi-hero-visual-fade {
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, transparent 35%),
-      linear-gradient(0deg, rgba(255, 255, 255, 0.8) 0%, transparent 30%);
+      linear-gradient(
+        102deg,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.2) 35%,
+        transparent 55%
+      ),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.35) 0%, transparent 28%);
   }
 
   .mi-hero-copy {
-    grid-area: title;
+    order: 1;
+  }
+
+  .mi-hero-aside {
+    order: 3;
+  }
+
+  .mi-hero-action {
+    order: 4;
+  }
+
+  .mi-hero-carousel {
+    order: 5;
+  }
+
+  .mi-hero-copy {
     position: relative;
   }
 
   .mi-hero-title {
-    font-size: clamp(1.15rem, 5vw, 1.4rem);
+    font-size: clamp(1.25rem, 5.2vw, 1.5rem);
+    max-width: none;
   }
 
   .mi-hero-eyebrow {
     margin-bottom: 0.45rem;
-    font-size: 0.625rem;
-    padding: 0.3rem 0.65rem;
   }
 
   .mi-hero-aside {
-    grid-area: aside;
     position: relative;
   }
 
@@ -532,8 +594,16 @@
   }
 
   .mi-hero-action {
-    grid-area: action;
     position: relative;
+  }
+
+  .mi-hero-support {
+    text-shadow: none;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
   }
 
   .mi-hero-cta {
@@ -556,18 +626,9 @@
     font-size: 0.5625rem;
   }
 
-  .mi-hero-support {
-    font-size: 0.6875rem;
-    line-height: 1.45;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
   .mi-hero-carousel {
-    grid-area: carousel;
     position: relative;
+    padding-top: 0.15rem;
   }
 
   .mi-hero-slide-cards {

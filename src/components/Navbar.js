@@ -110,23 +110,17 @@ export default function Navbar() {
       </>
     );
 
-    if (link.isRoute) {
-      return (
-        <Link
-          key={link.id}
-          href={link.href}
-          className={className}
-          onMouseEnter={closeMegaMenu}
-          onClick={closeMegaMenu}
-        >
-          {content}
-        </Link>
-      );
-    }
-
-    return (
+    const linkEl = link.isRoute ? (
+      <Link
+        href={link.href}
+        className={className}
+        onMouseEnter={closeMegaMenu}
+        onClick={closeMegaMenu}
+      >
+        {content}
+      </Link>
+    ) : (
       <a
-        key={link.id}
         href={link.href}
         className={className}
         onMouseEnter={onEnter}
@@ -137,6 +131,16 @@ export default function Navbar() {
         {content}
       </a>
     );
+
+    if (link.isAi) {
+      return (
+        <span key={link.id} className="site-header-ai-border">
+          {linkEl}
+        </span>
+      );
+    }
+
+    return <span key={link.id}>{linkEl}</span>;
   };
 
   return (
@@ -214,7 +218,7 @@ export default function Navbar() {
         style={{ top: "var(--dp-nav-bar-h)" }}
       >
         <div
-          className="absolute inset-0 bg-black/25 backdrop-blur-sm"
+          className="absolute inset-0 bg-[var(--color-text)]/20 backdrop-blur-sm"
           onClick={() => setMobileOpen(false)}
           aria-hidden
         />
@@ -233,22 +237,43 @@ export default function Navbar() {
           <nav className="px-4 py-4 flex flex-col gap-1">
             {navLinks.map((link) => {
               const active = linkActive(link);
-              const className = `block rounded-lg px-4 py-3 text-[0.9375rem] font-medium ${
+              const baseClass = `block rounded-lg px-4 py-3 text-[0.9375rem] font-medium ${
                 active ? "bg-slate-100 text-[var(--color-primary)]" : "text-slate-800 hover:bg-slate-50"
               }`;
+              const aiClass = `site-header-link site-header-link--ai flex items-center gap-2 rounded-full px-4 py-2.5 ${
+                active ? "text-[var(--color-primary)]" : ""
+              }`;
+
               if (link.isRoute) {
                 return (
-                  <Link key={link.id} href={link.href} className={className} onClick={() => setMobileOpen(false)}>
+                  <Link key={link.id} href={link.href} className={baseClass} onClick={() => setMobileOpen(false)}>
                     {link.label}
                   </Link>
                 );
               }
-              return (
-                <a key={link.id} href={link.href} className={className} onClick={() => setMobileOpen(false)}>
-                  {link.isAi && "✦ "}
+
+              const mobileLink = (
+                <a
+                  href={link.href}
+                  className={link.isAi ? aiClass : baseClass}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.isAi && (
+                    <Sparkles size={15} strokeWidth={2.25} className="site-header-ai-icon shrink-0" aria-hidden />
+                  )}
                   {link.label}
                 </a>
               );
+
+              if (link.isAi) {
+                return (
+                  <span key={link.id} className="site-header-ai-border site-header-ai-border--mobile">
+                    {mobileLink}
+                  </span>
+                );
+              }
+
+              return mobileLink;
             })}
           </nav>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 
 function PortfolioBrandPreview({ title, hostname, accent = "blue" }) {
@@ -54,12 +54,23 @@ export default function PortfolioThumb({
   const hostname = hostnameFromUrl(previewUrl);
   const isContain = imageFit === "contain";
   const [imageFailed, setImageFailed] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    setImageFailed(false);
+    setImageLoaded(false);
+  }, [imageSrc]);
 
   const onImageError = useCallback(() => {
     setImageFailed(true);
+    setImageLoaded(true);
   }, []);
 
   const showImage = Boolean(imageSrc) && !imageFailed;
+
+  const onImageLoad = useCallback(() => {
+    setImageLoaded(true);
+  }, []);
 
   return (
     <div
@@ -69,6 +80,9 @@ export default function PortfolioThumb({
           : `bg-gradient-to-br ${gradientClass}`
       }`}
     >
+      {showImage && !imageLoaded ? (
+        <div className="portfolio-thumb-skeleton portfolio-skeleton-shimmer" aria-hidden />
+      ) : null}
       {showImage ? (
         isContain ? (
           <div className="home-portfolio-thumb__frame">
@@ -76,9 +90,12 @@ export default function PortfolioThumb({
               src={imageSrc}
               alt=""
               fill
-              className="portfolio-thumb-img object-contain object-top transition-transform duration-500 group-hover:scale-[1.02]"
+              className={`portfolio-thumb-img object-contain object-top transition-transform duration-500 group-hover:scale-[1.02] ${
+                imageLoaded ? "portfolio-thumb-img--loaded" : "portfolio-thumb-img--loading"
+              }`}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               onError={onImageError}
+              onLoad={onImageLoad}
             />
           </div>
         ) : (
@@ -86,9 +103,12 @@ export default function PortfolioThumb({
             src={imageSrc}
             alt=""
             fill
-            className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
+            className={`object-cover object-center transition-transform duration-500 group-hover:scale-[1.04] ${
+              imageLoaded ? "portfolio-thumb-img--loaded" : "portfolio-thumb-img--loading"
+            }`}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             onError={onImageError}
+            onLoad={onImageLoad}
           />
         )
       ) : (

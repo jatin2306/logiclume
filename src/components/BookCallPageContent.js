@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { CalendarDays, Check, Clock, User, Video } from "lucide-react";
+import { ArrowDown, CalendarDays, Check, Clock, ExternalLink, User, Video } from "lucide-react";
 import SiteContainer from "./SiteContainer";
 import { BOOK_CONSULTANT, getCalEmbedUrl, CAL_BOOK_URL } from "@/data/booking";
 import "@/app/book-a-call/book-call.css";
@@ -96,8 +96,20 @@ export default function BookCallPageContent() {
     finishLoadingRef.current?.();
   }, []);
 
+  const scrollToCalendar = useCallback(() => {
+    document.getElementById("book-call-calendar")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
   return (
     <div className="book-call-page">
+      <div className="book-call-mobile-bar">
+        <button type="button" className="book-call-mobile-bar-btn" onClick={scrollToCalendar}>
+          <CalendarDays size={18} strokeWidth={2.25} aria-hidden />
+          Pick a date &amp; time
+          <ArrowDown size={16} strokeWidth={2.25} aria-hidden className="book-call-mobile-bar-chevron" />
+        </button>
+      </div>
+
       <SiteContainer className="book-call-layout" containerClassName="book-call-container">
         <div className="book-call-split">
           <header className="book-call-side">
@@ -153,7 +165,18 @@ export default function BookCallPageContent() {
             </div>
           </header>
 
-          <section className="book-call-panel" aria-label="Schedule your call">
+          <section
+            id="book-call-calendar"
+            className="book-call-panel"
+            aria-label="Schedule your call"
+          >
+            <div className="book-call-panel-mobile-head">
+              <CalendarDays size={22} strokeWidth={2} aria-hidden />
+              <div>
+                <p className="book-call-panel-mobile-step">Schedule</p>
+                <h2 className="book-call-panel-mobile-title">Pick a date &amp; time</h2>
+              </div>
+            </div>
             <div className="book-call-iframe-wrap">
               {!embedReady ? <BookCallEmbedSkeleton /> : null}
               <iframe
@@ -166,6 +189,13 @@ export default function BookCallPageContent() {
                 onLoad={onIframeLoad}
               />
             </div>
+            <p className="book-call-mobile-fallback">
+              Calendar slow to load?{" "}
+              <a href={CAL_BOOK_URL} target="_blank" rel="noopener noreferrer">
+                Open booking in a new tab
+                <ExternalLink size={14} strokeWidth={2} aria-hidden />
+              </a>
+            </p>
           </section>
         </div>
       </SiteContainer>

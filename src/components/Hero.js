@@ -75,10 +75,44 @@ const HERO_AUTO_INTERVAL_MS = 6000;
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  const [slideImageReady, setSlideImageReady] = useState(false);
   const pauseAutoRef = useRef(false);
+  const slide = slides[index];
 
   const go = useCallback((dir) => {
     setIndex((i) => (i + dir + slides.length) % slides.length);
+  }, []);
+
+  useEffect(() => {
+    setSlideImageReady(false);
+    const img = new window.Image();
+    img.src = slide.src;
+    if (img.complete) {
+      setSlideImageReady(true);
+      return;
+    }
+    const done = () => setSlideImageReady(true);
+    img.addEventListener("load", done);
+    img.addEventListener("error", done);
+    return () => {
+      img.removeEventListener("load", done);
+      img.removeEventListener("error", done);
+    };
+  }, [slide.src]);
+
+  useEffect(() => {
+    slides.forEach((s) => {
+      const img = new window.Image();
+      img.src = s.src;
+    });
+  }, []);
+
+  const onHeroImageLoad = useCallback(() => {
+    setSlideImageReady(true);
+  }, []);
+
+  const onHeroImageError = useCallback(() => {
+    setSlideImageReady(true);
   }, []);
 
   useEffect(() => {
@@ -92,8 +126,6 @@ export default function Hero() {
 
     return () => window.clearInterval(timer);
   }, [index]);
-
-  const slide = slides[index];
 
   return (
     <section
@@ -118,17 +150,37 @@ export default function Hero() {
     >
       <SiteContainer className="mi-hero-inner">
         <div
-          className={`mi-hero-card${slide.key === "digital-transformation" ? " mi-hero-card--ai" : ""}`}
+          className={`mi-hero-card${slide.key === "digital-transformation" ? " mi-hero-card--ai" : ""}${
+            slideImageReady ? "" : " mi-hero-card--loading"
+          }`}
         >
+          {!slideImageReady ? (
+            <div className="mi-hero-skeleton" aria-busy="true" aria-label="Loading hero">
+              <div className="mi-hero-skeleton-visual mi-hero-skeleton-shimmer" aria-hidden />
+              <div className="mi-hero-skeleton-copy">
+                <span className="mi-hero-skeleton-line mi-hero-skeleton-line--pill mi-hero-skeleton-shimmer" />
+                <span className="mi-hero-skeleton-line mi-hero-skeleton-line--title mi-hero-skeleton-shimmer" />
+                <span className="mi-hero-skeleton-line mi-hero-skeleton-line--title-short mi-hero-skeleton-shimmer" />
+              </div>
+              <div className="mi-hero-skeleton-aside" aria-hidden>
+                <span className="mi-hero-skeleton-block mi-hero-skeleton-shimmer" />
+                <span className="mi-hero-skeleton-block mi-hero-skeleton-shimmer" />
+                <span className="mi-hero-skeleton-block mi-hero-skeleton-shimmer" />
+              </div>
+            </div>
+          ) : null}
+
           <div className="mi-hero-visual">
             <Image
               key={slide.src}
               src={slide.src}
               alt={slide.alt}
               fill
-              priority
+              priority={index === 0}
               sizes="100vw"
-              className="mi-hero-visual-img"
+              className={`mi-hero-visual-img ${slideImageReady ? "mi-hero-visual-img--ready" : ""}`}
+              onLoad={onHeroImageLoad}
+              onError={onHeroImageError}
             />
             <div className="mi-hero-visual-fade" aria-hidden />
           </div>

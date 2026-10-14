@@ -22,6 +22,36 @@ html.dp-book-call-route #content {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+@media (max-width: 899px) {
+  .book-call-page {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    min-height: calc(100dvh - var(--dp-nav-total-h));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  html.dp-book-call-route #content {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .book-call-page > .site-wrap {
+    height: auto;
+    overflow: visible;
+  }
+
+  .book-call-page .site-container,
+  .book-call-page .site-container-inner {
+    height: auto;
+    overflow: visible;
+  }
+
+  .book-call-layout {
+    height: auto;
+  }
+}
+
 .book-call-page > .site-wrap {
   flex: 1;
   min-height: 0;
@@ -58,6 +88,25 @@ html.dp-book-call-route #content {
   gap: var(--book-call-gap);
   height: 100%;
   min-height: 0;
+}
+
+@media (max-width: 899px) {
+  .book-call-split {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    gap: 1rem;
+  }
+
+  .book-call-panel {
+    order: -1;
+    scroll-margin-top: calc(var(--dp-nav-total-h) + 3.25rem);
+  }
+
+  .book-call-side {
+    order: 0;
+  }
 }
 
 @media (min-width: 900px) {
@@ -281,6 +330,132 @@ html.dp-book-call-route #content {
   box-shadow: 0 8px 28px rgba(10, 22, 40, 0.06);
 }
 
+.book-call-panel-mobile-head {
+  display: none;
+}
+
+.book-call-panel-mobile-step {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.book-call-panel-mobile-title {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.book-call-mobile-fallback {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .book-call-panel-mobile-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  }
+
+  .book-call-panel-mobile-head svg {
+    flex-shrink: 0;
+    color: var(--color-primary);
+  }
+
+  .book-call-panel {
+    min-height: min(82dvh, 680px);
+  }
+
+  .book-call-iframe-wrap {
+    flex: 1;
+    min-height: min(72dvh, 580px);
+  }
+
+  .book-call-iframe {
+    min-height: min(72dvh, 580px);
+  }
+
+  .book-call-mobile-fallback {
+    display: block;
+    margin: 0;
+    padding: 0.65rem 1rem 0.85rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-text-muted);
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    background: #fafbfc;
+  }
+
+  .book-call-mobile-fallback a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .book-call-mobile-fallback a:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Sticky jump — mobile only */
+.book-call-mobile-bar {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .book-call-mobile-bar {
+    display: block;
+    position: sticky;
+    top: var(--dp-nav-total-h);
+    z-index: 40;
+    flex-shrink: 0;
+    padding: 0.5rem 1rem 0;
+    background: linear-gradient(180deg, var(--book-call-grid-bg) 70%, transparent);
+  }
+
+  .book-call-mobile-bar-btn {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid rgba(21, 101, 192, 0.22);
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 4px 16px rgba(10, 22, 40, 0.08);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    cursor: pointer;
+  }
+
+  .book-call-mobile-bar-chevron {
+    opacity: 0.75;
+  }
+}
+
+@media (min-width: 900px) {
+  .book-call-mobile-bar {
+    display: none !important;
+  }
+}
+
 .book-call-iframe-wrap {
   position: relative;
   flex: 1;
@@ -447,6 +622,23 @@ html.dp-book-call-route #content {
 
   .book-call-side-body {
     margin-top: 1rem;
+  }
+
+  .book-call-title {
+    font-size: 1.45rem;
+  }
+
+  .book-call-lead {
+    font-size: 0.9375rem;
+  }
+
+  .book-call-topics {
+    display: none;
+  }
+
+  .book-call-side-foot {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
   }
 }
 

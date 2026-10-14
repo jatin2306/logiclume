@@ -3,18 +3,18 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import SiteContainer from "./SiteContainer";
 import PortfolioWorkCard from "./PortfolioWorkCard";
-import PortfolioIndustryPicker from "./PortfolioIndustryPicker";
+import { PortfolioWorkGridSkeleton } from "./PortfolioWorkCardSkeleton";
+import PortfolioViewFilterTabs from "./PortfolioViewFilterTabs";
 import Button from "./Button";
 import {
-  getPortfolioPageProjects,
   portfolioFilters,
-  portfolioViewModes,
   portfolioServiceFilters,
   projectMatchesIndustryFilter,
   projectMatchesServiceFilter,
+  PORTFOLIO_PUBLIC_COUNT_LABEL,
 } from "@/data/portfolioProjects";
 import {
   defaultPortfolioFilterState,
@@ -25,13 +25,18 @@ import {
 import "./portfolio-page.css";
 
 const industryFilters = portfolioFilters.filter((f) => f.id !== "all");
+const GRID_LOAD_MIN_MS = 320;
+const SKELETON_COUNT = 9;
+const INITIAL_VISIBLE_COUNT = 9;
 
 export default function PortfolioPageContent() {
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState(defaultPortfolioFilterState);
-  const [industrySheetOpen, setIndustrySheetOpen] = useState(false);
+  const [allProjects, setAllProjects] = useState(null);
+  const [gridLoading, setGridLoading] = useState(true);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   const segments = params?.segments;
 
@@ -45,25 +50,46 @@ export default function PortfolioPageContent() {
     setFilters(parsePortfolioPathSegments(segments));
   }, [segments, searchParams, router]);
 
+  useEffect(() => {
+    let cancelled = false;
+    const started = performance.now();
+
+    async function loadCatalog() {
+      setGridLoading(true);
+      const { getPortfolioPageProjects } = await import("@/data/portfolioProjects");
+      const list = getPortfolioPageProjects();
+      const elapsed = performance.now() - started;
+      const wait = Math.max(0, GRID_LOAD_MIN_MS - elapsed);
+      await new Promise((r) => setTimeout(r, wait));
+      if (!cancelled) {
+        setAllProjects(list);
+        setGridLoading(false);
+      }
+    }
+
+    loadCatalog();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const { viewMode, industryFilter, serviceFilter } = filters;
 
   const pushFilters = useCallback(
     (next) => {
       setFilters(next);
-      setIndustrySheetOpen(false);
       router.push(portfolioPathWithFilters(next), { scroll: false });
     },
     [router]
   );
 
   useEffect(() => {
-    if (viewMode !== "industries") {
-      setIndustrySheetOpen(false);
-    }
-  }, [viewMode]);
+    setShowAllProjects(false);
+  }, [viewMode, industryFilter, serviceFilter]);
 
   const projects = useMemo(() => {
-    let list = getPortfolioPageProjects();
+    if (!allProjects) return [];
+    let list = allProjects;
     if (viewMode === "industries" && industryFilter !== "all") {
       list = list.filter((p) => projectMatchesIndustryFilter(p, industryFilter));
     }
@@ -71,14 +97,33 @@ export default function PortfolioPageContent() {
       list = list.filter((p) => projectMatchesServiceFilter(p, serviceFilter));
     }
     return list;
-  }, [viewMode, industryFilter, serviceFilter]);
+  }, [allProjects, viewMode, industryFilter, serviceFilter]);
 
-  const totalCount = getPortfolioPageProjects().length;
+  const totalCount = allProjects?.length ?? 0;
 
   const activeIndustryLabel =
     industryFilter === "all"
       ? "All industries"
       : industryFilters.find((f) => f.id === industryFilter)?.label ?? "Industries";
+
+  const activeCapabilityLabel =
+    portfolioServiceFilters.find((f) => f.id === serviceFilter)?.label ?? "All capabilities";
+
+  const visibleProjects = useMemo(() => {
+    if (showAllProjects) return projects;
+    return projects.slice(0, INITIAL_VISIBLE_COUNT);
+  }, [projects, showAllProjects]);
+
+  const hiddenCount = Math.max(0, projects.length - visibleProjects.length);
+  const canLoadMore = !showAllProjects && hiddenCount > 0;
+
+  const showFilterHeading =
+    !gridLoading &&
+    ((viewMode === "industries" && industryFilter !== "all") ||
+      (viewMode === "services" && serviceFilter !== "all"));
+
+  const filterHeadingLabel =
+    viewMode === "industries" ? activeIndustryLabel : activeCapabilityLabel;
 
   return (
     <div className="portfolio-page">
@@ -89,11 +134,14 @@ export default function PortfolioPageContent() {
               Products &amp; platforms we&apos;ve shipped
             </h1>
             <p className="portfolio-work-lead">
-              Explore {totalCount}+ products across banking, retail, healthcare, automotive, travel,
-              manufacturing, and more — representative work from our delivery portfolio.
-              <span className="portfolio-work-lead-line">
-                Reach out to discuss what we can deliver for your roadmap.
-              </span>
+              {totalCount > 0 ? (
+                <>
+                  Explore {PORTFOLIO_PUBLIC_COUNT_LABEL} representative builds — enterprise live sites,
+                  growth products, and SMB / MVP work across every industry below.
+                </>
+              ) : (
+                <>Loading our delivery portfolio…</>
+              )}
             </p>
           </SiteContainer>
         </section>
@@ -102,92 +150,29 @@ export default function PortfolioPageContent() {
           <SiteContainer>
             <div className="portfolio-work-filter-shell" role="group" aria-label="Filter projects">
               <div className="portfolio-work-filter-bar">
-                <div className="portfolio-work-view-tabs">
-                  {portfolioViewModes.map((mode) => (
-                    <button
-                      key={mode.id}
-                      type="button"
-                      className={`portfolio-work-view-tab ${
-                        viewMode === mode.id ? "portfolio-work-view-tab--active" : ""
-                      }`}
-                      aria-pressed={viewMode === mode.id}
-                      onClick={() => {
-                        if (mode.id === "all") {
-                          pushFilters(defaultPortfolioFilterState);
-                          return;
-                        }
-                        if (mode.id === "industries") {
-                          setIndustrySheetOpen(true);
-                        }
-                        pushFilters({
-                          viewMode: mode.id,
-                          industryFilter: mode.id === "industries" ? industryFilter : "all",
-                          serviceFilter: mode.id === "services" ? serviceFilter : "all",
-                        });
-                      }}
-                    >
-                      {mode.label}
-                      {mode.id !== "all" ? (
-                        <ChevronDown
-                          size={15}
-                          strokeWidth={2}
-                          aria-hidden
-                          className="portfolio-work-tab-chevron"
-                        />
-                      ) : null}
-                    </button>
-                  ))}
-                </div>
+                <PortfolioViewFilterTabs
+                  viewMode={viewMode}
+                  industryFilter={industryFilter}
+                  serviceFilter={serviceFilter}
+                  industryOptions={industryFilters}
+                  capabilityOptions={portfolioServiceFilters}
+                  onAllProjects={() => pushFilters(defaultPortfolioFilterState)}
+                  onSelectIndustry={(id) =>
+                    pushFilters({
+                      viewMode: "industries",
+                      industryFilter: id,
+                      serviceFilter: "all",
+                    })
+                  }
+                  onSelectCapability={(id) =>
+                    pushFilters({
+                      viewMode: "services",
+                      industryFilter: "all",
+                      serviceFilter: id,
+                    })
+                  }
+                />
               </div>
-
-              {viewMode === "industries" ? (
-                <>
-                  <button
-                    type="button"
-                    className="portfolio-industry-mobile-trigger"
-                    onClick={() => setIndustrySheetOpen(true)}
-                    aria-expanded={industrySheetOpen}
-                  >
-                    <span className="portfolio-industry-mobile-trigger-label">{activeIndustryLabel}</span>
-                    <ChevronDown size={18} strokeWidth={2} aria-hidden />
-                  </button>
-
-                  <PortfolioIndustryPicker
-                    industries={industryFilters}
-                    activeId={industryFilter}
-                    onSelect={(id) =>
-                      pushFilters({
-                        viewMode: "industries",
-                        industryFilter: id,
-                        serviceFilter: "all",
-                      })
-                    }
-                    mobileOpen={industrySheetOpen}
-                    onMobileClose={() => setIndustrySheetOpen(false)}
-                  />
-                </>
-              ) : null}
-
-              {viewMode === "services" ? (
-                <div className="portfolio-work-subfilters">
-                  {portfolioServiceFilters.map((f) => (
-                    <button
-                      key={f.id}
-                      type="button"
-                      className={`portfolio-work-chip ${serviceFilter === f.id ? "portfolio-work-chip--active" : ""}`}
-                      onClick={() =>
-                        pushFilters({
-                          viewMode: "services",
-                          industryFilter: "all",
-                          serviceFilter: f.id,
-                        })
-                      }
-                    >
-                      {f.label}
-                    </button>
-                  ))}
-                </div>
-              ) : null}
             </div>
           </SiteContainer>
         </div>
@@ -195,24 +180,38 @@ export default function PortfolioPageContent() {
 
       <section className="portfolio-work-grid-section" aria-label="Project gallery">
         <SiteContainer>
-          {viewMode === "industries" && industryFilter !== "all" ? (
+          {showFilterHeading ? (
             <p className="portfolio-work-filter-heading">
-              Showing <strong>{activeIndustryLabel}</strong> · {projects.length} project
-              {projects.length === 1 ? "" : "s"}
+              Showing <strong>{filterHeadingLabel}</strong>
             </p>
           ) : null}
-          {projects.length === 0 ? (
+          {gridLoading ? (
+            <PortfolioWorkGridSkeleton count={SKELETON_COUNT} />
+          ) : projects.length === 0 ? (
             <p className="portfolio-work-empty">
-              Nothing matched that filter. Try &ldquo;All projects&rdquo; or another category.
+              Nothing matched that filter. Try &ldquo;All projects&rdquo; or another option.
             </p>
           ) : (
-            <ul className="portfolio-work-grid">
-              {projects.map((project) => (
-                <li key={project.id} className="portfolio-work-grid-cell">
-                  <PortfolioWorkCard project={project} />
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul className="portfolio-work-grid">
+                {visibleProjects.map((project) => (
+                  <li key={project.id} className="portfolio-work-grid-cell">
+                    <PortfolioWorkCard project={project} />
+                  </li>
+                ))}
+              </ul>
+              {canLoadMore ? (
+                <div className="portfolio-work-load-more-wrap">
+                  <button
+                    type="button"
+                    className="portfolio-work-load-more"
+                    onClick={() => setShowAllProjects(true)}
+                  >
+                    Load more
+                  </button>
+                </div>
+              ) : null}
+            </>
           )}
         </SiteContainer>
       </section>

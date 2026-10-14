@@ -685,3 +685,128 @@
   }
 
 }
+
+/* Hero skeleton — initial load & slide image swap */
+@keyframes mi-hero-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.mi-hero-skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(226, 232, 240, 0.85) 0%,
+    rgba(248, 250, 252, 0.95) 45%,
+    rgba(226, 232, 240, 0.85) 90%
+  );
+  background-size: 200% 100%;
+  animation: mi-hero-shimmer 1.35s ease-in-out infinite;
+}
+
+.mi-hero-skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  border-radius: inherit;
+  overflow: hidden;
+  background: #e8edf3;
+}
+
+.mi-hero-skeleton-visual {
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+}
+
+.mi-hero-skeleton-copy {
+  position: absolute;
+  left: clamp(1rem, 4vw, 2.5rem);
+  bottom: clamp(5.5rem, 18vh, 8rem);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-width: min(22rem, 78%);
+}
+
+.mi-hero-skeleton-line {
+  display: block;
+  border-radius: 0.5rem;
+  height: 0.75rem;
+}
+
+.mi-hero-skeleton-line--pill {
+  width: 7rem;
+  height: 1.65rem;
+  border-radius: 999px;
+}
+
+.mi-hero-skeleton-line--title {
+  width: 100%;
+  height: 1.35rem;
+}
+
+.mi-hero-skeleton-line--title-short {
+  width: 72%;
+  height: 1.35rem;
+}
+
+.mi-hero-skeleton-aside {
+  position: absolute;
+  top: clamp(4rem, 12vh, 5.5rem);
+  right: clamp(0.75rem, 3vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: min(148px, 38vw);
+}
+
+.mi-hero-skeleton-block {
+  display: block;
+  height: 2.75rem;
+  border-radius: 0.65rem;
+}
+
+.mi-hero-visual-img {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mi-hero-visual-img--ready {
+  opacity: 1;
+}
+
+.mi-hero-copy,
+.mi-hero-aside,
+.mi-hero-action,
+.mi-hero-carousel {
+  transition: opacity 0.35s ease;
+}
+
+.mi-hero-card--loading .mi-hero-copy,
+.mi-hero-card--loading .mi-hero-aside,
+.mi-hero-card--loading .mi-hero-action,
+.mi-hero-card--loading .mi-hero-carousel {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mi-hero-skeleton-shimmer {
+    animation: none;
+    background: #e2e8f0;
+  }
+
+  .mi-hero-visual-img,
+  .mi-hero-copy,
+  .mi-hero-aside,
+  .mi-hero-action,
+  .mi-hero-carousel {
+    transition: none;
+  }
+}

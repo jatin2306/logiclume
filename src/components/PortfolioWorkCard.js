@@ -1,12 +1,14 @@
 import { ArrowUpRight } from "lucide-react";
 import PortfolioThumb from "./PortfolioThumb";
-import { getProjectCardLabel, getProjectHostname } from "@/data/portfolioProjects";
+import { getDeliveryTierLabel, getProjectCardLabel, getProjectHostname } from "@/data/portfolioProjects";
 
 export default function PortfolioWorkCard({ project }) {
   const url = project.url?.trim() || null;
   const host = getProjectHostname(url);
   const categoryLabel = getProjectCardLabel(project);
   const imageFit = project.imageFit === "cover" ? "cover" : "contain";
+  const tier = project.deliveryTier;
+  const tierLabel = tier ? getDeliveryTierLabel(tier) : "";
 
   const media = (
     <>
@@ -45,7 +47,14 @@ export default function PortfolioWorkCard({ project }) {
       </div>
 
       <div className="portfolio-work-card-body">
-        <span className="portfolio-work-card-tag">{categoryLabel}</span>
+        <div className="portfolio-work-card-tags">
+          <span className="portfolio-work-card-tag">{categoryLabel}</span>
+          {tierLabel ? (
+            <span className={`portfolio-work-card-tier portfolio-work-card-tier--t${tier}`}>
+              {tierLabel}
+            </span>
+          ) : null}
+        </div>
         <h2 className="portfolio-work-card-title">{project.title}</h2>
         <p className="portfolio-work-card-client">{project.client}</p>
         {host ? <p className="portfolio-work-card-url">{host}</p> : null}

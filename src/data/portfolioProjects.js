@@ -1,11 +1,15 @@
 import { applyPortfolioProjectMedia } from "./portfolioProjectMedia";
+import { isCuratedPortfolioProject, PORTFOLIO_PUBLIC_COUNT_LABEL } from "./portfolioCurated";
+
+export { PORTFOLIO_PUBLIC_COUNT_LABEL };
 import {
   portfolioFilters,
   portfolioViewModes,
   portfolioServiceFilters,
+  portfolioScaleFilters,
 } from "./portfolioFilterConfig";
 
-export { portfolioFilters, portfolioViewModes, portfolioServiceFilters };
+export { portfolioFilters, portfolioViewModes, portfolioServiceFilters, portfolioScaleFilters };
 
 export const companyPillars = [
   {
@@ -1086,6 +1090,316 @@ export const portfolioProjects = [
     accent: "orange",
     summary: "Verified listings, tenant KYC, and digital rent agreements.",
   },
+  /* ── Tier 4 — SMB, local ops & MVP builds ── */
+  {
+    id: "bakershelf",
+    numericId: 401,
+    title: "BakeShelf",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Retail",
+    filterTags: ["ecommerce"],
+    tags: ["SMB", "Mobile"],
+    client: "Local bakery chain (4 outlets)",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "Pre-order pickup, daily menu push, and simple loyalty stamps for walk-in customers.",
+  },
+  {
+    id: "salonslot",
+    numericId: 402,
+    title: "SalonSlot",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Professional Services",
+    filterTags: ["professional"],
+    tags: ["SMB", "Booking"],
+    client: "Independent salon group",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "Stylist calendars, WhatsApp reminders, and deposit collection for peak weekends.",
+  },
+  {
+    id: "cliniclite",
+    numericId: 403,
+    title: "ClinicLite",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Healthcare",
+    filterTags: ["healthcare"],
+    tags: ["SMB", "Clinic"],
+    client: "Single-specialty clinic",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "OPD slot booking, prescription PDFs, and front-desk check-in on one tablet.",
+  },
+  {
+    id: "tuitiondesk",
+    numericId: 404,
+    title: "TuitionDesk",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Education",
+    filterTags: ["education"],
+    tags: ["SMB", "LMS"],
+    client: "Coaching centre (120 students)",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "Batch schedules, fee reminders, and parent progress snapshots after each test.",
+  },
+  {
+    id: "fleetlite",
+    numericId: 405,
+    title: "FleetLite",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Transportation",
+    filterTags: ["transportation"],
+    tags: ["SMB", "Logistics"],
+    client: "City courier (15 riders)",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "Dispatch board, proof-of-delivery photos, and COD reconciliation for small fleets.",
+  },
+  {
+    id: "menuqr",
+    numericId: 406,
+    title: "MenuQR",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Retail",
+    filterTags: ["ecommerce", "professional"],
+    tags: ["SMB", "Hospitality"],
+    client: "Neighbourhood café collective",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "QR menus, table tabs, and kitchen ticket printing without a full POS overhaul.",
+  },
+  {
+    id: "rentroom",
+    numericId: 407,
+    title: "RentRoom",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Real Estate",
+    filterTags: ["realestate"],
+    tags: ["SMB", "PG"],
+    client: "PG operator (3 properties)",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "Bed availability, rent dues, and maintenance tickets for paying-guest hosts.",
+  },
+  {
+    id: "garagebook",
+    numericId: 408,
+    title: "GarageBook",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Automotive",
+    filterTags: ["automotive"],
+    tags: ["SMB", "Workshop"],
+    client: "Multi-bay garage",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "Job cards, parts estimates, and SMS updates when the vehicle is ready.",
+  },
+  {
+    id: "eventpad",
+    numericId: 409,
+    title: "EventPad",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Entertainment",
+    filterTags: ["entertainment"],
+    tags: ["SMB", "Events"],
+    client: "Community event organiser",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "Registration forms, volunteer shifts, and on-site check-in for local festivals.",
+  },
+  {
+    id: "stocksmall",
+    numericId: 410,
+    title: "StockSmall",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Manufacturing",
+    filterTags: ["manufacturing"],
+    tags: ["SMB", "Inventory"],
+    client: "Light assembly unit",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "SKU counts, low-stock alerts, and vendor PO tracking for a single warehouse.",
+  },
+  {
+    id: "tripmini",
+    numericId: 411,
+    title: "TripMini",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Travel",
+    filterTags: ["travel"],
+    tags: ["SMB", "Tours"],
+    client: "Weekend tour operator",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "Fixed-departure packages, seat maps, and UPI payments for small group tours.",
+  },
+  {
+    id: "ledgerlocal",
+    numericId: 412,
+    title: "LedgerLocal",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Professional Services",
+    filterTags: ["professional", "banking"],
+    tags: ["SMB", "Accounting"],
+    client: "CA practice (SME clients)",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "GST filing checklist, document upload portal, and status updates for SME books.",
+  },
+  {
+    id: "formstack-mvp",
+    numericId: 413,
+    title: "FormStack MVP",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Software Vendor",
+    filterTags: ["software"],
+    tags: ["MVP", "SaaS"],
+    client: "Pre-seed workflow startup",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "Drag-and-drop forms, webhook exports, and a single admin seat — launch in six weeks.",
+  },
+  {
+    id: "notifybot",
+    numericId: 414,
+    title: "NotifyBot",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Software Vendor",
+    filterTags: ["software"],
+    tags: ["MVP", "Automation"],
+    client: "Internal ops team pilot",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "Slack and email alerts wired to spreadsheet triggers for a 20-person team.",
+  },
+  {
+    id: "chitfund",
+    numericId: 415,
+    title: "ChitCircle",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Banking",
+    filterTags: ["banking"],
+    tags: ["SMB", "Finance"],
+    client: "Registered chit fund society",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "Member ledgers, auction rounds, and printable receipts for community savings groups.",
+  },
+  {
+    id: "agriplot",
+    numericId: 416,
+    title: "AgriPlot",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Manufacturing",
+    filterTags: ["manufacturing", "professional"],
+    tags: ["SMB", "Agri"],
+    client: "Farmer producer company",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "Crop intake logs, mandi price snapshots, and payout summaries for member farmers.",
+  },
+  {
+    id: "homeworkhub",
+    numericId: 417,
+    title: "HomeworkHub",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Education",
+    filterTags: ["education"],
+    tags: ["MVP", "Mobile"],
+    client: "School PTA pilot",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "Assignment uploads, teacher feedback, and read receipts for one school campus.",
+  },
+  {
+    id: "vetcall",
+    numericId: 418,
+    title: "VetCall",
+    featuredTier: "grid",
+    deliveryTier: 4,
+    category: "Healthcare",
+    filterTags: ["healthcare"],
+    tags: ["SMB", "Mobile"],
+    client: "Pet clinic pair",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "Tele-consult slots, vaccination reminders, and repeat prescription refills.",
+  },
+  /* ── Tier 3 — mid-market & regional growth ── */
+  {
+    id: "branchcrm",
+    numericId: 421,
+    title: "BranchCRM",
+    featuredTier: "grid",
+    deliveryTier: 3,
+    category: "Professional Services",
+    filterTags: ["professional", "software"],
+    tags: ["Growth", "CRM"],
+    client: "Regional sales org (~80 reps)",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "Pipeline stages, visit check-ins, and manager dashboards for distributed field teams.",
+  },
+  {
+    id: "warepulse",
+    numericId: 422,
+    title: "WarePulse",
+    featuredTier: "grid",
+    deliveryTier: 3,
+    category: "Transportation",
+    filterTags: ["transportation", "ecommerce"],
+    tags: ["Growth", "WMS"],
+    client: "3PL operator (2 warehouses)",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "Inbound ASN, pick-path optimisation, and SLA dashboards for mid-size fulfilment.",
+  },
+  {
+    id: "policydesk",
+    numericId: 423,
+    title: "PolicyDesk",
+    featuredTier: "grid",
+    deliveryTier: 3,
+    category: "Banking",
+    filterTags: ["banking", "professional"],
+    tags: ["Growth", "Insurance"],
+    client: "Insurance broker network",
+    previewAccent: "blue",
+    accent: "blue",
+    summary: "Quote comparison, renewal nudges, and agent commission views for regional brokers.",
+  },
+  {
+    id: "campusops",
+    numericId: 424,
+    title: "CampusOps",
+    featuredTier: "grid",
+    deliveryTier: 3,
+    category: "Education",
+    filterTags: ["education"],
+    tags: ["Growth", "ERP"],
+    client: "Private college group",
+    previewAccent: "orange",
+    accent: "orange",
+    summary: "Admissions funnel, hostel allocation, and exam timetable sync across two campuses.",
+  },
 ];
 
 export const portfolioDeckChapters = [
@@ -1171,17 +1485,47 @@ export function getPortfolioGridProjects() {
     .map(enrichPortfolioProject);
 }
 
-function enrichPortfolioProject(project) {
-  return applyPortfolioProjectMedia(project);
+function inferDeliveryTier(project) {
+  if (project.deliveryTier != null) return project.deliveryTier;
+  if (project.featuredTier === "flagship") return 1;
+  if (project.featuredTier === "spotlight") {
+    return project.url?.startsWith("http") ? 1 : 2;
+  }
+  if (project.numericId >= 401) return 4;
+  if (project.numericId >= 333) return 4;
+  return 3;
 }
 
-/** Ordered list for /portfolio work grid (flagship → spotlight → grid). */
+function enrichPortfolioProject(project) {
+  const deliveryTier = inferDeliveryTier(project);
+  return applyPortfolioProjectMedia({ ...project, deliveryTier });
+}
+
+export function getDeliveryTierLabel(tier) {
+  if (tier === 1) return "Tier 1 · Enterprise";
+  if (tier === 2) return "Tier 2 · Production web";
+  if (tier === 3) return "Tier 3 · Growth";
+  if (tier === 4) return "Tier 4 · SMB / MVP";
+  return "";
+}
+
+export function projectMatchesScaleFilter(project, filterId) {
+  if (filterId === "all") return true;
+  const row = portfolioScaleFilters.find((f) => f.id === filterId);
+  if (!row?.matchTiers) return true;
+  const tier = project.deliveryTier ?? inferDeliveryTier(project);
+  return row.matchTiers.includes(tier);
+}
+
+/** Ordered list for /portfolio work grid (curated ~45, balanced by industry). */
 export function getPortfolioPageProjects() {
   const tierOrder = { flagship: 0, spotlight: 1, grid: 2 };
   return [...portfolioProjects]
+    .filter(isCuratedPortfolioProject)
     .map(enrichPortfolioProject)
     .sort(
       (a, b) =>
+        (a.deliveryTier ?? 3) - (b.deliveryTier ?? 3) ||
         (tierOrder[a.featuredTier] ?? 9) - (tierOrder[b.featuredTier] ?? 9) ||
         (a.deckOrder ?? 99) - (b.deckOrder ?? 99)
     );

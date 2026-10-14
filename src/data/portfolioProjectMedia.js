@@ -127,12 +127,18 @@ export const portfolioProjectMedia = {
 };
 
 export function applyPortfolioProjectMedia(project) {
+  const tier = project.deliveryTier ?? 3;
   const media = portfolioProjectMedia[project.id];
   const primaryTag = project.filterTags?.find((t) => portfolioSectorFallback[t]);
   const fallback = primaryTag ? portfolioSectorFallback[primaryTag] : null;
 
-  const url = project.url ?? media?.url ?? fallback?.url ?? null;
   const imageSrc = project.imageSrc ?? media?.imageSrc ?? fallback?.imageSrc ?? null;
+
+  /** Only tier-1 (and explicit tier-2) rows get outbound links — never third-party reference URLs. */
+  let url = project.url ?? null;
+  if (tier >= 3) {
+    url = null;
+  }
 
   return {
     ...project,

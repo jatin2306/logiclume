@@ -28,3 +28,11 @@ export const portfolioServiceFilters = [
   { id: "ai", label: "AI & Automation", matchTags: ["ai"] },
   { id: "mobile", label: "Mobile Products", matchTags: ["mobile"] },
 ];
+
+/** Delivery scale — tier 1–2 = live / enterprise web; 3 = growth; 4 = SMB & MVP */
+export const portfolioScaleFilters = [
+  { id: "all", label: "All tiers" },
+  { id: "live", label: "Live websites", matchTiers: [1, 2] },
+  { id: "tier3", label: "Tier 3 — Growth", matchTiers: [3] },
+  { id: "tier4", label: "Tier 4 — SMB & MVP", matchTiers: [4] },
+];

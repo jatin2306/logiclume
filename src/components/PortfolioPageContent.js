@@ -136,8 +136,8 @@ export default function PortfolioPageContent() {
             <p className="portfolio-work-lead">
               {totalCount > 0 ? (
                 <>
-                  Explore {PORTFOLIO_PUBLIC_COUNT_LABEL} representative builds — enterprise live sites,
-                  growth products, and SMB / MVP work across every industry below.
+                  Explore {PORTFOLIO_PUBLIC_COUNT_LABEL} representative builds across industries and
+                  capabilities — filter below to find relevant work.
                 </>
               ) : (
                 <>Loading our delivery portfolio…</>

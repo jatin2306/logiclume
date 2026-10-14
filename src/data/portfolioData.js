@@ -1,6 +1,6 @@
-import { getHomeGridProjects } from "./portfolioProjects";
+import { getHomePortfolioProjects } from "./portfolioProjects";
 
-const featuredPortfolio = getHomeGridProjects().map((p) => ({
+const featuredPortfolio = getHomePortfolioProjects().map((p) => ({
   id: p.numericId,
   title: p.title,
   category: p.category,
@@ -8,6 +8,7 @@ const featuredPortfolio = getHomeGridProjects().map((p) => ({
   url: p.url,
   imageSrc: p.imageSrc,
   previewAccent: p.previewAccent,
+  imageFit: p.imageFit,
   featured: false,
 }));
 

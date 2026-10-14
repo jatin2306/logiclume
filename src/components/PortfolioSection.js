@@ -15,7 +15,7 @@ export default function PortfolioSection() {
         <SectionHeading
           label="Portfolio"
           title="Showcasing Products & Digital Transformations"
-          description="Explore more of our work — from enterprise platforms above to apps, dashboards, and websites across industries."
+          description="A sample of recent work — view the full portfolio for more projects across industries and capabilities."
           centered
           twoColor
           coloredWords={2}

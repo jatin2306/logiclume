@@ -1561,8 +1561,17 @@ export function getProjectHostname(url) {
   }
 }
 
+/** @deprecated Use getHomePortfolioProjects */
 export function getHomeGridProjects() {
-  return getPortfolioGridProjects();
+  return getHomePortfolioProjects();
+}
+
+/** Homepage portfolio strip — small curated sample (not full /portfolio catalog). */
+export function getHomePortfolioProjects() {
+  const HOME_LIMIT = 8;
+  return getPortfolioPageProjects()
+    .filter((p) => p.featuredTier !== "flagship")
+    .slice(0, HOME_LIMIT);
 }
 
 export function getDeckProjectsByChapter(chapterId) {

@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Globe } from "lucide-react";
 import PortfolioThumb from "./PortfolioThumb";
 import { getProjectCardLabel, getProjectHostname } from "@/data/portfolioProjects";
 
@@ -7,6 +7,10 @@ export default function PortfolioWorkCard({ project }) {
   const host = getProjectHostname(url);
   const categoryLabel = getProjectCardLabel(project);
   const imageFit = project.imageFit === "cover" ? "cover" : "contain";
+  const accent = project.previewAccent === "orange" ? "orange" : "blue";
+  const showClient = project.client && project.client !== project.title;
+  const chips = (project.tags ?? []).filter((t) => t !== categoryLabel).slice(0, 3);
+
   const media = (
     <>
       <div className="portfolio-work-card-media">
@@ -37,31 +41,62 @@ export default function PortfolioWorkCard({ project }) {
           </div>
         </div>
         {url ? (
-          <span className="portfolio-work-card-arrow" aria-hidden>
-            <ArrowUpRight size={18} strokeWidth={2.25} />
-          </span>
+          <>
+            <span className="portfolio-work-card-live">
+              <i aria-hidden />
+              Live
+            </span>
+            <span className="portfolio-work-card-arrow" aria-hidden>
+              <ArrowUpRight size={18} strokeWidth={2.25} />
+            </span>
+          </>
         ) : null}
       </div>
 
       <div className="portfolio-work-card-body">
         <span className="portfolio-work-card-tag">{categoryLabel}</span>
         <h2 className="portfolio-work-card-title">{project.title}</h2>
-        <p className="portfolio-work-card-client">{project.client}</p>
-        {host ? <p className="portfolio-work-card-url">{host}</p> : null}
+        {showClient ? (
+          <p className="portfolio-work-card-client">Built for {project.client}</p>
+        ) : null}
+        {project.summary ? (
+          <p className="portfolio-work-card-summary">{project.summary}</p>
+        ) : null}
+        {chips.length ? (
+          <ul className="portfolio-work-card-chips">
+            {chips.map((tag) => (
+              <li key={tag}>{tag}</li>
+            ))}
+          </ul>
+        ) : null}
+        {url ? (
+          <div className="portfolio-work-card-footer">
+            <span className="portfolio-work-card-url">
+              <Globe size={13} strokeWidth={2.25} aria-hidden />
+              {host}
+            </span>
+            <span className="portfolio-work-card-cta">
+              View project
+              <ArrowUpRight size={15} strokeWidth={2.5} aria-hidden />
+            </span>
+          </div>
+        ) : null}
       </div>
     </>
   );
 
+  const className = `portfolio-work-card portfolio-work-card--${accent}`;
+
   if (!url) {
     return (
-      <article className="portfolio-work-card portfolio-work-card--static">
+      <article className={`${className} portfolio-work-card--static`}>
         <div className="portfolio-work-card-link">{media}</div>
       </article>
     );
   }
 
   return (
-    <article className="portfolio-work-card group">
+    <article className={`${className} group`}>
       <a
         href={url}
         target="_blank"

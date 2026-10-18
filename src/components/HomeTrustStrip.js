@@ -4,16 +4,18 @@ import Image from "next/image";
 import { Building2, Globe2, Sparkles } from "lucide-react";
 
 const marqueeItems = [
+  { id: "myclinicdesk", name: "MyClinicDesk", image: "/images/portfolio/myclinicdesk.png" },
+  { id: "altuwell", name: "AltuWell", image: "/images/portfolio/altuwell.png" },
+  { id: "careadjustor", name: "CareAdjustor", image: "/images/portfolio/careadjustor.png" },
+  { id: "siderina", name: "Siderina", image: "/images/portfolio/siderina.png" },
+  { id: "stillra", name: "Stillra", image: "/images/portfolio/stillra.png" },
   { id: "idfc", name: "IDFC Bank", image: "/images/portfolio/first-rewards.jpg" },
   { id: "amex", name: "American Express", image: "/images/portfolio/shopwise-home.png" },
   { id: "tr-capital", name: "TR Capital", image: "/images/portfolio/tr-capital.png" },
-  { id: "kayzen", name: "Kayzen", image: "/images/portfolio/kayzen.webp" },
-  { id: "pharmatop", name: "Pharmatop", image: "/images/portfolio/pharmatop.webp" },
   { id: "wasalt", name: "Wasalt", image: "/images/portfolio/wasalt-hero.png" },
   { id: "risk-roses", name: "Risk & Roses", image: "/images/portfolio/risk-and-roses.png" },
   { id: "goldsky", name: "Goldsky", image: "/images/portfolio/goldsky.png" },
   { id: "plutheia", name: "Plutheia", image: "/images/portfolio/plutheia-pricing.png" },
-  { id: "arcx", name: "Arcx", image: "/images/portfolio/arcx.webp" },
   { id: "agarwal", name: "Agarwal", image: "/images/portfolio/agarwal-home.png" },
   { id: "motilal", name: "Motilal Oswal", icon: Building2 },
   { id: "global", name: "Global startups", icon: Globe2 },

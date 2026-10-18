@@ -59,9 +59,6 @@ export const portfolioSectorFallback = {
 };
 
 export const portfolioProjectMedia = {
-  kayzen: { url: "https://www.practo.com/", imageSrc: thumb("kayzen") },
-  arcx: { url: "https://www.fitbit.com/global/us/home", imageSrc: thumb("arcx") },
-  pharmatop: { url: "https://www.medscape.com/", imageSrc: thumb("pharmatop") },
   drivepulse: { url: "https://www.carwale.com/", imageSrc: thumb("drivepulse") },
   "autovista-dealer": { url: "https://www.cars24.com/", imageSrc: thumb("autovista-dealer") },
   chargegrid: { url: "https://www.chargepoint.com/", imageSrc: thumb("chargegrid") },
@@ -70,9 +67,6 @@ export const portfolioProjectMedia = {
   creatorhub: { url: "https://www.patreon.com/", imageSrc: thumb("creatorhub") },
   cartlane: { url: "https://www.myntra.com/", imageSrc: thumb("cartlane") },
   marketmint: { url: "https://www.indiamart.com/", imageSrc: thumb("marketmint") },
-  carebridge: { url: "https://www.apollo247.com/", imageSrc: thumb("carebridge") },
-  medsync: { url: "https://www.1mg.com/", imageSrc: thumb("medsync") },
-  wellpath: { url: "https://www.headspace.com/", imageSrc: thumb("wellpath") },
   fleetroute: { url: "https://www.shiprocket.in/", imageSrc: thumb("fleetroute") },
   cargoledger: { url: "https://www.freightos.com/", imageSrc: thumb("cargoledger") },
   ridemetro: { url: "https://www.olacabs.com/", imageSrc: thumb("ridemetro") },
@@ -103,8 +97,6 @@ export const portfolioProjectMedia = {
   gamenexus: { url: "https://store.steampowered.com/", imageSrc: thumb("gamenexus") },
   quickcart: { url: "https://www.bigbasket.com/", imageSrc: thumb("quickcart") },
   grocernow: { url: "https://www.blinkit.com/", imageSrc: thumb("grocernow") },
-  vitalsync: { url: "https://www.portea.com/", imageSrc: thumb("vitalsync") },
-  clinicqueue: { url: "https://www.lybrate.com/", imageSrc: thumb("clinicqueue") },
   portflow: { url: "https://www.delhivery.com/", imageSrc: thumb("portflow") },
   railmate: { url: "https://www.irctc.co.in/", imageSrc: thumb("railmate") },
   smartplant: { url: "https://www.rockwellautomation.com/", imageSrc: thumb("smartplant") },

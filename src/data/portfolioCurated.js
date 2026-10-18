@@ -2,21 +2,23 @@
  * Public portfolio catalog (~45 projects), balanced across industries.
  * Full list remains in portfolioProjects.js for homepage flagships / internal use.
  */
-export const PORTFOLIO_PUBLIC_COUNT_LABEL = "45+";
+export const PORTFOLIO_PUBLIC_COUNT_LABEL = "40+";
 
 export const CURATED_PORTFOLIO_IDS = new Set([
   /* Tier 1 — enterprise & live web */
+  "myclinicdesk",
+  "altuwell",
+  "careadjustor",
+  "siderina",
+  "stillra",
   "first-rewards",
   "shopwise",
   "risk-and-roses",
   "tr-capital",
   "plutheia",
   "goldsky",
-  "kayzen",
   "propti",
   /* Spotlight / grid with real assets */
-  "arcx",
-  "pharmatop",
   "agarwal-estates",
   "wasalt",
   /* Tier 3 — growth (2 per vertical) */
@@ -26,8 +28,6 @@ export const CURATED_PORTFOLIO_IDS = new Set([
   "streamvault",
   "cartlane",
   "marketmint",
-  "carebridge",
-  "medsync",
   "fleetroute",
   "ridemetro",
   "factorypulse",
@@ -46,7 +46,6 @@ export const CURATED_PORTFOLIO_IDS = new Set([
   "rentgrid",
   /* Tier 4 — SMB / MVP samples */
   "garagebook",
-  "cliniclite",
   "bakershelf",
   "formstack-mvp",
   "tuitiondesk",

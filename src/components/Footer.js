@@ -71,7 +71,6 @@ const socialLinks = [
 
 function officeRegionTitle(office) {
   if (office.id === primaryOffice.id) return "India";
-  if (office.id === "uae") return "United Arab Emirates";
   return office.label.replace(" — Head office", "");
 }
 
@@ -193,7 +192,7 @@ export default function Footer() {
 
           <div className="site-footer-bar-badge" aria-label="Client delivery">
             <span className="site-footer-bar-badge-mark" aria-hidden>
-              140+
+              80+
             </span>
             <span className="site-footer-bar-badge-text">Projects delivered</span>
           </div>

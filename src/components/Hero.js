@@ -9,8 +9,8 @@ import "./mi-hero.css";
 
 const stats = [
   { value: "10+", label: "Years' Experience" },
-  { value: "140+", label: "Projects Delivered" },
-  { value: "100+", label: "In-house Tech Specialists" },
+  { value: "80+", label: "Projects Delivered" },
+  { value: "150+", label: "In-house Tech Specialists" },
 ];
 
 /** Hero aside — what DeopersIndia actually delivers (no third-party partner claims). */

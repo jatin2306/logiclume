@@ -9,7 +9,7 @@ const awards = [
     icon: Trophy,
     title: "Proven Track Record",
     description:
-      "50+ successful projects delivered across web, mobile, and enterprise software with consistent client satisfaction.",
+      "80+ successful projects delivered across web, mobile, and enterprise software with consistent client satisfaction.",
     badge: "blue",
   },
   {

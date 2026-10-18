@@ -24,6 +24,6 @@ export const officePhotos = [
     id: "reception",
     src: "/images/team/office/reception.png",
     alt: "DeopersIndia office reception area",
-    caption: "Noida HQ · B-Block, Sector 62",
+    caption: "Noida HQ · Noida One, Sector 62",
   },
 ];

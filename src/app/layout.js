@@ -77,7 +77,7 @@ export default function RootLayout({ children }) {
       "DeopersIndia is a modern IT solutions company delivering web development, mobile apps, UI/UX design, and digital marketing services.",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "8, B-Block, Sector 62",
+      streetAddress: "Noida One, B-8, Block B, Industrial Area, Sector 62",
       addressLocality: "Noida",
       addressRegion: "Uttar Pradesh",
       postalCode: "201309",

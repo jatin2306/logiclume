@@ -34,7 +34,7 @@ export default function AboutPageContent() {
             </h1>
             <p className="about-hero-lead">
               We help businesses turn complex technology challenges into scalable digital products
-              and lasting business value — from Noida to Singapore and the UAE.
+              and lasting business value — from Noida to New York and London.
             </p>
           </SiteContainer>
         </section>

@@ -2,15 +2,15 @@
 
 export const aboutStats = [
   { value: "10+", label: "Years in business" },
-  { value: "140+", label: "Projects delivered" },
-  { value: "100+", label: "In-house specialists" },
+  { value: "80+", label: "Projects delivered" },
+  { value: "150+", label: "In-house specialists" },
   { value: "3", label: "Global offices" },
 ];
 
 export const aboutStory = {
   heading: "Building software that solves real business problems",
   paragraphs: [
-    "DeopersIndia is a product engineering company headquartered in Noida, India, with delivery hubs in Singapore and the UAE. We help organizations build, modernize, and scale web and mobile applications, custom software, AI-powered products, and digital experiences.",
+    "DeopersIndia is a product engineering company headquartered in Noida, India, with offices in the USA and the United Kingdom. We help organizations build, modernize, and scale web and mobile applications, custom software, AI-powered products, and digital experiences.",
     "From fintech and rewards platforms to e-commerce, health, and property tech, our squads combine product thinking with hands-on engineering — discovery through launch and long-term evolution.",
   ],
 };
@@ -52,7 +52,7 @@ export const aboutValues = [
 export const aboutFaqs = [
   {
     q: "Where is DeopersIndia headquartered?",
-    a: "Our head office is in Noida, Uttar Pradesh (Sector 62). We also support clients from Singapore and UAE delivery hubs.",
+    a: "Our head office is at Noida One, Sector 62, Noida, Uttar Pradesh. We also support clients from our offices in New York (USA) and London (United Kingdom).",
   },
   {
     q: "What types of solutions do you build?",

@@ -53,7 +53,7 @@ export default function HeroProductVisual() {
       </div>
 
       <div className="dp-hero-product-float dp-hero-product-float--tl">
-        <span className="dp-hero-product-float-val">140+</span>
+        <span className="dp-hero-product-float-val">80+</span>
         <span className="dp-hero-product-float-lbl">Projects shipped</span>
       </div>
       <div className="dp-hero-product-float dp-hero-product-float--br">

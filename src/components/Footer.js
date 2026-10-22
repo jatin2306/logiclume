@@ -20,7 +20,7 @@ const serviceLinks = [
 ];
 
 const solutionLinks = [
-  { label: "Dedicated Development Teams", href: "/#services" },
+  { label: "Dedicated Teams", href: "/#services" },
   { label: "AI & Automation", href: "/#services" },
   { label: "Digital Transformation", href: "/#services" },
   { label: "Cloud & DevOps", href: "/#services" },
@@ -29,12 +29,12 @@ const solutionLinks = [
 ];
 
 const industryLinks = [
-  { label: "Healthcare & Wellness", href: "/#industries" },
+  { label: "Healthcare", href: "/#industries" },
   { label: "Retail & E-Commerce", href: "/#industries" },
-  { label: "Transport & Mobility", href: "/#industries" },
-  { label: "Education & EdTech", href: "/#industries" },
-  { label: "Real Estate & PropTech", href: "/#industries" },
-  { label: "Travel & Tourism", href: "/#industries" },
+  { label: "Transport", href: "/#industries" },
+  { label: "Education", href: "/#industries" },
+  { label: "Real Estate", href: "/#industries" },
+  { label: "Travel", href: "/#industries" },
 ];
 
 const companyLinks = [
@@ -80,18 +80,26 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <SiteContainer className="site-footer-shell">
-        <section className="site-footer-offices" aria-labelledby="footer-offices-title">
-          <div className="site-footer-offices-top">
-            <Link href="/" className="site-footer-offices-logo" aria-label="DeopersIndia home">
+        <div className="site-footer-main">
+          <div className="site-footer-brand">
+            <Link href="/" className="site-footer-logo" aria-label="DeopersIndia home">
               <Image
                 src="/images/logo.png"
                 alt="DeopersIndia"
-                width={168}
-                height={44}
-                className="site-footer-offices-logo-img"
+                width={160}
+                height={42}
+                className="site-footer-logo-img"
               />
             </Link>
-            <div className="site-footer-offices-social" aria-label="Social media">
+            <p className="site-footer-tagline">
+              Product engineering for startups and enterprises — web, mobile, AI,
+              and platforms.
+            </p>
+            <div className="site-footer-contact">
+              <a href="tel:+919758403169">+91 97584 03169</a>
+              <a href="mailto:info@deopersindia.com">info@deopersindia.com</a>
+            </div>
+            <div className="site-footer-social" aria-label="Social media">
               {socialLinks.map(({ href, icon: Icon, label }) => (
                 <a
                   key={href}
@@ -99,43 +107,16 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="site-footer-offices-social-link"
+                  className="site-footer-social-link"
                 >
-                  <Icon size={15} />
+                  <Icon size={14} />
                 </a>
               ))}
             </div>
           </div>
 
-          <div className="site-footer-offices-divider" role="presentation" />
-
-          <div className="site-footer-offices-body">
-            <h2 id="footer-offices-title" className="site-footer-offices-title">
-              Our offices
-            </h2>
-            <ul className="site-footer-offices-grid">
-              {allOffices.map((office) => (
-                <li key={office.id} className="site-footer-offices-item">
-                  <h3 className="site-footer-offices-region">
-                    {officeRegionTitle(office)}
-                    {office.id === primaryOffice.id ? (
-                      <span className="site-footer-offices-hq"> · HQ</span>
-                    ) : null}
-                  </h3>
-                  <p className="site-footer-offices-address">
-                    {office.line1}
-                    <br />
-                    {office.line2}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <div className="site-footer-links-band">
-          <div className="site-footer-links-inner">
-            <nav className="site-footer-col" aria-label="Services">
+          <nav className="site-footer-nav" aria-label="Footer">
+            <div className="site-footer-col">
               <h3 className="site-footer-col-heading">Services</h3>
               <ul className="site-footer-col-list">
                 {serviceLinks.map((link) => (
@@ -144,9 +125,9 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </nav>
+            </div>
 
-            <nav className="site-footer-col" aria-label="Solutions">
+            <div className="site-footer-col">
               <h3 className="site-footer-col-heading">Solutions</h3>
               <ul className="site-footer-col-list">
                 {solutionLinks.map((link) => (
@@ -155,9 +136,9 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </nav>
+            </div>
 
-            <nav className="site-footer-col" aria-label="Industries">
+            <div className="site-footer-col">
               <h3 className="site-footer-col-heading">Industries</h3>
               <ul className="site-footer-col-list">
                 {industryLinks.map((link) => (
@@ -166,9 +147,9 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </nav>
+            </div>
 
-            <nav className="site-footer-col" aria-label="Company">
+            <div className="site-footer-col">
               <h3 className="site-footer-col-heading">Company</h3>
               <ul className="site-footer-col-list">
                 {companyLinks.map((link) => (
@@ -177,30 +158,41 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </nav>
-          </div>
+            </div>
+          </nav>
         </div>
+
+        <section className="site-footer-offices" aria-labelledby="footer-offices-title">
+          <h2 id="footer-offices-title" className="site-footer-offices-label">
+            Offices
+          </h2>
+          <ul className="site-footer-offices-list">
+            {allOffices.map((office) => {
+              const isHq = office.id === primaryOffice.id;
+              return (
+                <li key={office.id}>
+                  <p className="site-footer-office-region">
+                    {officeRegionTitle(office)}
+                    {isHq ? <span> HQ</span> : null}
+                  </p>
+                  <p className="site-footer-office-address">
+                    {office.line1}, {office.line2}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
 
         <div className="site-footer-bar">
           <p className="site-footer-bar-copy">
-            © {currentYear}{" "}
-            <span className="site-footer-bar-brand">
-              Deopers<span className="site-footer-bar-accent">India</span>
-            </span>
-            . All rights reserved.
+            © {currentYear} Deopers<span>India</span>. All rights reserved.
           </p>
-
-          <div className="site-footer-bar-badge" aria-label="Client delivery">
-            <span className="site-footer-bar-badge-mark" aria-hidden>
-              80+
-            </span>
-            <span className="site-footer-bar-badge-text">Projects delivered</span>
-          </div>
-
+          <p className="site-footer-bar-meta">80+ projects · 150+ team</p>
           <nav className="site-footer-bar-legal" aria-label="Legal">
+            <Link href="/privacy-policy">Privacy</Link>
+            <Link href="/terms-of-service">Terms</Link>
             <Link href="/#contact">Contact</Link>
-            <Link href="/privacy-policy">Privacy Policy</Link>
-            <Link href="/terms-of-service">Terms of Service</Link>
           </nav>
         </div>
       </SiteContainer>

@@ -396,10 +396,69 @@ export const portfolioProjects = [
     mosaicSize: "wide",
   },
   {
+    id: "lease-attendant",
+    numericId: 205,
+    title: "Lease Attendant",
+    featuredTier: "spotlight",
+    deliveryTier: 1,
+    category: "Real Estate",
+    filterTags: ["realestate", "software"],
+    tags: ["Real Estate", "AI", "Document Parsing", "Workflow Automation"],
+    client: "Protech",
+    url: "https://www.insightdesigns.com/case-studies/lease-attendant/",
+    previewAccent: "blue",
+    accent: "blue",
+    description:
+      "Commercial lease platform that turns uploaded PDFs into structured records — dates, rent schedules, obligations, and property details — so landlords can onboard and manage portfolios without manual data entry.",
+    whatWeDid:
+      "We built an upload-and-extract workflow with Google Gemini, a flexible rent-schedule schema that handles inconsistent lease formats, and AI-assisted reminders and messaging for landlords and tenants.",
+    deliverables: [
+      "PDF upload and Gemini lease extraction",
+      "Flexible rent-schedule schema for variable lease structures",
+      "Automated reminders and AI-assisted landlord and tenant messaging",
+    ],
+    summary:
+      "AI lease onboarding for commercial property teams — upload a PDF, extract terms and rent schedules, and automate reminders and tenant messaging.",
+    spotlightLabel: "Real Estate · AI",
+    deckChapter: "property",
+    deckOrder: 0,
+    mosaicSize: "wide",
+  },
+  {
+    id: "dealsheet-ai",
+    numericId: 208,
+    title: "DealSheet AI",
+    featuredTier: "spotlight",
+    deliveryTier: 1,
+    category: "Real Estate",
+    filterTags: ["realestate", "mobile"],
+    tags: ["Real Estate", "AI", "iOS", "Investment Analysis"],
+    client: null,
+    url: "https://dealsheetai.com/",
+    previewAccent: "orange",
+    accent: "orange",
+    description:
+      "iOS app for UK property investors that turns a listing link, screenshot, or rough notes into a full deal analysis — yield, ROI, stamp duty, and Section 24 — across seven investment strategies.",
+    whatWeDid:
+      "We built smart intake from property links, screenshots, and notes, strategy-specific UK tax and finance calculations, side-by-side deal comparison, and one-page PDF export.",
+    deliverables: [
+      "Listing, screenshot, and notes intake",
+      "Seven UK strategies with SDLT and Section 24",
+      "Deal comparison, AI risk notes, and PDF export",
+    ],
+    summary:
+      "UK property investment app — paste a listing and get yield, tax, and strategy analysis for buy-to-let, HMO, BRRRR, and more.",
+    spotlightLabel: "Real Estate · AI",
+    deckChapter: "property",
+    deckOrder: 0,
+    mosaicSize: "wide",
+  },
+  {
     id: "agarwal-estates",
     numericId: 206,
     title: "Agarwal Estates",
     featuredTier: "grid",
+    deliveryTier: 2,
     category: "Website",
     filterTags: ["realestate"],
     tags: ["Real Estate", "Marketing Site"],
@@ -419,6 +478,7 @@ export const portfolioProjects = [
     numericId: 207,
     title: "Wasalt",
     featuredTier: "grid",
+    deliveryTier: 2,
     category: "E-Commerce",
     filterTags: ["ecommerce", "realestate", "travel"],
     tags: ["Marketplace", "Real Estate"],
@@ -1451,7 +1511,7 @@ export const portfolioDeckChapters = [
     label: "Property",
     title: "Real estate & discovery",
     blurb:
-      "Immersive property previews, marketing sites, and marketplace front-ends for buyers and developers.",
+      "Immersive property previews, marketing sites, marketplace front-ends, and AI lease workflows for buyers, landlords, and developers.",
   },
 ];
 

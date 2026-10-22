@@ -112,18 +112,20 @@ export default function ContactForm() {
                         <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
                           Global offices
                         </p>
-                        <ul className="mt-3 space-y-3">
-                          {allOffices.map((office) => (
-                            <li key={office.id}>
-                              <p className="text-xs font-bold text-[var(--color-primary)]">{office.label}</p>
-                              <p className="text-sm text-[var(--color-text)] font-medium leading-snug mt-0.5">
-                                {office.line1}
-                                <br />
-                                {office.line2}
-                              </p>
-                            </li>
-                          ))}
-                        </ul>
+                        <p className="mt-2 text-sm font-semibold text-[var(--color-text)] leading-relaxed">
+                          {allOffices
+                            .map((office) =>
+                              office.id === "noida"
+                                ? "India (HQ)"
+                                : office.id === "usa"
+                                  ? "USA"
+                                  : "United Kingdom"
+                            )
+                            .join(" · ")}
+                        </p>
+                        <p className="mt-1 text-xs text-[var(--color-text-muted)]">
+                          Full addresses in the footer below
+                        </p>
                       </div>
                     </div>
                   </div>

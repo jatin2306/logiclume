@@ -18,6 +18,8 @@ export const CURATED_PORTFOLIO_IDS = new Set([
   "plutheia",
   "goldsky",
   "propti",
+  "lease-attendant",
+  "dealsheet-ai",
   /* Spotlight / grid with real assets */
   "agarwal-estates",
   "wasalt",

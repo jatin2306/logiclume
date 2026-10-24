@@ -1,6 +1,11 @@
-export default function PortfolioWorkCardSkeleton() {
+export default function PortfolioWorkCardSkeleton({ detailed = false }) {
   return (
-    <article className="portfolio-work-card portfolio-work-card--skeleton" aria-hidden="true">
+    <article
+      className={`portfolio-work-card portfolio-work-card--skeleton${
+        detailed ? " portfolio-work-card--detailed" : ""
+      }`}
+      aria-hidden="true"
+    >
       <div className="portfolio-work-card-link">
         <div className="portfolio-work-card-media">
           <div className="portfolio-work-browser">
@@ -20,12 +25,16 @@ export default function PortfolioWorkCardSkeleton() {
   );
 }
 
-export function PortfolioWorkGridSkeleton({ count = 9 }) {
+export function PortfolioWorkGridSkeleton({ count = 9, pair = false }) {
   return (
-    <ul className="portfolio-work-grid" aria-busy="true" aria-label="Loading projects">
+    <ul
+      className={`portfolio-work-grid${pair ? " portfolio-work-grid--pair" : ""}`}
+      aria-busy="true"
+      aria-label="Loading projects"
+    >
       {Array.from({ length: count }, (_, i) => (
         <li key={i} className="portfolio-work-grid-cell">
-          <PortfolioWorkCardSkeleton />
+          <PortfolioWorkCardSkeleton detailed={pair} />
         </li>
       ))}
     </ul>

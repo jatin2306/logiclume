@@ -14,7 +14,6 @@ import {
   portfolioServiceFilters,
   projectMatchesIndustryFilter,
   projectMatchesServiceFilter,
-  PORTFOLIO_PUBLIC_COUNT_LABEL,
 } from "@/data/portfolioProjects";
 import {
   defaultPortfolioFilterState,
@@ -26,8 +25,13 @@ import "./portfolio-page.css";
 
 const industryFilters = portfolioFilters.filter((f) => f.id !== "all");
 const GRID_LOAD_MIN_MS = 320;
-const SKELETON_COUNT = 9;
-const INITIAL_VISIBLE_COUNT = 9;
+const SKELETON_COUNT = 8;
+
+/** Real client work — same set the homepage treats as best projects, not sample cards. */
+function isBestProject(project) {
+  if (project.featuredTier === "flagship" || project.featuredTier === "spotlight") return true;
+  return typeof project.imageSrc === "string" && project.imageSrc.startsWith("/images/");
+}
 
 export default function PortfolioPageContent() {
   const router = useRouter();
@@ -36,7 +40,6 @@ export default function PortfolioPageContent() {
   const [filters, setFilters] = useState(defaultPortfolioFilterState);
   const [allProjects, setAllProjects] = useState(null);
   const [gridLoading, setGridLoading] = useState(true);
-  const [showAllProjects, setShowAllProjects] = useState(false);
 
   const segments = params?.segments;
 
@@ -83,13 +86,9 @@ export default function PortfolioPageContent() {
     [router]
   );
 
-  useEffect(() => {
-    setShowAllProjects(false);
-  }, [viewMode, industryFilter, serviceFilter]);
-
   const projects = useMemo(() => {
     if (!allProjects) return [];
-    let list = allProjects;
+    let list = allProjects.filter(isBestProject);
     if (viewMode === "industries" && industryFilter !== "all") {
       list = list.filter((p) => projectMatchesIndustryFilter(p, industryFilter));
     }
@@ -109,14 +108,6 @@ export default function PortfolioPageContent() {
   const activeCapabilityLabel =
     portfolioServiceFilters.find((f) => f.id === serviceFilter)?.label ?? "All capabilities";
 
-  const visibleProjects = useMemo(() => {
-    if (showAllProjects) return projects;
-    return projects.slice(0, INITIAL_VISIBLE_COUNT);
-  }, [projects, showAllProjects]);
-
-  const hiddenCount = Math.max(0, projects.length - visibleProjects.length);
-  const canLoadMore = !showAllProjects && hiddenCount > 0;
-
   const showFilterHeading =
     !gridLoading &&
     ((viewMode === "industries" && industryFilter !== "all") ||
@@ -130,17 +121,17 @@ export default function PortfolioPageContent() {
       <div className="portfolio-work-hero-band">
         <section className="portfolio-work-hero" aria-labelledby="portfolio-work-title">
           <SiteContainer className="portfolio-work-hero-inner">
+            <span className="section-label-light portfolio-work-kicker">Portfolio</span>
             <h1 id="portfolio-work-title" className="portfolio-work-title">
-              Products &amp; platforms we&apos;ve shipped
+              Our Best <span className="portfolio-work-title-accent">Projects</span>
             </h1>
             <p className="portfolio-work-lead">
               {totalCount > 0 ? (
                 <>
-                  Explore {PORTFOLIO_PUBLIC_COUNT_LABEL} representative builds across industries and
-                  capabilities — filter below to find relevant work.
+                  Selected client products and platforms, from healthcare and fintech to real estate and AI.
                 </>
               ) : (
-                <>Loading our delivery portfolio…</>
+                <>Loading our best projects…</>
               )}
             </p>
           </SiteContainer>
@@ -186,31 +177,20 @@ export default function PortfolioPageContent() {
             </p>
           ) : null}
           {gridLoading ? (
-            <PortfolioWorkGridSkeleton count={SKELETON_COUNT} />
+            <PortfolioWorkGridSkeleton count={SKELETON_COUNT} pair />
           ) : projects.length === 0 ? (
             <p className="portfolio-work-empty">
               Nothing matched that filter. Try &ldquo;All projects&rdquo; or another option.
             </p>
           ) : (
             <>
-              <ul className="portfolio-work-grid">
-                {visibleProjects.map((project) => (
+              <ul className="portfolio-work-grid portfolio-work-grid--pair">
+                {projects.map((project) => (
                   <li key={project.id} className="portfolio-work-grid-cell">
-                    <PortfolioWorkCard project={project} />
+                    <PortfolioWorkCard project={project} detailed />
                   </li>
                 ))}
               </ul>
-              {canLoadMore ? (
-                <div className="portfolio-work-load-more-wrap">
-                  <button
-                    type="button"
-                    className="portfolio-work-load-more"
-                    onClick={() => setShowAllProjects(true)}
-                  >
-                    Load more
-                  </button>
-                </div>
-              ) : null}
             </>
           )}
         </SiteContainer>
@@ -233,7 +213,7 @@ export default function PortfolioPageContent() {
                 Book a call
                 <ArrowUpRight size={16} aria-hidden />
               </Button>
-              <Link href="/#contact" className="portfolio-work-cta-link">
+              <Link href="/contact-us" className="portfolio-work-cta-link">
                 Contact us
               </Link>
             </div>

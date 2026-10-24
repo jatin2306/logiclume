@@ -14,7 +14,6 @@ import PortfolioSection from "@/components/PortfolioSection";
 import TeamMembers from "@/components/TeamMember";
 import AwardsSection from "@/components/AwardsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
   return (
@@ -73,12 +72,6 @@ export default function Home() {
       <HomeScrollReveal>
         <section id="testimonials">
           <TestimonialsSection />
-        </section>
-      </HomeScrollReveal>
-
-      <HomeScrollReveal>
-        <section id="contact">
-          <ContactForm />
         </section>
       </HomeScrollReveal>
     </>

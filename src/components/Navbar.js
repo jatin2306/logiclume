@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Sparkles, ChevronDown } from "lucide-react";
 import NavMegaPanel from "./NavMegaPanel";
+import ContactForm from "./ContactForm";
 import "./site-header.css";
 
 const navLinks = [
@@ -14,10 +16,19 @@ const navLinks = [
   { id: "services", label: "Services", href: "/#services", mega: "services" },
   { id: "industries", label: "Industries", href: "/#industries" },
   { id: "about", label: "About", href: "/about-us", isRoute: true },
-  { id: "portfolio", label: "Work", href: "/portfolio", isRoute: true },
+  { id: "portfolio", label: "Work", href: "/work", isRoute: true },
 ];
 
-const sectionIds = ["home", "contact", "services", "industries", "about", "team", "testimonials"];
+const sectionIds = ["home", "services", "industries", "about", "team", "testimonials"];
+const CONTACT_DISMISS_KEY = "deopers-work-contact-dismissed";
+
+function contactAlreadyDismissed() {
+  try {
+    return window.localStorage.getItem(CONTACT_DISMISS_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -25,10 +36,11 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [megaMenu, setMegaMenu] = useState(null);
+  const [contactOpen, setContactOpen] = useState(false);
 
   const updateActiveSection = useCallback(() => {
     const offset = 100;
-    let current = pathname === "/portfolio" ? "" : "home";
+    let current = pathname === "/work" || pathname.startsWith("/work/") ? "" : "home";
     for (const id of sectionIds) {
       const el = document.getElementById(id);
       if (el && el.getBoundingClientRect().top <= offset) current = id;
@@ -47,9 +59,39 @@ export default function Navbar() {
   }, [updateActiveSection]);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen || megaMenu ? "hidden" : "";
+    document.body.style.overflow = mobileOpen || megaMenu || contactOpen ? "hidden" : "";
+    document.documentElement.style.overflow = contactOpen ? "hidden" : "";
     document.documentElement.classList.toggle("dp-nav-mega-open", Boolean(megaMenu));
-  }, [mobileOpen, megaMenu]);
+  }, [mobileOpen, megaMenu, contactOpen]);
+
+  const closeContact = useCallback(() => {
+    try {
+      window.localStorage.setItem(CONTACT_DISMISS_KEY, "1");
+    } catch {
+      /* storage unavailable — closing still sticks for this visit */
+    }
+    setContactOpen(false);
+  }, []);
+
+  useEffect(() => {
+    const onWork = pathname === "/work" || pathname.startsWith("/work/");
+    if (!onWork || contactAlreadyDismissed()) {
+      setContactOpen(false);
+      return;
+    }
+    setMobileOpen(false);
+    setMegaMenu(null);
+    setContactOpen(true);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!contactOpen) return undefined;
+    const onKey = (event) => {
+      if (event.key === "Escape") closeContact();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [contactOpen, closeContact]);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -62,12 +104,16 @@ export default function Navbar() {
     "site-header",
     scrolled ? "site-header--scrolled" : "",
     megaMenu ? "site-header--mega-open" : "",
+    contactOpen ? "site-header--contact-lock" : "",
   ]
     .filter(Boolean)
     .join(" ");
 
   const linkActive = (link) => {
-    if (link.isRoute) return pathname === link.href;
+    if (link.isRoute) {
+      if (link.href === "/work") return pathname === "/work" || pathname.startsWith("/work/");
+      return pathname === link.href;
+    }
     const section = link.href.replace("/#", "").replace("#", "");
     return activeSection === section;
   };
@@ -186,17 +232,18 @@ export default function Navbar() {
                     <Link href="/book-a-call" className="site-header-btn-outline" onClick={closeMegaMenu}>
                       Book A Call
                     </Link>
-                    <button
-                      type="button"
+                    <Link
+                      href="/contact-us"
                       className={`site-header-btn-gradient ${megaMenu === "contact" ? "site-header-btn-gradient--open" : ""}`}
                       onMouseEnter={() => setMegaMenu("contact")}
-                      onClick={(e) => handleMegaLink(e, "contact")}
+                      onClick={closeMegaMenu}
                       aria-expanded={megaMenu === "contact"}
                       aria-haspopup="true"
+                      aria-current={pathname === "/contact-us" ? "page" : undefined}
                     >
                       Contact Us
                       <ChevronDown size={14} strokeWidth={2.5} className="site-header-chevron" />
-                    </button>
+                    </Link>
                   </div>
 
                   <button
@@ -248,8 +295,8 @@ export default function Navbar() {
           <nav className="px-4 py-4 flex flex-col gap-1">
             {navLinks.map((link) => {
               const active = linkActive(link);
-              const baseClass = `block rounded-lg px-4 py-3 text-[0.9375rem] font-medium ${
-                active ? "bg-slate-100 text-[var(--color-primary)]" : "text-slate-800 hover:bg-slate-50"
+              const baseClass = `site-header-mobile-link block w-full rounded-lg px-4 py-3 text-left text-[0.9375rem] font-medium ${
+                active ? "site-header-mobile-link--active" : ""
               }`;
               const aiClass = `site-header-link site-header-link--ai flex items-center gap-2 rounded-full px-4 py-2.5 ${
                 active ? "text-[var(--color-primary)]" : ""
@@ -297,16 +344,40 @@ export default function Navbar() {
             >
               Book A Call
             </Link>
-            <a
-              href="/#contact"
+            <Link
+              href="/contact-us"
               className="site-header-btn-gradient w-full justify-center"
               onClick={() => setMobileOpen(false)}
             >
               Contact Us
-            </a>
+            </Link>
           </div>
         </aside>
       </div>
+      {contactOpen
+        ? createPortal(
+            <div className="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+              <button
+                type="button"
+                className="contact-modal-backdrop"
+                aria-label="Close contact form"
+                onClick={closeContact}
+              />
+              <div className="contact-modal-dialog">
+                <button
+                  type="button"
+                  className="contact-modal-close"
+                  aria-label="Close"
+                  onClick={closeContact}
+                >
+                  <FaTimes size={14} />
+                </button>
+                <ContactForm embedded />
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
     </>
   );
 }

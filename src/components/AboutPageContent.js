@@ -247,7 +247,7 @@ export default function AboutPageContent() {
                 Book a call
                 <ArrowUpRight size={16} aria-hidden />
               </Button>
-              <Link href="/#contact" className="about-cta-link">
+              <Link href="/contact-us" className="about-cta-link">
                 Contact us
               </Link>
             </div>

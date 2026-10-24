@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Phone, Mail, MapPin, ArrowRight, Send } from "lucide-react";
 import SiteContainer from "./SiteContainer";
 import { allOffices } from "@/data/offices";
+import "./contact-page.css";
 
 const initialFormState = { name: "", email: "", phone: "", budget: "", message: "" };
 
@@ -20,7 +21,7 @@ const helpOptions = [
   "E-Commerce", "AI Solutions", "Digital Marketing",
 ];
 
-export default function ContactForm() {
+export default function ContactForm({ embedded = false }) {
   const [formData, setFormData] = useState(initialFormState);
   const [selectedHelp, setSelectedHelp] = useState([]);
   const [status, setStatus] = useState({ type: "idle", message: "" });
@@ -56,85 +57,69 @@ export default function ContactForm() {
     setSelectedHelp([]);
   };
 
-  return (
-    <section className="home-section section-light">
-      <SiteContainer>
-        <div className="text-center home-section-head max-w-3xl mx-auto">
-          <span className="section-label-orange mb-4">Contact Us</span>
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-[clamp(2rem,4vw,3rem)] font-bold text-[var(--color-text)]">
+  const content = (
+    <>
+        <header className="contact-page-head">
+          <span className="section-label-orange">Contact Us</span>
+          <h1 id={embedded ? "contact-modal-title" : undefined}>
             Let&apos;s chat about your{" "}
             <span className="text-[var(--color-primary)]">next big idea</span>
-          </h2>
-          <p className="mt-4 text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">
+          </h1>
+          <p className="contact-page-lead">
             Tell us about your project and our team will get back to you with a tailored plan.
           </p>
-        </div>
+        </header>
 
-        <div className="overflow-hidden rounded-3xl card-elevated shadow-xl contact-form-shell">
-          <div className="grid lg:grid-cols-5">
-            {/* Light blue info panel */}
-            <div className="lg:col-span-2 relative overflow-hidden card-accent-blue contact-info-panel">
-              <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-[rgba(245,130,32,0.1)] rounded-full blur-[80px]" />
-
-              <div className="relative">
-                <h3 className="font-display text-2xl font-bold text-[var(--color-text)]">
-                  Ready to transform your business?
-                </h3>
-                <p className="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        <div className="overflow-hidden rounded-2xl card-elevated contact-form-shell contact-page-shell">
+          <div className="contact-page-grid">
+            <div className="contact-info-panel">
+              <div>
+                <h2>Ready to transform your business?</h2>
+                <p className="contact-page-aside-copy">
                   Whether you need a website, mobile app, or complete digital transformation —
                   we&apos;re here to help.
                 </p>
 
-                <div className="mt-10 space-y-4">
+                <div className="contact-page-details">
                   {[
                     { icon: Phone, label: "Call Us", value: "+91 9758403169", href: "tel:+919758403169" },
                     { icon: Mail, label: "Email", value: "info@deopersindia.com", href: "mailto:info@deopersindia.com" },
                   ].map(({ icon: Icon, label, value, href }) => (
-                    <div key={label} className="flex items-start gap-4 rounded-2xl bg-white border border-[rgba(21,101,192,0.1)] p-4 shadow-sm">
-                      <Icon size={20} className="text-[var(--color-accent)] mt-0.5 flex-shrink-0" />
+                    <div key={label} className="contact-page-detail">
+                      <Icon size={18} className="text-[var(--color-accent)] mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">{label}</p>
-                        {href ? (
-                          <a href={href} className="text-sm text-[var(--color-text)] hover:text-[var(--color-primary)] transition mt-1 block font-medium">
-                            {value}
-                          </a>
-                        ) : (
-                          <p className="text-sm text-[var(--color-text)] mt-1 font-medium">{value}</p>
-                        )}
+                        <p className="text-[0.65rem] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">{label}</p>
+                        <a href={href} className="text-sm text-[var(--color-text)] hover:text-[var(--color-primary)] transition mt-0.5 block font-medium">
+                          {value}
+                        </a>
                       </div>
                     </div>
                   ))}
 
-                  <div className="rounded-2xl bg-white border border-[rgba(21,101,192,0.1)] p-4 shadow-sm">
-                    <div className="flex items-start gap-4">
-                      <MapPin size={20} className="text-[var(--color-accent)] mt-0.5 flex-shrink-0" />
-                      <div className="min-w-0 flex-1">
-                        <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
-                          Global offices
-                        </p>
-                        <p className="mt-2 text-sm font-semibold text-[var(--color-text)] leading-relaxed">
-                          {allOffices
-                            .map((office) =>
-                              office.id === "noida"
-                                ? "India (HQ)"
-                                : office.id === "usa"
-                                  ? "USA"
-                                  : "United Kingdom"
-                            )
-                            .join(" · ")}
-                        </p>
-                        <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-                          Full addresses in the footer below
-                        </p>
-                      </div>
+                  <div className="contact-page-detail">
+                    <MapPin size={18} className="text-[var(--color-accent)] mt-0.5 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[0.65rem] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+                        Global offices
+                      </p>
+                      <p className="mt-0.5 text-sm font-semibold text-[var(--color-text)] leading-snug">
+                        {allOffices
+                          .map((office) =>
+                            office.id === "noida"
+                              ? "India (HQ)"
+                              : office.id === "usa"
+                                ? "USA"
+                                : "United Kingdom"
+                          )
+                          .join(" · ")}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Form */}
-            <div className="lg:col-span-3 contact-form-panel bg-white">
+            <div className="contact-form-panel bg-white">
               <header className="contact-form-panel-head">
                 <span className="contact-form-panel-icon" aria-hidden="true">
                   <Send size={20} />
@@ -147,8 +132,8 @@ export default function ContactForm() {
                   </p>
                 </div>
               </header>
-              <form onSubmit={handleSubmit} className="space-y-5 contact-form-panel-form" noValidate>
-                <div className="grid sm:grid-cols-2 gap-5">
+              <form onSubmit={handleSubmit} className="contact-form-panel-form" noValidate>
+                <div className="grid sm:grid-cols-2 gap-3">
                   <label className="block">
                     <span className="sr-only">Full name (required)</span>
                     <input
@@ -179,7 +164,7 @@ export default function ContactForm() {
                   </label>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-5">
+                <div className="grid sm:grid-cols-2 gap-3">
                   <label className="block">
                     <span className="sr-only">Phone number (required)</span>
                     <input
@@ -237,14 +222,14 @@ export default function ContactForm() {
                 <label className="block">
                   <span className="sr-only">Project details (required)</span>
                   <textarea
-                    rows={4}
+                    rows={3}
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Tell us about your project... *"
                     required
                     aria-required="true"
-                    className="w-full rounded-xl input-brand px-5 py-4 text-sm resize-none"
+                    className="contact-page-message w-full rounded-xl input-brand px-5 py-4 text-sm resize-none"
                   />
                 </label>
 
@@ -264,7 +249,7 @@ export default function ContactForm() {
 
                 <button
                   type="submit"
-                  className="group flex w-full items-center justify-center gap-3 rounded-xl bg-[var(--color-accent)] hover:bg-[var(--color-accent-dark)] py-4 font-semibold text-white transition hover:shadow-lg hover:shadow-[rgba(245,130,32,0.25)]"
+                  className="contact-page-submit group flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] hover:bg-[var(--color-accent-dark)] font-semibold text-white transition hover:shadow-lg hover:shadow-[rgba(245,130,32,0.25)]"
                 >
                   <Send size={18} />
                   Submit Inquiry
@@ -274,7 +259,16 @@ export default function ContactForm() {
             </div>
           </div>
         </div>
-      </SiteContainer>
+    </>
+  );
+
+  if (embedded) {
+    return <div className="contact-embed">{content}</div>;
+  }
+
+  return (
+    <section className="contact-page">
+      <SiteContainer className="contact-page-inner">{content}</SiteContainer>
     </section>
   );
 }

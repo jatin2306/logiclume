@@ -9,9 +9,9 @@ const helpfulLinks = [
   { href: "/", label: "Home" },
   { href: "/about-us", label: "About" },
   { href: "/#services", label: "Services" },
-  { href: "/portfolio", label: "Work" },
+  { href: "/work", label: "Work" },
   { href: "/book-a-call", label: "Book a call" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact-us", label: "Contact" },
 ];
 
 export default function NotFound() {

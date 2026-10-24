@@ -157,7 +157,7 @@ export default function BookCallPageContent() {
 
                 <p className="book-call-side-foot">
                   No commitment — we reply within one business day.{" "}
-                  <Link href="/portfolio" className="book-call-side-link">
+                  <Link href="/work" className="book-call-side-link">
                     See our work
                   </Link>
                 </p>

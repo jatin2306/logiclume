@@ -14,8 +14,8 @@ export default function PortfolioSection() {
       <SiteContainer>
         <SectionHeading
           label="Portfolio"
-          title="Showcasing Products & Digital Transformations"
-          description="A sample of recent work — view the full portfolio for more projects across industries and capabilities."
+          title="Our Best Projects"
+          description="A sample of recent work — open Work for the full set of client projects."
           centered
           twoColor
           coloredWords={2}
@@ -31,9 +31,9 @@ export default function PortfolioSection() {
         </div>
 
         <div className="mt-10 flex justify-center">
-          <Link href="/portfolio">
+          <Link href="/work">
             <Button variant="outline" size="lg" className="gap-2">
-              View full portfolio <ArrowUpRight size={16} />
+              View all projects <ArrowUpRight size={16} />
             </Button>
           </Link>
         </div>

@@ -29,15 +29,23 @@
   width: 100%;
 }
 
+.portfolio-work-kicker {
+  margin-bottom: 1rem;
+}
+
 .portfolio-work-title {
   margin: 0 auto;
   max-width: 22ch;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.75rem, 4vw, 2.625rem);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
   font-weight: 700;
   letter-spacing: -0.035em;
-  line-height: 1.12;
+  line-height: 1.15;
   color: var(--color-text);
+}
+
+.portfolio-work-title-accent {
+  color: var(--color-accent);
 }
 
 .portfolio-work-lead {
@@ -926,6 +934,234 @@
   font-weight: 600;
   line-height: 1.4;
   color: #64748b;
+}
+
+.portfolio-work-grid.portfolio-work-grid--pair {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .portfolio-work-grid.portfolio-work-grid--pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-work-grid.portfolio-work-grid--pair > .portfolio-work-grid-cell,
+  .portfolio-work-grid.portfolio-work-grid--pair > .portfolio-work-grid-cell:nth-child(2n + 1):last-child,
+  .portfolio-work-grid.portfolio-work-grid--pair > .portfolio-work-grid-cell:nth-child(3n + 1):nth-last-child(2),
+  .portfolio-work-grid.portfolio-work-grid--pair > .portfolio-work-grid-cell:nth-child(3n + 1):last-child {
+    grid-column: auto;
+  }
+}
+
+.portfolio-work-card-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.portfolio-work-card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-height: 0;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-copy > * {
+  flex-shrink: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-title {
+  display: block;
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  max-height: 2.3em;
+  white-space: normal;
+  overflow: hidden;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: initial;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-summary {
+  display: block;
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  max-height: 2.8em;
+  overflow: hidden;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: initial;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-points {
+  gap: 0.2rem;
+  margin: 0;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-points li {
+  display: block;
+  height: 1.35em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-tag {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-primary);
+  background: var(--color-surface-blue);
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-tag::before {
+  display: none;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-link {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-media {
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-media::after {
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.portfolio-work-card--detailed .portfolio-work-browser,
+.portfolio-work-card--detailed:hover .portfolio-work-browser {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+  border: 0;
+  transform: none;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-body {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  padding: 0;
+  overflow: hidden;
+  border-top: 0;
+  border-left: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  padding: 1.15rem 1.25rem 1rem;
+  overflow: hidden;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-main {
+  gap: 0.5rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-footer {
+  flex-shrink: 0;
+  margin-top: 0;
+  padding-top: 0.7rem;
+}
+
+.portfolio-work-card--detailed .portfolio-work-card-chips {
+  margin: 0;
+  max-height: 1.6rem;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .portfolio-work-card--detailed .portfolio-work-card-link {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .portfolio-work-card--detailed .portfolio-work-card-media {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+
+  .portfolio-work-card--detailed .portfolio-work-card-body {
+    position: static;
+    overflow: visible;
+    padding: 1.25rem 1.35rem 1.3rem;
+    border-left: 0;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+  }
+
+  .portfolio-work-card--detailed .portfolio-work-card-copy {
+    position: static;
+    padding: 0;
+    overflow: visible;
+  }
+}
+
+.portfolio-work-card-detail {
+  margin: 0.55rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: #3d4f63;
+}
+
+.portfolio-work-card-points {
+  margin: 0.7rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.portfolio-work-card-points li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #3d4f63;
+}
+
+.portfolio-work-card-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--card-accent, #1565c0);
 }
 
 .portfolio-work-card-summary {

@@ -39,11 +39,11 @@ const industryLinks = [
 
 const companyLinks = [
   { label: "About Us", href: "/about-us" },
-  { label: "Our Work", href: "/portfolio" },
+  { label: "Our Work", href: "/work" },
   { label: "Our Team", href: "/#team" },
   { label: "Testimonials", href: "/#testimonials" },
   { label: "Book a Call", href: "/book-a-call" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact-us" },
 ];
 
 const socialLinks = [
@@ -192,7 +192,7 @@ export default function Footer() {
           <nav className="site-footer-bar-legal" aria-label="Legal">
             <Link href="/privacy-policy">Privacy</Link>
             <Link href="/terms-of-service">Terms</Link>
-            <Link href="/#contact">Contact</Link>
+            <Link href="/contact-us">Contact</Link>
           </nav>
         </div>
       </SiteContainer>

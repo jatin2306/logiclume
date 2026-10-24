@@ -14,7 +14,7 @@ function Field({ id, label, children }) {
   );
 }
 
-export default function NavContactMegaForm({ onNavigate, compactLinkHref = "#contact", fieldsOnly = false }) {
+export default function NavContactMegaForm({ onNavigate, compactLinkHref = "/contact-us", fieldsOnly = false }) {
   const [formData, setFormData] = useState(initialFormState);
   const [status, setStatus] = useState({ type: "idle", message: "" });
 

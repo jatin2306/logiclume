@@ -63,7 +63,7 @@ export default function HeroSection() {
                 <ArrowUpRight size={16} />
               </a>
               <a
-                href="#contact"
+                href="/contact-us"
                 className="about-btn about-btn-outline"
               >
                 Get Free Quote

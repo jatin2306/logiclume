@@ -23,7 +23,7 @@ export default function CTABanner() {
               </p>
             </div>
 
-            <a href="#contact" className="flex-shrink-0">
+            <a href="/contact-us" className="flex-shrink-0">
               <Button variant="accent" size="lg" className="gap-2 rounded-xl hover:scale-[1.02] transition-transform shadow-lg shadow-[rgba(245,130,32,0.3)]">
                 Schedule a Consultation
                 <ArrowUpRight size={18} />

@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
-import { Building2, ChevronLeft, ChevronRight, ArrowUpRight, Rocket, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import SiteContainer from "./SiteContainer";
 import Button from "./Button";
 import "./mi-hero.css";
@@ -11,31 +11,6 @@ const stats = [
   { value: "10+", label: "Years' Experience" },
   { value: "80+", label: "Projects Delivered" },
   { value: "150+", label: "In-house Tech Specialists" },
-];
-
-/** Hero aside — what DeopersIndia actually delivers (no third-party partner claims). */
-const deliveryHighlights = [
-  {
-    id: "enterprise",
-    icon: Building2,
-    title: "Enterprise",
-    subtitle: "Banking & fintech",
-    tone: "blue",
-  },
-  {
-    id: "squads",
-    icon: Rocket,
-    title: "Dedicated teams",
-    subtitle: "Ramp in days",
-    tone: "orange",
-  },
-  {
-    id: "ai",
-    icon: Sparkles,
-    title: "AI in prod",
-    subtitle: "Live automation",
-    tone: "blue",
-  },
 ];
 
 const slides = [
@@ -51,8 +26,7 @@ const slides = [
     support:
       "Get vetted engineers, AI specialists, Full-Stack Developers, DevOps experts, and UI/UX designers with 6+ years of average experience. They join your stand-ups, work in your tools, and scale up or down as your roadmap changes.",
     ctaLabel: "Build Your Dedicated Team",
-    ctaHref: "/#contact",
-    panel: "highlights",
+    ctaHref: "/contact-us",
   },
   {
     key: "digital-transformation",
@@ -66,8 +40,7 @@ const slides = [
     support:
       "Build custom software and AI-powered products designed around your business goals, workflows, and growth plans. From strategy to deployment, we engineer scalable solutions that deliver measurable business impact.",
     ctaLabel: "Consult Our Strategy Team",
-    ctaHref: "/#contact",
-    panel: "stats",
+    ctaHref: "/contact-us",
   },
 ];
 
@@ -196,34 +169,14 @@ export default function Hero() {
           </div>
 
           <aside className="mi-hero-aside" aria-label="Why DeopersIndia">
-            {slide.panel === "highlights" && (
-              <div className="mi-hero-partners">
-                {deliveryHighlights.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={item.id} className="mi-hero-partner">
-                      <span className={`mi-hero-partner-mark mi-hero-partner-mark--${item.tone}`}>
-                        <Icon size={15} strokeWidth={2.25} aria-hidden />
-                      </span>
-                      <span className="mi-hero-partner-text">
-                        <span className="mi-hero-partner-title">{item.title}</span>
-                        <span className="mi-hero-partner-sub">{item.subtitle}</span>
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-            {slide.panel === "stats" && (
-              <div className="mi-hero-stats">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="mi-hero-stat">
-                    <span className="mi-hero-stat-value">{stat.value}</span>
-                    <span className="mi-hero-stat-label">{stat.label}</span>
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="mi-hero-stats">
+              {stats.map((stat) => (
+                <div key={stat.label} className="mi-hero-stat">
+                  <span className="mi-hero-stat-value">{stat.value}</span>
+                  <span className="mi-hero-stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </aside>
 
           <div className="mi-hero-action">

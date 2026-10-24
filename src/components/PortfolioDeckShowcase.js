@@ -17,7 +17,7 @@ function DeckProjectSlide({ project, index, chapterLabel }) {
   const Cta = project.url ? "a" : Link;
   const ctaProps = project.url
     ? { href: project.url, target: "_blank", rel: "noopener noreferrer" }
-    : { href: "/#contact" };
+    : { href: "/contact-us" };
   const num = String(index + 1).padStart(2, "0");
   const body =
     project.summary ||

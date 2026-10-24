@@ -54,7 +54,7 @@ export default function LeadershipSpotlight() {
           ))}
         </ul>
 
-        <a href="#contact" className="leadership-spotlight-cta">
+        <a href="/contact-us" className="leadership-spotlight-cta">
           Talk to our technology team
           <ArrowUpRight size={17} aria-hidden="true" />
         </a>

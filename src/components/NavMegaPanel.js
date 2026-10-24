@@ -60,25 +60,25 @@ const aiItems = [
   {
     label: "AI Chatbots",
     desc: "24/7 intelligent customer support",
-    href: "#contact",
+    href: "/contact-us",
     icon: Bot,
   },
   {
     label: "Process Automation",
     desc: "Streamline workflows with AI",
-    href: "#contact",
+    href: "/contact-us",
     icon: Zap,
   },
   {
     label: "Generative AI Apps",
     desc: "Custom GPT-powered products",
-    href: "#contact",
+    href: "/contact-us",
     icon: Wand2,
   },
   {
     label: "ML Integration",
     desc: "Embed intelligence in your stack",
-    href: "#contact",
+    href: "/contact-us",
     icon: Cpu,
   },
 ];
@@ -103,7 +103,7 @@ export default function NavMegaPanel({ type, onClose }) {
               <p className="nav-mega-desc">
                 From concept to launch — we design, build, and scale digital products that drive real business growth.
               </p>
-              <a href="#contact" className="nav-mega-intro-cta group" onClick={onClose}>
+              <a href="/contact-us" className="nav-mega-intro-cta group" onClick={onClose}>
                 <span>Get a free quote</span>
                 <FaArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
               </a>
@@ -145,7 +145,7 @@ export default function NavMegaPanel({ type, onClose }) {
                   Build smarter products with chatbots, automation & generative AI
                 </p>
               </div>
-              <a href="#contact" className="nav-mega-ai-banner-cta group relative z-10 shrink-0" onClick={onClose}>
+              <a href="/contact-us" className="nav-mega-ai-banner-cta group relative z-10 shrink-0" onClick={onClose}>
                 <span>Start your AI project</span>
                 <FaArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
               </a>
@@ -200,7 +200,7 @@ export default function NavMegaPanel({ type, onClose }) {
                   info@deopersindia.com
                 </a>
               </div>
-              <a href="#contact" className="nav-mega-intro-cta group" onClick={onClose}>
+              <a href="/contact-us" className="nav-mega-intro-cta group" onClick={onClose}>
                 <span>View full contact page</span>
                 <FaArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
               </a>
@@ -227,7 +227,7 @@ export default function NavMegaPanel({ type, onClose }) {
               <p className="nav-mega-contact-cto-copy">
                 Partner with our CTO on architecture and delivery.
               </p>
-              <a href="#contact" className="nav-mega-contact-cto-cta" onClick={onClose}>
+              <a href="/contact-us" className="nav-mega-contact-cto-cta" onClick={onClose}>
                 Book a strategy call
                 <ArrowUpRight size={14} aria-hidden="true" />
               </a>

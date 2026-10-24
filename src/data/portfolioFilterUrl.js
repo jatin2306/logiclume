@@ -43,7 +43,7 @@ export function parsePortfolioFiltersFromSearchParams(searchParams) {
 }
 
 /**
- * Path segments after /portfolio
+ * Path segments after /work
  * e.g. [] | ['industries'] | ['industries','banking'] | ['capabilities','mobile'] | ['banking']
  */
 export function parsePortfolioPathSegments(segments) {
@@ -82,16 +82,16 @@ export function parsePortfolioPathSegments(segments) {
 
 export function portfolioPathWithFilters({ viewMode, industryFilter, serviceFilter }) {
   if (viewMode === "industries" && industryFilter && industryFilter !== "all") {
-    return `/portfolio/${industryFilter}`;
+    return `/work/${industryFilter}`;
   }
   if (viewMode === "industries") {
-    return "/portfolio/industries";
+    return "/work/industries";
   }
   if (viewMode === "services" && serviceFilter && serviceFilter !== "all") {
-    return `/portfolio/capabilities/${serviceFilter}`;
+    return `/work/capabilities/${serviceFilter}`;
   }
   if (viewMode === "services") {
-    return "/portfolio/capabilities";
+    return "/work/capabilities";
   }
-  return "/portfolio";
+  return "/work";
 }

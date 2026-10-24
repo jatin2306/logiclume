@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      { source: "/portfolio", destination: "/work", permanent: true },
+      { source: "/portfolio/:path*", destination: "/work/:path*", permanent: true },
+    ];
+  },
   turbopack: {
     root: process.cwd(),
   },

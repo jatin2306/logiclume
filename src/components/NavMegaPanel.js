@@ -265,8 +265,8 @@ export default function NavMegaPanel({ type, onClose }) {
                 <span>Free consultation</span>
               </div>
               <div className="nav-mega-contact-intro-links">
-                <a href="tel:+919758403169" className="nav-mega-contact-quick-link">
-                  +91 97584 03169
+                <a href="tel:+919205210930" className="nav-mega-contact-quick-link">
+                  +91 92052 10930
                 </a>
                 <a href="mailto:info@deopersindia.com" className="nav-mega-contact-quick-link">
                   info@deopersindia.com

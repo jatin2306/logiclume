@@ -13,8 +13,8 @@ const channels = [
     icon: Phone,
     label: "Call the team",
     detail: "Weekdays, 10:00–19:00 IST. A project lead picks up.",
-    value: "+91 97584 03169",
-    href: "tel:+919758403169",
+    value: "+91 92052 10930",
+    href: "tel:+919205210930",
   },
   {
     id: "email",

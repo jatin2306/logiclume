@@ -63,7 +63,7 @@ const socialLinks = [
     label: "Facebook",
   },
   {
-    href: "https://wa.me/919758403169",
+    href: "https://wa.me/919205210930",
     icon: FaWhatsapp,
     label: "WhatsApp",
   },
@@ -96,7 +96,7 @@ export default function Footer() {
               and platforms.
             </p>
             <div className="site-footer-contact">
-              <a href="tel:+919758403169">+91 97584 03169</a>
+              <a href="tel:+919205210930">+91 92052 10930</a>
               <a href="mailto:info@deopersindia.com">info@deopersindia.com</a>
             </div>
             <div className="site-footer-social" aria-label="Social media">

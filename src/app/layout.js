@@ -89,7 +89,7 @@ export default function RootLayout({ children }) {
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+91-9758403169",
+      telephone: "+91-9205210930",
       contactType: "customer service",
       email: "info@deopersindia.com",
     },

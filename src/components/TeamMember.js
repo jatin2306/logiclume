@@ -3,7 +3,6 @@
 import Image from "next/image";
 import SectionHeading from "./SectionHeading";
 import SiteContainer from "./SiteContainer";
-import LeadershipSpotlight from "./LeadershipSpotlight";
 import { officePhotos } from "@/data/teamMembers";
 
 import "./team-section.css";
@@ -12,7 +11,7 @@ export default function TeamMembers() {
   return (
     <section className="home-section section-surface-blue">
       <SiteContainer>
-        <SectionHeading
+        {/* <SectionHeading
           label="Our Team"
           title="Meet the Experts Behind Your Success"
           description="A passionate team of developers, designers, and digital strategists committed to building innovative software solutions."
@@ -20,9 +19,7 @@ export default function TeamMembers() {
           twoColor
           coloredWords={2}
           className="home-section-head max-w-3xl mx-auto"
-        />
-
-        <LeadershipSpotlight />
+        /> */}
 
         <div className="team-office-gallery">
           <div className="team-office-gallery-head">

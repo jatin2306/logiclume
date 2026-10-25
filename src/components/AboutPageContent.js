@@ -7,7 +7,7 @@ import HomeTrustStrip from "./HomeTrustStrip";
 import LeadershipSpotlight from "./LeadershipSpotlight";
 import TestimonialCard from "./TestimonialCard";
 import { services } from "@/data/services";
-import { teamMembers, officePhotos } from "@/data/teamMembers";
+import { officePhotos } from "@/data/teamMembers";
 import { allOffices, formatOfficeBlock } from "@/data/offices";
 import {
   aboutStats,
@@ -66,10 +66,10 @@ export default function AboutPageContent() {
               </div>
             </div>
             <div className="about-office-grid" aria-label="Office photos">
-              {officePhotos.map((photo, index) => (
+              {officePhotos.map((photo) => (
                 <div
                   key={photo.id}
-                  className={`about-office-photo${index === 0 ? " about-office-photo--feature" : ""}`}
+                  className="about-office-photo"
                 >
                   <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 900px) 100vw, 50vw" />
                 </div>
@@ -149,29 +149,11 @@ export default function AboutPageContent() {
               The minds behind DeopersIndia
             </h2>
             <p className="about-section-desc">
-              Leadership and engineering teams with business context, technical depth, and hands-on
-              delivery experience.
+              Leadership with business context, technical depth, and hands-on delivery experience.
             </p>
           </div>
           <div className="about-leadership-wrap">
             <LeadershipSpotlight />
-          </div>
-          <div className="about-team-grid">
-            {teamMembers.map((member) => (
-              <article key={member.id} className="about-team-card">
-                <div className="about-team-photo">
-                  <Image
-                    src={member.image}
-                    alt=""
-                    fill
-                    sizes="96px"
-                    className="object-cover"
-                  />
-                </div>
-                <p className="about-team-name">{member.name}</p>
-                <p className="about-team-role">{member.role}</p>
-              </article>
-            ))}
           </div>
         </SiteContainer>
       </section>

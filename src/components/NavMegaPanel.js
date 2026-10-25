@@ -83,8 +83,53 @@ const aiItems = [
   },
 ];
 
+const linkMenus = {
+  industries: {
+    eyebrow: "Where we work",
+    title: "Industries",
+    desc: "Products and platforms built for the sectors we know best.",
+    cta: { href: "/#industries", label: "View all industries" },
+    items: [
+      { label: "Healthcare", desc: "Clinics, care, and health platforms", href: "/work/healthcare" },
+      { label: "Real Estate", desc: "Property, leasing, and investment tools", href: "/work/realestate" },
+      { label: "Banking & Finance", desc: "Payments, rewards, and fintech", href: "/work/banking" },
+      { label: "Retail & E-Commerce", desc: "Stores, rewards, and commerce", href: "/work/ecommerce" },
+      { label: "Education", desc: "Learning products and platforms", href: "/work/education" },
+      { label: "Professional Services", desc: "Tools for service businesses", href: "/work/professional" },
+    ],
+  },
+  hire: {
+    eyebrow: "Build your team",
+    title: "Hire Developers",
+    desc: "Dedicated engineers who join your workflow and ramp in days.",
+    cta: { href: "/contact-us", label: "Start a project" },
+    items: [
+      { label: "Dedicated teams", desc: "A squad matched to your roadmap", href: "/contact-us" },
+      { label: "Frontend developers", desc: "React and modern web interfaces", href: "/contact-us" },
+      { label: "Backend developers", desc: "APIs, data, and platform services", href: "/contact-us" },
+      { label: "Mobile developers", desc: "iOS, Android, and cross-platform", href: "/contact-us" },
+      { label: "AI engineers", desc: "Automation and product intelligence", href: "/contact-us" },
+      { label: "UI/UX designers", desc: "Product design from flow to UI", href: "/contact-us" },
+    ],
+  },
+  about: {
+    eyebrow: "The company",
+    title: "About Us",
+    desc: "A product engineering studio delivering from Noida to global clients.",
+    cta: { href: "/about-us", label: "About DeopersIndia" },
+    items: [
+      { label: "Our story", desc: "How DeopersIndia builds", href: "/about-us" },
+      { label: "Leadership", desc: "The people guiding delivery", href: "/about-us" },
+      { label: "Life at DeopersIndia", desc: "The Noida office and team", href: "/#team" },
+      { label: "Book a call", desc: "Talk through your roadmap", href: "/book-a-call" },
+      { label: "Contact", desc: "Start a project with the team", href: "/contact-us" },
+    ],
+  },
+};
+
 export default function NavMegaPanel({ type, onClose }) {
-  const isOpen = type === "services" || type === "ai" || type === "contact";
+  const isOpen = type === "services" || type === "ai" || type === "contact" || Boolean(linkMenus[type]);
+  const linkMenu = linkMenus[type];
 
   return (
     <div
@@ -178,6 +223,33 @@ export default function NavMegaPanel({ type, onClose }) {
           </div>
         )}
 
+        {linkMenu && (
+          <div className="nav-mega-services">
+            <div className="nav-mega-intro">
+              <p className="nav-mega-eyebrow">{linkMenu.eyebrow}</p>
+              <h3 className="nav-mega-title">{linkMenu.title}</h3>
+              <p className="nav-mega-desc">{linkMenu.desc}</p>
+              <a href={linkMenu.cta.href} className="nav-mega-intro-cta group" onClick={onClose}>
+                <span>{linkMenu.cta.label}</span>
+                <FaArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
+            <div className="nav-mega-services-grid-wrap">
+              <div className="nav-mega-grid nav-mega-grid-services">
+                {linkMenu.items.map((item) => (
+                  <a key={item.label} href={item.href} className="nav-mega-card group" onClick={onClose}>
+                    <span className="nav-mega-card-body">
+                      <span className="nav-mega-card-label">{item.label}</span>
+                      <span className="nav-mega-card-desc">{item.desc}</span>
+                    </span>
+                    <FaArrowRight size={11} className="nav-mega-card-arrow" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {type === "contact" && (
           <div className="nav-mega-contact-shell">
             <div className="nav-mega-intro nav-mega-contact-intro">
@@ -214,7 +286,7 @@ export default function NavMegaPanel({ type, onClose }) {
               <p className="nav-mega-contact-cto-label">Technology leadership</p>
               <div className="nav-mega-contact-cto-frame">
                 <Image
-                  src="/images/team/cto.jpg"
+                  src="/images/team/office/team.jpg"
                   alt="Chief Technology Officer at DeopersIndia"
                   fill
                   sizes="(max-width: 1024px) 28vw, 220px"

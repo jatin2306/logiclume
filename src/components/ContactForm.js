@@ -1,30 +1,84 @@
 "use client";
 
-import { useState } from "react";
-import { Phone, Mail, MapPin, ArrowRight, Send } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import SiteContainer from "./SiteContainer";
-import { allOffices } from "@/data/offices";
 import "./contact-page.css";
 
-const initialFormState = { name: "", email: "", phone: "", budget: "", message: "" };
+const initialFormState = { name: "", email: "", phone: "", service: "", message: "" };
 
-const budgetOptions = [
-  { value: "", label: "Select Budget Range" },
-  { value: "5k-25k", label: "$5K - $25K" },
-  { value: "25k-50k", label: "$25K - $50K" },
-  { value: "50k-100k", label: "$50K - $100K" },
-  { value: "100k+", label: "$100K+" },
+const channels = [
+  {
+    id: "phone",
+    icon: Phone,
+    label: "Call the team",
+    detail: "Weekdays, 10:00–19:00 IST. A project lead picks up.",
+    value: "+91 97584 03169",
+    href: "tel:+919758403169",
+  },
+  {
+    id: "email",
+    icon: Mail,
+    label: "Email the team",
+    detail: "Share a brief, a deck, or a link. We read every note.",
+    value: "info@deopersindia.com",
+    href: "mailto:info@deopersindia.com",
+  },
+  {
+    id: "office",
+    icon: MapPin,
+    label: "Noida office",
+    detail: "Product engineering team, on the ground in India.",
+    value: "Noida, India",
+  },
 ];
 
-const helpOptions = [
-  "Web Development", "Mobile App", "UI/UX Design",
-  "E-Commerce", "AI Solutions", "Digital Marketing",
+const nextSteps = [
+  { title: "Share the brief", text: "Product, timeline, and what you need built." },
+  { title: "Reply within 24 hours", text: "A real person, not an autoresponder." },
+  { title: "Plan and team", text: "Scope, stack, and who would build it." },
+];
+
+const serviceOptions = [
+  { value: "", label: "Select a service" },
+  { value: "web", label: "Web Development" },
+  { value: "mobile", label: "Mobile App" },
+  { value: "design", label: "UI/UX Design" },
+  { value: "commerce", label: "E-Commerce" },
+  { value: "ai", label: "AI Solutions" },
+  { value: "marketing", label: "Digital Marketing" },
 ];
 
 export default function ContactForm({ embedded = false }) {
+  const introRef = useRef(null);
+  const formRef = useRef(null);
   const [formData, setFormData] = useState(initialFormState);
-  const [selectedHelp, setSelectedHelp] = useState([]);
   const [status, setStatus] = useState({ type: "idle", message: "" });
+
+  useEffect(() => {
+    const intro = introRef.current;
+    const form = formRef.current;
+    if (!intro || !form) return undefined;
+
+    const syncFromForm = () => {
+      const maxForm = form.scrollHeight - form.clientHeight;
+      const maxIntro = intro.scrollHeight - intro.clientHeight;
+      intro.scrollTop = maxForm > 0 ? (form.scrollTop / maxForm) * maxIntro : 0;
+    };
+
+    const onIntroWheel = (event) => {
+      if (event.target.closest("a, button")) return;
+      form.scrollTop += event.deltaY;
+      event.preventDefault();
+    };
+
+    form.addEventListener("scroll", syncFromForm, { passive: true });
+    intro.addEventListener("wheel", onIntroWheel, { passive: false });
+    return () => {
+      form.removeEventListener("scroll", syncFromForm);
+      intro.removeEventListener("wheel", onIntroWheel);
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,17 +86,11 @@ export default function ContactForm({ embedded = false }) {
     if (status.message) setStatus({ type: "idle", message: "" });
   };
 
-  const toggleHelp = (item) => {
-    setSelectedHelp((prev) =>
-      prev.includes(item) ? prev.filter((h) => h !== item) : [...prev, item]
-    );
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name, email, phone, message } = formData;
+    const { name, email, phone } = formData;
 
-    if (!name.trim() || !email.trim() || !phone.trim() || !message.trim()) {
+    if (!name.trim() || !email.trim() || !phone.trim()) {
       setStatus({ type: "error", message: "Please fill in all required fields." });
       return;
     }
@@ -54,212 +102,141 @@ export default function ContactForm({ embedded = false }) {
 
     setStatus({ type: "success", message: "Thank you! Your inquiry has been received. We'll contact you within 24 hours." });
     setFormData(initialFormState);
-    setSelectedHelp([]);
   };
 
   const content = (
-    <>
-        <header className="contact-page-head">
-          <span className="section-label-orange">Contact Us</span>
-          <h1 id={embedded ? "contact-modal-title" : undefined}>
-            Let&apos;s chat about your{" "}
-            <span className="text-[var(--color-primary)]">next big idea</span>
-          </h1>
-          <p className="contact-page-lead">
-            Tell us about your project and our team will get back to you with a tailored plan.
-          </p>
-        </header>
-
-        <div className="overflow-hidden rounded-2xl card-elevated contact-form-shell contact-page-shell">
-          <div className="contact-page-grid">
-            <div className="contact-info-panel">
-              <div>
-                <h2>Ready to transform your business?</h2>
-                <p className="contact-page-aside-copy">
-                  Whether you need a website, mobile app, or complete digital transformation —
-                  we&apos;re here to help.
-                </p>
-
-                <div className="contact-page-details">
-                  {[
-                    { icon: Phone, label: "Call Us", value: "+91 9758403169", href: "tel:+919758403169" },
-                    { icon: Mail, label: "Email", value: "info@deopersindia.com", href: "mailto:info@deopersindia.com" },
-                  ].map(({ icon: Icon, label, value, href }) => (
-                    <div key={label} className="contact-page-detail">
-                      <Icon size={18} className="text-[var(--color-accent)] mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-[0.65rem] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">{label}</p>
-                        <a href={href} className="text-sm text-[var(--color-text)] hover:text-[var(--color-primary)] transition mt-0.5 block font-medium">
-                          {value}
-                        </a>
-                      </div>
-                    </div>
-                  ))}
-
-                  <div className="contact-page-detail">
-                    <MapPin size={18} className="text-[var(--color-accent)] mt-0.5 flex-shrink-0" />
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[0.65rem] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
-                        Global offices
-                      </p>
-                      <p className="mt-0.5 text-sm font-semibold text-[var(--color-text)] leading-snug">
-                        {allOffices
-                          .map((office) =>
-                            office.id === "noida"
-                              ? "India (HQ)"
-                              : office.id === "usa"
-                                ? "USA"
-                                : "United Kingdom"
-                          )
-                          .join(" · ")}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="contact-form-panel bg-white">
-              <header className="contact-form-panel-head">
-                <span className="contact-form-panel-icon" aria-hidden="true">
-                  <Send size={20} />
+    <div className="contact-split">
+      <div className="contact-split-intro" ref={introRef}>
+        <span className="contact-split-badge">
+          <i aria-hidden />
+          Start a project
+        </span>
+        <h1 id={embedded ? "contact-modal-title" : undefined}>
+          Let&apos;s build your digital future
+        </h1>
+        <p>
+          Tell us what you want to launch. Or reach the team directly — phone, email, and
+          office are listed here.
+        </p>
+        <ul className="contact-split-channels">
+          {channels.map((channel) => {
+            const Icon = channel.icon;
+            return (
+              <li key={channel.id}>
+                <span className="contact-split-channel-icon" aria-hidden>
+                  <Icon size={16} />
                 </span>
                 <div>
-                  <p className="contact-form-panel-kicker">Primary contact</p>
-                  <h3 className="contact-form-panel-title">Send your inquiry</h3>
-                  <p className="contact-form-panel-sub">
-                    All fields marked * are required. We respond within one business day.
-                  </p>
+                  <strong>{channel.label}</strong>
+                  <p>{channel.detail}</p>
+                  {channel.href ? (
+                    <a href={channel.href}>{channel.value}</a>
+                  ) : (
+                    <span className="contact-split-channel-value">{channel.value}</span>
+                  )}
                 </div>
-              </header>
-              <form onSubmit={handleSubmit} className="contact-form-panel-form" noValidate>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  <label className="block">
-                    <span className="sr-only">Full name (required)</span>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Full Name *"
-                      autoComplete="name"
-                      required
-                      aria-required="true"
-                      className="w-full rounded-xl input-brand px-5 py-4 text-sm"
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="sr-only">Email address (required)</span>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Email Address *"
-                      autoComplete="email"
-                      required
-                      aria-required="true"
-                      className="w-full rounded-xl input-brand px-5 py-4 text-sm"
-                    />
-                  </label>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-3">
-                  <label className="block">
-                    <span className="sr-only">Phone number (required)</span>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="Phone Number *"
-                      autoComplete="tel"
-                      required
-                      aria-required="true"
-                      className="w-full rounded-xl input-brand px-5 py-4 text-sm"
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="sr-only">Budget range (optional)</span>
-                    <select
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      className="w-full rounded-xl input-brand px-5 py-4 text-sm text-[var(--color-text-muted)]"
-                    >
-                      {budgetOptions.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                </div>
-
-                <fieldset className="border-0 p-0 m-0">
-                  <legend className="text-sm font-medium text-[var(--color-text)] mb-3">
-                    Where do you need help? (optional)
-                  </legend>
-                  <div className="flex flex-wrap gap-2">
-                    {helpOptions.map((item) => (
-                      <button
-                        key={item}
-                        type="button"
-                        onClick={() => toggleHelp(item)}
-                        aria-pressed={selectedHelp.includes(item)}
-                        className={`rounded-full px-4 py-2 text-xs font-medium transition min-h-[2.5rem] ${
-                          selectedHelp.includes(item)
-                            ? "bg-[var(--color-primary)] text-white shadow-sm"
-                            : "bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:bg-[var(--color-surface-blue)] border border-[var(--color-border)]"
-                        }`}
-                      >
-                        {item}
-                      </button>
-                    ))}
-                  </div>
-                </fieldset>
-
-                <label className="block">
-                  <span className="sr-only">Project details (required)</span>
-                  <textarea
-                    rows={3}
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your project... *"
-                    required
-                    aria-required="true"
-                    className="contact-page-message w-full rounded-xl input-brand px-5 py-4 text-sm resize-none"
-                  />
-                </label>
-
-                {status.message ? (
-                  <div
-                    role={status.type === "error" ? "alert" : "status"}
-                    aria-live="polite"
-                    className={`rounded-xl border px-4 py-3 text-sm ${
-                      status.type === "success"
-                        ? "border-green-200 bg-green-50 text-green-700"
-                        : "border-red-200 bg-red-50 text-red-700"
-                    }`}
-                  >
-                    {status.message}
-                  </div>
-                ) : null}
-
-                <button
-                  type="submit"
-                  className="contact-page-submit group flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] hover:bg-[var(--color-accent-dark)] font-semibold text-white transition hover:shadow-lg hover:shadow-[rgba(245,130,32,0.25)]"
-                >
-                  <Send size={18} />
-                  Submit Inquiry
-                  <ArrowRight size={18} className="transition group-hover:translate-x-1" />
-                </button>
-              </form>
-            </div>
-          </div>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="contact-split-next">
+          <p className="contact-split-next-label">What happens next</p>
+          <ol className="contact-split-steps">
+          {nextSteps.map((step, index) => (
+            <li key={step.title}>
+              <span>{index + 1}</span>
+              <div>
+                <strong>{step.title}</strong>
+                <p>{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
         </div>
-    </>
+      </div>
+
+      <form className="contact-split-form" ref={formRef} onSubmit={handleSubmit} noValidate>
+        <div className="contact-split-form-head">
+          <h2>Tell us about the project</h2>
+          <p>Name, a way to reach you, and a short note are enough to start.</p>
+        </div>
+        <label>
+          <span>Your name</span>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Name"
+            autoComplete="name"
+            required
+            aria-required="true"
+          />
+        </label>
+        <label>
+          <span>Your phone</span>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Phone"
+            autoComplete="tel"
+            required
+            aria-required="true"
+          />
+        </label>
+        <label>
+          <span>Your email</span>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+            autoComplete="email"
+            required
+            aria-required="true"
+          />
+        </label>
+        <label>
+          <span>Services</span>
+          <select name="service" value={formData.service} onChange={handleChange}>
+            {serviceOptions.map((opt) => (
+              <option key={opt.value || "empty"} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="contact-split-message">
+          <span>Project details</span>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="What are you building, and when do you want to start?"
+            rows={4}
+          />
+        </label>
+
+        {status.message ? (
+          <p
+            role={status.type === "error" ? "alert" : "status"}
+            className={`contact-split-status contact-split-status--${status.type}`}
+          >
+            {status.message}
+          </p>
+        ) : null}
+
+        <div className="contact-split-form-foot">
+          <p>We reply within 24 hours. Your note stays with the DeopersIndia team.</p>
+          <button type="submit" className="contact-split-submit">
+            Send message
+          </button>
+        </div>
+      </form>
+    </div>
   );
 
   if (embedded) {

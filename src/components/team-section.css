@@ -34,15 +34,15 @@
 
 @media (min-width: 768px) {
   .team-office-grid {
-    grid-template-columns: 1.2fr 1fr;
-    grid-template-rows: minmax(9.5rem, auto) minmax(9.5rem, auto);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     align-items: stretch;
   }
+}
 
-  .team-office-card--featured {
-    grid-row: 1 / span 2;
-    min-height: 20rem;
+@media (min-width: 1024px) {
+  .team-office-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -57,8 +57,8 @@
 }
 
 @media (min-width: 768px) {
-  .team-office-card:not(.team-office-card--featured) {
-    min-height: 9.5rem;
+  .team-office-card {
+    min-height: 14rem;
   }
 }
 

@@ -29,22 +29,22 @@
   background: #f8fafc;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  padding: 0.5rem 0;
+  padding: 0.85rem 0;
   overflow: hidden;
 }
 
 .home-trust-marquee-shell {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  min-height: 2.75rem;
+  gap: 1rem;
+  min-height: 4.25rem;
   max-width: 100%;
 }
 
 @media (min-width: 768px) {
   .home-trust-marquee-shell {
-    gap: 1rem;
-    min-height: 3rem;
+    gap: 1.35rem;
+    min-height: 4.75rem;
   }
 }
 
@@ -55,34 +55,34 @@
   gap: 0.1rem;
   margin: 0;
   padding-right: 0.75rem;
-  max-width: 7.25rem;
+  max-width: 9.5rem;
   border-right: 1px solid var(--color-border);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 @media (min-width: 640px) {
   .home-trust-marquee-label {
-    max-width: 8.5rem;
-    padding-right: 1rem;
+    max-width: 11.5rem;
+    padding-right: 1.15rem;
   }
 }
 
 @media (min-width: 1024px) {
   .home-trust-marquee-label {
-    max-width: 9.5rem;
+    max-width: 13rem;
   }
 }
 
 .home-trust-marquee-label-strong {
-  font-size: 0.625rem;
-  font-weight: 600;
+  font-size: 0.875rem;
+  font-weight: 700;
   line-height: 1.35;
   letter-spacing: 0.01em;
   color: var(--color-text);
 }
 
 .home-trust-marquee-label-sub {
-  font-size: 0.5625rem;
+  font-size: 0.75rem;
   font-weight: 500;
   line-height: 1.35;
   color: var(--color-text-muted);
@@ -90,11 +90,11 @@
 
 @media (min-width: 768px) {
   .home-trust-marquee-label-strong {
-    font-size: 0.6875rem;
+    font-size: 0.9375rem;
   }
 
   .home-trust-marquee-label-sub {
-    font-size: 0.625rem;
+    font-size: 0.8125rem;
   }
 }
 
@@ -134,15 +134,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.75rem;
-  height: 1.25rem;
+  width: 2.75rem;
+  height: 2rem;
   flex-shrink: 0;
 }
 
 .home-trust-marquee-logo-img {
   width: auto;
-  height: 1.125rem;
-  max-width: 1.75rem;
+  height: 1.85rem;
+  max-width: 2.75rem;
   object-fit: contain;
   filter: grayscale(1);
   opacity: 0.72;
@@ -155,9 +155,9 @@
 
 .home-trust-marquee-brand-name {
   font-family: var(--font-sans), system-ui, sans-serif;
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #9aa8b8;
   white-space: nowrap;
@@ -165,7 +165,7 @@
 
 @media (min-width: 768px) {
   .home-trust-marquee-brand-name {
-    font-size: 0.6875rem;
+    font-size: 0.9375rem;
   }
 }
 

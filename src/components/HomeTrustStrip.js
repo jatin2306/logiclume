@@ -32,12 +32,12 @@ function MarqueeBrand({ item }) {
           <Image
             src={item.image}
             alt=""
-            width={32}
-            height={20}
+            width={56}
+            height={36}
             className="home-trust-marquee-logo-img"
           />
         ) : (
-          Icon && <Icon className="home-trust-marquee-icon" size={15} strokeWidth={2} />
+          Icon && <Icon className="home-trust-marquee-icon" size={22} strokeWidth={2} />
         )}
       </span>
       <span className="home-trust-marquee-brand-name">{item.name}</span>

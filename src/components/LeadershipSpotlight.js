@@ -18,7 +18,7 @@ export default function LeadershipSpotlight() {
       <div className="leadership-spotlight-visual">
         <div className="leadership-spotlight-frame">
           <Image
-            src="/images/team/cto.jpg"
+            src="/images/team/office/team.jpg"
             alt="Chief Technology Officer at DeopersIndia"
             fill
             sizes="(max-width: 1024px) 100vw, 480px"

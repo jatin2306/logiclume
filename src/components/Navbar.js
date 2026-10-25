@@ -12,15 +12,16 @@ import ContactForm from "./ContactForm";
 import "./site-header.css";
 
 const navLinks = [
-  { id: "ai", label: "AI", href: "/#services", isAi: true, mega: "ai" },
+  { id: "ai", label: "AI Solutions", href: "/#services", isAi: true, mega: "ai" },
   { id: "services", label: "Services", href: "/#services", mega: "services" },
-  { id: "industries", label: "Industries", href: "/#industries" },
-  { id: "about", label: "About", href: "/about-us", isRoute: true },
-  { id: "portfolio", label: "Work", href: "/work", isRoute: true },
+  { id: "industries", label: "Industries", href: "/#industries", mega: "industries" },
+  { id: "hire", label: "Hire Developers", href: "/contact-us", mega: "hire" },
+  { id: "portfolio", label: "Our Work", href: "/work", isRoute: true },
+  { id: "about", label: "About Us", href: "/about-us", isRoute: true, mega: "about" },
 ];
 
 const sectionIds = ["home", "services", "industries", "about", "team", "testimonials"];
-const CONTACT_DISMISS_KEY = "deopers-work-contact-dismissed";
+const CONTACT_DISMISS_KEY = "deopers-landing-contact-dismissed";
 
 function contactAlreadyDismissed() {
   try {
@@ -74,8 +75,8 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const onWork = pathname === "/work" || pathname.startsWith("/work/");
-    if (!onWork || contactAlreadyDismissed()) {
+    const onContactPage = pathname === "/contact-us";
+    if (onContactPage || contactAlreadyDismissed()) {
       setContactOpen(false);
       return;
     }
@@ -161,7 +162,7 @@ export default function Navbar() {
       </>
     );
 
-    const linkEl = link.isRoute ? (
+    const linkEl = link.isRoute && !link.mega ? (
       <Link
         key={link.id}
         href={link.href}
@@ -210,7 +211,7 @@ export default function Navbar() {
                   onMouseEnter={closeMegaMenu}
                   onClick={closeMegaMenu}
                 >
-                  <span className="relative block w-[9.5rem] sm:w-[10.25rem] h-10">
+                  <span className="relative block w-[11.25rem] sm:w-[12.5rem] h-12">
                     <Image
                       src="/images/logo.png"
                       alt="DeopersIndia"
@@ -234,15 +235,12 @@ export default function Navbar() {
                     </Link>
                     <Link
                       href="/contact-us"
-                      className={`site-header-btn-gradient ${megaMenu === "contact" ? "site-header-btn-gradient--open" : ""}`}
-                      onMouseEnter={() => setMegaMenu("contact")}
+                      className="site-header-btn-gradient"
+                      onMouseEnter={closeMegaMenu}
                       onClick={closeMegaMenu}
-                      aria-expanded={megaMenu === "contact"}
-                      aria-haspopup="true"
                       aria-current={pathname === "/contact-us" ? "page" : undefined}
                     >
-                      Contact Us
-                      <ChevronDown size={14} strokeWidth={2.5} className="site-header-chevron" />
+                      Start a Project
                     </Link>
                   </div>
 
@@ -349,7 +347,7 @@ export default function Navbar() {
               className="site-header-btn-gradient w-full justify-center"
               onClick={() => setMobileOpen(false)}
             >
-              Contact Us
+              Start a Project
             </Link>
           </div>
         </aside>

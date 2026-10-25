@@ -1,29 +1,38 @@
-export const teamMembers = [
-  { id: 2, name: "Ankita Singh", role: "Frontend Developer", image: "/images/team/2.jpg" },
-  { id: 3, name: "Nisha Tiwari", role: "Full Stack Developer", image: "/images/team/5.jpg" },
-  { id: 5, name: "Chirag Gupta", role: "React Developer", image: "/images/team/6.jpg" },
-  { id: 6, name: "Ankit Pal", role: "Frontend Developer", image: "/images/team/3.jpg" },
-  { id: 7, name: "Aakash Singh", role: "MERN Stack Developer", image: "/images/team/7.png" },
-  { id: 8, name: "Rishabh", role: "Backend Developer", image: "/images/team/8.jpg" },
-];
-
 export const officePhotos = [
   {
-    id: "workspace",
-    src: "/images/team/office/workspace.png",
-    alt: "DeopersIndia open workspace in Noida",
-    caption: "Product engineering floor · Sector 62, Noida",
+    id: "standup",
+    src: "/images/team/office/standup.jpg",
+    alt: "DeopersIndia team gathered for a standup in the Noida office",
+    caption: "Team standup · Noida office",
   },
   {
-    id: "collaboration",
-    src: "/images/team/office/collaboration.png",
-    alt: "Team collaboration and sprint planning",
-    caption: "Design & delivery sprints with client teams",
+    id: "review",
+    src: "/images/team/office/review.png",
+    alt: "Engineers reviewing work together at the office",
+    caption: "Delivery review with the team",
   },
   {
-    id: "reception",
-    src: "/images/team/office/reception.png",
-    alt: "DeopersIndia office reception area",
-    caption: "Noida HQ · Noida One, Sector 62",
+    id: "team",
+    src: "/images/team/office/team.jpg",
+    alt: "The DeopersIndia team together in the office",
+    caption: "The DeopersIndia team",
+  },
+  {
+    id: "celebration",
+    src: "/images/team/office/celebration.jpg",
+    alt: "DeopersIndia team celebration at the office",
+    caption: "Celebrations at the office",
+  },
+  {
+    id: "corridor",
+    src: "/images/team/office/corridor.png",
+    alt: "DeopersIndia team together in the office corridor",
+    caption: "Life at the Noida office",
+  },
+  {
+    id: "floor",
+    src: "/images/team/office/floor.png",
+    alt: "DeopersIndia product engineering floor",
+    caption: "Product engineering floor",
   },
 ];

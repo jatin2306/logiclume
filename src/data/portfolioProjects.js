@@ -1468,6 +1468,58 @@ export const portfolioProjects = [
     accent: "orange",
     summary: "Admissions funnel, hostel allocation, and exam timetable sync across two campuses.",
   },
+  {
+    id: "fieldwire",
+    numericId: 425,
+    title: "Fieldwire",
+    featuredTier: "spotlight",
+    deliveryTier: 1,
+    category: "Construction Management",
+    filterTags: ["construction", "mobile"],
+    tags: ["Construction", "Jobsite", "Mobile", "Plans"],
+    client: null,
+    url: "https://www.fieldwire.com/",
+    previewAccent: "orange",
+    accent: "orange",
+    description:
+      "Jobsite management platform for construction teams — tasks, punch lists, inspections, RFIs, submittals, plan viewing, and as-built records shared in real time between the field and the office.",
+    deliverables: [
+      "Tasks, punch lists, inspections, and scheduling",
+      "Plan viewing, markups, and as-built records",
+    ],
+    summary:
+      "Field-first jobsite platform — tasks, drawings, inspections, and project records for crews and project managers on web, iOS, and Android.",
+    spotlightLabel: "Construction · Field",
+    deckChapter: "construction",
+    deckOrder: 1,
+    mosaicSize: "wide",
+  },
+  {
+    id: "buildots",
+    numericId: 426,
+    title: "Buildots",
+    featuredTier: "spotlight",
+    deliveryTier: 1,
+    category: "Construction Management",
+    filterTags: ["construction", "ai"],
+    tags: ["Construction", "AI", "Progress", "BIM"],
+    client: null,
+    url: "https://buildots.com/",
+    previewAccent: "blue",
+    accent: "blue",
+    description:
+      "AI construction intelligence platform that compares what is built on site with the plan, flags delay risk and deviations, and gives project teams and owners a current record of progress.",
+    deliverables: [
+      "Progress versus plan and delay-risk detection",
+      "Trade, workforce, and site documentation",
+    ],
+    summary:
+      "Construction intelligence — site progress against the plan, risk and deviation detection, and portfolio visibility from the jobsite to leadership.",
+    spotlightLabel: "Construction · AI",
+    deckChapter: "construction",
+    deckOrder: 2,
+    mosaicSize: "large",
+  },
 ];
 
 export const portfolioDeckChapters = [
@@ -1505,6 +1557,13 @@ export const portfolioDeckChapters = [
     title: "Rewards & marketplace products",
     blurb:
       "Conversion-focused storefronts, catalogue UX, and checkout flows inside enterprise rewards ecosystems.",
+  },
+  {
+    id: "construction",
+    label: "Construction",
+    title: "Jobsite and progress platforms",
+    blurb:
+      "Field tasking, drawings, and AI progress tracking so construction teams share one current picture of the job.",
   },
   {
     id: "property",

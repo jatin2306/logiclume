@@ -92,6 +92,7 @@ const linkMenus = {
     items: [
       { label: "Healthcare", desc: "Clinics, care, and health platforms", href: "/work/healthcare" },
       { label: "Real Estate", desc: "Property, leasing, and investment tools", href: "/work/realestate" },
+      { label: "Construction Management", desc: "Jobsite, progress, and field platforms", href: "/work/construction" },
       { label: "Banking & Finance", desc: "Payments, rewards, and fintech", href: "/work/banking" },
       { label: "Retail & E-Commerce", desc: "Stores, rewards, and commerce", href: "/work/ecommerce" },
       { label: "Education", desc: "Learning products and platforms", href: "/work/education" },

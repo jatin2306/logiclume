@@ -8,6 +8,7 @@ export const portfolioFilters = [
   { id: "healthcare", label: "Healthcare" },
   { id: "transportation", label: "Transportation" },
   { id: "manufacturing", label: "Manufacturing" },
+  { id: "construction", label: "Construction Management" },
   { id: "travel", label: "Travel & Tourism" },
   { id: "professional", label: "Professional Services" },
   { id: "software", label: "Software Vendors" },

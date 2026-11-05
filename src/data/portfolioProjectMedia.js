@@ -120,8 +120,6 @@ export const portfolioProjectMedia = {
   campuspay: { url: "https://www.unacademy.com/", imageSrc: thumb("campuspay") },
   estatevue: { url: "https://housing.com/", imageSrc: thumb("estatevue") },
   rentgrid: { url: "https://www.nobroker.in/", imageSrc: thumb("rentgrid") },
-  fieldwire: { imageSrc: thumb("fieldwire") },
-  buildots: { imageSrc: thumb("buildots") },
 };
 
 export function applyPortfolioProjectMedia(project) {

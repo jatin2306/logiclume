@@ -53,6 +53,7 @@ export default function PortfolioThumb({
 }) {
   const hostname = hostnameFromUrl(previewUrl);
   const isContain = imageFit === "contain";
+  const coverLeft = imageFit === "cover-left";
   const [imageFailed, setImageFailed] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -78,7 +79,7 @@ export default function PortfolioThumb({
         isContain
           ? "home-portfolio-thumb--contain bg-[#eef1f5]"
           : `bg-gradient-to-br ${gradientClass}`
-      }`}
+      }${coverLeft ? " home-portfolio-thumb--cover-left" : ""}`}
     >
       {showImage && !imageLoaded ? (
         <div className="portfolio-thumb-skeleton portfolio-skeleton-shimmer" aria-hidden />

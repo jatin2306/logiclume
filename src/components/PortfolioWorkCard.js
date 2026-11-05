@@ -6,7 +6,8 @@ export default function PortfolioWorkCard({ project, detailed = false }) {
   const url = project.url?.trim() || null;
   const host = getProjectHostname(url);
   const categoryLabel = getProjectCardLabel(project);
-  const imageFit = project.imageFit === "cover" ? "cover" : "contain";
+  const imageFit =
+    project.imageFit === "cover" || project.imageFit === "cover-left" ? project.imageFit : "contain";
   const accent = project.previewAccent === "orange" ? "orange" : "blue";
   const showClient = project.client && project.client !== project.title;
   const chips = (project.tags ?? []).filter((t) => t !== categoryLabel).slice(0, 3);

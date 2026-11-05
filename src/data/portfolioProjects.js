@@ -1479,6 +1479,8 @@ export const portfolioProjects = [
     tags: ["Construction", "Jobsite", "Mobile", "Plans"],
     client: null,
     url: "https://www.fieldwire.com/",
+    imageSrc: "/images/portfolio/fieldwire.jpg",
+    imageFit: "cover",
     previewAccent: "orange",
     accent: "orange",
     description:
@@ -1505,6 +1507,8 @@ export const portfolioProjects = [
     tags: ["Construction", "AI", "Progress", "BIM"],
     client: null,
     url: "https://buildots.com/",
+    imageSrc: "/images/portfolio/buildots.jpg",
+    imageFit: "cover-left",
     previewAccent: "blue",
     accent: "blue",
     description:

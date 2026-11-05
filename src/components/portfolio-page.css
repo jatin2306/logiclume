@@ -586,6 +586,11 @@
   object-position: top center !important;
 }
 
+.portfolio-work-browser-viewport .home-portfolio-thumb.home-portfolio-thumb--cover-left img {
+  object-fit: cover !important;
+  object-position: 8% center !important;
+}
+
 .portfolio-work-card-tags {
   display: flex;
   flex-wrap: wrap;

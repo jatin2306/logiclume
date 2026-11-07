@@ -48,7 +48,7 @@ const HERO_AUTO_INTERVAL_MS = 6000;
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
-  const [slideImageReady, setSlideImageReady] = useState(false);
+  const [visualReady, setVisualReady] = useState(false);
   const pauseAutoRef = useRef(false);
   const slide = slides[index];
 
@@ -56,37 +56,21 @@ export default function Hero() {
     setIndex((i) => (i + dir + slides.length) % slides.length);
   }, []);
 
-  useEffect(() => {
-    setSlideImageReady(false);
-    const img = new window.Image();
-    img.src = slide.src;
-    if (img.complete) {
-      setSlideImageReady(true);
-      return;
-    }
-    const done = () => setSlideImageReady(true);
-    img.addEventListener("load", done);
-    img.addEventListener("error", done);
-    return () => {
-      img.removeEventListener("load", done);
-      img.removeEventListener("error", done);
-    };
-  }, [slide.src]);
+  const markVisualReady = useCallback(() => {
+    setVisualReady(true);
+  }, []);
 
   useEffect(() => {
     slides.forEach((s) => {
       const img = new window.Image();
       img.src = s.src;
+      if (img.complete) markVisualReady();
+      else {
+        img.addEventListener("load", markVisualReady, { once: true });
+        img.addEventListener("error", markVisualReady, { once: true });
+      }
     });
-  }, []);
-
-  const onHeroImageLoad = useCallback(() => {
-    setSlideImageReady(true);
-  }, []);
-
-  const onHeroImageError = useCallback(() => {
-    setSlideImageReady(true);
-  }, []);
+  }, [markVisualReady]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -122,12 +106,8 @@ export default function Hero() {
       }}
     >
       <SiteContainer className="mi-hero-inner">
-        <div
-          className={`mi-hero-card${slide.key === "digital-transformation" ? " mi-hero-card--ai" : ""}${
-            slideImageReady ? "" : " mi-hero-card--loading"
-          }`}
-        >
-          {!slideImageReady ? (
+        <div className={`mi-hero-card${visualReady ? "" : " mi-hero-card--loading"}`}>
+          {!visualReady ? (
             <div className="mi-hero-skeleton" aria-busy="true" aria-label="Loading hero">
               <div className="mi-hero-skeleton-visual mi-hero-skeleton-shimmer" aria-hidden />
               <div className="mi-hero-skeleton-copy">
@@ -144,29 +124,45 @@ export default function Hero() {
           ) : null}
 
           <div className="mi-hero-visual">
-            <Image
-              key={slide.src}
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              priority={index === 0}
-              sizes="100vw"
-              className={`mi-hero-visual-img ${slideImageReady ? "mi-hero-visual-img--ready" : ""}`}
-              onLoad={onHeroImageLoad}
-              onError={onHeroImageError}
-            />
+            {slides.map((s, i) => (
+              <Image
+                key={s.key}
+                src={s.src}
+                alt={i === index ? s.alt : ""}
+                fill
+                priority
+                sizes="100vw"
+                className={`mi-hero-visual-img${i === index ? " mi-hero-visual-img--active" : ""}${
+                  s.key === "digital-transformation" ? " mi-hero-visual-img--ai" : ""
+                }`}
+                onLoad={markVisualReady}
+                onError={markVisualReady}
+              />
+            ))}
             <div className="mi-hero-visual-fade" aria-hidden />
           </div>
 
-          <div className="mi-hero-copy" key={slide.key}>
-            <span className="site-header-ai-border mi-hero-eyebrow-border">
-              <span className="mi-hero-eyebrow section-label-light">{slide.eyebrow}</span>
-            </span>
-            <h1 className="mi-hero-title">
-              <span className="mi-hero-title-main">{slide.titleMain}</span>{" "}
-              <span className="mi-hero-title-accent">{slide.titleAccent}</span>
-            </h1>
-            {slide.support ? <p className="mi-hero-support">{slide.support}</p> : null}
+          <div className="mi-hero-copy-stack">
+            {slides.map((s, i) => {
+              const TitleTag = i === index ? "h1" : "div";
+              return (
+                <div
+                  key={s.key}
+                  className={`mi-hero-copy${i === index ? " is-active" : ""}`}
+                  aria-hidden={i === index ? undefined : true}
+                >
+                  <span className="site-header-ai-border mi-hero-eyebrow-border">
+                    <span className="mi-hero-eyebrow section-label-light">{s.eyebrow}</span>
+                  </span>
+                  <TitleTag className="mi-hero-title">
+                    <span className="mi-hero-title-main">{s.titleMain}</span>
+                    <br />
+                    <span className="mi-hero-title-accent">{s.titleAccent}</span>
+                  </TitleTag>
+                  {s.support ? <p className="mi-hero-support">{s.support}</p> : null}
+                </div>
+              );
+            })}
           </div>
 
           <aside className="mi-hero-aside" aria-label="Why DeopersIndia">
@@ -187,7 +183,13 @@ export default function Hero() {
               size="md"
               className="mi-hero-cta gap-2 rounded-xl shadow-lg shadow-[rgba(245,130,32,0.28)] hover:scale-[1.02]"
             >
-              {slide.ctaLabel}
+              <span className="mi-hero-cta-labels">
+                {slides.map((s, i) => (
+                  <span key={s.key} className={i === index ? "is-active" : undefined}>
+                    {s.ctaLabel}
+                  </span>
+                ))}
+              </span>
               <ArrowUpRight size={17} aria-hidden />
             </Button>
           </div>

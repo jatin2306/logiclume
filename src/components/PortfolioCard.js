@@ -15,7 +15,7 @@ const categoryStyles = {
   "Dashboard UI": { gradient: "from-[#0a1628] to-[#1565c0]", badge: "blue" },
 };
 
-function CardInner({ title, category, client, url, imageSrc, previewAccent, featured, imageFit }) {
+function CardInner({ title, category, client, url, imageSrc, previewAccent, featured, imageFit, description }) {
   const style = categoryStyles[category] || { gradient: "from-[#1565c0] to-[#0d47a1]", badge: "blue" };
   const accent = previewAccent || style.badge;
 
@@ -51,6 +51,11 @@ function CardInner({ title, category, client, url, imageSrc, previewAccent, feat
         {client && (
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">Built for {client}</p>
         )}
+        {description ? (
+          <p className="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed line-clamp-3">
+            {description}
+          </p>
+        ) : null}
       </div>
     </>
   );
@@ -65,6 +70,7 @@ export default function PortfolioCard({
   previewAccent,
   featured,
   imageFit,
+  description,
 }) {
   const className = "group home-card overflow-hidden h-full";
 
@@ -80,6 +86,7 @@ export default function PortfolioCard({
           previewAccent={previewAccent}
           featured={featured}
           imageFit={imageFit}
+          description={description}
         />
       </a>
     );
@@ -96,6 +103,7 @@ export default function PortfolioCard({
         previewAccent={previewAccent}
         featured={featured}
         imageFit={imageFit}
+        description={description}
       />
     </div>
   );

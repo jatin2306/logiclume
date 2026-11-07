@@ -21,11 +21,11 @@ const slides = [
     cardLabel: "Dedicated Teams",
     alt: "Dedicated software development team collaborating with clients",
     eyebrow: "Dedicated delivery",
-    titleMain: "Hire a Dedicated Software Development Team",
-    titleAccent: "That Starts in 2 Days",
+    titleMain: "Custom Software Development & Dedicated Engineering Teams",
+    titleAccent: "for Growing Businesses",
     support:
-      "Get vetted engineers, AI specialists, Full-Stack Developers, DevOps experts, and UI/UX designers with 6+ years of average experience. They join your stand-ups, work in your tools, and scale up or down as your roadmap changes.",
-    ctaLabel: "Build Your Dedicated Team",
+      "We design, develop, and scale enterprise software, SaaS platforms, mobile applications, and AI-powered solutions — from initial concept to production.",
+    ctaLabel: "Discuss Your Project",
     ctaHref: "/contact-us",
   },
   {
@@ -166,6 +166,7 @@ export default function Hero() {
               <span className="mi-hero-title-main">{slide.titleMain}</span>{" "}
               <span className="mi-hero-title-accent">{slide.titleAccent}</span>
             </h1>
+            {slide.support ? <p className="mi-hero-support">{slide.support}</p> : null}
           </div>
 
           <aside className="mi-hero-aside" aria-label="Why DeopersIndia">

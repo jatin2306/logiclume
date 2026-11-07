@@ -36,14 +36,12 @@ export default function FeaturedClients() {
             What We Do
           </span>
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--color-text)] leading-tight">
-            We build{" "}
-            <span className="text-[var(--color-primary)]">digital products</span>{" "}
-            for startups & enterprises
+            Technology Solutions That Drive{" "}
+            <span className="whitespace-nowrap text-[var(--color-primary)]">Business Growth</span>
           </h2>
           <p className="mt-4 text-base lg:text-lg text-[var(--color-text-muted)] leading-relaxed">
-            DeopersIndia is a product engineering studio — we design, develop, and ship
-            websites, mobile apps, AI tools, and enterprise platforms for brands that need
-            reliable software at scale.
+            From custom software development to intelligent automation, we build technology
+            solutions that help businesses innovate, operate efficiently, and scale.
           </p>
         </div>
 

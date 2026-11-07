@@ -14,15 +14,15 @@ export { portfolioFilters, portfolioViewModes, portfolioServiceFilters, portfoli
 export const companyPillars = [
   {
     title: "Product Engineering",
-    description: "Web apps, mobile products & custom software from prototype to production.",
+    description: "Custom web platforms, mobile products, and software taken from a defined concept through to production.",
   },
   {
     title: "Enterprise Platforms",
-    description: "Banking, fintech & rewards systems built for security, scale & compliance.",
+    description: "Operational systems built for security, scale, and the integrations larger businesses run on.",
   },
   {
     title: "Design & Delivery",
-    description: "UI/UX, agile sprints & dedicated teams — shipped on time, every time.",
+    description: "Product design and dedicated teams that plan the work, ship in releases, and stay through launch.",
   },
 ];
 

@@ -14,8 +14,8 @@ export default function PortfolioSection() {
       <SiteContainer>
         <SectionHeading
           label="Portfolio"
-          title="Our Best Projects"
-          description="A sample of recent work — open Work for the full set of client projects."
+          title="Real Products. Proven Engineering Expertise."
+          description="Explore the digital platforms and software solutions we've built to solve real business challenges across industries."
           centered
           twoColor
           coloredWords={2}

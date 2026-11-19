@@ -23,7 +23,7 @@ function DeckProjectSlide({ project, index, chapterLabel }) {
     project.summary ||
     project.description ||
     project.whatWeDid ||
-    "Product design and engineering delivered end-to-end by DeopersIndia.";
+    "Product design and engineering delivered end-to-end by Logic Lume.";
 
   return (
     <article className="portfolio-deck-slide">

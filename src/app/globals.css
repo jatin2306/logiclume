@@ -26,7 +26,7 @@ html.dp-nav-mega-open body {
 
 /* Brand: Orange #F58220 · Blue #1565C0 · Light-first layout */
 :root {
-  --dp-nav-bar-h: 4.25rem;
+  --dp-nav-bar-h: 6rem;
   --dp-nav-promo-h: 0px;
   --dp-nav-total-h: var(--dp-nav-bar-h);
 

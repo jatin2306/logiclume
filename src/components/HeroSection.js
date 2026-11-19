@@ -25,7 +25,7 @@ export default function HeroSection() {
       <SiteContainer>
         <div className="home-section-layout about-layout">
           <div className="about-copy">
-            <span className="section-label-light about-label">About DeopersIndia</span>
+            <span className="section-label-light about-label">About Logic Lume</span>
 
             <SectionHeading
               centered={false}
@@ -35,7 +35,7 @@ export default function HeroSection() {
               coloredWords={3}
               className="about-heading mb-0 md:mb-0"
               description={[
-                "DeopersIndia is a modern IT solutions company helping startups, SMEs, and enterprises establish a powerful digital presence through cutting-edge technology and thoughtful design.",
+                "Logic Lume is a modern IT solutions company helping startups, SMEs, and enterprises establish a powerful digital presence through cutting-edge technology and thoughtful design.",
                 "We combine product thinking with engineering excellence to deliver websites, mobile applications, and custom software that drive real business growth.",
               ]}
             />

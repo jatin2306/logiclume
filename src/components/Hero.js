@@ -88,7 +88,7 @@ export default function Hero() {
     <section
       className="mi-hero"
       id="home"
-      aria-label="DeopersIndia homepage hero"
+      aria-label="Logic Lume homepage hero"
       aria-live="polite"
       onMouseEnter={() => {
         pauseAutoRef.current = true;
@@ -165,7 +165,7 @@ export default function Hero() {
             })}
           </div>
 
-          <aside className="mi-hero-aside" aria-label="Why DeopersIndia">
+          <aside className="mi-hero-aside" aria-label="Why Logic Lume">
             <div className="mi-hero-stats">
               {stats.map((stat) => (
                 <div key={stat.label} className="mi-hero-stat">

@@ -17,27 +17,27 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const siteUrl = "https://www.deopersindia.com";
+const siteUrl = "https://www.logiclume.com";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "DeopersIndia | Web & App Development Company",
-    template: "%s | DeopersIndia",
+    default: "Logic Lume | Web & App Development Company",
+    template: "%s | Logic Lume",
   },
   description:
-    "DeopersIndia builds scalable websites, mobile apps, and digital products for startups and enterprises. Expert web development, UI/UX, and cloud solutions.",
+    "Logic Lume builds scalable websites, mobile apps, and digital products for startups and enterprises. Expert web development, UI/UX, and cloud solutions.",
   keywords: [
-    "DeopersIndia",
+    "Logic Lume",
     "web development company",
     "mobile app development",
     "IT solutions India",
     "software development",
   ],
-  applicationName: "DeopersIndia",
-  authors: [{ name: "DeopersIndia", url: siteUrl }],
-  creator: "DeopersIndia",
-  publisher: "DeopersIndia",
+  applicationName: "Logic Lume",
+  authors: [{ name: "Logic Lume", url: siteUrl }],
+  creator: "Logic Lume",
+  publisher: "Logic Lume",
   alternates: {
     canonical: "/",
   },
@@ -45,14 +45,14 @@ export const metadata = {
     type: "website",
     locale: "en_IN",
     url: siteUrl,
-    siteName: "DeopersIndia",
-    title: "DeopersIndia | Web & App Development Company",
+    siteName: "Logic Lume",
+    title: "Logic Lume | Web & App Development Company",
     description:
-      "DeopersIndia helps startups, businesses, and enterprises establish a strong online presence through modern website development, custom software, mobile apps, and digital solutions.",
+      "Logic Lume helps startups, businesses, and enterprises establish a strong online presence through modern website development, custom software, mobile apps, and digital solutions.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "DeopersIndia | Web & App Development Company",
+    title: "Logic Lume | Web & App Development Company",
     description:
       "Web development, mobile apps, UI/UX design, and custom software for startups and enterprises.",
   },
@@ -70,11 +70,11 @@ export default function RootLayout({ children }) {
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "DeopersIndia",
+    name: "Logic Lume",
     url: siteUrl,
-    logo: `${siteUrl}/images/logo.jpeg`,
+    logo: `${siteUrl}/images/logo.png`,
     description:
-      "DeopersIndia is a modern IT solutions company delivering web development, mobile apps, UI/UX design, and digital marketing services.",
+      "Logic Lume is a modern IT solutions company delivering web development, mobile apps, UI/UX design, and digital marketing services.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Noida One, B-8, Block B, Industrial Area, Sector 62",
@@ -84,14 +84,14 @@ export default function RootLayout({ children }) {
       addressCountry: "IN",
     },
     sameAs: [
-      "https://www.linkedin.com/company/deopers-india",
-      "https://www.instagram.com/deopersindia/",
+      "https://www.linkedin.com/company/logic-lume",
+      "https://www.instagram.com/logiclume/",
     ],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-9205210930",
       contactType: "customer service",
-      email: "info@deopersindia.com",
+      email: "info@logiclume.com",
     },
   };
 

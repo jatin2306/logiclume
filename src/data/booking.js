@@ -1,5 +1,5 @@
 const DEFAULT_CAL_BOOKING_URL =
-  "https://cal.com/jatin-deopersindia/30min?overlayCalendar=true";
+  "https://cal.com/jatin-logiclume/30min?overlayCalendar=true";
 
 /** Booking page URL from env (query params like overlayCalendar=true are preserved) */
 export const CAL_BOOK_URL =
@@ -14,7 +14,7 @@ export function getCalEmbedUrl(bookUrl = CAL_BOOK_URL) {
     url.searchParams.set("overlayCalendar", "true");
     return url.toString();
   } catch {
-    return "https://cal.com/jatin-deopersindia/30min?embed=true&overlayCalendar=true";
+    return "https://cal.com/jatin-logiclume/30min?embed=true&overlayCalendar=true";
   }
 }
 

@@ -1,4 +1,4 @@
-/* Site header — MindInventory-inspired (DeopersIndia brand) */
+/* Site header — MindInventory-inspired (Logic Lume brand) */
 
 .site-header {
   position: fixed;
@@ -31,7 +31,7 @@
 .site-header-logo {
   flex-shrink: 0;
   display: block;
-  margin-left: -0.85rem;
+  margin-left: 0;
 }
 
 .site-header-logo img,

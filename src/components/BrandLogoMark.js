@@ -1,8 +1,7 @@
-/** Hero “d” only — cropped from the same PNG as the navbar wordmark. */
-const LOGO_W = 631;
-const LOGO_H = 166;
-/** Tight crop: icon pixels only (excludes orange “e” at ~x 120). */
-const MARK_VIEW = "47 16 73 121";
+/** Full Logic Lume lockup — same PNG as the navbar. */
+const LOGO_W = 913;
+const LOGO_H = 465;
+const MARK_VIEW = "0 0 913 465";
 
 export default function BrandLogoMark({ className = "", size = "hero" }) {
   return (

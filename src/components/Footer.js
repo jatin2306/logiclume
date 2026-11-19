@@ -48,12 +48,12 @@ const companyLinks = [
 
 const socialLinks = [
   {
-    href: "https://www.linkedin.com/company/deopers-india",
+    href: "https://www.linkedin.com/company/logic-lume",
     icon: FaLinkedinIn,
     label: "LinkedIn",
   },
   {
-    href: "https://www.instagram.com/deopersindia/",
+    href: "https://www.instagram.com/logiclume/",
     icon: FaInstagram,
     label: "Instagram",
   },
@@ -82,12 +82,12 @@ export default function Footer() {
       <SiteContainer className="site-footer-shell">
         <div className="site-footer-main">
           <div className="site-footer-brand">
-            <Link href="/" className="site-footer-logo" aria-label="DeopersIndia home">
+            <Link href="/" className="site-footer-logo" aria-label="Logic Lume home">
               <Image
                 src="/images/logo.png"
-                alt="DeopersIndia"
-                width={160}
-                height={42}
+                alt="Logic Lume"
+                width={220}
+                height={112}
                 className="site-footer-logo-img"
               />
             </Link>
@@ -97,7 +97,7 @@ export default function Footer() {
             </p>
             <div className="site-footer-contact">
               <a href="tel:+919205210930">+91 92052 10930</a>
-              <a href="mailto:info@deopersindia.com">info@deopersindia.com</a>
+              <a href="mailto:info@logiclume.com">info@logiclume.com</a>
             </div>
             <div className="site-footer-social" aria-label="Social media">
               {socialLinks.map(({ href, icon: Icon, label }) => (
@@ -186,7 +186,7 @@ export default function Footer() {
 
         <div className="site-footer-bar">
           <p className="site-footer-bar-copy">
-            © {currentYear} Deopers<span>India</span>. All rights reserved.
+            © {currentYear} Logic <span>Lume</span>. All rights reserved.
           </p>
           <p className="site-footer-bar-meta">80+ projects · 150+ team</p>
           <nav className="site-footer-bar-legal" aria-label="Legal">

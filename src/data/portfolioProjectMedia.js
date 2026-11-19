@@ -4,7 +4,7 @@
  */
 
 const thumb = (seed) =>
-  `https://picsum.photos/seed/deopers-${encodeURIComponent(seed)}/960/600`;
+  `https://picsum.photos/seed/logiclume-${encodeURIComponent(seed)}/960/600`;
 
 /** Sector defaults when a project has no explicit media row */
 export const portfolioSectorFallback = {

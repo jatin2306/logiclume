@@ -2,7 +2,7 @@ export const officePhotos = [
   {
     id: "standup",
     src: "/images/team/office/standup.jpg",
-    alt: "DeopersIndia team gathered for a standup in the Noida office",
+    alt: "Logic Lume team gathered for a standup in the Noida office",
     caption: "Team standup · Noida office",
   },
   {
@@ -14,25 +14,25 @@ export const officePhotos = [
   {
     id: "team",
     src: "/images/team/office/team.jpg",
-    alt: "The DeopersIndia team together in the office",
-    caption: "The DeopersIndia team",
+    alt: "The Logic Lume team together in the office",
+    caption: "The Logic Lume team",
   },
   {
     id: "celebration",
     src: "/images/team/office/celebration.jpg",
-    alt: "DeopersIndia team celebration at the office",
+    alt: "Logic Lume team celebration at the office",
     caption: "Celebrations at the office",
   },
   {
     id: "corridor",
     src: "/images/team/office/corridor.png",
-    alt: "DeopersIndia team together in the office corridor",
+    alt: "Logic Lume team together in the office corridor",
     caption: "Life at the Noida office",
   },
   {
     id: "floor",
     src: "/images/team/office/floor.png",
-    alt: "DeopersIndia product engineering floor",
+    alt: "Logic Lume product engineering floor",
     caption: "Product engineering floor",
   },
 ];

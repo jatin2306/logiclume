@@ -36,7 +36,7 @@ export default function PortfolioFeaturedBand() {
             </h2>
             <p className="mt-2 text-sm lg:text-base text-[var(--color-text-muted)]">
               Live products for IDFC Bank and American Express — engineered end-to-end by
-              DeopersIndia.
+              Logic Lume.
             </p>
           </div>
         </div>

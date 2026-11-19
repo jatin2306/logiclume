@@ -21,7 +21,7 @@ const navLinks = [
 ];
 
 const sectionIds = ["home", "services", "industries", "about", "team", "testimonials"];
-const CONTACT_DISMISS_KEY = "deopers-landing-contact-dismissed";
+const CONTACT_DISMISS_KEY = "logiclume-landing-contact-dismissed";
 
 function contactAlreadyDismissed() {
   try {
@@ -207,17 +207,17 @@ export default function Navbar() {
                 <Link
                   href="/"
                   className="site-header-logo"
-                  aria-label="DeopersIndia home"
+                  aria-label="Logic Lume home"
                   onMouseEnter={closeMegaMenu}
                   onClick={closeMegaMenu}
                 >
-                  <span className="relative block w-[11.25rem] sm:w-[12.5rem] h-12">
+                  <span className="relative block h-[4.5rem] w-[8.85rem] sm:h-[5rem] sm:w-[9.85rem]">
                     <Image
                       src="/images/logo.png"
-                      alt="DeopersIndia"
-                      title="DeopersIndia"
+                      alt="Logic Lume"
+                      title="Logic Lume"
                       fill
-                      sizes="(max-width: 640px) 152px, 164px"
+                      sizes="(max-width: 640px) 142px, 158px"
                       className="object-contain object-left"
                       priority
                     />

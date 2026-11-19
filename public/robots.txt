@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.deopersindia.com/sitemap.xml
-Host: https://www.deopersindia.com
+Sitemap: https://www.logiclume.com/sitemap.xml
+Host: https://www.logiclume.com

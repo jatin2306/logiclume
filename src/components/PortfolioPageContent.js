@@ -205,7 +205,7 @@ export default function PortfolioPageContent() {
               </h2>
               <p className="portfolio-work-cta-desc">
                 Tell us about your roadmap — we&apos;ll help you scope, estimate, and ship with a
-                dedicated DeopersIndia squad.
+                dedicated Logic Lume squad.
               </p>
             </div>
             <div className="portfolio-work-cta-actions">

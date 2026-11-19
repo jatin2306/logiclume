@@ -28,9 +28,9 @@ export default function AboutPageContent() {
       <div className="about-hero-band">
         <section className="about-hero" aria-labelledby="about-hero-title">
           <SiteContainer>
-            <span className="section-label-orange about-hero-eyebrow">About DeopersIndia</span>
+            <span className="section-label-orange about-hero-eyebrow">About Logic Lume</span>
             <h1 id="about-hero-title" className="about-hero-title">
-              About DeopersIndia
+              About Logic Lume
             </h1>
             <p className="about-hero-lead">
               We help businesses turn complex technology challenges into scalable digital products
@@ -146,7 +146,7 @@ export default function AboutPageContent() {
           <div className="about-section-head about-section-head--center">
             <span className="section-label-light about-section-kicker">People</span>
             <h2 id="about-team-title" className="about-section-title">
-              The minds behind DeopersIndia
+              The minds behind Logic Lume
             </h2>
             <p className="about-section-desc">
               Leadership with business context, technical depth, and hands-on delivery experience.

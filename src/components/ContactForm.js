@@ -21,8 +21,8 @@ const channels = [
     icon: Mail,
     label: "Email the team",
     detail: "Share a brief, a deck, or a link. We read every note.",
-    value: "info@deopersindia.com",
-    href: "mailto:info@deopersindia.com",
+    value: "info@logiclume.com",
+    href: "mailto:info@logiclume.com",
   },
   {
     id: "office",
@@ -230,7 +230,7 @@ export default function ContactForm({ embedded = false }) {
         ) : null}
 
         <div className="contact-split-form-foot">
-          <p>We reply within 24 hours. Your note stays with the DeopersIndia team.</p>
+          <p>We reply within 24 hours. Your note stays with the Logic Lume team.</p>
           <button type="submit" className="contact-split-submit">
             Send message
           </button>

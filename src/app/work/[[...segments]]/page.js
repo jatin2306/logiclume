@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import PortfolioPageContent from "@/components/PortfolioPageContent";
 
-const siteUrl = "https://www.deopersindia.com";
+const siteUrl = "https://www.logiclume.com";
 
 export const metadata = {
   title: "Our Best Projects",
@@ -11,9 +11,9 @@ export const metadata = {
     canonical: "/work",
   },
   openGraph: {
-    title: "Our Best Projects | DeopersIndia",
+    title: "Our Best Projects | Logic Lume",
     description:
-      "Web, mobile, and enterprise platforms engineered by DeopersIndia for banks, brands, and growth companies.",
+      "Web, mobile, and enterprise platforms engineered by Logic Lume for banks, brands, and growth companies.",
     url: `${siteUrl}/work`,
   },
 };

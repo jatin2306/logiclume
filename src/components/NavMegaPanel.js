@@ -117,11 +117,11 @@ const linkMenus = {
     eyebrow: "The company",
     title: "About Us",
     desc: "A product engineering studio delivering from Noida to global clients.",
-    cta: { href: "/about-us", label: "About DeopersIndia" },
+    cta: { href: "/about-us", label: "About Logic Lume" },
     items: [
-      { label: "Our story", desc: "How DeopersIndia builds", href: "/about-us" },
+      { label: "Our story", desc: "How Logic Lume builds", href: "/about-us" },
       { label: "Leadership", desc: "The people guiding delivery", href: "/about-us" },
-      { label: "Life at DeopersIndia", desc: "The Noida office and team", href: "/#team" },
+      { label: "Life at Logic Lume", desc: "The Noida office and team", href: "/#team" },
       { label: "Book a call", desc: "Talk through your roadmap", href: "/book-a-call" },
       { label: "Contact", desc: "Start a project with the team", href: "/contact-us" },
     ],
@@ -269,8 +269,8 @@ export default function NavMegaPanel({ type, onClose }) {
                 <a href="tel:+919205210930" className="nav-mega-contact-quick-link">
                   +91 92052 10930
                 </a>
-                <a href="mailto:info@deopersindia.com" className="nav-mega-contact-quick-link">
-                  info@deopersindia.com
+                <a href="mailto:info@logiclume.com" className="nav-mega-contact-quick-link">
+                  info@logiclume.com
                 </a>
               </div>
               <a href="/contact-us" className="nav-mega-intro-cta group" onClick={onClose}>
@@ -288,7 +288,7 @@ export default function NavMegaPanel({ type, onClose }) {
               <div className="nav-mega-contact-cto-frame">
                 <Image
                   src="/images/team/office/team.jpg"
-                  alt="Chief Technology Officer at DeopersIndia"
+                  alt="Chief Technology Officer at Logic Lume"
                   fill
                   sizes="(max-width: 1024px) 28vw, 220px"
                   className="nav-mega-contact-cto-photo"

@@ -8,8 +8,8 @@
   margin-bottom: clamp(3rem, 6vw, 4.5rem);
   padding: clamp(1.25rem, 2.5vw, 1.75rem);
   border-radius: 1.5rem;
-  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 55%, #eef4fb 100%);
-  border: 1px solid rgba(21, 101, 192, 0.12);
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 55%, #eef3ff 100%);
+  border: 1px solid rgba(0, 102, 245, 0.12);
   box-shadow:
     0 24px 64px rgba(10, 22, 40, 0.08),
     0 0 0 1px rgba(255, 255, 255, 0.8) inset;
@@ -31,7 +31,7 @@
   right: -15%;
   width: 55%;
   height: 80%;
-  background: radial-gradient(circle, rgba(245, 130, 32, 0.12), transparent 65%);
+  background: radial-gradient(circle, rgba(139, 44, 245, 0.12), transparent 65%);
   pointer-events: none;
 }
 
@@ -64,7 +64,7 @@
   inset: 0;
   padding: 2px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #f58220, #1565c0, #f58220);
+  background: linear-gradient(135deg, #8b2cf5, #0066f5, #8b2cf5);
   background-size: 200% 200%;
   animation: leadership-border-shift 6s ease infinite;
   -webkit-mask:
@@ -125,9 +125,9 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #f58220;
+  color: #8b2cf5;
   background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(245, 130, 32, 0.25);
+  border: 1px solid rgba(139, 44, 245, 0.25);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
@@ -217,13 +217,13 @@
   font-weight: 600;
   color: #fff;
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  box-shadow: 0 8px 24px rgba(21, 101, 192, 0.28);
+  box-shadow: 0 8px 24px rgba(0, 102, 245, 0.28);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .leadership-spotlight-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(21, 101, 192, 0.35);
+  box-shadow: 0 12px 32px rgba(0, 102, 245, 0.35);
 }
 
 @media (prefers-reduced-motion: reduce) {

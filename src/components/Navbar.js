@@ -211,13 +211,13 @@ export default function Navbar() {
                   onMouseEnter={closeMegaMenu}
                   onClick={closeMegaMenu}
                 >
-                  <span className="relative block h-[4.5rem] w-[8.85rem] sm:h-[5rem] sm:w-[9.85rem]">
+                  <span className="relative block h-[3.75rem] w-[7.35rem] sm:h-[4.15rem] sm:w-[8.15rem]">
                     <Image
                       src="/images/logo.png"
                       alt="Logic Lume"
                       title="Logic Lume"
                       fill
-                      sizes="(max-width: 640px) 142px, 158px"
+                      sizes="(max-width: 640px) 118px, 130px"
                       className="object-contain object-left"
                       priority
                     />

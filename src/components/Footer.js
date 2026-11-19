@@ -86,8 +86,8 @@ export default function Footer() {
               <Image
                 src="/images/logo.png"
                 alt="Logic Lume"
-                width={220}
-                height={112}
+                width={180}
+                height={92}
                 className="site-footer-logo-img"
               />
             </Link>

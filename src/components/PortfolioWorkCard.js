@@ -34,8 +34,8 @@ export default function PortfolioWorkCard({ project, detailed = false }) {
               previewAccent={project.previewAccent}
               gradientClass={
                 project.previewAccent === "orange"
-                  ? "from-[#f58220] to-[#e65100]"
-                  : "from-[#1565c0] to-[#0d47a1]"
+                  ? "from-[#8b2cf5] to-[#6d28d9]"
+                  : "from-[#0066f5] to-[#0040d0]"
               }
               aspectClass="portfolio-work-thumb-fill"
               showOverlay={false}

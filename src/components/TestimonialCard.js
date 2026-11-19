@@ -4,8 +4,8 @@ import { FaStar, FaQuoteLeft } from "react-icons/fa";
 
 export default function TestimonialCard({ name, designation, company, text, rating = 5 }) {
   return (
-    <div className="group relative card-elevated rounded-2xl p-8 bg-white hover:shadow-xl hover:border-[rgba(21,101,192,0.2)] transition-all duration-300 h-full flex flex-col">
-      <FaQuoteLeft className="text-[rgba(21,101,192,0.15)] text-3xl mb-4" />
+    <div className="group relative card-elevated rounded-2xl p-8 bg-white hover:shadow-xl hover:border-[rgba(0,102,245,0.2)] transition-all duration-300 h-full flex flex-col">
+      <FaQuoteLeft className="text-[rgba(0,102,245,0.15)] text-3xl mb-4" />
 
       <div className="flex gap-1 mb-4">
         {[...Array(rating)].map((_, i) => (

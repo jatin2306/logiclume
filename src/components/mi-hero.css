@@ -141,8 +141,8 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(245, 130, 32, 0.14) 0%,
-    rgba(21, 101, 192, 0.1) 42%,
+    rgba(139, 44, 245, 0.14) 0%,
+    rgba(0, 102, 245, 0.1) 42%,
     transparent 68%
   );
   pointer-events: none;
@@ -322,7 +322,7 @@
   background: linear-gradient(165deg, rgba(8, 18, 36, 0.94) 0%, rgba(15, 40, 78, 0.9) 100%);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
-    inset 3px 0 0 #f58220,
+    inset 3px 0 0 #8b2cf5,
     0 14px 32px rgba(8, 18, 36, 0.35);
   backdrop-filter: blur(10px);
 }

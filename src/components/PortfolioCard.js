@@ -4,19 +4,19 @@ import { ArrowUpRight } from "lucide-react";
 import PortfolioThumb from "./PortfolioThumb";
 
 const categoryStyles = {
-  "Enterprise Platform": { gradient: "from-[#0a1628] to-[#1565c0]", badge: "blue" },
-  "Web Development": { gradient: "from-[#1565c0] to-[#0d47a1]", badge: "blue" },
-  "App Development": { gradient: "from-[#f58220] to-[#e65100]", badge: "orange" },
-  "UI / UX Design": { gradient: "from-[#f58220] to-[#ff9f43]", badge: "orange" },
-  "E-Commerce": { gradient: "from-[#1565c0] to-[#1976d2]", badge: "blue" },
-  "Custom Software": { gradient: "from-[#0a1628] to-[#1565c0]", badge: "blue" },
-  Website: { gradient: "from-[#1565c0] to-[#0d47a1]", badge: "blue" },
-  "Mobile App": { gradient: "from-[#f58220] to-[#e65100]", badge: "orange" },
-  "Dashboard UI": { gradient: "from-[#0a1628] to-[#1565c0]", badge: "blue" },
+  "Enterprise Platform": { gradient: "from-[#0a1628] to-[#0066f5]", badge: "blue" },
+  "Web Development": { gradient: "from-[#0066f5] to-[#0040d0]", badge: "blue" },
+  "App Development": { gradient: "from-[#8b2cf5] to-[#6d28d9]", badge: "orange" },
+  "UI / UX Design": { gradient: "from-[#8b2cf5] to-[#c084fc]", badge: "orange" },
+  "E-Commerce": { gradient: "from-[#0066f5] to-[#2f8cff]", badge: "blue" },
+  "Custom Software": { gradient: "from-[#0a1628] to-[#0066f5]", badge: "blue" },
+  Website: { gradient: "from-[#0066f5] to-[#0040d0]", badge: "blue" },
+  "Mobile App": { gradient: "from-[#8b2cf5] to-[#6d28d9]", badge: "orange" },
+  "Dashboard UI": { gradient: "from-[#0a1628] to-[#0066f5]", badge: "blue" },
 };
 
 function CardInner({ title, category, client, url, imageSrc, previewAccent, featured, imageFit, description }) {
-  const style = categoryStyles[category] || { gradient: "from-[#1565c0] to-[#0d47a1]", badge: "blue" };
+  const style = categoryStyles[category] || { gradient: "from-[#0066f5] to-[#0040d0]", badge: "blue" };
   const accent = previewAccent || style.badge;
 
   return (

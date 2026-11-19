@@ -72,7 +72,7 @@ export default function AwardsSection() {
           {awards.map((award) => (
             <div
               key={award.title}
-              className="group rounded-2xl card-light p-8 hover:shadow-lg hover:border-[rgba(21,101,192,0.2)] transition-all duration-300"
+              className="group rounded-2xl card-light p-8 hover:shadow-lg hover:border-[rgba(0,102,245,0.2)] transition-all duration-300"
             >
               <div className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl ${badgeClass[award.badge]} shadow-md`}>
                 <award.icon size={26} />

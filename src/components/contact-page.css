@@ -19,8 +19,8 @@ html.dp-contact-route footer {
   overflow: hidden;
   padding: 0.7rem 0;
   background:
-    radial-gradient(900px 420px at 0% 0%, rgba(21, 101, 192, 0.08), transparent 55%),
-    radial-gradient(700px 380px at 100% 100%, rgba(245, 130, 32, 0.1), transparent 50%),
+    radial-gradient(900px 420px at 0% 0%, rgba(0, 102, 245, 0.08), transparent 55%),
+    radial-gradient(700px 380px at 100% 100%, rgba(139, 44, 245, 0.1), transparent 50%),
     var(--color-surface);
   color: var(--color-text);
 }
@@ -176,7 +176,7 @@ html.dp-contact-route footer {
   border-radius: 1.75rem;
   overflow: hidden;
   background: #fff;
-  border: 1px solid rgba(21, 101, 192, 0.12);
+  border: 1px solid rgba(0, 102, 245, 0.12);
   box-shadow: 0 24px 60px rgba(10, 22, 40, 0.1);
 }
 
@@ -187,8 +187,8 @@ html.dp-contact-route footer {
   padding: clamp(1.35rem, 2.4vw, 2rem);
   color: var(--color-text);
   background:
-    radial-gradient(520px 280px at 0% 0%, rgba(21, 101, 192, 0.12), transparent 60%),
-    linear-gradient(165deg, #eef4fb 0%, #ffffff 72%);
+    radial-gradient(520px 280px at 0% 0%, rgba(0, 102, 245, 0.12), transparent 60%),
+    linear-gradient(165deg, #eef3ff 0%, #ffffff 72%);
 }
 
 .contact-split-badge {
@@ -198,9 +198,9 @@ html.dp-contact-route footer {
   gap: 0.45rem;
   padding: 0.35rem 0.8rem;
   border-radius: 999px;
-  border: 1px solid rgba(245, 130, 32, 0.45);
-  background: #fff7ed;
-  color: var(--color-accent-dark, #c2410c);
+  border: 1px solid rgba(139, 44, 245, 0.45);
+  background: #f5f0ff;
+  color: var(--color-accent-dark, #6d28d9);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -211,7 +211,7 @@ html.dp-contact-route footer {
   height: 0.45rem;
   border-radius: 999px;
   background: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(245, 130, 32, 0.25);
+  box-shadow: 0 0 0 3px rgba(139, 44, 245, 0.25);
 }
 
 .contact-split-intro h1 {
@@ -239,7 +239,7 @@ html.dp-contact-route footer {
   margin: 0.35rem 0 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid rgba(21, 101, 192, 0.14);
+  border-top: 1px solid rgba(0, 102, 245, 0.14);
 }
 
 .contact-split-channels li {
@@ -248,7 +248,7 @@ html.dp-contact-route footer {
   gap: 0.8rem;
   align-items: flex-start;
   padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(21, 101, 192, 0.14);
+  border-bottom: 1px solid rgba(0, 102, 245, 0.14);
 }
 
 .contact-split-channel-icon {
@@ -260,7 +260,7 @@ html.dp-contact-route footer {
   border-radius: 0.7rem;
   background: #fff;
   color: var(--color-primary);
-  border: 1px solid rgba(21, 101, 192, 0.16);
+  border: 1px solid rgba(0, 102, 245, 0.16);
 }
 
 .contact-split-channels strong {
@@ -287,7 +287,7 @@ html.dp-contact-route footer {
 }
 
 .contact-split-channels a:hover {
-  color: var(--color-primary-dark, #0d47a1);
+  color: var(--color-primary-dark, #0040d0);
 }
 
 .contact-split-steps {
@@ -408,7 +408,7 @@ html.dp-contact-route footer {
 .contact-split-form select:focus,
 .contact-split-form textarea:focus {
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.16);
+  box-shadow: 0 0 0 3px rgba(0, 102, 245, 0.16);
 }
 
 .contact-split-status {
@@ -461,7 +461,7 @@ html.dp-contact-route footer {
 }
 
 .contact-split-submit:hover {
-  background: #1565c0;
+  background: #0066f5;
 }
 
 .contact-modal {
@@ -540,7 +540,7 @@ html.dp-contact-route footer {
   margin-top: 1rem;
   padding: 1.15rem 1.1rem;
   background: #fff;
-  border: 1px solid rgba(21, 101, 192, 0.12);
+  border: 1px solid rgba(0, 102, 245, 0.12);
   border-radius: 1rem;
 }
 
@@ -574,8 +574,8 @@ html.dp-contact-route footer {
 }
 
 .contact-modal-close:hover {
-  background: #eef4fb;
-  color: #1565c0;
+  background: #eef3ff;
+  color: #0066f5;
 }
 
 .contact-embed {

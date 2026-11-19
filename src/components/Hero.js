@@ -181,7 +181,7 @@ export default function Hero() {
               href={slide.ctaHref}
               variant="accent"
               size="md"
-              className="mi-hero-cta gap-2 rounded-xl shadow-lg shadow-[rgba(245,130,32,0.28)] hover:scale-[1.02]"
+              className="mi-hero-cta gap-2 rounded-xl shadow-lg shadow-[rgba(139,44,245,0.3)] hover:scale-[1.02]"
             >
               <span className="mi-hero-cta-labels">
                 {slides.map((s, i) => (

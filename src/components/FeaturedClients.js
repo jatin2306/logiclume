@@ -11,13 +11,13 @@ const accentStyles = {
   blue: {
     card: "home-project-card-blue",
     badge: "bg-[var(--color-surface-blue)] text-[var(--color-primary)]",
-    partnerBg: "from-[#1565c0] to-[#0d47a1]",
+    partnerBg: "from-[#0066f5] to-[#0040d0]",
     tag: "bg-[var(--color-surface-blue)] text-[var(--color-primary)]",
   },
   orange: {
     card: "home-project-card-orange",
     badge: "bg-[var(--color-surface-orange)] text-[var(--color-accent-dark)]",
-    partnerBg: "from-[#f58220] to-[#e65100]",
+    partnerBg: "from-[#8b2cf5] to-[#6d28d9]",
     tag: "bg-[var(--color-surface-orange)] text-[var(--color-accent-dark)]",
   },
 };
@@ -106,7 +106,7 @@ export default function FeaturedClients() {
                     useIframe={client.useIframe}
                     imageSrc={client.imageSrc}
                     aspectClass="aspect-[16/10] w-full"
-                    gradientClass="from-[var(--color-surface-blue)] to-[#eef4fb]"
+                    gradientClass="from-[var(--color-surface-blue)] to-[#eef3ff]"
                     showOverlay={false}
                     imageFit={client.imageFit}
                   />

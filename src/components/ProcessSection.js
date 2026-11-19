@@ -34,13 +34,13 @@ export default function ProcessSection() {
               {index < steps.length - 1 && (
                 <div
                   className="process-connector absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-px"
-                  style={{ background: "linear-gradient(90deg, rgba(21,101,192,0.3), transparent)" }}
+                  style={{ background: "linear-gradient(90deg, rgba(0,102,245,0.3), transparent)" }}
                 />
               )}
 
               <div className="card-elevated rounded-2xl p-6 h-full bg-white hover:shadow-lg transition duration-300 hover:-translate-y-1">
                 <span className={`font-display text-3xl font-bold ${
-                  item.badge === "blue" ? "text-[rgba(21,101,192,0.2)]" : "text-[rgba(245,130,32,0.25)]"
+                  item.badge === "blue" ? "text-[rgba(0,102,245,0.2)]" : "text-[rgba(139,44,245,0.25)]"
                 } group-hover:opacity-80 transition`}>
                   {item.step}
                 </span>

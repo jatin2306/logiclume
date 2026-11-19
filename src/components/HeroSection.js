@@ -79,7 +79,7 @@ export default function HeroSection() {
                 <p className="text-[var(--color-primary)] text-xs sm:text-sm font-bold uppercase tracking-wider">
                   What We Build
                 </p>
-                <span className="text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full bg-white border border-[rgba(21,101,192,0.12)] text-[var(--color-primary)]">
+                <span className="text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full bg-white border border-[rgba(0,102,245,0.12)] text-[var(--color-primary)]">
                   8+ services
                 </span>
               </div>

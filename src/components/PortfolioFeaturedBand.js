@@ -8,12 +8,12 @@ import { getFlagshipProjects } from "@/data/portfolioProjects";
 const accentStyles = {
   blue: {
     card: "home-project-card-blue",
-    partnerBg: "from-[#1565c0] to-[#0d47a1]",
+    partnerBg: "from-[#0066f5] to-[#0040d0]",
     tag: "bg-[var(--color-surface-blue)] text-[var(--color-primary)]",
   },
   orange: {
     card: "home-project-card-orange",
-    partnerBg: "from-[#f58220] to-[#e65100]",
+    partnerBg: "from-[#8b2cf5] to-[#6d28d9]",
     tag: "bg-[var(--color-surface-orange)] text-[var(--color-accent-dark)]",
   },
 };
@@ -63,7 +63,7 @@ export default function PortfolioFeaturedBand() {
                     previewAccent={client.previewAccent}
                     imageSrc={client.imageSrc}
                     aspectClass="aspect-[16/10] w-full"
-                    gradientClass="from-[var(--color-surface-blue)] to-[#eef4fb]"
+                    gradientClass="from-[var(--color-surface-blue)] to-[#eef3ff]"
                     showOverlay={false}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,22,40,0.75)] via-[rgba(10,22,40,0.15)] to-transparent pointer-events-none" />

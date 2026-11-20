@@ -1,32 +1,35 @@
 "use client";
 
-import SiteContainer from "./SiteContainer";
-import { getFlagshipProjects } from "@/data/portfolioProjects";
-
-const extraTrustNames = ["FinTech", "Health Tech", "Real Estate", "AI Platforms"];
+const clients = [
+  "MyClinicDesk",
+  "AltuWell",
+  "CareAdjustor",
+  "Siderina",
+  "Stillra",
+  "IDFC Bank",
+  "American Express",
+  "TR Capital",
+  "Risk & Roses",
+  "Plutheia",
+  "Goldsky",
+];
 
 export default function HomeClientTrust() {
-  const flagships = getFlagshipProjects();
+  const loop = [...clients, ...clients];
 
   return (
-    <section className="home-client-trust" aria-label="Trusted by leading brands">
-      <SiteContainer>
-        <div className="home-client-trust-inner">
-          <p className="home-client-trust-label">Trusted by teams who ship at scale</p>
-          <ul className="home-client-trust-logos">
-            {flagships.map((project) => (
-              <li key={project.id} className="home-client-trust-logo">
-                {project.partner || project.name}
-              </li>
-            ))}
-            {extraTrustNames.map((name) => (
-              <li key={name} className="home-client-trust-logo home-client-trust-logo--muted">
-                {name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </SiteContainer>
+    <section className="client-trust" aria-label="Client logos">
+      <div className="client-trust-head">
+        <p>Client logos</p>
+        <h2>Trust</h2>
+      </div>
+      <div className="client-trust-viewport">
+        <ul className="client-trust-track">
+          {loop.map((name, index) => (
+            <li key={`${name}-${index}`}>{name}</li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

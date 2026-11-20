@@ -103,6 +103,7 @@ export default function Navbar() {
 
   const headerClass = [
     "site-header",
+    pathname === "/" && !scrolled && !megaMenu ? "site-header--overlay" : "",
     scrolled ? "site-header--scrolled" : "",
     megaMenu ? "site-header--mega-open" : "",
     contactOpen ? "site-header--contact-lock" : "",
@@ -216,7 +217,7 @@ export default function Navbar() {
                 <div className="site-header-mobile-row lg:contents">
                   <div className="site-header-actions">
                     <Link href="/book-a-call" className="site-header-btn-outline" onClick={closeMegaMenu}>
-                      Book A Call
+                      Book a Call
                     </Link>
                     <Link
                       href="/contact-us"
@@ -225,7 +226,7 @@ export default function Navbar() {
                       onClick={closeMegaMenu}
                       aria-current={pathname === "/contact-us" ? "page" : undefined}
                     >
-                      Start a Project
+                      Let&apos;s talk
                     </Link>
                   </div>
 
@@ -325,7 +326,7 @@ export default function Navbar() {
               className="site-header-btn-outline w-full text-center"
               onClick={() => setMobileOpen(false)}
             >
-              Book A Call
+              Book a Call
             </Link>
             <Link
               href="/contact-us"

@@ -45,7 +45,38 @@ function MarqueeBrand({ item }) {
   );
 }
 
-export default function HomeTrustStrip() {
+const heroNames = [
+  "MyClinicDesk",
+  "AltuWell",
+  "CareAdjustor",
+  "Siderina",
+  "Stillra",
+  "TR Capital",
+  "Wasalt",
+  "Goldsky",
+];
+
+export default function HomeTrustStrip({ variant = "marquee" }) {
+  if (variant === "logos") {
+    const loop = [...heroNames, ...heroNames];
+    return (
+      <section className="mi-hero-logos" aria-label="Trusted by global clients">
+        <div className="site-wrap">
+          <div className="mi-hero-logos-row">
+            <p>Trusted by teams we build for</p>
+            <div className="mi-hero-logos-viewport">
+              <ul className="mi-hero-logos-track">
+                {loop.map((name, index) => (
+                  <li key={`${name}-${index}`}>{name}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   const loop = [...marqueeItems, ...marqueeItems];
 
   return (

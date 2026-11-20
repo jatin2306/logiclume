@@ -1,4 +1,92 @@
-/* Homepage — scroll reveals & trust strip (Appinventiv-inspired flow) */
+/* Client logos — trust band directly under the hero */
+
+.client-trust {
+  background: #ffffff;
+  border-bottom: 1px solid #ececec;
+  padding: 2.25rem 0 1.75rem;
+  overflow: hidden;
+}
+
+.client-trust-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1.35rem;
+  text-align: center;
+}
+
+.client-trust-head p {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+}
+
+.client-trust-head h2 {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #111111;
+}
+
+.client-trust-viewport {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.client-trust-track {
+  display: flex;
+  align-items: center;
+  gap: 2.75rem;
+  width: max-content;
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  animation: client-trust-scroll 36s linear infinite;
+}
+
+.client-trust-track:hover {
+  animation-play-state: paused;
+}
+
+.client-trust-track li {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #111111;
+  white-space: nowrap;
+}
+
+@keyframes client-trust-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-trust-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+}
+
 
 .home-reveal {
   opacity: 0;

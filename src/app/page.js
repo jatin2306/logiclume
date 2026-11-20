@@ -1,7 +1,6 @@
 "use client";
 
 import Hero from "@/components/Hero";
-import HomeTrustStrip from "@/components/HomeTrustStrip";
 import HomeScrollReveal from "@/components/HomeScrollReveal";
 import FeaturedClients from "@/components/FeaturedClients";
 import HeroSection from "@/components/HeroSection";
@@ -19,8 +18,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-
-      <HomeTrustStrip />
 
       <HomeScrollReveal>
         <FeaturedClients />

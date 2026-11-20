@@ -6,9 +6,14 @@
   left: 0;
   right: 0;
   z-index: 50;
-  background: #07060f;
+  background: #0a0a0a;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: box-shadow 0.25s ease;
+  transition: background 0.2s ease, box-shadow 0.25s ease, border-color 0.2s ease;
+}
+
+.site-header--overlay {
+  background: transparent;
+  border-bottom-color: transparent;
 }
 
 .site-header--scrolled {
@@ -293,6 +298,68 @@
 @media (min-width: 1024px) {
   .site-header-mobile-toggle {
     display: none;
+  }
+
+  .site-header-nav {
+    gap: 1.15rem;
+  }
+
+  .site-header-link,
+  .site-header-link--active,
+  .site-header-link--open,
+  .site-header-link--ai {
+    padding: 0.35rem 0.15rem;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .site-header-link:hover,
+  .site-header-link--active:hover,
+  .site-header-link--open:hover {
+    background: transparent;
+    color: #ffffff;
+  }
+
+  .site-header-chevron,
+  .site-header-ai-icon {
+    display: none;
+  }
+
+  .site-header-ai-border {
+    padding: 0;
+    overflow: visible;
+  }
+
+  .site-header-ai-border::before {
+    display: none;
+  }
+
+  .site-header-ai-border > .site-header-link,
+  .site-header-ai-border > .site-header-link:hover,
+  .site-header-ai-border > .site-header-link--open {
+    background: transparent;
+  }
+
+  .site-header-btn-outline,
+  .site-header-btn-gradient {
+    border-radius: 0.55rem;
+    padding: 0.6rem 1.05rem;
+    font-weight: 700;
+  }
+
+  .site-header-btn-outline {
+    display: inline-flex;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.72);
+  }
+
+  .site-header-btn-gradient {
+    background: #ffffff;
+    color: #111111;
   }
 }
 

@@ -1,4 +1,4 @@
-/* /portfolio — full-width white hero + gray grid (Logic Lume) */
+/* /portfolio — full-width white hero + gray grid (LogicLume) */
 
 .portfolio-page {
   --portfolio-grid-bg: #f7f9fc;
@@ -226,11 +226,11 @@
   border-color: var(--color-primary);
   background: var(--color-primary);
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 102, 245, 0.25);
+  box-shadow: 0 4px 12px rgba(17, 17, 17, 0.25);
 }
 
 .portfolio-filter-collapse-chips .portfolio-work-chip:hover:not(.portfolio-work-chip--active) {
-  border-color: rgba(0, 102, 245, 0.3);
+  border-color: rgba(17, 17, 17, 0.3);
   background: var(--color-surface-blue);
   color: var(--color-primary-dark);
 }
@@ -266,7 +266,7 @@
 }
 
 .portfolio-work-chip--active {
-  border-color: rgba(0, 102, 245, 0.25);
+  border-color: rgba(17, 17, 17, 0.25);
   color: var(--color-primary-dark);
   background: var(--color-surface-blue);
 }
@@ -296,7 +296,7 @@
   gap: 0.35rem 0.5rem;
   padding: 0.75rem 1.5rem;
   border-radius: 999px;
-  border: 1px solid rgba(0, 102, 245, 0.28);
+  border: 1px solid rgba(17, 17, 17, 0.28);
   background: #ffffff;
   box-shadow: 0 4px 16px rgba(10, 22, 40, 0.06);
   font-family: var(--font-sans), system-ui, sans-serif;
@@ -313,7 +313,7 @@
 
 .portfolio-work-load-more:hover {
   background: var(--color-surface-blue);
-  border-color: rgba(0, 102, 245, 0.4);
+  border-color: rgba(17, 17, 17, 0.4);
 }
 
 .portfolio-work-load-more:active {
@@ -379,8 +379,8 @@
 /* ── Project card (browser frame + typography) ── */
 .portfolio-work-card {
   --card-accent: var(--color-primary);
-  --card-accent-soft: rgba(0, 102, 245, 0.1);
-  --card-stage-a: rgba(0, 102, 245, 0.16);
+  --card-accent-soft: rgba(17, 17, 17, 0.1);
+  --card-stage-a: rgba(17, 17, 17, 0.16);
   --card-stage-b: rgba(99, 140, 255, 0.12);
   position: relative;
   flex: 1;
@@ -403,10 +403,10 @@
 }
 
 .portfolio-work-card--orange {
-  --card-accent: #6d28d9;
-  --card-accent-soft: rgba(139, 44, 245, 0.12);
-  --card-stage-a: rgba(139, 44, 245, 0.18);
-  --card-stage-b: rgba(176, 120, 255, 0.14);
+  --card-accent: #000000;
+  --card-accent-soft: rgba(17, 17, 17, 0.12);
+  --card-stage-a: rgba(17, 17, 17, 0.18);
+  --card-stage-b: rgba(120, 120, 120, 0.14);
 }
 
 .portfolio-work-card::before {
@@ -422,7 +422,7 @@
 }
 
 .portfolio-work-card:hover {
-  border-color: rgba(0, 102, 245, 0.2);
+  border-color: rgba(17, 17, 17, 0.2);
   box-shadow:
     0 2px 4px rgba(10, 22, 40, 0.04),
     0 24px 56px rgba(10, 22, 40, 0.13);
@@ -611,15 +611,15 @@
 
 .portfolio-work-card-tier--t1,
 .portfolio-work-card-tier--t2 {
-  color: #0040d0;
-  background: rgba(0, 102, 245, 0.1);
-  border-color: rgba(0, 102, 245, 0.15);
+  color: #000000;
+  background: rgba(17, 17, 17, 0.1);
+  border-color: rgba(17, 17, 17, 0.15);
 }
 
 .portfolio-work-card-tier--t3 {
   color: #5d4037;
-  background: rgba(139, 44, 245, 0.12);
-  border-color: rgba(139, 44, 245, 0.2);
+  background: rgba(17, 17, 17, 0.12);
+  border-color: rgba(17, 17, 17, 0.2);
 }
 
 .portfolio-work-card-tier--t4 {
@@ -1166,7 +1166,7 @@
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 999px;
-  background: var(--card-accent, #0066f5);
+  background: var(--card-accent, #111111);
 }
 
 .portfolio-work-card-summary {
@@ -1265,9 +1265,9 @@
   gap: 1.25rem;
   padding: clamp(1.5rem, 3vw, 2rem) clamp(1.35rem, 3vw, 2rem);
   border-radius: clamp(0.85rem, 1.3vw, 1rem);
-  background: linear-gradient(125deg, var(--color-primary) 0%, var(--color-primary-light) 55%, #2f8cff 100%);
+  background: linear-gradient(125deg, var(--color-primary) 0%, var(--color-primary-light) 55%, #3a3a3a 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 16px 40px rgba(0, 102, 245, 0.22);
+  box-shadow: 0 16px 40px rgba(17, 17, 17, 0.22);
 }
 
 @media (min-width: 768px) {
@@ -1421,12 +1421,12 @@
 }
 
 .portfolio-industry-row:hover {
-  border-color: rgba(0, 102, 245, 0.2);
+  border-color: rgba(17, 17, 17, 0.2);
   background: rgba(238, 244, 251, 0.85);
 }
 
 .portfolio-industry-row--active {
-  border-color: rgba(0, 102, 245, 0.35);
+  border-color: rgba(17, 17, 17, 0.35);
   background: var(--color-surface-blue);
   color: var(--color-primary-dark);
 }

@@ -6,14 +6,14 @@ const siteUrl = "https://www.logiclume.com";
 export const metadata = {
   title: "Our Best Projects",
   description:
-    "Our best projects: enterprise rewards, commerce, fintech, health tech, real estate, and AI products shipped for global clients.",
+    "Logiclume project portfolio: web, mobile, and enterprise platforms for fintech, commerce, health, real estate, and AI.",
   alternates: {
     canonical: "/work",
   },
   openGraph: {
-    title: "Our Best Projects | Logic Lume",
+    title: "Our Best Projects | Logiclume",
     description:
-      "Web, mobile, and enterprise platforms engineered by Logic Lume for banks, brands, and growth companies.",
+      "Web, mobile, and enterprise platforms engineered by Logiclume for banks, brands, and growth companies.",
     url: `${siteUrl}/work`,
   },
 };

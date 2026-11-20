@@ -10,7 +10,7 @@ export const aboutStats = [
 export const aboutStory = {
   heading: "Building software that solves real business problems",
   paragraphs: [
-    "Logic Lume is a product engineering company headquartered in Noida, India, with offices in the USA and the United Kingdom. We help organizations build, modernize, and scale web and mobile applications, custom software, AI-powered products, and digital experiences.",
+    "LogicLume is a product engineering company headquartered in Noida, India, with offices in the USA and the United Kingdom. We help organizations build, modernize, and scale web and mobile applications, custom software, AI-powered products, and digital experiences.",
     "From fintech and rewards platforms to e-commerce, health, and property tech, our squads combine product thinking with hands-on engineering — discovery through launch and long-term evolution.",
   ],
 };
@@ -51,7 +51,7 @@ export const aboutValues = [
 
 export const aboutFaqs = [
   {
-    q: "Where is Logic Lume headquartered?",
+    q: "Where is LogicLume headquartered?",
     a: "Our head office is at Noida One, Sector 62, Noida, Uttar Pradesh. We also support clients from our offices in New York (USA) and London (United Kingdom).",
   },
   {

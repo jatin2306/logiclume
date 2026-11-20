@@ -1,7 +1,7 @@
-/** Full Logic Lume lockup — same PNG as the navbar. */
-const LOGO_W = 913;
-const LOGO_H = 465;
-const MARK_VIEW = "0 0 913 465";
+/** LogicLume mark. */
+const LOGO_W = 447;
+const LOGO_H = 442;
+const MARK_VIEW = "0 0 447 442";
 
 export default function BrandLogoMark({ className = "", size = "hero" }) {
   return (
@@ -14,7 +14,7 @@ export default function BrandLogoMark({ className = "", size = "hero" }) {
         xmlnsXlink="http://www.w3.org/1999/xlink"
       >
         <image
-          href="/images/logo.png"
+          href="/images/logo-mark.png"
           x="0"
           y="0"
           width={LOGO_W}

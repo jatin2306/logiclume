@@ -17,14 +17,14 @@ export default function CTABanner() {
               <h2 className="font-display text-2xl sm:text-3xl lg:text-[clamp(1.75rem,3.5vw,2.25rem)] font-bold text-white leading-tight">
                 Let&apos;s build what&apos;s next.
               </h2>
-              <p className="mt-4 text-base lg:text-lg text-blue-100/80 leading-relaxed">
+              <p className="mt-4 text-base lg:text-lg text-white/75 leading-relaxed">
                 Partner with us to transform your ideas into scalable digital products
                 that drive measurable business growth.
               </p>
             </div>
 
             <a href="/contact-us" className="flex-shrink-0">
-              <Button variant="accent" size="lg" className="gap-2 rounded-xl hover:scale-[1.02] transition-transform shadow-lg shadow-[rgba(139,44,245,0.32)]">
+              <Button variant="outline-light" size="lg" className="gap-2 rounded-xl border-white bg-white !text-black hover:bg-neutral-100 hover:scale-[1.02] transition-transform">
                 Schedule a Consultation
                 <ArrowUpRight size={18} />
               </Button>

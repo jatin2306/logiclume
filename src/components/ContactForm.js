@@ -230,7 +230,7 @@ export default function ContactForm({ embedded = false }) {
         ) : null}
 
         <div className="contact-split-form-foot">
-          <p>We reply within 24 hours. Your note stays with the Logic Lume team.</p>
+          <p>We reply within 24 hours. Your note stays with the LogicLume team.</p>
           <button type="submit" className="contact-split-submit">
             Send message
           </button>

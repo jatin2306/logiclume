@@ -15,7 +15,7 @@ export default function ServiceCard({
 }) {
   return (
     <div className="group home-card p-5 relative overflow-hidden">
-      <span className="absolute right-5 top-5 text-5xl font-black text-[var(--color-surface-blue)] group-hover:text-[rgba(139,44,245,0.12)] transition">
+      <span className="absolute right-5 top-5 text-5xl font-black text-[var(--color-surface-blue)] group-hover:text-[rgba(17,17,17,0.12)] transition">
         {number}
       </span>
 

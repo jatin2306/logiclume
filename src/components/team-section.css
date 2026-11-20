@@ -50,7 +50,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 1.125rem;
-  border: 1px solid rgba(0, 102, 245, 0.12);
+  border: 1px solid rgba(17, 17, 17, 0.12);
   background: var(--color-surface-blue);
   min-height: 11rem;
   box-shadow: 0 8px 28px rgba(10, 22, 40, 0.08);
@@ -88,8 +88,8 @@
 
 .team-member-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 45px rgba(0, 102, 245, 0.14);
-  border-color: rgba(0, 102, 245, 0.22);
+  box-shadow: 0 20px 45px rgba(17, 17, 17, 0.14);
+  border-color: rgba(17, 17, 17, 0.22);
 }
 
 .team-member-photo {

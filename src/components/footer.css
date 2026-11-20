@@ -1,22 +1,21 @@
-/* Footer — calm editorial layout (Logic Lume) */
+/* Footer — calm editorial layout (LogicLume) */
 
 .site-footer {
   position: relative;
   clear: both;
   overflow-x: clip;
   font-family: var(--font-sans), system-ui, sans-serif;
-  color: var(--color-text);
-  background:
-    linear-gradient(180deg, #eef3ff 0%, #f6f4fc 42%, #f7f8fc 100%);
-  border-top: 1px solid rgba(0, 102, 245, 0.18);
+  color: #f5f5f5;
+  background: #07060f;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .site-footer::before {
   content: "";
   position: absolute;
   inset: 0 0 auto;
-  height: 3px;
-  background: var(--color-gradient);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .site-footer-shell {
@@ -46,10 +45,8 @@
   gap: 1.1rem;
 }
 
-.site-footer-logo-img {
-  height: auto;
-  width: auto;
-  max-width: min(180px, 58vw);
+.site-footer-logo {
+  display: inline-flex;
 }
 
 .site-footer-tagline {
@@ -58,7 +55,7 @@
   font-size: 0.9375rem;
   line-height: 1.65;
   letter-spacing: -0.01em;
-  color: #5a6b7d;
+  color: rgba(255, 255, 255, 0.68);
 }
 
 .site-footer-contact {
@@ -72,13 +69,13 @@
   font-size: 0.9375rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--color-text);
+  color: #ffffff;
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .site-footer-contact a:hover {
-  color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .site-footer-social {
@@ -95,16 +92,16 @@
   width: 2.1rem;
   height: 2.1rem;
   border-radius: 0.45rem;
-  color: #475569;
+  color: #ffffff;
   background: transparent;
-  border: 1px solid rgba(15, 23, 42, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
 .site-footer-social-link:hover {
-  color: var(--color-primary);
+  color: #111111;
   background: #ffffff;
-  border-color: rgba(0, 102, 245, 0.28);
+  border-color: #ffffff;
 }
 
 /* ── Nav columns ── */
@@ -128,7 +125,7 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: #ffffff;
 }
 
 .site-footer-col-list {
@@ -144,13 +141,13 @@
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.4;
-  color: #475569;
+  color: rgba(255, 255, 255, 0.68);
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .site-footer-col-list a:hover {
-  color: var(--color-primary-dark);
+  color: #ffffff;
 }
 
 /* ── Offices (flat, no cards) ── */
@@ -159,7 +156,7 @@
   gap: 1rem;
   margin-top: clamp(2.25rem, 4vw, 3rem);
   padding-top: clamp(1.5rem, 3vw, 2rem);
-  border-top: 1px solid rgba(15, 23, 42, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 @media (min-width: 720px) {
@@ -177,7 +174,7 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: #ffffff;
   padding-top: 0.15rem;
 }
 
@@ -202,11 +199,11 @@
   font-size: 0.9375rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 .site-footer-office-region span {
-  color: var(--color-accent-dark);
+  color: rgba(255, 255, 255, 0.72);
   font-weight: 700;
 }
 
@@ -214,7 +211,7 @@
   margin: 0;
   font-size: 0.8125rem;
   line-height: 1.55;
-  color: #64748b;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 /* ── Bottom bar ── */
@@ -225,7 +222,7 @@
   gap: 0.65rem;
   margin-top: clamp(1.75rem, 3.5vw, 2.25rem);
   padding-top: 1.15rem;
-  border-top: 1px solid rgba(15, 23, 42, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 @media (min-width: 768px) {
@@ -240,11 +237,11 @@
 .site-footer-bar-copy {
   margin: 0;
   font-size: 0.8125rem;
-  color: #64748b;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .site-footer-bar-copy span {
-  color: var(--color-accent);
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -253,7 +250,7 @@
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: #475569;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .site-footer-bar-legal {
@@ -266,11 +263,11 @@
 .site-footer-bar-legal a {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #475569;
+  color: rgba(255, 255, 255, 0.68);
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .site-footer-bar-legal a:hover {
-  color: var(--color-primary);
+  color: #ffffff;
 }

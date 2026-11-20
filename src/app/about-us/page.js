@@ -5,14 +5,14 @@ const siteUrl = "https://www.logiclume.com";
 export const metadata = {
   title: "About Us — Company Overview",
   description:
-    "Learn about Logic Lume — product engineering from Noida with global delivery. Mission, values, team, and how we build software for fintech, commerce, and enterprise.",
+    "About Logiclume — a product engineering company in Noida with delivery in the USA and the UK. Mission, team, and how we build software.",
   alternates: {
     canonical: "/about-us",
   },
   openGraph: {
-    title: "About Us | Logic Lume",
+    title: "About Us | Logiclume",
     description:
-      "Logic Lume helps businesses build and scale web, mobile, and custom software with dedicated engineering squads.",
+      "Logiclume helps businesses build and scale web, mobile, and custom software with dedicated engineering squads.",
     url: `${siteUrl}/about-us`,
   },
 };

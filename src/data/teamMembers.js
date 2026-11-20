@@ -2,7 +2,7 @@ export const officePhotos = [
   {
     id: "standup",
     src: "/images/team/office/standup.jpg",
-    alt: "Logic Lume team gathered for a standup in the Noida office",
+    alt: "LogicLume team gathered for a standup in the Noida office",
     caption: "Team standup · Noida office",
   },
   {
@@ -14,25 +14,25 @@ export const officePhotos = [
   {
     id: "team",
     src: "/images/team/office/team.jpg",
-    alt: "The Logic Lume team together in the office",
-    caption: "The Logic Lume team",
+    alt: "The LogicLume team together in the office",
+    caption: "The LogicLume team",
   },
   {
     id: "celebration",
     src: "/images/team/office/celebration.jpg",
-    alt: "Logic Lume team celebration at the office",
+    alt: "LogicLume team celebration at the office",
     caption: "Celebrations at the office",
   },
   {
     id: "corridor",
     src: "/images/team/office/corridor.png",
-    alt: "Logic Lume team together in the office corridor",
+    alt: "LogicLume team together in the office corridor",
     caption: "Life at the Noida office",
   },
   {
     id: "floor",
     src: "/images/team/office/floor.png",
-    alt: "Logic Lume product engineering floor",
+    alt: "LogicLume product engineering floor",
     caption: "Product engineering floor",
   },
 ];

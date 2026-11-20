@@ -20,11 +20,11 @@ const slides = [
     thumb: "/images/hero/team-collab.jpg",
     cardLabel: "Dedicated Teams",
     alt: "Dedicated software development team collaborating with clients",
-    eyebrow: "Dedicated delivery",
-    titleMain: "Custom Software Development & Dedicated Engineering Teams",
+    eyebrow: "Logiclume",
+    titleMain: "Logiclume — Custom Software Development & Dedicated Teams",
     titleAccent: "for Growing Businesses",
     support:
-      "We design, develop, and scale enterprise software, SaaS platforms, mobile applications, and AI-powered solutions — from initial concept to production.",
+      "Logiclume designs, develops, and scales enterprise software, SaaS platforms, mobile applications, and AI-powered solutions — from initial concept to production.",
     ctaLabel: "Discuss Your Project",
     ctaHref: "/contact-us",
   },
@@ -88,7 +88,7 @@ export default function Hero() {
     <section
       className="mi-hero"
       id="home"
-      aria-label="Logic Lume homepage hero"
+      aria-label="LogicLume homepage hero"
       aria-live="polite"
       onMouseEnter={() => {
         pauseAutoRef.current = true;
@@ -165,7 +165,7 @@ export default function Hero() {
             })}
           </div>
 
-          <aside className="mi-hero-aside" aria-label="Why Logic Lume">
+          <aside className="mi-hero-aside" aria-label="Why LogicLume">
             <div className="mi-hero-stats">
               {stats.map((stat) => (
                 <div key={stat.label} className="mi-hero-stat">
@@ -179,9 +179,9 @@ export default function Hero() {
           <div className="mi-hero-action">
             <Button
               href={slide.ctaHref}
-              variant="accent"
+              variant="outline-light"
               size="md"
-              className="mi-hero-cta gap-2 rounded-xl shadow-lg shadow-[rgba(139,44,245,0.3)] hover:scale-[1.02]"
+              className="mi-hero-cta gap-2 rounded-xl border-white bg-white !text-black hover:bg-neutral-100 hover:scale-[1.02]"
             >
               <span className="mi-hero-cta-labels">
                 {slides.map((s, i) => (

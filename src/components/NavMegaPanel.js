@@ -117,11 +117,11 @@ const linkMenus = {
     eyebrow: "The company",
     title: "About Us",
     desc: "A product engineering studio delivering from Noida to global clients.",
-    cta: { href: "/about-us", label: "About Logic Lume" },
+    cta: { href: "/about-us", label: "About LogicLume" },
     items: [
-      { label: "Our story", desc: "How Logic Lume builds", href: "/about-us" },
+      { label: "Our story", desc: "How LogicLume builds", href: "/about-us" },
       { label: "Leadership", desc: "The people guiding delivery", href: "/about-us" },
-      { label: "Life at Logic Lume", desc: "The Noida office and team", href: "/#team" },
+      { label: "Life at LogicLume", desc: "The Noida office and team", href: "/#team" },
       { label: "Book a call", desc: "Talk through your roadmap", href: "/book-a-call" },
       { label: "Contact", desc: "Start a project with the team", href: "/contact-us" },
     ],
@@ -187,7 +187,7 @@ export default function NavMegaPanel({ type, onClose }) {
               <Sparkles size={22} className="text-[var(--color-accent-light)] relative z-10 shrink-0" />
               <div className="relative z-10 min-w-0">
                 <p className="font-display font-bold text-white text-lg">AI Excellence</p>
-                <p className="text-sm text-blue-200/75 mt-0.5">
+                <p className="text-sm text-white/70 mt-0.5">
                   Build smarter products with chatbots, automation & generative AI
                 </p>
               </div>
@@ -210,7 +210,7 @@ export default function NavMegaPanel({ type, onClose }) {
                     <item.icon size={18} />
                   </span>
                   <span className="flex-1 min-w-0">
-                    <span className="block font-semibold text-[#1a2b42] text-sm group-hover:text-[var(--color-primary)] transition-colors">
+                    <span className="block font-semibold text-[#111111] text-sm group-hover:text-black transition-colors">
                       {item.label}
                     </span>
                     <span className="block text-xs text-[var(--color-text-muted)] mt-1">
@@ -288,7 +288,7 @@ export default function NavMegaPanel({ type, onClose }) {
               <div className="nav-mega-contact-cto-frame">
                 <Image
                   src="/images/team/office/team.jpg"
-                  alt="Chief Technology Officer at Logic Lume"
+                  alt="Chief Technology Officer at LogicLume"
                   fill
                   sizes="(max-width: 1024px) 28vw, 220px"
                   className="nav-mega-contact-cto-photo"

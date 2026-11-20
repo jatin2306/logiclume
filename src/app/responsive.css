@@ -171,10 +171,10 @@ img {
 }
 
 .contact-form-shell {
-  border: 1px solid rgba(0, 102, 245, 0.12);
+  border: 1px solid rgba(17, 17, 17, 0.12);
   box-shadow:
     0 4px 6px rgba(10, 22, 40, 0.04),
-    0 20px 50px rgba(0, 102, 245, 0.1);
+    0 20px 50px rgba(17, 17, 17, 0.1);
 }
 
 .contact-form-panel-head {
@@ -183,7 +183,7 @@ img {
   align-items: flex-start;
   margin-bottom: 1.5rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid rgba(0, 102, 245, 0.12);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
 }
 
 .contact-form-panel-icon {
@@ -195,8 +195,8 @@ img {
   border-radius: 0.75rem;
   flex-shrink: 0;
   color: #fff;
-  background: linear-gradient(135deg, var(--color-primary), #0040d0);
-  box-shadow: 0 6px 18px rgba(0, 102, 245, 0.3);
+  background: linear-gradient(135deg, var(--color-primary), #000000);
+  box-shadow: 0 6px 18px rgba(17, 17, 17, 0.3);
 }
 
 .contact-form-panel-kicker {
@@ -227,15 +227,15 @@ img {
 
 .contact-form-panel-form .input-brand {
   border-width: 1.5px;
-  border-color: rgba(0, 102, 245, 0.22);
+  border-color: rgba(17, 17, 17, 0.22);
   background-color: #ffffff;
   box-shadow: 0 1px 2px rgba(10, 22, 40, 0.04);
 }
 
 .contact-form-panel-form .input-brand:hover {
-  border-color: rgba(0, 102, 245, 0.35);
+  border-color: rgba(17, 17, 17, 0.35);
 }
 
 .contact-form-panel-form .input-brand:focus {
-  box-shadow: 0 0 0 4px rgba(0, 102, 245, 0.14);
+  box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.14);
 }

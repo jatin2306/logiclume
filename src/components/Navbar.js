@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
@@ -9,6 +8,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Sparkles, ChevronDown } from "lucide-react";
 import NavMegaPanel from "./NavMegaPanel";
 import ContactForm from "./ContactForm";
+import BrandLockup from "./BrandLockup";
 import "./site-header.css";
 
 const navLinks = [
@@ -204,25 +204,10 @@ export default function Navbar() {
           <div className="site-wrap">
             <div className="site-container relative">
               <div className="site-container-inner site-header-inner">
-                <Link
-                  href="/"
-                  className="site-header-logo"
-                  aria-label="Logic Lume home"
+                <BrandLockup
                   onMouseEnter={closeMegaMenu}
                   onClick={closeMegaMenu}
-                >
-                  <span className="relative block h-[3.75rem] w-[7.35rem] sm:h-[4.15rem] sm:w-[8.15rem]">
-                    <Image
-                      src="/images/logo.png"
-                      alt="Logic Lume"
-                      title="Logic Lume"
-                      fill
-                      sizes="(max-width: 640px) 118px, 130px"
-                      className="object-contain object-left"
-                      priority
-                    />
-                  </span>
-                </Link>
+                />
 
                 <nav className="site-header-nav" aria-label="Primary">
                   {navLinks.map(renderDesktopLink)}
@@ -285,7 +270,7 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--color-border)]">
             <span className="font-display text-lg font-bold text-[var(--color-text)]">Menu</span>
-            <button type="button" className="site-header-mobile-toggle" onClick={() => setMobileOpen(false)}>
+            <button type="button" className="site-header-mobile-toggle site-header-mobile-toggle--drawer" onClick={() => setMobileOpen(false)}>
               <FaTimes size={18} />
             </button>
           </div>

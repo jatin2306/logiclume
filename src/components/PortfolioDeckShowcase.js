@@ -23,7 +23,7 @@ function DeckProjectSlide({ project, index, chapterLabel }) {
     project.summary ||
     project.description ||
     project.whatWeDid ||
-    "Product design and engineering delivered end-to-end by Logic Lume.";
+    "Product design and engineering delivered end-to-end by LogicLume.";
 
   return (
     <article className="portfolio-deck-slide">
@@ -58,8 +58,8 @@ function DeckProjectSlide({ project, index, chapterLabel }) {
             previewAccent={project.previewAccent}
             gradientClass={
               project.accent === "orange"
-                ? "from-[#8b2cf5] to-[#6d28d9]"
-                : "from-[#0066f5] to-[#0040d0]"
+                ? "from-[#111111] to-[#000000]"
+                : "from-[#111111] to-[#000000]"
             }
             aspectClass="aspect-[16/10] w-full lg:aspect-auto lg:h-full"
             showOverlay={project.imageFit !== "contain"}

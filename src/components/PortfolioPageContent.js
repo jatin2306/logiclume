@@ -205,11 +205,11 @@ export default function PortfolioPageContent() {
               </h2>
               <p className="portfolio-work-cta-desc">
                 Tell us about your roadmap — we&apos;ll help you scope, estimate, and ship with a
-                dedicated Logic Lume squad.
+                dedicated LogicLume squad.
               </p>
             </div>
             <div className="portfolio-work-cta-actions">
-              <Button href="/book-a-call" variant="accent" size="md" className="rounded-full gap-2 shadow-lg">
+              <Button href="/book-a-call" variant="outline-light" size="md" className="rounded-full gap-2 border-white bg-white !text-black hover:bg-neutral-100">
                 Book a call
                 <ArrowUpRight size={16} aria-hidden />
               </Button>

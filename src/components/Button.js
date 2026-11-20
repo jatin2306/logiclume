@@ -14,11 +14,11 @@ export default function Button({
 
   const variants = {
     primary:
-      "bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] shadow-md shadow-[rgba(0,102,245,0.28)]",
+      "bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] shadow-md shadow-[rgba(17,17,17,0.28)]",
     secondary:
       "bg-[var(--color-dark)] text-white hover:bg-[var(--color-dark-elevated)]",
     accent:
-      "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-dark)] shadow-md shadow-[rgba(139,44,245,0.32)]",
+      "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-dark)] shadow-md shadow-[rgba(17,17,17,0.32)]",
     outline:
       "border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-surface-blue)]",
     "outline-light":

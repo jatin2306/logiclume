@@ -26,7 +26,7 @@ export default function TeamMembers() {
 
         <div className="team-office-gallery">
           <div className="team-office-gallery-head">
-            <span className="team-office-gallery-label">Life at Logic Lume</span>
+            <span className="team-office-gallery-label">Life at LogicLume</span>
             <h3 className="team-office-gallery-title">
               Where we build — Noida & global delivery hubs
             </h3>

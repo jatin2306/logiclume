@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import SiteContainer from "./SiteContainer";
+import BrandLockup from "./BrandLockup";
 import { allOffices, primaryOffice } from "@/data/offices";
 import {
   FaFacebookF,
@@ -82,15 +82,7 @@ export default function Footer() {
       <SiteContainer className="site-footer-shell">
         <div className="site-footer-main">
           <div className="site-footer-brand">
-            <Link href="/" className="site-footer-logo" aria-label="Logic Lume home">
-              <Image
-                src="/images/logo.png"
-                alt="Logic Lume"
-                width={180}
-                height={92}
-                className="site-footer-logo-img"
-              />
-            </Link>
+            <BrandLockup className="site-footer-logo" />
             <p className="site-footer-tagline">
               Product engineering for startups and enterprises — web, mobile, AI,
               and platforms.

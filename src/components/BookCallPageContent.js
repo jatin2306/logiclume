@@ -181,7 +181,7 @@ export default function BookCallPageContent() {
               {!embedReady ? <BookCallEmbedSkeleton /> : null}
               <iframe
                 ref={iframeRef}
-                title="Book a 30-minute call with Logic Lume"
+                title="Book a 30-minute call with LogicLume"
                 src={iframeSrc ?? undefined}
                 loading="eager"
                 allow="clipboard-write; fullscreen"

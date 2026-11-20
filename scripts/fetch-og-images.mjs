@@ -1,6 +1,6 @@
 async function og(url) {
   const r = await fetch(url, {
-    headers: { "User-Agent": "Mozilla/5.0 (compatible; Logic Lume/1.0)" },
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; LogicLume/1.0)" },
     redirect: "follow",
   });
   const html = await r.text();

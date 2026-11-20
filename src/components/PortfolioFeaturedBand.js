@@ -8,12 +8,12 @@ import { getFlagshipProjects } from "@/data/portfolioProjects";
 const accentStyles = {
   blue: {
     card: "home-project-card-blue",
-    partnerBg: "from-[#0066f5] to-[#0040d0]",
+    partnerBg: "from-[#111111] to-[#000000]",
     tag: "bg-[var(--color-surface-blue)] text-[var(--color-primary)]",
   },
   orange: {
     card: "home-project-card-orange",
-    partnerBg: "from-[#8b2cf5] to-[#6d28d9]",
+    partnerBg: "from-[#111111] to-[#000000]",
     tag: "bg-[var(--color-surface-orange)] text-[var(--color-accent-dark)]",
   },
 };
@@ -36,7 +36,7 @@ export default function PortfolioFeaturedBand() {
             </h2>
             <p className="mt-2 text-sm lg:text-base text-[var(--color-text-muted)]">
               Live products for IDFC Bank and American Express — engineered end-to-end by
-              Logic Lume.
+              LogicLume.
             </p>
           </div>
         </div>
@@ -63,7 +63,7 @@ export default function PortfolioFeaturedBand() {
                     previewAccent={client.previewAccent}
                     imageSrc={client.imageSrc}
                     aspectClass="aspect-[16/10] w-full"
-                    gradientClass="from-[var(--color-surface-blue)] to-[#eef3ff]"
+                    gradientClass="from-[var(--color-surface-blue)] to-[#f3f3f3]"
                     showOverlay={false}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,22,40,0.75)] via-[rgba(10,22,40,0.15)] to-transparent pointer-events-none" />

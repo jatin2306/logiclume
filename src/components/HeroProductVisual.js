@@ -21,7 +21,7 @@ export default function HeroProductVisual() {
   if (!active) return null;
 
   return (
-    <div className="dp-hero-product" role="img" aria-label="Featured Logic Lume product deliveries">
+    <div className="dp-hero-product" role="img" aria-label="Featured LogicLume product deliveries">
       <div className="dp-hero-product-glow" />
       <div className="dp-hero-product-frame">
         <div className="dp-hero-product-chrome">

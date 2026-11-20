@@ -19,25 +19,37 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 const siteUrl = "https://www.logiclume.com";
 
+const brandName = "Logiclume";
+const brandAlternates = ["Logic Lume", "LogicLume"];
+const ogImage = {
+  url: "/images/logo-mark.png",
+  width: 447,
+  height: 442,
+  alt: "Logiclume",
+};
+
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Logic Lume | Web & App Development Company",
-    template: "%s | Logic Lume",
+    default: "Logiclume | Web & App Development Company",
+    template: "%s | Logiclume",
   },
   description:
-    "Logic Lume builds scalable websites, mobile apps, and digital products for startups and enterprises. Expert web development, UI/UX, and cloud solutions.",
+    "Logiclume (Logic Lume) is a web and app development company building websites, mobile apps, and custom software for startups and enterprises.",
   keywords: [
+    "Logiclume",
     "Logic Lume",
+    "LogicLume",
+    "Logiclume web development",
+    "Logiclume app development",
     "web development company",
     "mobile app development",
-    "IT solutions India",
-    "software development",
+    "custom software development",
   ],
-  applicationName: "Logic Lume",
-  authors: [{ name: "Logic Lume", url: siteUrl }],
-  creator: "Logic Lume",
-  publisher: "Logic Lume",
+  applicationName: brandName,
+  authors: [{ name: brandName, url: siteUrl }],
+  creator: brandName,
+  publisher: brandName,
   alternates: {
     canonical: "/",
   },
@@ -45,16 +57,18 @@ export const metadata = {
     type: "website",
     locale: "en_IN",
     url: siteUrl,
-    siteName: "Logic Lume",
-    title: "Logic Lume | Web & App Development Company",
+    siteName: brandName,
+    title: "Logiclume | Web & App Development Company",
     description:
-      "Logic Lume helps startups, businesses, and enterprises establish a strong online presence through modern website development, custom software, mobile apps, and digital solutions.",
+      "Logiclume builds websites, mobile apps, and custom software for startups, businesses, and enterprises.",
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Logic Lume | Web & App Development Company",
+    title: "Logiclume | Web & App Development Company",
     description:
-      "Web development, mobile apps, UI/UX design, and custom software for startups and enterprises.",
+      "Logiclume builds websites, mobile apps, UI/UX, and custom software for startups and enterprises.",
+    images: ["/images/logo-mark.png"],
   },
   robots: {
     index: true,
@@ -62,6 +76,9 @@ export const metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
 };
@@ -69,30 +86,54 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Logic Lume",
-    url: siteUrl,
-    logo: `${siteUrl}/images/logo.png`,
-    description:
-      "Logic Lume is a modern IT solutions company delivering web development, mobile apps, UI/UX design, and digital marketing services.",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Noida One, B-8, Block B, Industrial Area, Sector 62",
-      addressLocality: "Noida",
-      addressRegion: "Uttar Pradesh",
-      postalCode: "201309",
-      addressCountry: "IN",
-    },
-    sameAs: [
-      "https://www.linkedin.com/company/logic-lume",
-      "https://www.instagram.com/logiclume/",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
+        name: brandName,
+        alternateName: brandAlternates,
+        url: siteUrl,
+        logo: {
+          "@type": "ImageObject",
+          url: `${siteUrl}/images/logo-mark.png`,
+        },
+        image: `${siteUrl}/images/logo-mark.png`,
+        description:
+          "Logiclume is a product engineering company delivering web development, mobile apps, UI/UX design, and custom software.",
+        slogan: "Logic. Innovation. Brighter tomorrow.",
+        email: "info@logiclume.com",
+        telephone: "+91-9205210930",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Noida One, B-8, Block B, Industrial Area, Sector 62",
+          addressLocality: "Noida",
+          addressRegion: "Uttar Pradesh",
+          postalCode: "201309",
+          addressCountry: "IN",
+        },
+        sameAs: [
+          "https://www.linkedin.com/company/logic-lume",
+          "https://www.instagram.com/logiclume/",
+        ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "+91-9205210930",
+          contactType: "customer service",
+          email: "info@logiclume.com",
+          areaServed: "Worldwide",
+          availableLanguage: ["English"],
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        name: brandName,
+        alternateName: brandAlternates,
+        url: siteUrl,
+        publisher: { "@id": `${siteUrl}/#organization` },
+        inLanguage: "en",
+      },
     ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+91-9205210930",
-      contactType: "customer service",
-      email: "info@logiclume.com",
-    },
   };
 
   return (

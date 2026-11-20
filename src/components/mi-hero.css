@@ -6,14 +6,14 @@
 }
 
 .mi-hero#home {
-  background: #e9edf3;
+  background: #f5f5f5;
 }
 
 .mi-hero {
   height: var(--mi-hero-h);
   max-height: var(--mi-hero-h);
   padding: 0.375rem 0 0.5rem;
-  background: #e9edf3;
+  background: #f5f5f5;
   overflow: hidden;
   box-sizing: border-box;
   display: flex;
@@ -56,7 +56,7 @@
   padding: 0;
   border-radius: 0;
   border: 0;
-  background: #0f172a;
+  background: #07060f;
   box-shadow: 0 12px 40px rgba(15, 23, 42, 0.1);
   overflow: hidden;
   isolation: isolate;
@@ -109,10 +109,10 @@
   pointer-events: none;
   background: linear-gradient(
     100deg,
-    rgba(8, 18, 36, 0.78) 0%,
-    rgba(8, 18, 36, 0.55) 18%,
-    rgba(8, 18, 36, 0.22) 36%,
-    rgba(8, 18, 36, 0) 52%
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.55) 18%,
+    rgba(0, 0, 0, 0.22) 36%,
+    rgba(0, 0, 0, 0) 52%
   );
 }
 
@@ -141,8 +141,8 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(139, 44, 245, 0.14) 0%,
-    rgba(0, 102, 245, 0.1) 42%,
+    rgba(17, 17, 17, 0.14) 0%,
+    rgba(17, 17, 17, 0.1) 42%,
     transparent 68%
   );
   pointer-events: none;
@@ -190,7 +190,7 @@
   color: #ffffff;
   line-height: 1.28;
   text-wrap: balance;
-  text-shadow: 0 2px 16px rgba(8, 18, 36, 0.45);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 
 .mi-hero-title-main {
@@ -198,7 +198,7 @@
 }
 
 .mi-hero-title-accent {
-  color: #ffb15a;
+  color: #e5e5e5;
 }
 
 .mi-hero-aside {
@@ -253,7 +253,7 @@
   font-size: 0.6875rem;
   font-weight: 700;
   line-height: 1.2;
-  color: #0f172a;
+  color: #111111;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -281,10 +281,10 @@
 .mi-hero-card--ai .mi-hero-visual-fade {
   background: linear-gradient(
     100deg,
-    rgba(8, 18, 36, 0.78) 0%,
-    rgba(8, 18, 36, 0.55) 18%,
-    rgba(8, 18, 36, 0.22) 36%,
-    rgba(8, 18, 36, 0) 52%
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.55) 18%,
+    rgba(0, 0, 0, 0.22) 36%,
+    rgba(0, 0, 0, 0) 52%
   );
 }
 
@@ -319,11 +319,11 @@
 .mi-hero-stat {
   padding: 0.95rem 1.1rem 1rem 1.15rem;
   border-radius: 1rem;
-  background: linear-gradient(165deg, rgba(8, 18, 36, 0.94) 0%, rgba(15, 40, 78, 0.9) 100%);
+  background: linear-gradient(165deg, rgba(0, 0, 0, 0.92) 0%, rgba(17, 17, 17, 0.88) 100%);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
-    inset 3px 0 0 #8b2cf5,
-    0 14px 32px rgba(8, 18, 36, 0.35);
+    inset 3px 0 0 #ffffff,
+    0 14px 32px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(10px);
 }
 
@@ -344,7 +344,7 @@
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: 0.01em;
-  color: #ffb15a;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .mi-hero-support {
@@ -357,7 +357,7 @@
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.65;
-  text-shadow: 0 1px 8px rgba(8, 18, 36, 0.4);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
 }
 
 .mi-hero-carousel {
@@ -384,7 +384,7 @@
   border-radius: 50%;
   border: 1px solid rgba(15, 23, 42, 0.14);
   background: rgba(255, 255, 255, 0.95);
-  color: #0f172a;
+  color: #111111;
   box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
@@ -439,7 +439,7 @@
   font-size: 0.5rem;
   font-weight: 700;
   line-height: 1.25;
-  color: #0f172a;
+  color: #111111;
 }
 
 @media (min-width: 1024px) {
@@ -511,7 +511,7 @@
     padding: 0.75rem;
     height: auto;
     min-height: min(520px, calc(100dvh - var(--dp-nav-bar-h) - 1rem));
-    background: linear-gradient(160deg, #ffffff 0%, #f8fafc 35%, #fdf4ff 70%, #eef2ff 100%);
+    background: linear-gradient(160deg, #ffffff 0%, #f7f7f7 100%);
   }
 
   .mi-hero-visual {
@@ -577,7 +577,7 @@
     height: auto;
     min-height: 0;
     padding: 0.75rem;
-    background: linear-gradient(160deg, #ffffff 0%, #f8fafc 35%, #fdf4ff 70%, #eef2ff 100%);
+    background: linear-gradient(160deg, #ffffff 0%, #f7f7f7 100%);
     border-color: var(--color-border);
     box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
   }
@@ -794,7 +794,7 @@
   pointer-events: none;
   border-radius: inherit;
   overflow: hidden;
-  background: #e8edf3;
+  background: #f0f0f0;
 }
 
 .mi-hero-skeleton-visual {

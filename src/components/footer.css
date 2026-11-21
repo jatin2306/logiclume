@@ -6,7 +6,7 @@
   overflow-x: clip;
   font-family: var(--font-sans), system-ui, sans-serif;
   color: #f5f5f5;
-  background: #07060f;
+  background: #0f4c8a;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -99,7 +99,7 @@
 }
 
 .site-footer-social-link:hover {
-  color: #111111;
+  color: #0f4c8a;
   background: #ffffff;
   border-color: #ffffff;
 }

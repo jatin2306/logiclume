@@ -8,12 +8,12 @@ import { getFlagshipProjects } from "@/data/portfolioProjects";
 const accentStyles = {
   blue: {
     card: "home-project-card-blue",
-    partnerBg: "from-[#111111] to-[#000000]",
+    partnerBg: "from-[#1570d6] to-[#0f4c8a]",
     tag: "bg-[var(--color-surface-blue)] text-[var(--color-primary)]",
   },
   orange: {
     card: "home-project-card-orange",
-    partnerBg: "from-[#111111] to-[#000000]",
+    partnerBg: "from-[#1570d6] to-[#0f4c8a]",
     tag: "bg-[var(--color-surface-orange)] text-[var(--color-accent-dark)]",
   },
 };

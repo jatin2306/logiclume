@@ -8,7 +8,7 @@
   margin-top: calc(-1 * var(--dp-nav-bar-h));
   min-height: 100dvh;
   padding-top: var(--dp-nav-bar-h);
-  background: #070707;
+  background: #0f4c8a;
   color: #ffffff;
   overflow: hidden;
 }
@@ -28,8 +28,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(7, 7, 7, 0.45) 0%, rgba(7, 7, 7, 0.28) 32%, rgba(7, 7, 7, 0.78) 78%, #070707 100%),
-    linear-gradient(90deg, rgba(7, 7, 7, 0.82) 0%, rgba(7, 7, 7, 0.55) 42%, rgba(7, 7, 7, 0.18) 100%);
+    linear-gradient(180deg, rgba(12, 64, 140, 0.42) 0%, rgba(15, 76, 138, 0.22) 34%, rgba(12, 70, 130, 0.72) 78%, #0f4c8a 100%),
+    linear-gradient(90deg, rgba(10, 58, 122, 0.78) 0%, rgba(15, 90, 170, 0.4) 46%, rgba(14, 120, 160, 0.12) 100%);
 }
 
 .mi-hero-body {
@@ -101,7 +101,7 @@
   padding: 1.25rem 1.2rem 1.05rem;
   border-radius: 1.15rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(16, 16, 16, 0.46);
+  background: rgba(10, 52, 110, 0.42);
   color: #ffffff;
   text-decoration: none;
   backdrop-filter: blur(16px);

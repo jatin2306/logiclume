@@ -4,19 +4,19 @@ import { ArrowUpRight } from "lucide-react";
 import PortfolioThumb from "./PortfolioThumb";
 
 const categoryStyles = {
-  "Enterprise Platform": { gradient: "from-[#0a1628] to-[#111111]", badge: "blue" },
-  "Web Development": { gradient: "from-[#111111] to-[#000000]", badge: "blue" },
-  "App Development": { gradient: "from-[#111111] to-[#000000]", badge: "orange" },
+  "Enterprise Platform": { gradient: "from-[#0f4c8a] to-[#1570d6]", badge: "blue" },
+  "Web Development": { gradient: "from-[#1570d6] to-[#0f4c8a]", badge: "blue" },
+  "App Development": { gradient: "from-[#1570d6] to-[#0f4c8a]", badge: "orange" },
   "UI / UX Design": { gradient: "from-[#111111] to-[#8a8a8a]", badge: "orange" },
   "E-Commerce": { gradient: "from-[#111111] to-[#3a3a3a]", badge: "blue" },
-  "Custom Software": { gradient: "from-[#0a1628] to-[#111111]", badge: "blue" },
-  Website: { gradient: "from-[#111111] to-[#000000]", badge: "blue" },
-  "Mobile App": { gradient: "from-[#111111] to-[#000000]", badge: "orange" },
-  "Dashboard UI": { gradient: "from-[#0a1628] to-[#111111]", badge: "blue" },
+  "Custom Software": { gradient: "from-[#0f4c8a] to-[#1570d6]", badge: "blue" },
+  Website: { gradient: "from-[#1570d6] to-[#0f4c8a]", badge: "blue" },
+  "Mobile App": { gradient: "from-[#1570d6] to-[#0f4c8a]", badge: "orange" },
+  "Dashboard UI": { gradient: "from-[#0f4c8a] to-[#1570d6]", badge: "blue" },
 };
 
 function CardInner({ title, category, client, url, imageSrc, previewAccent, featured, imageFit, description }) {
-  const style = categoryStyles[category] || { gradient: "from-[#111111] to-[#000000]", badge: "blue" };
+  const style = categoryStyles[category] || { gradient: "from-[#1570d6] to-[#0f4c8a]", badge: "blue" };
   const accent = previewAccent || style.badge;
 
   return (

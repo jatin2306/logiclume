@@ -58,8 +58,8 @@ function DeckProjectSlide({ project, index, chapterLabel }) {
             previewAccent={project.previewAccent}
             gradientClass={
               project.accent === "orange"
-                ? "from-[#111111] to-[#000000]"
-                : "from-[#111111] to-[#000000]"
+                ? "from-[#1570d6] to-[#0f4c8a]"
+                : "from-[#1570d6] to-[#0f4c8a]"
             }
             aspectClass="aspect-[16/10] w-full lg:aspect-auto lg:h-full"
             showOverlay={project.imageFit !== "contain"}

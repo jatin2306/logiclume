@@ -195,7 +195,7 @@ img {
   border-radius: 0.75rem;
   flex-shrink: 0;
   color: #fff;
-  background: linear-gradient(135deg, var(--color-primary), #000000);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   box-shadow: 0 6px 18px rgba(17, 17, 17, 0.3);
 }
 

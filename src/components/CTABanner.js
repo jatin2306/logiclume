@@ -24,7 +24,7 @@ export default function CTABanner() {
             </div>
 
             <a href="/contact-us" className="flex-shrink-0">
-              <Button variant="outline-light" size="lg" className="gap-2 rounded-xl border-white bg-white !text-black hover:bg-neutral-100 hover:scale-[1.02] transition-transform">
+              <Button variant="outline-light" size="lg" className="gap-2 rounded-xl border-white bg-white !text-[#0f4c8a] hover:bg-neutral-100 hover:scale-[1.02] transition-transform">
                 Schedule a Consultation
                 <ArrowUpRight size={18} />
               </Button>

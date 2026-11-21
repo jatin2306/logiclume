@@ -209,7 +209,7 @@ export default function PortfolioPageContent() {
               </p>
             </div>
             <div className="portfolio-work-cta-actions">
-              <Button href="/book-a-call" variant="outline-light" size="md" className="rounded-full gap-2 border-white bg-white !text-black hover:bg-neutral-100">
+              <Button href="/book-a-call" variant="outline-light" size="md" className="rounded-full gap-2 border-white bg-white !text-[#0f4c8a] hover:bg-neutral-100">
                 Book a call
                 <ArrowUpRight size={16} aria-hidden />
               </Button>

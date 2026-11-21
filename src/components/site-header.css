@@ -95,10 +95,10 @@
 }
 
 .site-header-mobile-link--active {
-  background: #f3f3f3;
-  color: #111111;
+  background: #e7f1fb;
+  color: #0f4c8a;
   font-weight: 700;
-  box-shadow: inset 3px 0 0 #111111;
+  box-shadow: inset 3px 0 0 #1570d6;
 }
 
 .site-header-link--ai {

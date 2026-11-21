@@ -812,11 +812,11 @@ textarea:focus-visible {
 }
 
 .portfolio-brand-preview--blue {
-  background: linear-gradient(145deg, #0a1628 0%, #111111 55%, #000000 100%);
+  background: linear-gradient(145deg, #0f4c8a 0%, #1570d6 55%, #0f8f86 100%);
 }
 
 .portfolio-brand-preview--orange {
-  background: linear-gradient(145deg, #14081f 0%, #000000 45%, #111111 100%);
+  background: linear-gradient(145deg, #0b736c 0%, #0f8f86 45%, #1570d6 100%);
 }
 
 .portfolio-brand-preview-chrome {
@@ -955,11 +955,11 @@ textarea:focus-visible {
   border-radius: 1.0625rem;
   background: linear-gradient(
     90deg,
-    #4a4a4a 0%,
-    #111111 25%,
-    #111111 50%,
-    #111111 75%,
-    #4a4a4a 100%
+    #0f8f86 0%,
+    #1570d6 25%,
+    #0f4c8a 50%,
+    #1570d6 75%,
+    #0f8f86 100%
   );
   background-size: 200% 100%;
   animation: nav-border-marquee 4s linear infinite;
@@ -1401,7 +1401,7 @@ textarea:focus-visible {
 .nav-mega-ai-banner-mesh {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #0a1628 0%, #111111 55%, #000000 100%);
+  background: linear-gradient(135deg, #1570d6 0%, #0f4c8a 55%, #0f8f86 100%);
 }
 
 .nav-mega-ai-banner-mesh::after {
@@ -1420,7 +1420,7 @@ textarea:focus-visible {
   border-radius: 0.625rem;
   font-size: 0.8125rem;
   font-weight: 700;
-  color: #111111;
+  color: #0f4c8a;
   background: #ffffff;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -1845,7 +1845,7 @@ textarea:focus-visible {
   min-height: 8.75rem;
   border-radius: 0.625rem;
   overflow: hidden;
-  background: #0a1628;
+  background: #0f4c8a;
   box-shadow: 0 6px 16px rgba(10, 22, 40, 0.12);
 }
 
@@ -1975,7 +1975,7 @@ textarea:focus-visible {
 }
 
 .nav-contact-btn:hover {
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #0a1628 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #0f4c8a 100%);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(17, 17, 17, 0.35);
 }
@@ -2054,7 +2054,7 @@ textarea:focus-visible {
 .nav-ai-btn-open {
   background: #fff5eb;
   border-color: rgba(17, 17, 17, 0.42);
-  color: #0a1628;
+  color: #0f4c8a;
   box-shadow: 0 2px 10px rgba(17, 17, 17, 0.1);
 }
 

@@ -210,7 +210,7 @@ export default function NavMegaPanel({ type, onClose }) {
                     <item.icon size={18} />
                   </span>
                   <span className="flex-1 min-w-0">
-                    <span className="block font-semibold text-[#111111] text-sm group-hover:text-black transition-colors">
+                    <span className="block font-semibold text-[#1b2838] text-sm group-hover:text-[#1570d6] transition-colors">
                       {item.label}
                     </span>
                     <span className="block text-xs text-[var(--color-text-muted)] mt-1">

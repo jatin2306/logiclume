@@ -1,4 +1,40 @@
 
+name: Deploy Next.js to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "out" ]; then
+            echo "Error: Next.js out folder not found!"
+            exit 1
+          fi
+          ls -la out/
+
       - name: Deploy to Hostinger
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
@@ -7,9 +43,6 @@
         run: |
           sudo apt-get update -y
           sudo apt-get install -y lftp
-
-          echo "Checking Next.js build..."
-          ls -la out/
 
           lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<'EOF'
           set cmd:fail-exit yes
@@ -20,10 +53,10 @@
 
           cd /public_html
 
-          echo "Deploying to:"
+          echo "Deployment directory:"
           pwd
 
-          mirror -R --delete --verbose --parallel=2 out/ .
+          mirror -R --verbose --parallel=2 out/ .
 
           bye
           EOF

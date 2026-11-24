@@ -34,7 +34,54 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y lftp
-          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<EOF
+          set +e
+          report=$(lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<'EOF'
+          set cmd:fail-exit no
+          set net:max-retries 4
+          set net:timeout 20
+          set ftp:passive-mode true
+          set ftp:ssl-allow no
+          pwd
+          cls -1
+          cd ..
+          pwd
+          cls -1
+          cd /
+          pwd
+          cls -1
+          bye
+          EOF
+          )
+          set -e
+          echo "$report"
+          echo "$report" | while IFS= read -r line; do
+            [ -n "$line" ] && echo "::warning title=FTP::$line"
+          done
+
+          printf 'live-folder' > /tmp/wx-where.txt
+          for dir in "." "public_html" "domains/webologyx.com/public_html" "/domains/webologyx.com/public_html" "/public_html"; do
+            lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<EOF || true
+          set cmd:fail-exit no
+          set net:max-retries 3
+          set net:timeout 20
+          set ftp:passive-mode true
+          set ftp:ssl-allow no
+          mkdir -p -f "$dir"
+          put -O "$dir" /tmp/wx-where.txt
+          bye
+          EOF
+          done
+
+          sleep 8
+          code=$(curl -s -o /tmp/wx-where-body.txt -w "%{http_code}" "https://webologyx.com/wx-where.txt" || true)
+          echo "Probe status: $code"
+          echo "::warning title=Probe status::$code"
+          if [ "$code" != "200" ]; then
+            echo "webologyx.com is not serving this FTP account."
+            exit 1
+          fi
+
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<'EOF'
           set cmd:fail-exit yes
           set net:max-retries 10
           set net:reconnect-interval-base 5
@@ -42,6 +89,6 @@ jobs:
           set ftp:passive-mode true
           set ftp:ssl-allow no
           lcd out
-          mirror -R --delete --continue --verbose --parallel=2 .
+          mirror -R --continue --verbose --parallel=2 .
           bye
           EOF

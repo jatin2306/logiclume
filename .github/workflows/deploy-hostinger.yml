@@ -42,9 +42,6 @@ jobs:
           set ftp:passive-mode true
           set ftp:ssl-allow no
           cd public_html
-          glob -f rm -r *
-          glob -f rm -r .[!.]*
-          glob -f rm -r ..?*
           lcd out
           mirror -R --delete --ignore-time --parallel=2 .
           bye

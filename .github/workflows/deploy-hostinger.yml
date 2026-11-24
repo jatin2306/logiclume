@@ -34,6 +34,21 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y lftp
+          listing=$(lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<'EOF'
+          set cmd:fail-exit no
+          set net:max-retries 4
+          set net:timeout 20
+          set ftp:passive-mode true
+          set ftp:ssl-allow no
+          cls -1
+          bye
+          EOF
+          )
+          echo "FTP root listing:"
+          echo "$listing"
+          echo "$listing" | while IFS= read -r line; do
+            [ -n "$line" ] && echo "::warning title=FTP root::$line"
+          done
           printf 'public_html' > /tmp/wx-probe-public-html.txt
           printf 'domains' > /tmp/wx-probe-domains.txt
           printf 'root' > /tmp/wx-probe-root.txt

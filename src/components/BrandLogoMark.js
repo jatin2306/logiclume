@@ -1,7 +1,7 @@
-/** LogicLume mark. */
-const LOGO_W = 447;
-const LOGO_H = 442;
-const MARK_VIEW = "0 0 447 442";
+/** Webologyx Technologies mark. */
+const LOGO_W = 740;
+const LOGO_H = 301;
+const MARK_VIEW = "0 0 740 301";
 
 export default function BrandLogoMark({ className = "", size = "hero" }) {
   return (

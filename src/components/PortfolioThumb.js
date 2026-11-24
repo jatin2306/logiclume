@@ -44,7 +44,7 @@ export default function PortfolioThumb({
   imageSrc,
   previewUrl,
   previewAccent = "blue",
-  gradientClass = "from-[#1570d6] to-[#0f4c8a]",
+  gradientClass = "from-[#246cd8] to-[#16325c]",
   aspectClass = "aspect-[4/3]",
   showOverlay = true,
   featured,

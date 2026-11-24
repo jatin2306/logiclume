@@ -19,7 +19,7 @@ export default function LeadershipSpotlight() {
         <div className="leadership-spotlight-frame">
           <Image
             src="/images/team/office/team.jpg"
-            alt="Chief Technology Officer at LogicLume"
+            alt="Chief Technology Officer at Webologyx Technologies"
             fill
             sizes="(max-width: 1024px) 100vw, 480px"
             className="leadership-spotlight-photo"
@@ -28,7 +28,7 @@ export default function LeadershipSpotlight() {
           <div className="leadership-spotlight-photo-shade" aria-hidden="true" />
         </div>
         <span className="leadership-spotlight-badge">Chief Technology Officer</span>
-        <span className="leadership-spotlight-tag">LogicLume</span>
+        <span className="leadership-spotlight-tag">Webologyx Technologies</span>
       </div>
 
       <div className="leadership-spotlight-copy">

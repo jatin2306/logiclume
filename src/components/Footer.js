@@ -2,12 +2,14 @@ import Link from "next/link";
 import SiteContainer from "./SiteContainer";
 import BrandLockup from "./BrandLockup";
 import { allOffices, primaryOffice } from "@/data/offices";
+import { contactEmail } from "@/data/site";
 import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
   FaWhatsapp,
 } from "react-icons/fa";
+import CookieSettingsButton from "./CookieSettingsButton";
 import "./footer.css";
 
 const serviceLinks = [
@@ -89,7 +91,7 @@ export default function Footer() {
             </p>
             <div className="site-footer-contact">
               <a href="tel:+919205210930">+91 92052 10930</a>
-              <a href="mailto:info@logiclume.com">info@logiclume.com</a>
+              <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
             </div>
             <div className="site-footer-social" aria-label="Social media">
               {socialLinks.map(({ href, icon: Icon, label }) => (
@@ -178,11 +180,12 @@ export default function Footer() {
 
         <div className="site-footer-bar">
           <p className="site-footer-bar-copy">
-            © {currentYear} Logic <span>Lume</span>. All rights reserved.
+            © {currentYear} Webologyx. All rights reserved.
           </p>
           <p className="site-footer-bar-meta">80+ projects · 150+ team</p>
           <nav className="site-footer-bar-legal" aria-label="Legal">
             <Link href="/privacy-policy">Privacy</Link>
+            <CookieSettingsButton />
             <Link href="/terms-of-service">Terms</Link>
             <Link href="/contact-us">Contact</Link>
           </nav>

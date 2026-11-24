@@ -8,12 +8,12 @@ import { getFlagshipProjects } from "@/data/portfolioProjects";
 const accentStyles = {
   blue: {
     card: "home-project-card-blue",
-    partnerBg: "from-[#1570d6] to-[#0f4c8a]",
+    partnerBg: "from-[#246cd8] to-[#16325c]",
     tag: "bg-[var(--color-surface-blue)] text-[var(--color-primary)]",
   },
   orange: {
     card: "home-project-card-orange",
-    partnerBg: "from-[#1570d6] to-[#0f4c8a]",
+    partnerBg: "from-[#246cd8] to-[#16325c]",
     tag: "bg-[var(--color-surface-orange)] text-[var(--color-accent-dark)]",
   },
 };
@@ -36,7 +36,7 @@ export default function PortfolioFeaturedBand() {
             </h2>
             <p className="mt-2 text-sm lg:text-base text-[var(--color-text-muted)]">
               Live products for IDFC Bank and American Express — engineered end-to-end by
-              LogicLume.
+              Webologyx Technologies.
             </p>
           </div>
         </div>

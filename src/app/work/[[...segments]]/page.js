@@ -1,19 +1,35 @@
 import { Suspense } from "react";
 import PortfolioPageContent from "@/components/PortfolioPageContent";
+import { portfolioFilters, portfolioServiceFilters } from "@/data/portfolioFilterConfig";
+import { brandName, siteUrl } from "@/data/site";
 
-const siteUrl = "https://www.logiclume.com";
+export function generateStaticParams() {
+  const industries = portfolioFilters
+    .filter((filter) => filter.id !== "all")
+    .map((filter) => ({ segments: [filter.id] }));
+  const capabilities = portfolioServiceFilters
+    .filter((filter) => filter.id !== "all")
+    .map((filter) => ({ segments: ["capabilities", filter.id] }));
+
+  return [
+    { segments: [] },
+    { segments: ["industries"] },
+    { segments: ["capabilities"] },
+    { segments: ["services"] },
+    ...industries,
+    ...capabilities,
+  ];
+}
 
 export const metadata = {
   title: "Our Best Projects",
-  description:
-    "Logiclume project portfolio: web, mobile, and enterprise platforms for fintech, commerce, health, real estate, and AI.",
+  description: `${brandName} project portfolio: web, mobile, and enterprise platforms for fintech, commerce, health, real estate, and AI.`,
   alternates: {
     canonical: "/work",
   },
   openGraph: {
-    title: "Our Best Projects | Logiclume",
-    description:
-      "Web, mobile, and enterprise platforms engineered by Logiclume for banks, brands, and growth companies.",
+    title: `Our Best Projects | ${brandName}`,
+    description: `Web, mobile, and enterprise platforms engineered by ${brandName} for banks, brands, and growth companies.`,
     url: `${siteUrl}/work`,
   },
 };

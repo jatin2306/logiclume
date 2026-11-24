@@ -11,13 +11,13 @@ const accentStyles = {
   blue: {
     card: "home-project-card-blue",
     badge: "bg-[var(--color-surface-blue)] text-[var(--color-primary)]",
-    partnerBg: "from-[#1570d6] to-[#0f4c8a]",
+    partnerBg: "from-[#246cd8] to-[#16325c]",
     tag: "bg-[var(--color-surface-blue)] text-[var(--color-primary)]",
   },
   orange: {
     card: "home-project-card-orange",
     badge: "bg-[var(--color-surface-orange)] text-[var(--color-accent-dark)]",
-    partnerBg: "from-[#1570d6] to-[#0f4c8a]",
+    partnerBg: "from-[#246cd8] to-[#16325c]",
     tag: "bg-[var(--color-surface-orange)] text-[var(--color-accent-dark)]",
   },
 };

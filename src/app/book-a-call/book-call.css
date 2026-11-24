@@ -9,7 +9,7 @@ html.dp-book-call-route #content {
 }
 
 .book-call-page {
-  --book-call-grid-bg: #f7f9fc;
+  --book-call-grid-bg: #faf7f5;
   --book-call-pad-y: clamp(0.5rem, 1.2vh, 0.85rem);
   --book-call-gap: clamp(0.75rem, 1.35vw, 1.25rem);
   height: calc(100dvh - var(--dp-nav-total-h));
@@ -491,7 +491,7 @@ html.dp-book-call-route #content {
 }
 
 .book-call-skeleton-shimmer {
-  background: linear-gradient(90deg, #eef2f6 0%, #f8fafc 40%, #eef2f6 80%);
+  background: linear-gradient(90deg, #fff1e6 0%, #faf7f5 40%, #fff1e6 80%);
   background-size: 200% 100%;
   animation: book-call-shimmer 1.35s ease-in-out infinite;
 }

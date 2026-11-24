@@ -1,5 +1,5 @@
 {
-  "name": "logiclume",
+  "name": "webologyx",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,6 +16,7 @@
     "firebase": "^12.6.0",
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.544.0",
+    "matter-js": "^0.20.0",
     "next": "^16.0.7",
     "prop-types": "^15.8.1",
     "qrcode": "^1.5.4",

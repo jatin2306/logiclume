@@ -31,8 +31,7 @@
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   font-weight: 600;
   letter-spacing: -0.04em;
-  line-height: 1;
-  color: #0f4c8a;
+  color: #246cd8;
 }
 
 .client-trust-viewport {
@@ -62,7 +61,7 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #0f4c8a;
+  color: #111111;
   white-space: nowrap;
 }
 

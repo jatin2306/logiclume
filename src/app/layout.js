@@ -1,8 +1,10 @@
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import CookieConsent from "../components/CookieConsent";
+import AnalyticsGate from "../components/AnalyticsGate";
+import { brandName, brandShort, contactEmail, siteUrl, socialLinks } from "@/data/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,31 +19,26 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const siteUrl = "https://www.logiclume.com";
-
-const brandName = "Logiclume";
-const brandAlternates = ["Logic Lume", "LogicLume"];
 const ogImage = {
   url: "/images/logo-mark.png",
-  width: 447,
-  height: 442,
-  alt: "Logiclume",
+  width: 740,
+  height: 301,
+  alt: "Webologyx Technologies",
 };
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Logiclume | Web & App Development Company",
-    template: "%s | Logiclume",
+    default: "Webologyx Technologies | Web & App Development Company",
+    template: "%s | Webologyx Technologies",
   },
   description:
-    "Logiclume (Logic Lume) is a web and app development company building websites, mobile apps, and custom software for startups and enterprises.",
+    "Webologyx Technologies is a web and app development company building websites, mobile apps, and custom software for startups and enterprises.",
   keywords: [
-    "Logiclume",
-    "Logic Lume",
-    "LogicLume",
-    "Logiclume web development",
-    "Logiclume app development",
+    "Webologyx Technologies",
+    "Webologyx",
+    "Webologyx Technologies web development",
+    "Webologyx Technologies app development",
     "web development company",
     "mobile app development",
     "custom software development",
@@ -58,16 +55,16 @@ export const metadata = {
     locale: "en_IN",
     url: siteUrl,
     siteName: brandName,
-    title: "Logiclume | Web & App Development Company",
+    title: "Webologyx Technologies | Web & App Development Company",
     description:
-      "Logiclume builds websites, mobile apps, and custom software for startups, businesses, and enterprises.",
+      "Webologyx Technologies builds websites, mobile apps, and custom software for startups, businesses, and enterprises.",
     images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Logiclume | Web & App Development Company",
+    title: "Webologyx Technologies | Web & App Development Company",
     description:
-      "Logiclume builds websites, mobile apps, UI/UX, and custom software for startups and enterprises.",
+      "Webologyx Technologies builds websites, mobile apps, UI/UX, and custom software for startups and enterprises.",
     images: ["/images/logo-mark.png"],
   },
   robots: {
@@ -91,7 +88,7 @@ export default function RootLayout({ children }) {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
         name: brandName,
-        alternateName: brandAlternates,
+        alternateName: [brandShort],
         url: siteUrl,
         logo: {
           "@type": "ImageObject",
@@ -99,9 +96,9 @@ export default function RootLayout({ children }) {
         },
         image: `${siteUrl}/images/logo-mark.png`,
         description:
-          "Logiclume is a product engineering company delivering web development, mobile apps, UI/UX design, and custom software.",
-        slogan: "Logic. Innovation. Brighter tomorrow.",
-        email: "info@logiclume.com",
+          "Webologyx Technologies is a product engineering company delivering web development, mobile apps, UI/UX design, and custom software.",
+        slogan: "Product engineering for startups and enterprises.",
+        email: contactEmail,
         telephone: "+91-9205210930",
         address: {
           "@type": "PostalAddress",
@@ -111,15 +108,12 @@ export default function RootLayout({ children }) {
           postalCode: "201309",
           addressCountry: "IN",
         },
-        sameAs: [
-          "https://www.linkedin.com/company/logic-lume",
-          "https://www.instagram.com/logiclume/",
-        ],
+        sameAs: socialLinks,
         contactPoint: {
           "@type": "ContactPoint",
           telephone: "+91-9205210930",
           contactType: "customer service",
-          email: "info@logiclume.com",
+          email: contactEmail,
           areaServed: "Worldwide",
           availableLanguage: ["English"],
         },
@@ -128,7 +122,7 @@ export default function RootLayout({ children }) {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
         name: brandName,
-        alternateName: brandAlternates,
+        alternateName: [brandShort],
         url: siteUrl,
         publisher: { "@id": `${siteUrl}/#organization` },
         inLanguage: "en",
@@ -158,7 +152,8 @@ export default function RootLayout({ children }) {
           <Footer />
         </footer>
 
-        <Analytics />
+        <CookieConsent />
+        <AnalyticsGate />
       </body>
     </html>
   );

@@ -24,45 +24,45 @@ html.dp-nav-mega-open body {
   --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Brand: clear blue on light pages. Dark surfaces stay blue, not black. */
+/* Brand: white and blue */
 :root {
   --dp-nav-bar-h: 4.25rem;
   --dp-nav-promo-h: 0px;
   --dp-nav-total-h: var(--dp-nav-bar-h);
 
-  --color-brand-blue: #1570d6;
-  --color-brand-orange: #0f8f86;
+  --color-brand-blue: #246cd8;
+  --color-brand-orange: #246cd8;
 
-  --color-primary: #1570d6;
-  --color-primary-dark: #0e5bb5;
-  --color-primary-light: #4c93e6;
-  --color-accent: #0f8f86;
-  --color-accent-dark: #0b736c;
-  --color-accent-light: #3eb8b0;
+  --color-primary: #246cd8;
+  --color-primary-dark: #1a56b8;
+  --color-primary-light: #5b93e8;
+  --color-accent: #246cd8;
+  --color-accent-dark: #1a56b8;
+  --color-accent-light: #8eb6ef;
 
-  --color-dark: #0f4c8a;
-  --color-dark-elevated: #1565b8;
+  --color-dark: #16325c;
+  --color-dark-elevated: #1e4b86;
 
   --color-light: #ffffff;
-  --color-surface: #f4f8fc;
-  --color-surface-blue: #e7f1fb;
-  --color-surface-orange: #e7f6f5;
+  --color-surface: #f5f8fc;
+  --color-surface-blue: #e8f1fc;
+  --color-surface-orange: #e8f1fc;
 
-  --color-black: #1b2838;
-  --color-secondary: #1570d6;
+  --color-black: #2a333e;
+  --color-secondary: #246cd8;
   --color-on-primary: #ffffff;
-  --color-text: #1b2838;
+  --color-text: #2a333e;
   --color-text-muted: #5c6b7c;
   --color-text-on-dark: #ffffff;
-  --color-text-muted-dark: #d5e4f5;
+  --color-text-muted-dark: #d5e4f7;
 
-  --color-border: #e1eaf3;
-  --color-border-dark: rgba(255, 255, 255, 0.16);
+  --color-border: #d7e3f2;
+  --color-border-dark: rgba(36, 108, 216, 0.18);
 
-  --color-gradient: linear-gradient(90deg, #1570d6 0%, #0f8f86 100%);
-  --color-gradient-soft: linear-gradient(135deg, #f4f8fc 0%, #ffffff 55%, #e7f1fb 100%);
-  --color-hero-gradient: linear-gradient(180deg, #ffffff 0%, #f4f8fc 100%);
-  --color-cta-gradient: linear-gradient(135deg, #1570d6 0%, #0f4c8a 100%);
+  --color-gradient: linear-gradient(90deg, #1a56b8 0%, #246cd8 100%);
+  --color-gradient-soft: linear-gradient(135deg, #f5f8fc 0%, #ffffff 55%, #e8f1fc 100%);
+  --color-hero-gradient: linear-gradient(180deg, #ffffff 0%, #f5f8fc 100%);
+  --color-cta-gradient: linear-gradient(135deg, #5b93e8 0%, #246cd8 100%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -316,12 +316,12 @@ textarea:focus-visible {
 
 /* ── Icon badges ── */
 .icon-badge-blue {
-  background: linear-gradient(135deg, #1570d6, #0f4c8a);
+  background: linear-gradient(135deg, #5b93e8, #1a56b8);
   color: #ffffff;
 }
 
 .icon-badge-orange {
-  background: linear-gradient(135deg, #0f8f86, #0b736c);
+  background: linear-gradient(135deg, #3d84e6, #1a56b8);
   color: #ffffff;
 }
 
@@ -812,11 +812,11 @@ textarea:focus-visible {
 }
 
 .portfolio-brand-preview--blue {
-  background: linear-gradient(145deg, #0f4c8a 0%, #1570d6 55%, #0f8f86 100%);
+  background: linear-gradient(145deg, #16325c 0%, #246cd8 58%, #5b93e8 100%);
 }
 
 .portfolio-brand-preview--orange {
-  background: linear-gradient(145deg, #0b736c 0%, #0f8f86 45%, #1570d6 100%);
+  background: linear-gradient(145deg, #1a56b8 0%, #3d84e6 45%, #246cd8 100%);
 }
 
 .portfolio-brand-preview-chrome {
@@ -901,7 +901,10 @@ textarea:focus-visible {
   position: relative;
   overflow: hidden;
   border-radius: 1.5rem;
-  background: linear-gradient(135deg, #1570d6 0%, #0f4c8a 55%, #0c6e72 100%);
+  background:
+    radial-gradient(ellipse 55% 80% at 0% 0%, rgba(36, 108, 216, 0.55), transparent 60%),
+    radial-gradient(ellipse 50% 80% at 100% 100%, rgba(88, 48, 180, 0.4), transparent 62%),
+    #0e0d12;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -955,11 +958,11 @@ textarea:focus-visible {
   border-radius: 1.0625rem;
   background: linear-gradient(
     90deg,
-    #0f8f86 0%,
-    #1570d6 25%,
-    #0f4c8a 50%,
-    #1570d6 75%,
-    #0f8f86 100%
+    #5b93e8 0%,
+    #246cd8 25%,
+    #1a56b8 50%,
+    #246cd8 75%,
+    #5b93e8 100%
   );
   background-size: 200% 100%;
   animation: nav-border-marquee 4s linear infinite;
@@ -1401,7 +1404,10 @@ textarea:focus-visible {
 .nav-mega-ai-banner-mesh {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #1570d6 0%, #0f4c8a 55%, #0f8f86 100%);
+  background:
+    radial-gradient(ellipse 50% 80% at 0% 50%, rgba(36, 108, 216, 0.55), transparent 62%),
+    radial-gradient(ellipse 45% 80% at 100% 20%, rgba(88, 48, 180, 0.45), transparent 60%),
+    #0e0d12;
 }
 
 .nav-mega-ai-banner-mesh::after {
@@ -1420,7 +1426,7 @@ textarea:focus-visible {
   border-radius: 0.625rem;
   font-size: 0.8125rem;
   font-weight: 700;
-  color: #0f4c8a;
+  color: #111111;
   background: #ffffff;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -1845,7 +1851,7 @@ textarea:focus-visible {
   min-height: 8.75rem;
   border-radius: 0.625rem;
   overflow: hidden;
-  background: #0f4c8a;
+  background: #0e0d12;
   box-shadow: 0 6px 16px rgba(10, 22, 40, 0.12);
 }
 
@@ -1975,7 +1981,7 @@ textarea:focus-visible {
 }
 
 .nav-contact-btn:hover {
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #0f4c8a 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #16325c 100%);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(17, 17, 17, 0.35);
 }
@@ -2054,7 +2060,7 @@ textarea:focus-visible {
 .nav-ai-btn-open {
   background: #fff5eb;
   border-color: rgba(17, 17, 17, 0.42);
-  color: #0f4c8a;
+  color: #111111;
   box-shadow: 0 2px 10px rgba(17, 17, 17, 0.1);
 }
 

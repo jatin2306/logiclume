@@ -21,7 +21,7 @@ export default function HeroProductVisual() {
   if (!active) return null;
 
   return (
-    <div className="dp-hero-product" role="img" aria-label="Featured LogicLume product deliveries">
+    <div className="dp-hero-product" role="img" aria-label="Featured Webologyx Technologies product deliveries">
       <div className="dp-hero-product-glow" />
       <div className="dp-hero-product-frame">
         <div className="dp-hero-product-chrome">
@@ -29,7 +29,7 @@ export default function HeroProductVisual() {
           <span className="dp-hero-product-dot" />
           <span className="dp-hero-product-dot" />
           <span className="dp-hero-product-url">
-            {active.url ? active.url.replace(/^https?:\/\//, "").split("/")[0] : "logiclume.com"}
+            {active.url ? active.url.replace(/^https?:\/\//, "").split("/")[0] : "Webologyx"}
           </span>
         </div>
         <div className="dp-hero-product-screen">

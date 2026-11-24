@@ -1,66 +1,21 @@
 .brand-lockup {
   flex-shrink: 0;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  line-height: 1;
+  align-self: center;
+  line-height: 0;
   text-decoration: none;
-  color: #ffffff;
 }
 
 .brand-lockup-mark {
   display: block;
-  width: 1.85rem;
-  height: 1.85rem;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.brand-lockup-word {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  gap: 0.22rem;
-  width: max-content;
-}
-
-.brand-lockup-name {
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: #ffffff;
-}
-
-.brand-lockup-sub {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 0.5rem;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.72);
+  height: 2.15rem;
+  width: auto;
+  transform: translateY(1px);
 }
 
 @media (min-width: 640px) {
-  .brand-lockup {
-    gap: 0.55rem;
-  }
-
   .brand-lockup-mark {
-    width: 2.05rem;
-    height: 2.05rem;
-  }
-
-  .brand-lockup-name {
-    font-size: 1.125rem;
-  }
-
-  .brand-lockup-sub {
-    font-size: 0.5625rem;
+    height: 2.65rem;
   }
 }

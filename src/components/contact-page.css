@@ -200,7 +200,7 @@ html.dp-contact-route footer {
   border-radius: 999px;
   border: 1px solid rgba(17, 17, 17, 0.45);
   background: #f3f3f3;
-  color: var(--color-accent-dark, #0b736c);
+  color: var(--color-accent-dark, #1a56b8);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -287,7 +287,7 @@ html.dp-contact-route footer {
 }
 
 .contact-split-channels a:hover {
-  color: var(--color-primary-dark, #0e5bb5);
+  color: var(--color-primary-dark, #d44700);
 }
 
 .contact-split-steps {
@@ -461,7 +461,7 @@ html.dp-contact-route footer {
 }
 
 .contact-split-submit:hover {
-  background: #0e5bb5;
+  background: #d44700;
 }
 
 .contact-modal {
@@ -568,14 +568,14 @@ html.dp-contact-route footer {
   border: 1px solid rgba(15, 23, 42, 0.12);
   border-radius: 999px;
   background: #fff;
-  color: #0f4c8a;
+  color: #111111;
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(10, 22, 40, 0.16);
 }
 
 .contact-modal-close:hover {
   background: #f3f3f3;
-  color: #0f4c8a;
+  color: #111111;
 }
 
 .contact-embed {

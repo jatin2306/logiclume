@@ -23,7 +23,7 @@ function DeckProjectSlide({ project, index, chapterLabel }) {
     project.summary ||
     project.description ||
     project.whatWeDid ||
-    "Product design and engineering delivered end-to-end by LogicLume.";
+    "Product design and engineering delivered end-to-end by Webologyx Technologies.";
 
   return (
     <article className="portfolio-deck-slide">
@@ -58,8 +58,8 @@ function DeckProjectSlide({ project, index, chapterLabel }) {
             previewAccent={project.previewAccent}
             gradientClass={
               project.accent === "orange"
-                ? "from-[#1570d6] to-[#0f4c8a]"
-                : "from-[#1570d6] to-[#0f4c8a]"
+                ? "from-[#246cd8] to-[#16325c]"
+                : "from-[#246cd8] to-[#16325c]"
             }
             aspectClass="aspect-[16/10] w-full lg:aspect-auto lg:h-full"
             showOverlay={project.imageFit !== "contain"}

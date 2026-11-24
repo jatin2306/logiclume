@@ -1,4 +1,4 @@
-/* /portfolio — full-width white hero + gray grid (LogicLume) */
+/* /portfolio — full-width white hero + gray grid (Webologyx) */
 
 .portfolio-page {
   --portfolio-grid-bg: #f7f9fc;
@@ -403,7 +403,7 @@
 }
 
 .portfolio-work-card--orange {
-  --card-accent: #0f8f86;
+  --card-accent: #3d84e6;
   --card-accent-soft: rgba(17, 17, 17, 0.12);
   --card-stage-a: rgba(17, 17, 17, 0.18);
   --card-stage-b: rgba(120, 120, 120, 0.14);
@@ -611,7 +611,7 @@
 
 .portfolio-work-card-tier--t1,
 .portfolio-work-card-tier--t2 {
-  color: #0f4c8a;
+  color: #111111;
   background: rgba(17, 17, 17, 0.1);
   border-color: rgba(17, 17, 17, 0.15);
 }
@@ -1166,7 +1166,7 @@
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 999px;
-  background: var(--card-accent, #1570d6);
+  background: var(--card-accent, #246cd8);
 }
 
 .portfolio-work-card-summary {

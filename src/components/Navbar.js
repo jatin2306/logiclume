@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Sparkles, ChevronDown } from "lucide-react";
+import { ArrowRight, Sparkles, ChevronDown } from "lucide-react";
 import NavMegaPanel from "./NavMegaPanel";
 import ContactForm from "./ContactForm";
 import BrandLockup from "./BrandLockup";
@@ -103,7 +103,6 @@ export default function Navbar() {
 
   const headerClass = [
     "site-header",
-    pathname === "/" && !scrolled && !megaMenu ? "site-header--overlay" : "",
     scrolled ? "site-header--scrolled" : "",
     megaMenu ? "site-header--mega-open" : "",
     contactOpen ? "site-header--contact-lock" : "",
@@ -227,6 +226,9 @@ export default function Navbar() {
                       aria-current={pathname === "/contact-us" ? "page" : undefined}
                     >
                       Let&apos;s talk
+                      <span className="site-header-btn-orb" aria-hidden>
+                        <ArrowRight size={14} strokeWidth={2.4} />
+                      </span>
                     </Link>
                   </div>
 
@@ -334,6 +336,9 @@ export default function Navbar() {
               onClick={() => setMobileOpen(false)}
             >
               Start a Project
+              <span className="site-header-btn-orb" aria-hidden>
+                <ArrowRight size={14} strokeWidth={2.4} />
+              </span>
             </Link>
           </div>
         </aside>

@@ -1,0 +1,148 @@
+.cookie-consent {
+  position: fixed;
+  z-index: 70;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cookie-consent-card {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: min(42rem, 100%);
+  padding: 1rem 1rem 0.9rem;
+  border-radius: 1.1rem;
+  border: 1px solid #d7e3f2;
+  background: #ffffff;
+  color: #2a333e;
+  box-shadow: 0 18px 50px rgba(22, 50, 92, 0.16);
+  backdrop-filter: blur(16px);
+}
+
+.cookie-consent-title {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cookie-consent-copy p:last-child {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #5c6b7c;
+}
+
+.cookie-consent-copy a {
+  color: #5b93e8;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.cookie-consent-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.cookie-consent-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: 0.8rem;
+  background: #f5f8fc;
+  border: 1px solid #d7e3f2;
+}
+
+.cookie-consent-option input {
+  margin-top: 0.2rem;
+  accent-color: #246cd8;
+}
+
+.cookie-consent-option strong,
+.cookie-consent-option small {
+  display: block;
+}
+
+.cookie-consent-option strong {
+  font-size: 0.84rem;
+}
+
+.cookie-consent-option small {
+  margin-top: 0.15rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #5c6b7c;
+}
+
+.cookie-consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.45rem;
+}
+
+.cookie-consent-accept,
+.cookie-consent-ghost,
+.cookie-consent-text {
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cookie-consent-accept {
+  padding: 0.7rem 1.05rem;
+  border: 0;
+  background: #246cd8;
+  color: #ffffff;
+}
+
+.cookie-consent-accept:hover {
+  background: #1a56b8;
+}
+
+.cookie-consent-ghost,
+.cookie-consent-text {
+  padding: 0.68rem 0.95rem;
+  color: #2a333e;
+}
+
+.cookie-consent-ghost {
+  border: 1px solid #d7e3f2;
+}
+
+.cookie-consent-ghost:hover {
+  background: #e8f1fc;
+}
+
+.cookie-consent-text {
+  border: 0;
+  color: #5c6b7c;
+}
+
+.cookie-consent-text:hover {
+  color: #246cd8;
+}
+
+@media (min-width: 720px) {
+  .cookie-consent {
+    justify-content: flex-end;
+  }
+
+  .cookie-consent-card {
+    width: min(36rem, calc(100vw - 2rem));
+  }
+}

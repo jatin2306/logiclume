@@ -63,7 +63,7 @@ export default function HomeTrustStrip({ variant = "marquee" }) {
       <section className="mi-hero-logos" aria-label="Trusted by global clients">
         <div className="site-wrap">
           <div className="mi-hero-logos-row">
-            <p>Trusted by teams we build for</p>
+            <p>Trusted by</p>
             <div className="mi-hero-logos-viewport">
               <ul className="mi-hero-logos-track">
                 {loop.map((name, index) => (

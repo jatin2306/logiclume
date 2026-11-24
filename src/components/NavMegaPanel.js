@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import NavContactMegaForm from "./NavContactMegaForm";
+import { contactEmail } from "@/data/site";
 import {
   Sparkles,
   Globe,
@@ -117,11 +118,11 @@ const linkMenus = {
     eyebrow: "The company",
     title: "About Us",
     desc: "A product engineering studio delivering from Noida to global clients.",
-    cta: { href: "/about-us", label: "About LogicLume" },
+    cta: { href: "/about-us", label: "About Webologyx Technologies" },
     items: [
-      { label: "Our story", desc: "How LogicLume builds", href: "/about-us" },
+      { label: "Our story", desc: "How Webologyx Technologies builds", href: "/about-us" },
       { label: "Leadership", desc: "The people guiding delivery", href: "/about-us" },
-      { label: "Life at LogicLume", desc: "The Noida office and team", href: "/#team" },
+      { label: "Life at Webologyx Technologies", desc: "The Noida office and team", href: "/#team" },
       { label: "Book a call", desc: "Talk through your roadmap", href: "/book-a-call" },
       { label: "Contact", desc: "Start a project with the team", href: "/contact-us" },
     ],
@@ -210,7 +211,7 @@ export default function NavMegaPanel({ type, onClose }) {
                     <item.icon size={18} />
                   </span>
                   <span className="flex-1 min-w-0">
-                    <span className="block font-semibold text-[#1b2838] text-sm group-hover:text-[#1570d6] transition-colors">
+                    <span className="block font-semibold text-[#1b2838] text-sm group-hover:text-[#246cd8] transition-colors">
                       {item.label}
                     </span>
                     <span className="block text-xs text-[var(--color-text-muted)] mt-1">
@@ -269,8 +270,8 @@ export default function NavMegaPanel({ type, onClose }) {
                 <a href="tel:+919205210930" className="nav-mega-contact-quick-link">
                   +91 92052 10930
                 </a>
-                <a href="mailto:info@logiclume.com" className="nav-mega-contact-quick-link">
-                  info@logiclume.com
+                <a href={`mailto:${contactEmail}`} className="nav-mega-contact-quick-link">
+                  {contactEmail}
                 </a>
               </div>
               <a href="/contact-us" className="nav-mega-intro-cta group" onClick={onClose}>
@@ -288,7 +289,7 @@ export default function NavMegaPanel({ type, onClose }) {
               <div className="nav-mega-contact-cto-frame">
                 <Image
                   src="/images/team/office/team.jpg"
-                  alt="Chief Technology Officer at LogicLume"
+                  alt="Chief Technology Officer at Webologyx Technologies"
                   fill
                   sizes="(max-width: 1024px) 28vw, 220px"
                   className="nav-mega-contact-cto-photo"

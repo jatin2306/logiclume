@@ -27,12 +27,64 @@ jobs:
         run: npm run build
 
       - name: Deploy to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          port: 21
-          server-dir: domains/webologyx.com/public_html/
-          local-dir: ./out/
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y lftp
+          printf 'public_html' > /tmp/wx-probe-public-html.txt
+          printf 'domains' > /tmp/wx-probe-domains.txt
+          printf 'root' > /tmp/wx-probe-root.txt
+
+          upload_probe() {
+            local remote_dir="$1"
+            local file_name="$2"
+            lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<EOF || true
+          set cmd:fail-exit no
+          set net:max-retries 5
+          set net:reconnect-interval-base 4
+          set net:timeout 25
+          set ftp:passive-mode true
+          set ftp:ssl-allow no
+          mkdir -p -f "$remote_dir"
+          put -O "$remote_dir" "/tmp/$file_name"
+          bye
+          EOF
+          }
+
+          upload_probe "public_html" "wx-probe-public-html.txt"
+          upload_probe "domains/webologyx.com/public_html" "wx-probe-domains.txt"
+          upload_probe "." "wx-probe-root.txt"
+
+          sleep 5
+          TARGET=""
+          if curl -fsS "https://webologyx.com/wx-probe-root.txt" | grep -q root; then
+            TARGET="."
+          fi
+          if curl -fsS "https://webologyx.com/wx-probe-public-html.txt" | grep -q public_html; then
+            TARGET="public_html"
+          fi
+          if curl -fsS "https://webologyx.com/wx-probe-domains.txt" | grep -q domains; then
+            TARGET="domains/webologyx.com/public_html"
+          fi
+
+          echo "Live folder: ${TARGET:-not found}"
+          if [ -z "$TARGET" ]; then
+            echo "The built site was not visible from any Hostinger folder."
+            exit 1
+          fi
+
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<EOF
+          set cmd:fail-exit yes
+          set net:max-retries 8
+          set net:reconnect-interval-base 5
+          set net:timeout 40
+          set ftp:passive-mode true
+          set ftp:ssl-allow no
+          lcd out
+          cd "$TARGET"
+          mirror -R --delete --continue --verbose --parallel=2 .
+          bye
+          EOF

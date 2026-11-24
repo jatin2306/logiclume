@@ -1,4 +1,3 @@
-
 name: Deploy Next.js to Hostinger
 
 on:
@@ -27,15 +26,7 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
-      - name: Verify build output
-        run: |
-          if [ ! -d "out" ]; then
-            echo "Error: Next.js out folder not found!"
-            exit 1
-          fi
-          ls -la out/
-
-      - name: Deploy to Hostinger
+      - name: Replace public_html with the new build
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
@@ -43,20 +34,18 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y lftp
-
           lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<'EOF'
           set cmd:fail-exit yes
-          set net:max-retries 5
+          set net:max-retries 8
+          set net:reconnect-interval-base 5
           set net:timeout 40
           set ftp:passive-mode true
           set ftp:ssl-allow no
-
-          cd /public_html
-
-          echo "Deployment directory:"
-          pwd
-
-          mirror -R --verbose --parallel=2 out/ .
-
+          cd public_html
+          glob -f rm -r *
+          glob -f rm -r .[!.]*
+          glob -f rm -r ..?*
+          lcd out
+          mirror -R --delete --ignore-time --parallel=2 .
           bye
           EOF

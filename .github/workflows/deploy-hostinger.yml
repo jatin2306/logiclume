@@ -39,7 +39,7 @@ jobs:
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt-get update -qq
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq lftp
-          echo "Uploading the new build into public_html"
+          echo "Uploading the new build into the public_html folder this FTP account opens"
           lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<'EOF'
           set cmd:fail-exit yes
           set cmd:trace no
@@ -48,9 +48,9 @@ jobs:
           set ftp:passive-mode true
           set ftp:ssl-allow no
           set xfer:log yes
-          cd public_html
           set cmd:fail-exit no
           rm -r out
+          rm -r public_html
           set cmd:fail-exit yes
           lcd out
           mirror -R --delete --ignore-time --verbose --parallel=4 .

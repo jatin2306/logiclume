@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: hostinger-public-html
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -42,7 +46,10 @@ jobs:
           set ftp:passive-mode true
           set ftp:ssl-allow no
           cd public_html
+          set cmd:fail-exit no
+          glob -a rm -r *
+          set cmd:fail-exit yes
           lcd out
-          mirror -R --delete --ignore-time --parallel=2 .
+          mirror -R --delete --ignore-time --parallel=2
           bye
           EOF

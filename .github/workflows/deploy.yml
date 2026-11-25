@@ -1,27 +1,40 @@
-
-name: Deploy Next.js to Hostinger
+name: Deploy to Hostinger
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run: show what would change, upload nothing"
+        type: boolean
+        default: false
 
+permissions:
+  contents: read
+
+# One deploy at a time. Never cancel a running deploy half-way: queue instead.
 concurrency:
-  group: hostinger-production
+  group: hostinger-production-deploy
   cancel-in-progress: false
+
+env:
+  FTP_PORT: 21
+  FTP_SERVER_DIR: ./public_html/   # use ./ if your FTP login already lands inside public_html
+  BUILD_DIR: out
+  MIN_FILES: 20                    # refuse to deploy a suspiciously small build
 
 jobs:
   deploy:
-    name: Build and Deploy
+    name: Build and deploy
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -30,41 +43,102 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Next.js
+      - name: Build (static export)
         run: npm run build
 
+      # Safety gate: a broken or empty build must never reach the server,
+      # because the sync would treat missing files as "deleted".
       - name: Verify build output
         run: |
-          test -f out/index.html
-          echo "Next.js static build ready"
+          set -euo pipefail
+          [ -d "$BUILD_DIR" ]            || { echo "::error::$BUILD_DIR/ not found. Is output: 'export' set in next.config?"; exit 1; }
+          [ -f "$BUILD_DIR/index.html" ] || { echo "::error::$BUILD_DIR/index.html missing"; exit 1; }
+          [ -d "$BUILD_DIR/_next" ]      || { echo "::error::$BUILD_DIR/_next missing"; exit 1; }
+          count=$(find "$BUILD_DIR" -type f | wc -l)
+          size=$(du -sh "$BUILD_DIR" | cut -f1)
+          echo "Build contains $count files ($size)"
+          [ "$count" -ge "$MIN_FILES" ]  || { echo "::error::Only $count files (< $MIN_FILES). Aborting."; exit 1; }
 
-      - name: Install LFTP
+      # Keeps the previous deploy's assets so visitors with an old page open
+      # do not hit missing JS/CSS chunks. Falls back gracefully if the cache is gone.
+      - name: Restore previous asset generation
+        uses: actions/cache@v4
+        with:
+          path: .deploy-prev
+          key: deploy-prev-${{ github.run_id }}
+          restore-keys: |
+            deploy-prev-
+
+      # Split the build in two groups:
+      #   pages  = *.html and *.txt (page content, route payloads, robots.txt)
+      #   assets = everything else (_next/static, images, fonts, .htaccess ...)
+      # Assets go live first, pages last, so a page never points at a missing file.
+      - name: Prepare deploy folders
         run: |
-          sudo apt-get install -y lftp
+          set -euo pipefail
+          rm -rf .deploy
+          mkdir -p .deploy/new-assets .deploy/assets .deploy/pages
+          ( cd "$BUILD_DIR" && find . -type f ! -name '*.html' ! -name '*.txt' -print0 \
+              | xargs -0 -r cp --parents -t ../.deploy/new-assets )
+          ( cd "$BUILD_DIR" && find . -type f \( -name '*.html' -o -name '*.txt' \) -print0 \
+              | xargs -0 -r cp --parents -t ../.deploy/pages )
+          # previous generation first, current build on top (current wins)
+          if [ -d .deploy-prev ]; then cp -a .deploy-prev/. .deploy/assets/; fi
+          cp -a .deploy/new-assets/. .deploy/assets/
+          echo "Assets to sync: $(find .deploy/assets -type f | wc -l) files"
+          echo "Pages to sync:  $(find .deploy/pages -type f | wc -l) files"
 
-      - name: Deploy to Hostinger
+      - name: Phase 1/2 - sync assets
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ env.FTP_PORT }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          security: loose
+          local-dir: ./.deploy/assets/
+          server-dir: ${{ env.FTP_SERVER_DIR }}
+          state-name: .ftp-state-assets.json
+          timeout: 60000
+          log-level: standard
+          dry-run: ${{ inputs.dry_run == true }}
+
+      - name: Phase 2/2 - sync pages
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ env.FTP_PORT }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          security: loose
+          local-dir: ./.deploy/pages/
+          server-dir: ${{ env.FTP_SERVER_DIR }}
+          state-name: .ftp-state-pages.json
+          timeout: 60000
+          log-level: standard
+          dry-run: ${{ inputs.dry_run == true }}
+
+      # Only reached when both phases succeeded; saved to the cache by the post step.
+      - name: Remember this build's assets for the next deploy
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          rm -rf .deploy-prev
+          cp -a .deploy/new-assets .deploy-prev
+
+      # Optional: set a repository variable SITE_URL (e.g. https://example.com)
+      - name: Smoke test live site
+        if: ${{ inputs.dry_run != true && vars.SITE_URL != '' }}
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          SITE_URL: ${{ vars.SITE_URL }}
         run: |
-          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<'EOF'
-          set ftp:passive-mode true
-          set ftp:prefer-epsv false
-          set ftp:ssl-allow no
-
-          set net:timeout 60
-          set net:max-retries 5
-          set net:reconnect-interval-base 5
-          set cmd:fail-exit yes
-
-          mirror --reverse \
-            --verbose \
-            --parallel=2 \
-            --no-perms \
-            --ignore-time \
-            --overwrite \
-            ./out/ /public_html/
-
-          bye
-          EOF
+          set -euo pipefail
+          base="${SITE_URL%/}"
+          curl -fsS --retry 5 --retry-delay 5 --retry-all-errors -o /dev/null \
+            -w "Homepage: HTTP %{http_code}\n" "$base/"
+          asset=$(grep -o '/_next/static/[^"]*\.js' "$BUILD_DIR/index.html" | head -n 1 || true)
+          if [ -n "$asset" ]; then
+            curl -fsS --retry 3 --retry-delay 5 --retry-all-errors -o /dev/null \
+              -w "Asset $asset: HTTP %{http_code}\n" "$base$asset"
+          fi

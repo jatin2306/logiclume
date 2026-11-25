@@ -89,6 +89,25 @@ jobs:
           echo "Pages to sync:  $(find .deploy/pages -type f | wc -l) files"
 
       - name: Phase 1/2 - sync assets
+        id: assets
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ env.FTP_PORT }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          security: loose
+          local-dir: ./.deploy/assets/
+          server-dir: ${{ env.FTP_SERVER_DIR }}
+          state-name: .ftp-state-assets.json
+          timeout: 60000
+          log-level: standard
+          dry-run: ${{ inputs.dry_run == true }}
+
+      - name: Phase 1/2 - retry assets (only if the first attempt failed)
+        if: steps.assets.outcome == 'failure'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -105,6 +124,25 @@ jobs:
           dry-run: ${{ inputs.dry_run == true }}
 
       - name: Phase 2/2 - sync pages
+        id: pages
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ env.FTP_PORT }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          security: loose
+          local-dir: ./.deploy/pages/
+          server-dir: ${{ env.FTP_SERVER_DIR }}
+          state-name: .ftp-state-pages.json
+          timeout: 60000
+          log-level: standard
+          dry-run: ${{ inputs.dry_run == true }}
+
+      - name: Phase 2/2 - retry pages (only if the first attempt failed)
+        if: steps.pages.outcome == 'failure'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}

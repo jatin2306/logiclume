@@ -48,8 +48,7 @@ jobs:
           set net:reconnect-interval-base 5
           set cmd:fail-exit yes
 
-          cd /public_html/
-          mirror --reverse --verbose --parallel=1 ./out/ /public_html/
+          mirror --reverse --verbose --parallel=2 --no-perms ./out/ /public_html/
 
           bye
           EOF

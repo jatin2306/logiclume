@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-
   workflow_dispatch:
 
 jobs:
@@ -13,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -29,7 +28,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -38,3 +37,5 @@ jobs:
           port: 21
           local-dir: ./out/
           server-dir: /public_html/
+          timeout: 120000
+          log-level: verbose

@@ -7,10 +7,15 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: hostinger-production
+  cancel-in-progress: false
+
 jobs:
   deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
@@ -28,9 +33,13 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
+      - name: Verify build output
+        run: |
+          test -f out/index.html
+          echo "Next.js static build ready"
+
       - name: Install LFTP
         run: |
-          sudo apt-get update
           sudo apt-get install -y lftp
 
       - name: Deploy to Hostinger
@@ -43,12 +52,19 @@ jobs:
           set ftp:passive-mode true
           set ftp:prefer-epsv false
           set ftp:ssl-allow no
+
           set net:timeout 60
           set net:max-retries 5
           set net:reconnect-interval-base 5
           set cmd:fail-exit yes
 
-          mirror --reverse --verbose --parallel=2 --no-perms ./out/ /public_html/
+          mirror --reverse \
+            --verbose \
+            --parallel=2 \
+            --no-perms \
+            --ignore-time \
+            --overwrite \
+            ./out/ /public_html/
 
           bye
           EOF
